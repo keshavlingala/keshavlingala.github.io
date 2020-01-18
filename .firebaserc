@@ -1,0 +1,32 @@
+{
+  "projects": {
+    "default": "keshav-lingala"
+  },
+  "targets": {
+    "keshav-lingala": {
+      "hosting": {
+        "keshav-lingala": [
+          "keshav-lingala"
+        ],
+        "keshavlingala": [
+          "keshavlingala"
+        ],
+        "lingala": [
+          "lingala"
+        ],
+        "keshavreddy": [
+          "keshavreddy"
+        ],
+        "imimmortal": [
+          "imimmortal"
+        ],
+        "beyondimmortal": [
+          "beyondimmortal"
+        ],
+        "keshavv": [
+          "keshavv"
+        ]
+      }
+    }
+  }
+}

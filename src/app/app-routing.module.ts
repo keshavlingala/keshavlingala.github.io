@@ -1,11 +1,31 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {WebAppsComponent} from './Sections/web-apps/web-apps.component';
+import {AndroidAppsComponent} from './Sections/android-apps/android-apps.component';
+import {ProfileComponent} from './profile/profile.component';
+import {BluetoothComponent} from './Sections/bluetooth/bluetooth.component';
+import {LineFollowerComponent} from './Sections/line-follower/line-follower.component';
+import {CrawlerComponent} from './Sections/crawler/crawler.component';
+import {SettingsComponent} from './admin/settings/settings.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: 'admin', component: SettingsComponent},
+  // {path: 'login', component: LoginComponent},
+  {path: 'web', component: WebAppsComponent},
+  {path: 'android', component: AndroidAppsComponent},
+  {path: 'line-follower', component: LineFollowerComponent},
+  {path: 'crawler-robot', component: CrawlerComponent},
+  {path: 'bluetooth-robot', component: BluetoothComponent},
+  {path: 'profile', component: ProfileComponent},
+  {path: '', component: ProfileComponent},
+  // {path: '**', component: NotFoundComponent}
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

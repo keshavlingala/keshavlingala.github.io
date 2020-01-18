@@ -1,0 +1,297 @@
+<div class="overflow-hidden">
+  <div class=" text-center">
+    <img class=" myCover" src="assets/cover.jpg" alt="">
+  </div>
+  <div class="text-center m-3">
+    <br>
+    <h1 class="display-4">Keshav Reddy</h1>
+    <h5>Computer Science Student</h5>
+  </div>
+</div>
+<mat-divider></mat-divider>
+
+<!--Profiles-->
+
+<mat-tab-group mat-stretch-tabs backgroundColor="primary">
+  <mat-tab label="About">
+    <ng-template mat-tab-label>
+      <i class="fa fa-info mr-2"></i>
+      About
+    </ng-template>
+    <div class="text-center overflow-hidden">
+      <h2 class="display-4">About</h2>
+      <div class="row m-2 justify-content-around">
+        <div matTooltip="Email Me" matTooltipPosition="above" class="col-auto ">
+          <button mat-button onClick="window.open('mailto:keshavlingala@gmail.com')">
+            <i class="fa fa-envelope fa-2x"></i> <br>
+            Email
+          </button>
+        </div>
+        <div matTooltip="Contact Me" matTooltipPosition="above" class="col-auto">
+          <button mat-button onClick="window.open('http://t.me/beyondimmortal')">
+            <i class="fa fa-phone fa-2x"></i> <br>
+            Contact
+          </button>
+        </div>
+        <div matTooltip="Hyderabad, India" matTooltipPosition="above" class="col-auto">
+          <button mat-button onClick="window.open('https://goo.gl/maps/fja8n8GGWho')">
+            <i class="fa fa-map-marker fa-2x"></i> <br>
+            Show on Map
+          </button>
+        </div>
+        <div matTooltip="View Resume" matTooltipPosition="above" class="col-auto">
+          <button mat-button
+                  onClick="window.open('https://drive.google.com/file/d/1A5j71RWiolkZxrenxV0QmmwGFWGqTHEk/view?usp=sharing')">
+            <i class="fa fa-file fa-2x"></i> <br>
+            Resume
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Profiles">
+    <ng-template mat-tab-label>
+      <i mat-list-icon class="fa fa-user mr-2"></i>
+      Profiles
+    </ng-template>
+    <div class="text-center overflow-hidden">
+      <h2 class="display-4">Profiles</h2>
+      <div class="row justify-content-around">
+        <div matTooltip="Github Profile" matTooltipPosition="above" class="col-auto">
+          <button class="w-100" mat-button onClick="window.open('https://github.com/keshavlingala')">
+            <i class="fa fa-github fa-2x"></i>
+            <br>
+            Github
+          </button>
+        </div>
+        <div matTooltip="LinkedIn Profile" matTooltipPosition="above" class="col-auto">
+          <button class="w-100" mat-button onClick="window.open('https://www.linkedin.com/in/keshavlingala/')">
+            <i class="fa fa-linkedin fa-2x"></i>
+            <br>
+            LinkedIn
+          </button>
+        </div>
+        <div matTooltip="Instagram Profile" matTooltipPosition="above" class="col-auto">
+          <button mat-button class="w-100" onClick="window.open('https://instagram.com/im__immortal')">
+            <i class="fa fa-instagram fa-2x"></i><br>
+            Instagram
+          </button>
+        </div>
+        <div matTooltip="Facebook Profile" matTooltipPosition="above" class="col-auto">
+          <button mat-button class="w-100"
+                  onClick="window.open('https://www.facebook.com/keshav.reddie')">
+            <i class="fa fa-facebook fa-2x"></i> <br>
+            Facebook
+          </button>
+        </div>
+        <div matTooltip="Twitter Profile" matTooltipPosition="above" class="col-auto">
+          <button mat-button class="w-100"
+                  onClick="window.open('https://twitter.com/keshavlingala')">
+            <i class="fa fa-twitter fa-2x"></i> <br>
+            Twitter
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
+
+<!--Description-->
+<div class="aos-animate aos-init overflow-hidden sectionStart takeSection text-center container">
+  <p data-aos="fade-right" data-aos-duration="700">
+    B-tech UnderGraduate in Keshav Memorial Institute of Technology in Department of Computer Science and
+    Technology
+    I Like Doing projects on programming, web development, web applications, Android application, Java Programming ,
+    Web Scrapping and Educational Applications more useful to Students like Me.
+  </p>
+</div>
+<!-- Projects Container for Cards-->
+<div class="container overflow-hidden">
+  <!--Header-->
+  <div data-aos="fade-left" class="text-center">
+    <h2 class="display-4">Projects</h2>
+    <p>Projects Till Now</p>
+  </div>
+  <!--Web Apps-->
+  <div [routerLink]="['/web']" data-aos="zoom-in-down"
+       class="hvr-outline-out card clickable sectionCard">
+    <div class="row ">
+      <div class="rounded-left col-lg-6 col-md-6 col-sm-12 hvr-bubble-float-right">
+        <img class="hvr-fade w-100 rounded"
+             src="https://firebasestorage.googleapis.com/v0/b/keshav-lingala.appspot.com/o/assets%2Fwebapps.jpg?alt=media&token=3b8eba14-69ea-4269-aafe-b434c6745a2f"
+             alt="Image">
+      </div>
+      <div data-aos="fade-left" class="p-5 justify-content-center  col-lg-6 col-md-6 col-sm-12">
+        <h1>Web Applications</h1>
+        <p>These are some of Web apps I made recently</p>
+      </div>
+    </div>
+  </div>
+  <!--Android Apps-->
+  <div [routerLink]="['/android']" data-aos="zoom-in-down"
+       class="hvr-outline-out card clickable sectionCard">
+    <div class="row">
+
+      <div data-aos="fade-right"
+           class="p-5 justify-content-center  col-lg-6 col-md-6 col-sm-12 pl-5">
+        <h1>Android Apps</h1>
+        <p>These are some of Android apps I made recently</p>
+
+      </div>
+      <div class="rounded-right col-lg-6 col-md-6 col-sm-12 hvr-bubble-float-left">
+        <img class="hvr-fade w-100"
+             src="https://firebasestorage.googleapis.com/v0/b/keshav-lingala.appspot.com/o/assets%2Fandroid.jpg?alt=media&token=4904adb2-265f-4fda-bf47-662fa8e34ff5"
+             alt="Image">
+      </div>
+    </div>
+  </div>
+  <!--crawler-->
+  <div [routerLink]="['/crawler-robot']" data-aos="zoom-in-down"
+       class="hvr-outline-out card clickable sectionCard">
+    <div class="row">
+      <div class="rounded-left col-lg-6 col-md-6 col-sm-12 hvr-bubble-float-right">
+        <img class=" w-100"
+             src="https://firebasestorage.googleapis.com/v0/b/keshav-lingala.appspot.com/o/assets%2Fcrawler.jpg?alt=media&token=bc6f0000-e89b-49bf-948f-e0491eae7846"
+             alt="Image">
+      </div>
+      <div data-aos="fade-left" class="p-5 justify-content-center  col-lg-6 col-md-6 col-sm-12">
+        <h1>Crawler Bot</h1>
+        <p>Object Follower Robot detecting by it's color
+          Automated Robot that follows the Color Recognized from the Pixy Camera
+        </p>
+        <mat-card-actions>
+
+        </mat-card-actions>
+      </div>
+    </div>
+  </div>
+  <!--line follower-->
+  <div [routerLink]="['/line-follower']" data-aos="zoom-in-down"
+       class="hvr-outline-out card clickable sectionCard">
+    <div class="row">
+
+      <div data-aos="fade-right"
+           class="p-5 justify-content-center col-lg-6 col-md-6 col-sm-12 pl-5">
+        <h1>Line Follower Robot</h1>
+        <p>This is and Automated Bot That Follows the black line path</p>
+
+      </div>
+      <div class="rounded-right col-lg-6 col-md-6 col-sm-12 hvr-bubble-float-left">
+        <img class="hvr-fade w-100"
+             src="https://firebasestorage.googleapis.com/v0/b/keshav-lingala.appspot.com/o/assets%2Flinefollower.jpg?alt=media&token=6ad87f2d-7c97-42c7-81c4-18a88c52fbd9"
+             alt="Image">
+      </div>
+    </div>
+  </div>
+  <!--BlueTooth Apps-->
+  <div [routerLink]="['/bluetooth-robot']" data-aos="zoom-in-down"
+       class="hvr-outline-out card clickable sectionCard">
+    <div class="row">
+      <div class="rounded-left col-lg-6 col-md-6 col-sm-12 hvr-bubble-float-right">
+        <img class="hvr-fade w-100"
+             src="https://firebasestorage.googleapis.com/v0/b/keshav-lingala.appspot.com/o/assets%2Fposter.jpg?alt=media&token=54ae2594-07a9-4cc9-a841-8dcd9524264e"
+             alt="Image">
+      </div>
+      <div data-aos="fade-left" class="pl-5 pt-5  col-lg-6 col-md-6 col-sm-12">
+        <h1>Bluetooth Controlled Robo Car</h1>
+        <p>This is my first ever personal project I made when getting started with Arduino and Robotics
+          and I liked it so much , I made this when i'm so bored in Holidays
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<mat-divider></mat-divider>
+<!--Education-->
+<div class="container overflow-hidden">
+  <h2 class="display-4 text-center">Education</h2>
+  <div data-aos="flip-left"
+       data-aos-easing="ease-out-cubic"
+       class="p-5 mt-2 mb-2">
+    <h3>KESHAV MEMORIAL INSTITUTE OF TECHNOLOGY</h3>
+    <h5>HYDERABAD</h5>
+    <p>Computer Science and Engineering <br>
+      Percentage: 75%</p>
+  </div>
+
+  <div data-aos="flip-left"
+       data-aos-easing="ease-out-cubic"
+       class="p-5 mt-2 mb-2">
+    <h3>SR JUNIOR COLLEGE</h3>
+    <h5>WARANGAL</h5>
+    <p>Mathematics and Physics <br>
+      Percentage: 94.7%</p>
+  </div>
+  <div data-aos="flip-left"
+       data-aos-easing="ease-out-cubic"
+       class="p-5 mt-2 mb-2">
+    <h3>HOLY ANGELS HIGH SCHOOL</h3>
+    <h5>MAHABUBABAD</h5>
+    <p>Percentage: 95%</p>
+  </div>
+</div>
+<mat-divider></mat-divider>
+<!--Skills-->
+<h2 class="display-3 text-center">Skills</h2>
+<div class="container ">
+  <div class="row">
+    <mat-list>
+      <h3 mat-subheader>Pro</h3>
+      <mat-list-item data-aos="fade-right" *ngFor="let skill of proskills">
+        <img [src]="skill.icon" mat-list-icon/>
+        <h4 mat-line>{{skill.name}}</h4>
+        <mat-divider></mat-divider>
+        <mat-progress-bar mat-line mode="buffer" [bufferValue]="
+skill.progress+4" [value]="skill.progress"></mat-progress-bar>
+      </mat-list-item>
+    </mat-list>
+    <mat-divider></mat-divider>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <mat-list>
+        <h3 mat-subheader>Intermediate</h3>
+        <mat-list-item data-aos="fade-right" *ngFor="let skill of interskills">
+          <img [src]="skill.icon" mat-list-icon/>
+          <h4 mat-line>{{skill.name}}</h4>
+          <mat-divider></mat-divider>
+          <mat-progress-bar mat-line mode="buffer" [bufferValue]="
+skill.progress+4" [value]="skill.progress"></mat-progress-bar>
+        </mat-list-item>
+      </mat-list>
+      <mat-divider></mat-divider>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <mat-list>
+        <h3 mat-subheader>Beginner</h3>
+        <mat-list-item data-aos="fade-right" *ngFor="let skill of beginnerskills">
+          <img [src]="skill.icon" mat-list-icon/>
+          <h4 mat-line>{{skill.name}}</h4>
+          <mat-divider></mat-divider>
+          <mat-progress-bar mat-line mode="buffer" [bufferValue]="skill.progress+4"
+                            [value]="skill.progress"></mat-progress-bar>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+</div>
+<mat-divider></mat-divider>
+<!--Achievements-->
+<div class="container overflow-hidden">
+  <h2 class="display-5 text-center">Achievements & Participation</h2>
+  <mat-list>
+    <mat-list-item data-aos="fade-right"
+                   *ngFor="let achievement of achievements">
+      <h4 class="text-capitalize" mat-line>{{achievement.name}}</h4>
+      <h6 class="text-capitalize" mat-line mat-subheader>{{achievement.heading}}</h6>
+    </mat-list-item>
+  </mat-list>
+</div>
+<mat-divider></mat-divider>
+<mat-toolbar>
+  <span class="flex-fill"></span>
+  <p class="mat-small">Designed and Developed by <a href="https://www.linkedin.com/in/keshavlingala/">Lingala Keshav</a>
+  </p>
+</mat-toolbar>

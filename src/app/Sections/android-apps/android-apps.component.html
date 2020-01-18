@@ -1,0 +1,28 @@
+<div class="container w-100">
+  <div class="row w-100">
+    <div *ngFor="let card of appcards" class="col-lg-6 col-sm-12 col-md-6 col-xl-6">
+      <mat-card class="m-4">
+        <mat-card-header>
+          <!--        <img mat-card-avatar [src]="getImage('assets/icons/android.svg') | async"/>-->
+          <mat-card-title>{{card.title}}</mat-card-title>
+          <mat-card-subtitle>{{card.description}}</mat-card-subtitle>
+        </mat-card-header>
+        <img alt="Card Image" mat-card-image src="{{card.img}}">
+        <mat-card-content>
+          <p>
+            {{card.about}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <p>{{card.likes | number}} likes</p>
+          <button matTooltip="Give a Like?" (click)="plusLike(card)" mat-button>
+            <i class="fa fa-thumbs-up fa-2x"></i>
+            LIKE
+          </button>
+          <button matTooltip="Share in Whatsapp" mat-button><i
+            class="fa fa-whatsapp fa-2x"></i></button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
