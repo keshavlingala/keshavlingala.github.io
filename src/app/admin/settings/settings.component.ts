@@ -87,6 +87,7 @@ export class SettingsComponent implements OnInit {
     // this.afs.collection('AndroidApps').doc(doc.id).update({
     //   id: doc.id
     // });
+
     // Upload Image
     if (this.selectedFile) {
       this.comp.compress(this.selectedFile).subscribe(file => {

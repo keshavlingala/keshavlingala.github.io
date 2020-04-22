@@ -36,10 +36,10 @@
           <input name="title" [(ngModel)]="androidEdit.title" matInput placeholder="Title" value="">
         </mat-form-field>
         <mat-form-field class="w-100">
-          <input name="about" [(ngModel)]="androidEdit.about" matInput placeholder="About" value="">
+          <input name="Description" [(ngModel)]="androidEdit.about" matInput placeholder="Description" value="">
         </mat-form-field>
         <mat-form-field class="w-100">
-          <input name="description" [(ngModel)]="androidEdit.description" matInput placeholder="Description" value="">
+          <input name="Title" [(ngModel)]="androidEdit.description" matInput placeholder="Sub Heading" value="">
         </mat-form-field>
         <input style="display: none" (change)="picChange($event)" type="file" #fileInput>
         <img class="w-100" (click)="fileInput.click()" mat-list-icon *ngIf="androidEdit.img else holder"
