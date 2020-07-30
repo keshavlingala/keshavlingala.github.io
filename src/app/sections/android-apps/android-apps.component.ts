@@ -1,5 +1,5 @@
 import {Component, OnInit, Inject} from '@angular/core';
-import {AndroidApp} from '../../DataModels/androidApp.model';
+import {AndroidApp} from '../../models/androidApp.model';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {Observable} from 'rxjs';

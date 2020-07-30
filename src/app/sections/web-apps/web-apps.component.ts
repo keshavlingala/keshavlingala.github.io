@@ -1,6 +1,6 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {WebApp} from '../../DataModels/webapp.model';
+import {WebApp} from '../../models/webapp.model';
 
 @Component({
   selector: 'app-web-apps',

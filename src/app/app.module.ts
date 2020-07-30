@@ -21,12 +21,13 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {FormsModule} from '@angular/forms';
 import {ProfileComponent} from './profile/profile.component';
 import {AngularFireModule} from '@angular/fire';
-import {WebAppsComponent} from './Sections/web-apps/web-apps.component';
-import {AndroidAppsComponent} from './Sections/android-apps/android-apps.component';
-import {BluetoothComponent} from './Sections/bluetooth/bluetooth.component';
-import {LineFollowerComponent} from './Sections/line-follower/line-follower.component';
-import {CrawlerComponent} from './Sections/crawler/crawler.component';
-import {SettingsComponent} from './admin/settings/settings.component';
+import {WebAppsComponent} from './sections/web-apps/web-apps.component';
+import {AndroidAppsComponent} from './sections/android-apps/android-apps.component';
+import {BluetoothComponent} from './sections/bluetooth/bluetooth.component';
+import {LineFollowerComponent} from './sections/line-follower/line-follower.component';
+import {CrawlerComponent} from './sections/crawler/crawler.component';
+import {FirebaseModule} from './firebase/firebase.module';
+import {MaterialModule} from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -37,36 +38,14 @@ import {SettingsComponent} from './admin/settings/settings.component';
     BluetoothComponent,
     LineFollowerComponent,
     CrawlerComponent,
-    SettingsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    MatExpansionModule,
-    MatTabsModule,
-    AngularFireStorageModule,
-    AngularFirestoreModule.enablePersistence({
-      synchronizeTabs: true
-    }),
-    MatProgressSpinnerModule,
-    AngularFireAuthModule,
-    MatDividerModule,
-    MatSidenavModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    MatIconModule,
-    MatMenuModule,
-    MatSnackBarModule,
-    MatProgressBarModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    MatListModule,
-    MatCardModule,
-    FormsModule,
-    MatInputModule,
-    MatFormFieldModule,
+    FirebaseModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

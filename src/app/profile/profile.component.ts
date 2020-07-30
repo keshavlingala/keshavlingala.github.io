@@ -3,8 +3,8 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
 import {Meta} from '@angular/platform-browser';
-import {Skill} from '../DataModels/skill.model';
-import {Achievement} from '../DataModels/achievement.model';
+import {Skill} from '../models/skill.model';
+import {Achievement} from '../models/achievement.model';
 import {SubSink} from 'subsink';
 
 @Component({

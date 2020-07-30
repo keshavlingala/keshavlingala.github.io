@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {WebAppsComponent} from './Sections/web-apps/web-apps.component';
-import {AndroidAppsComponent} from './Sections/android-apps/android-apps.component';
+import {WebAppsComponent} from './sections/web-apps/web-apps.component';
+import {AndroidAppsComponent} from './sections/android-apps/android-apps.component';
 import {ProfileComponent} from './profile/profile.component';
-import {BluetoothComponent} from './Sections/bluetooth/bluetooth.component';
-import {LineFollowerComponent} from './Sections/line-follower/line-follower.component';
-import {CrawlerComponent} from './Sections/crawler/crawler.component';
+import {BluetoothComponent} from './sections/bluetooth/bluetooth.component';
+import {LineFollowerComponent} from './sections/line-follower/line-follower.component';
+import {CrawlerComponent} from './sections/crawler/crawler.component';
 import {SettingsComponent} from './admin/settings/settings.component';
 
 
