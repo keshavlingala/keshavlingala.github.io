@@ -45,4 +45,4 @@ testem.log
 Thumbs.db
 .firebase
 .firebaserc
-
+dist
