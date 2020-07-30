@@ -6,22 +6,5 @@
     <button mat-menu-item [routerLink]="['/web']">Web Applications</button>
     <button mat-menu-item [routerLink]="['/android']">Android Applications</button>
   </mat-menu>
-
-  <span class="flex-fill"></span>
-  <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button routerLink="/admin" *ngIf="!auth.isLoggedIn" mat-menu-item>
-      <span routerLink="/login">Login As Keshav</span>
-    </button>
-    <button [routerLink]="['admin']" *ngIf="auth.isLoggedIn" mat-menu-item>
-      <span>Manage Website</span>
-    </button>
-    <button (click)="auth.signout()" mat-menu-item *ngIf="auth.isLoggedIn">
-      <span>Logout</span>
-    </button>
-  </mat-menu>
 </mat-toolbar>
-
 <router-outlet></router-outlet>

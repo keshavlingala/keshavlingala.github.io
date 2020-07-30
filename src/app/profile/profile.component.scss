@@ -123,3 +123,14 @@ mat-card {
   padding: 2px 5px;
 }
 
+.education {
+  > div {
+    padding: 20px;
+
+    > h3, h5, h6 {
+      padding-top: 5px;
+      padding-bottom: 10px;
+    }
+  }
+
+}

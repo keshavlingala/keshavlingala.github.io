@@ -6,21 +6,7 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-import {
-  MatButtonModule, MatCardModule,
-  MatDividerModule,
-  MatExpansionModule, MatFormFieldModule,
-  MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressBarModule,
-  MatProgressSpinnerModule,
-  MatSidenavModule, MatSnackBarModule,
-  MatTabsModule, MatToolbarModule, MatTooltipModule
-} from '@angular/material';
-import {AngularFirestoreModule} from '@angular/fire/firestore';
-import {AngularFireAuthModule} from '@angular/fire/auth';
-import {AngularFireStorageModule} from '@angular/fire/storage';
-import {FormsModule} from '@angular/forms';
 import {ProfileComponent} from './profile/profile.component';
-import {AngularFireModule} from '@angular/fire';
 import {WebAppsComponent} from './sections/web-apps/web-apps.component';
 import {AndroidAppsComponent} from './sections/android-apps/android-apps.component';
 import {BluetoothComponent} from './sections/bluetooth/bluetooth.component';

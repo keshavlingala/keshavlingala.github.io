@@ -15,8 +15,6 @@ import {environment} from '../../environments/environment';
   exports: [
     // @ts-ignore
     AngularFireModule.initializeApp(environment.firebase as FirebaseOptions),
-    AngularFireAuthModule,
-    AngularFireStorageModule,
     AngularFirestoreModule,
   ]
 })
