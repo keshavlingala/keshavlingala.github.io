@@ -12,5 +12,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     AOS.init();
+    console.log('%cHey\n🤟', 'font-size: 200px;text-align: center;');
   }
 }

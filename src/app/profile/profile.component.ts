@@ -2,7 +2,7 @@ import {AfterViewChecked, Component, OnDestroy, OnInit} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Skill} from '../models/skill.model';
 import {Achievement} from '../models/achievement.model';
-import {SubSink} from 'subsink';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +11,7 @@ import {SubSink} from 'subsink';
 })
 export class ProfileComponent implements OnInit, AfterViewChecked, OnDestroy {
   loading = true;
-  subs = new SubSink();
+  subs: Subscription[] = [];
   interskills: Skill[] = [];
   proskills: Skill[] = [];
   beginnerskills: Skill[] = [];
@@ -26,22 +26,22 @@ export class ProfileComponent implements OnInit, AfterViewChecked, OnDestroy {
     const comp = (a, b) => {
       return b.progress - a.progress;
     };
-    this.subs.add(this.afs.collection<Skill>('proskills').valueChanges().subscribe(pros => {
+    this.subs.push(this.afs.collection<Skill>('proskills').valueChanges().subscribe(pros => {
       this.proskills = pros.sort(comp);
     }));
-    this.subs.add(this.afs.collection<Skill>('interskills').valueChanges().subscribe(inter => {
+    this.subs.push(this.afs.collection<Skill>('interskills').valueChanges().subscribe(inter => {
       this.interskills = inter.sort(comp);
     }));
-    this.subs.add(this.afs.collection<Skill>('beginner').valueChanges().subscribe(beg => {
+    this.subs.push(this.afs.collection<Skill>('beginner').valueChanges().subscribe(beg => {
       this.beginnerskills = beg.sort(comp);
     }));
-    this.subs.add(this.afs.collection<Achievement>('Achievements').valueChanges().subscribe(ach => {
+    this.subs.push(this.afs.collection<Achievement>('Achievements').valueChanges().subscribe(ach => {
       this.achievements = ach;
     }));
   }
 
   ngOnDestroy(): void {
-    this.subs.unsubscribe();
+    this.subs.forEach(i => i.unsubscribe());
   }
 
   Logg() {
