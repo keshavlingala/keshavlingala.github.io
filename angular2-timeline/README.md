@@ -1,6 +1,6 @@
-#angular2-timeline
+# angular2-timeline
 
-##Installation
+## Installation
 Install using npm  
 ```bash
 > npm i angular2-timeline
