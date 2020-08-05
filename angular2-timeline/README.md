@@ -1,10 +1,10 @@
-#angular2-timeline
+# angular2-timeline
 
 ## Usage & Demo
 Sample Demo
 ### [Demo](http://keshavlingala.github.io/angular2-timeline/)  
 
-##Installation
+## Installation
 Install using npm  
 ```bash
 > npm i angular2-timeline
@@ -26,7 +26,7 @@ import {TimelineModule} from "angular2-timeline";
 - TimelineComponent
 - TimelineItemCompoenent
 
-##How to use
+## How to use
 ```html
 <timeline>
   <timeline-item>
@@ -74,7 +74,17 @@ export class AppComponent {
   more = [];
 }
 ```
-#Features
+
+set dots color for each item as HEX code
+```html
+<timeline>
+    <timeline-item color="#42b5b6"> 
+        <!--Your Content Goes Here-->
+    </timeline-item>
+</timeline>
+```  
+
+# Features
 - Mobile Responsive
 - Customizable colors for each timeline item
 
