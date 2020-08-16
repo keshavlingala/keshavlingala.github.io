@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "@emotion/styled"
 import Logo from "../hooks/useLogo"
+import "font-awesome/css/font-awesome.min.css"
 import "./layout.css"
 
 const AppBar = styled.div`
@@ -20,7 +21,7 @@ const AppBar = styled.div`
 const Header = () => {
   return (
     <AppBar>
-      <Logo />
+      <Logo/>
     </AppBar>
   )
 }
@@ -28,7 +29,7 @@ const Header = () => {
 const Layout = ({ children }) => {
   return (
     <div>
-      <Header />
+      <Header/>
       <main>{children}</main>
       {/*<Footer/>*/}
     </div>

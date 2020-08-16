@@ -16,9 +16,9 @@ const Circle = styled.div`
 export default () => {
   return (
     <Background>
-      <Cover />
+      <Cover/>
       <Circle>
-        <ProfilePic />
+        <ProfilePic/>
       </Circle>
     </Background>
   )

@@ -15,11 +15,9 @@ const ProfilePic = () => {
     }
   `)
   return (
-    <Img
-      style={{
-        borderRadius: "50%",
-      }}
-      fluid={data.file.childImageSharp.fluid}
+    <Img style={{
+      borderRadius: "50%"
+    }} fluid={data.file.childImageSharp.fluid}
     />
   )
 }
