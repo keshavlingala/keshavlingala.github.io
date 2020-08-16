@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
+import { navigate } from "../../.cache/gatsby-browser-entry"
 
 
 const Projects = () => {
@@ -14,16 +15,14 @@ const Projects = () => {
               tags
               title
             }
+            slug
           }
         }
       }
 `)
   console.log(data)
-  return (
-    <>
-      <h3>Projects</h3>
-      {data.allMdx.nodes.map(i => <pre key={i.id}>{JSON.stringify(i, null, 2)}</pre>)}
-    </>
+  return data.allMdx.nodes.map(i =>
+    <pre  onClick={() => navigate(i.slug)} key={i.id}>{JSON.stringify(i, null, 2)}</pre>
   )
 }
 export default Projects

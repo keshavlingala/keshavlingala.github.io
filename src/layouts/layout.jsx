@@ -3,6 +3,7 @@ import styled from "@emotion/styled"
 import Logo from "../hooks/useLogo"
 import "font-awesome/css/font-awesome.min.css"
 import "./layout.css"
+import { Link } from "gatsby"
 
 const AppBar = styled.div`
   width: 100%;
@@ -21,7 +22,9 @@ const AppBar = styled.div`
 const Header = () => {
   return (
     <AppBar>
-      <Logo/>
+      <Link to={"/"}>
+        <Logo/>
+      </Link>
     </AppBar>
   )
 }
@@ -30,7 +33,7 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Header/>
-      <main>{children}</main>
+      {children}
       {/*<Footer/>*/}
     </div>
   )
