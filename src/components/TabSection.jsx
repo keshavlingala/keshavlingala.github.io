@@ -7,7 +7,10 @@ import styled from "@emotion/styled"
 
 const theme = createMuiTheme({
   palette: {
-    primary: deepPurple
+    primary: deepPurple,
+    secondary: {
+      main: deepPurple[50]
+    }
   }
 })
 
@@ -70,7 +73,6 @@ const Item = ({ children, tooltip }) => {
              onMouseLeave={() => setShow(false)}>{children}</LI>
 }
 const TabsPanel = styled(({ value, className }) => {
-  console.log(value)
   if (!value) {
     return (
       <div className={className}>
@@ -131,7 +133,11 @@ const TabSection = () => {
         value={value}
         onChange={(e, v) => setValue(v)}
         variant='fullWidth'
-        indicatorColor='primary'
+        indicatorColor='secondary'
+        style={{
+          backgroundColor: "#673ab7",
+          color: "white"
+        }}
       >
         <Tab textColor='inherit' label='About'/>
         <Tab textColor='inherit' label="Profiles"/>
