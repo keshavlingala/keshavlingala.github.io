@@ -7,8 +7,7 @@ module.exports = {
     keywords: `keshav lingala,keshavlingala,lingalakeshav,keshav lingala,keshav reddy lingala,lingala keshav reddy,
         keshav,keshav lingala portfolio, keshav lingala profile,keshav reddy lingala,
          reddy,keshav reddy portfolio,keshav lingala profile`,
-    image: "content/images/logo.png"
-
+    twitterUsername: "@keshavlingala"
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -30,7 +29,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `keshav`,
-        icon: `src/content/images/logo.png` // This path is relative to the root of the site.
+        icon: `src/content/images/iconround.png` // This path is relative to the root of the site.
       }
     },
     `gatsby-plugin-emotion`,
@@ -40,7 +39,16 @@ module.exports = {
         extensions: [`.mdx`, `.md`],
         defaultLayouts: {
           default: require.resolve("./src/layouts/layout.jsx")
-        }
+        },
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 800,
+              tracedSVG: true
+            }
+          }
+        ]
       }
     }
     // this (optional) plugin enables Progressive Web App + Offline functionality

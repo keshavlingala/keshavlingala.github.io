@@ -2,12 +2,15 @@ import React, { useState } from "react"
 import Tabs from "@bit/mui-org.material-ui.tabs"
 import Tab from "@bit/mui-org.material-ui.tab"
 import { createMuiTheme, ThemeProvider } from "@bit/mui-org.material-ui.styles"
-import { deepPurple } from "@bit/mui-org.material-ui.colors"
 import styled from "@emotion/styled"
+import "font-awesome/css/font-awesome.min.css"
+import deepPurple from "@bit/mui-org.material-ui.colors/deepPurple"
 
 const theme = createMuiTheme({
   palette: {
-    primary: deepPurple,
+    // primary: {
+    //   main: "#0e0a26"
+    // },
     secondary: {
       main: deepPurple[50]
     }
@@ -135,8 +138,10 @@ const TabSection = () => {
         variant='fullWidth'
         indicatorColor='secondary'
         style={{
-          backgroundColor: "#673ab7",
-          color: "white"
+          backgroundColor: "#1b1b1b",
+          color: "inherit",
+          borderTop: "1px solid",
+          borderBottom: "1px solid"
         }}
       >
         <Tab textColor='inherit' label='About'/>

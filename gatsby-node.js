@@ -10,14 +10,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Destructure the createPage function from the actions object
   const { createPage } = actions
   const result = await graphql(`
-    query {
-      allMdx {
-        nodes {
-          slug
-          id
-        }
+    {
+  allMdx {
+    nodes {
+      id
+      frontmatter {
+        slug
       }
     }
+  }
+}
+
   `)
   if (result.errors) {
     reporter.panicOnBuild("🚨  ERROR: Loading \"createPages\" query")
@@ -25,7 +28,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Create blog post pages.
   const posts = result.data.allMdx.nodes
   // you'll call `createPage` for each result
-  posts.forEach(({ slug, id }, index) => {
+  posts.forEach(({ id,frontmatter:{slug} }, index) => {
     createPage({
       // This is the slug you created before
       // (or `node.frontmatter.slug`)

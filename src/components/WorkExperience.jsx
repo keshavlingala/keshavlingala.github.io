@@ -1,27 +1,25 @@
 import React from "react"
 import styled from "@emotion/styled"
 
-const TimeLine = styled.ul
+export const TimeLine = styled.ul
   `
   display: block;
   position: relative;
   text-align: justify;
   max-width: 700px;
   margin:0;
-
   &:before {
     top: 0;
     bottom: 0;
     position: absolute;
     content: " ";
     width: 3px;
-    background-color: rgba(103,58,183,0.5);
+    background-color: #ffd285;
     margin-left: -1.5px;
     left: 5%;
   }
-
 `
-const TimelineItem = styled(({ children, className }) => {
+export const TimelineItem = styled(({ children, className }) => {
   return (
     <li className={className}>
       <div>{children}</div>
@@ -42,7 +40,7 @@ const TimelineItem = styled(({ children, className }) => {
     > div:first-of-type {
       width: 80%;
       z-index: 3;
-      background-color: white;
+      background-color: #1b1b1b;
       margin-left: auto;
     }
 
@@ -61,7 +59,7 @@ const TimelineItem = styled(({ children, className }) => {
     .dot-a {
       right: 20%;
       margin-right: -10px;
-      background-color: #673ab7;
+      background-color: #ffd285;
       box-shadow: none;
       width: 10px;
       height: 10px;
@@ -84,12 +82,12 @@ const TimelineItem = styled(({ children, className }) => {
       right: 0;
       margin-right: -5px;
       margin-top: -5px;
-      background-color: #673ab7;
+      background-color: #ffd285;
       z-index: 2;
-      box-shadow: 0 0 2px 5px #fff,
+      box-shadow: 0 0 2px 5px #1b1b1b,
       0 0 0 7px #808080,
-      0 0 0 12px #fff,
-      0 0 0 13px #673ab7;
+      0 0 0 12px #1b1b1b,
+      0 0 0 13px #ffd285;
       left: 5%;
       margin-left: -5px;
     }
@@ -99,7 +97,7 @@ const TimelineItem = styled(({ children, className }) => {
   }
 `
 
-const Div = styled(({ className, children }) => {
+export const Div = styled(({ className, children }) => {
   return (
     <div className={className}>
       {children}
@@ -107,42 +105,73 @@ const Div = styled(({ className, children }) => {
   )
 })
   `
-
-      padding: 16px;
-      box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);;
-
+  display: flex;
+  flex-direction: row;
+  padding: 16px;
+  //box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);;
+  box-shadow: 2px 2px 5px 0 black;
+  .col-9 {
+    width: 75%;
+  }
+  .col-9 h5 {
+    font-weight: normal;
+    font-size: 1rem;
+  }
+  .col-9 h6 {
+    font-weight: normal;
+    font-size: 1rem;
+  }
+  .col-3 {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid #dee2e6 !important;
+  }
+  .col-3 h3 {
+      font-size: 1.1rem;
+  }
+  .col-3 h1 {
+      font-size: 1.5rem;
+      font-weight: 500;
+  }
+  @media only screen and (max-width: 600px) {
+    .col-9{width: 100%}
+  }
+  &:hover{
+    //animation:borderRotate 0.5s ease-in-out;
+  }
 `
 const WorkExperience = () => {
   return (
     <TimeLine>
       <TimelineItem>
         <Div>
-          <div className="workExpe">
-            <div className="col-9">
-              <h5>
-                Software Engineer Intern
-              </h5>
-              <h6>
-                Virtusa
-              </h6>
-              <p>
-                Lorem Ipsum has been the industry's standard
-              </p>
-            </div>
-            <div className="col-3 ">
-              {/*style="font-size: 1.3rem"*/}
-              <h3>
-                June
-              </h3>
-              {/*style="font-size: 2rem;font-weight: 500"*/}
-              <h1>
-                19
-              </h1>
-              {/*style="font-size: 1.1rem"*/}
-              <h3>
-                2020
-              </h3>
-            </div>
+          <div className="col-9">
+            <h5>
+              Software Engineer Intern
+            </h5>
+            <h6>
+              Virtusa
+            </h6>
+            <p>
+              Lorem Ipsum has been the industry's standard
+            </p>
+          </div>
+          <div className="col-3 mobile-none">
+            {/*style="font-size: 1.3rem"*/}
+            <h3>
+              June
+            </h3>
+            {/*style="font-size: 2rem;font-weight: 500"*/}
+            <h1>
+              19
+            </h1>
+            {/*style="font-size: 1.1rem"*/}
+            <h3>
+              2020
+            </h3>
           </div>
         </Div>
       </TimelineItem>

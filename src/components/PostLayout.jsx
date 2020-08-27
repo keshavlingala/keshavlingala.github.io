@@ -13,7 +13,7 @@ export default ({ data: { mdx } }) => {
   console.log(shortcodes)
   return (
     <div>
-      <SEO title={mdx.title}/>
+      <SEO title={mdx.frontmatter.title}/>
       <Layout>
         <Container>
           <MDXProvider>

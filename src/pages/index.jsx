@@ -9,25 +9,6 @@ import Education from "../components/Education"
 import WorkExperience from "../components/WorkExperience"
 import SEO from "../layouts/seo"
 
-const Title = styled.h1`
-      margin-left: 2vw;
-      @keyframes fadeInLeft{
-        0% {
-          opacity: 0;
-          transform: translateX(30px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
-      animation: fadeInLeft 1s;
-`
-const SubTitle = styled.h3`
-margin-left: 2vw;
-font-weight: initial;
-font-size: 1.3rem;
-`
 
 const Description = styled.p`
   text-align: center;
@@ -38,8 +19,6 @@ const IndexPage = () => {
     <Layout>
       <SEO title='Profile'/>
       <Profile/>
-      <Title>Keshav Lingala</Title>
-      <SubTitle>Computer Science Student</SubTitle>
       <TabSection/>
       <Container>
         <Description>

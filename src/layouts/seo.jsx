@@ -4,23 +4,30 @@ import { Helmet } from "react-helmet"
 import { graphql, useStaticQuery } from "gatsby"
 
 function SEO({ description, lang, meta, title, tags }) {
-  const { site } = useStaticQuery(
+  const { site, file } = useStaticQuery(
     graphql`
-      query {
+      {
         site {
           siteMetadata {
             title
             description
             author
-            image
+          }
+        }
+        file(name: {eq: "iconround"}) {
+          childImageSharp {
+            fixed {
+              src
+            }
           }
         }
       }
     `
   )
-
+  console.log(file)
   const metaDescription = description || site.siteMetadata.description
-  const { image } = site.siteMetadata
+  const image = file.childImageSharp.fixed.src
+  console.log(image)
   return (
     <Helmet
       htmlAttributes={{

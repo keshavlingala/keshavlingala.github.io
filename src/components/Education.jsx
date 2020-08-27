@@ -1,6 +1,7 @@
 import React from "react"
-import styled from "@emotion/styled"
+import { Div, TimeLine, TimelineItem } from "./WorkExperience"
 
+/*
 const TimeLine = styled.ul
   `
   display: block;
@@ -15,7 +16,7 @@ const TimeLine = styled.ul
     position: absolute;
     content: " ";
     width: 3px;
-    background-color: rgba(103,58,183,0.5);
+    background-color: #ffd285;
     margin-left: -1.5px;
     left: 5%;
   }
@@ -42,7 +43,7 @@ const TimelineItem = styled(({ children, className }) => {
     > div:first-of-type {
       width: 80%;
       z-index: 3;
-      background-color: white;
+      background-color: #1b1b1b;
       margin-left: auto;
     }
 
@@ -61,7 +62,7 @@ const TimelineItem = styled(({ children, className }) => {
     .dot-a {
       right: 20%;
       margin-right: -10px;
-      background-color: #673ab7;
+      background-color: #ffd285;
       box-shadow: none;
       width: 10px;
       height: 10px;
@@ -84,12 +85,12 @@ const TimelineItem = styled(({ children, className }) => {
       right: 0;
       margin-right: -5px;
       margin-top: -5px;
-      background-color: #673ab7;
+      background-color: #ffd285;
       z-index: 2;
-      box-shadow: 0 0 2px 5px #fff,
+      box-shadow: 0 0 2px 5px #1b1b1b,
       0 0 0 7px #808080,
-      0 0 0 12px #fff,
-      0 0 0 13px #673ab7;
+      0 0 0 12px #1b1b1b,
+      0 0 0 13px #ffd285;
       left: 5%;
       margin-left: -5px;
     }
@@ -106,96 +107,91 @@ const Div = styled(({ className, children }) => {
     </div>
   )
 })
-  `
-
-      padding: 16px;
-      box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);;
-
 `
+  padding: 16px;
+  //box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);;
+  box-shadow: 2px 2px 5px 0 black;
+`
+*/
+
 const Education = () => {
   return (
     <TimeLine>
       <TimelineItem>
         <Div>
-          <div className="workExpe">
-            <div className="col-9">
-              <h5>
-                Keshav Memorial Institute of Technology
-              </h5>
-              <h6>
-                2017-2021
-              </h6>
-              <p>
-                Computer Science and Engineering Percentage: 75%
-              </p>
-            </div>
-            <div className="col-3 ">
-              <h3>
-                July
-              </h3>
-              <h1>
-                27
-              </h1>
-              <h3>
-                2017
-              </h3>
-            </div>
+          <div className="col-9">
+            <h5>
+              Keshav Memorial Institute of Technology
+            </h5>
+            <h6>
+              2017-2021
+            </h6>
+            <p>
+              Computer Science and Engineering Percentage: 75%
+            </p>
+          </div>
+          <div className="col-3 mobile-none">
+            <h3>
+              July
+            </h3>
+            <h1>
+              27
+            </h1>
+            <h3>
+              2017
+            </h3>
           </div>
         </Div>
       </TimelineItem>
       <TimelineItem>
         <Div>
-          <div className="workExpe">
-            <div className="col-9">
-              <h5>
-                SR Junior College
-              </h5>
-              <h6>
-                2015-2017
-              </h6>
-              <p>
-                Mathematics and Physics Percentage: 94%
-              </p>
-            </div>
-            <div className="col-3 ">
-              <h3>
-                June
-              </h3>
-              <h1>
-                7
-              </h1>
-              <h3>
-                2015
-              </h3>
-            </div>
+          <div className="col-9">
+            <h5>
+              SR Junior College
+            </h5>
+            <h6>
+              2015-2017
+            </h6>
+            <p>
+              Mathematics and Physics Percentage: 94%
+            </p>
+          </div>
+          <div className="col-3 mobile-none">
+            <h3>
+              June
+            </h3>
+            <h1>
+              7
+            </h1>
+            <h3>
+              2015
+            </h3>
           </div>
         </Div>
       </TimelineItem>
       <TimelineItem>
         <Div>
-          <div className="workExpe">
-            <div className="col-9">
-              <h5>
-                Holy Angels High School
-              </h5>
-              <h6>
-                - 2015
-              </h6>
-              <p>
-                Secondary School Certificate (CCE) Percentage: 95%
-              </p>
-            </div>
-            <div className="col-3 ">
-              <h3>
-                March
-              </h3>
-              <h1>
-                19
-              </h1>
-              <h3>
-                2015
-              </h3>
-            </div>
+          <div className="col-9">
+            <h5>
+              Holy Angels High School
+            </h5>
+            <h6>
+              - 2015
+            </h6>
+            <p>
+              Secondary School Certificate (CCE) Percentage: 95%
+            </p>
+          </div>
+          <div className="col-3 mobile-none">
+            <h3>
+              March
+            </h3>
+            <h1>
+              19
+            </h1>
+            <h3>
+              2015
+            </h3>
           </div>
         </Div>
       </TimelineItem>
