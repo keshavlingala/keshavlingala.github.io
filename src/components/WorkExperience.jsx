@@ -113,10 +113,6 @@ export const Div = styled(({ className, children }) => {
   .col-9 {
     width: 75%;
   }
-  .col-9 h5 {
-    font-weight: normal;
-    font-size: 1rem;
-  }
   .col-9 h6 {
     font-weight: normal;
     font-size: 1rem;
@@ -149,9 +145,9 @@ const WorkExperience = () => {
       <TimelineItem>
         <Div>
           <div className="col-9">
-            <h5>
+            <h4>
               Software Engineer Intern
-            </h5>
+            </h4>
             <h6>
               Virtusa
             </h6>

@@ -16,15 +16,13 @@ const theme = createMuiTheme({
     }
   }
 })
-
-
 const UL = styled.ul
   `
 display: flex;
 flex-direction: row;
 justify-content: space-around;
 `
-const LI = styled.li
+const TippedLI = styled.li
   `
     list-style: none;
     /* border: 1px solid black; */
@@ -37,6 +35,7 @@ const LI = styled.li
     display: flex;
     flex-direction: column;
     text-align: center;
+    justify-content: center;
     transition: background-color 0.3s ease ;
     &:hover{
     background-color: #d0cfcf45;
@@ -50,13 +49,13 @@ const LI = styled.li
       font-size: 0.85em;
       position: absolute;
       display: flex;
-      background-color: rgba(0,0,0,0.35);
+      //background-color: #1b1b1b;
       padding: 0.5rem;
       border-radius: 6px;
-      color: white;
+      color: #ffd285;
       opacity: ${p => (p.show ? "1" : "0")};
       transition: all 0.3s ease;
-      z-index: 1;
+      z-index: -1;
       bottom: 110%;
       left: 0;
       //right: -50%;
@@ -65,15 +64,16 @@ const LI = styled.li
       height: 33px;
       white-space: nowrap;
       justify-content: center;
+      align-items: center;
     }
     
 `
-const Item = ({ children, tooltip }) => {
+export const ToolTipItem = ({ children, tooltip }) => {
   const [show, setShow] = useState(false)
-  return <LI onMouseEnter={() => setShow(true)} tooltip={tooltip} show={show}
-             onTouchStart={() => setShow(true)}
-             onTouchEnd={() => setShow(false)}
-             onMouseLeave={() => setShow(false)}>{children}</LI>
+  return <TippedLI onMouseEnter={() => setShow(true)} tooltip={tooltip} show={show}
+                   onTouchStart={() => setShow(true)}
+                   onTouchEnd={() => setShow(false)}
+                   onMouseLeave={() => setShow(false)}>{children}</TippedLI>
 }
 const TabsPanel = styled(({ value, className }) => {
   if (!value) {
@@ -81,22 +81,22 @@ const TabsPanel = styled(({ value, className }) => {
       <div className={className}>
         <h3>About</h3>
         <UL>
-          <Item tooltip='Email'>
+          <ToolTipItem tooltip='Email'>
             <i className="fa fa-envelope fa-2x"/>
             Email
-          </Item>
-          <Item tooltip='Contact'>
+          </ToolTipItem>
+          <ToolTipItem tooltip='Contact'>
             <i className="fa fa-phone fa-2x"/>
             Contact
-          </Item>
-          <Item tooltip='Locate'>
+          </ToolTipItem>
+          <ToolTipItem tooltip='Locate'>
             <i className="fa fa-map-marker fa-2x"/>
             Locate
-          </Item>
-          <Item tooltip='Resume'>
+          </ToolTipItem>
+          <ToolTipItem tooltip='Resume'>
             <i className="fa fa-file fa-2x"/>
             Resume
-          </Item>
+          </ToolTipItem>
         </UL>
       </div>
     )
@@ -105,28 +105,29 @@ const TabsPanel = styled(({ value, className }) => {
       <div className={className}>
         <h3>Profiles</h3>
         <UL>
-          <Item tooltip='Github'>
+          <ToolTipItem tooltip='Github'>
             <i className='fa fa-github fa-2x'/>
             Github
-          </Item>
-          <Item tooltip='LinkedIn'>
+          </ToolTipItem>
+          <ToolTipItem tooltip='LinkedIn'>
             <i className="fa fa-linkedin fa-2x"/>
             LinkedIn
-          </Item>
-          <Item tooltip='Instagram'>
+          </ToolTipItem>
+          <ToolTipItem tooltip='Instagram'>
             <i className="fa fa-instagram fa-2x"/>
             Instagram
-          </Item>
-          <Item tooltip='Facebook'>
+          </ToolTipItem>
+          <ToolTipItem tooltip='Facebook'>
             <i className="fa fa-facebook fa-2x"/>
             Facebook
-          </Item>
+          </ToolTipItem>
         </UL>
       </div>
     )
   }
 })`
-text-align: center;
+  text-align: center;
+  animation:fadeUp 0.5s ease-in-out;
 `
 const TabSection = () => {
   const [value, setValue] = useState(0)

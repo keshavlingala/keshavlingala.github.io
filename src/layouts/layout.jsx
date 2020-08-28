@@ -19,21 +19,21 @@ const AppBar = styled.div`
   position: sticky;
 `
 const Brand = styled(Link)`
-  transition: all 0.5s cubic-bezier();
+  filter:invert(0);
+  transition: filter 0.3s ease-in-out;
   &:active{
-  filter:invert();
+    filter:invert(1);
   }
   &:hover{
-  border-radius: 50%;
-  //border:1px solid;
+  filter:invert(1);
   }
 `
 const Header = () => {
   return (
     <AppBar>
-      <Link to={"/"}>
+      <Brand to={"/"}>
         <Logo/>
-      </Link>
+      </Brand>
     </AppBar>
   )
 }

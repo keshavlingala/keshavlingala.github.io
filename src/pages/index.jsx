@@ -8,6 +8,7 @@ import Projects from "../components/Projects"
 import Education from "../components/Education"
 import WorkExperience from "../components/WorkExperience"
 import SEO from "../layouts/seo"
+import SkillsComponent from "../components/SkillsComponent"
 
 
 const Description = styled.p`
@@ -33,6 +34,8 @@ const IndexPage = () => {
         <WorkExperience/>
         <h3>Education</h3>
         <Education/>
+        <h3>Skills & Languages</h3>
+        <SkillsComponent/>
       </Container>
     </Layout>
   )

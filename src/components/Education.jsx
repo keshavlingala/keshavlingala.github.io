@@ -120,9 +120,9 @@ const Education = () => {
       <TimelineItem>
         <Div>
           <div className="col-9">
-            <h5>
+            <h4>
               Keshav Memorial Institute of Technology
-            </h5>
+            </h4>
             <h6>
               2017-2021
             </h6>
@@ -146,9 +146,9 @@ const Education = () => {
       <TimelineItem>
         <Div>
           <div className="col-9">
-            <h5>
+            <h4>
               SR Junior College
-            </h5>
+            </h4>
             <h6>
               2015-2017
             </h6>
@@ -172,9 +172,9 @@ const Education = () => {
       <TimelineItem>
         <Div>
           <div className="col-9">
-            <h5>
+            <h4>
               Holy Angels High School
-            </h5>
+            </h4>
             <h6>
               - 2015
             </h6>
