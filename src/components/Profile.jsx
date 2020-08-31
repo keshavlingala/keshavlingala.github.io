@@ -55,7 +55,7 @@ font-weight: initial;
 
 export default () => {
   return (
-    <Background role='profile'>
+    <Background>
       <div>
         <Title>Keshav Lingala</Title>
         <SubTitle>Computer Science Student</SubTitle>

@@ -52,6 +52,7 @@ template {
 a {
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
+    color: inherit;
 }
 
 a:active,
@@ -608,6 +609,7 @@ pre tt:after {
 
 body {
     color: #ffd285;
+    background-color: #1b1b1b;
     background-image: url(./wood.png);
     background-size: 10%;
 }
