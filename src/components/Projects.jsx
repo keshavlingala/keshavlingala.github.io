@@ -117,7 +117,6 @@ const Projects = () => {
 `)
   // console.log(data)
   return data.allMdx.nodes.sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)).map(project => {
-      console.log(project)
       const { fluid } = project.frontmatter.featuredImage.childImageSharp
       return (
         <ProjectCard onClick={() => {

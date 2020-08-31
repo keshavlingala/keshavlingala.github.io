@@ -9,6 +9,7 @@ import Education from "../components/Education"
 import WorkExperience from "../components/WorkExperience"
 import SEO from "../layouts/seo"
 import SkillsComponent from "../components/SkillsComponent"
+import ContactMe from "../components/ContactMe"
 
 
 const Description = styled.p`
@@ -36,6 +37,8 @@ const IndexPage = () => {
         <Education/>
         <h3>Skills & Languages</h3>
         <SkillsComponent/>
+        <h3 title='Anytime, Anywhere'>Get In Touch</h3>
+        <ContactMe/>
       </Container>
     </Layout>
   )

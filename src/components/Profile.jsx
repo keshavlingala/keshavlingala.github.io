@@ -38,14 +38,14 @@ const Title = styled.h1`
       @keyframes fadeInLeft{
         0% {
           opacity: 0;
-          transform: translateX(30px);
+          transform: translateX(64%);
         }
         100% {
           opacity: 1;
           transform: translateX(0);
         }
       }
-      animation: fadeInLeft 1s;
+      animation: fadeInLeft 2s;
       @media only screen and (max-width: 600px){
         margin-left: 0;
       }

@@ -4,7 +4,7 @@ import "./layout.css"
 import { Link } from "gatsby"
 import Logo from "../hooks/useLogo"
 
-const AppBar = styled.div`
+const AppBar = styled.header`
   width: 100%;
   height: 9.2vh;
   //background-color: #673ab7;
@@ -40,13 +40,17 @@ const Header = () => {
 const Screen = styled.div`
   min-height: 100vh;
 `
-
+const Footer = styled.footer`
+  margin-top: 10vh;
+`
 const Layout = ({ children }) => {
   return (
     <Screen>
       <Header/>
       {children}
-      {/*<Footer/>*/}
+      <Footer>
+        This is Some Kind of Footer
+      </Footer>
     </Screen>
   )
 }

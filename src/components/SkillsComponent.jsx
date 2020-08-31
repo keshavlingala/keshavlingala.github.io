@@ -117,7 +117,7 @@ const icons = [
   }
 
 ]
-const skills = [
+let skills = [
   {
     name: "Analytical and Problem solving",
     progress: 87,
@@ -155,6 +155,12 @@ const skills = [
   }
 
 ]
+const falseAll = (skills, name) => {
+  return skills.map(skill => {
+    return { ...skill, active: skill.name === name }
+  })
+}
+skills = falseAll(skills, "")
 const SkillList = styled.ul`
   margin:0;
   width: 50%;
@@ -170,6 +176,7 @@ const SkillItem = styled.li`
   border-radius: 10px 10px 0 0;
   cursor: pointer;
   position:relative;
+  background-color: ${p => p.active ? "#d0cfcf45" : "inherit"};
   &:hover{
     background-color: #d0cfcf45;
     ::after{
@@ -178,22 +185,23 @@ const SkillItem = styled.li`
   }
   &::after{
     content: '';
-    width: 0;
+    width: ${p => p.active ? p.progress : 0}%;
     transition: width 0.5s ease-out;
     position: absolute;
     left: 0;
     display: inline-block;
     height: 2px;
-    background: #ffd285;
+    background-color: #ffd285;
     bottom: 0;
-    
   }
 `
 const Section = styled.div`
   display: flex;
   width: 100%;
+  min-height: 429px;
   @media only screen and (max-width: 600px){
     flex-direction: column;
+    min-height: 794px;
   }
 `
 const MyIcon = styled(({ src, className }) => {
@@ -203,6 +211,7 @@ const MyIcon = styled(({ src, className }) => {
   width: 40px;
   padding: 5px;
 `
+
 const IconLister = styled.div`
   display: grid;
   //flex-direction: row;
@@ -226,37 +235,48 @@ const IconLister = styled.div`
     margin-bottom: 33px;
     width: 50px;
     height: 50px;
-    animation: fadeUp 1s ease-in-out;
+    animation: fadeUp 0.5s ease-in-out;
   }
   @keyframes fadeUp{
     from{
       opacity: 0;
+      transform: translateY(-10px);
     }
     to{
       opacity: 1;
+      transform: translateY(0px);
     }
   }
   @media only screen and (max-width: 600px){
     width: 100%;
-    
+    margin-top:66px;
   }
 `
 const SkillsComponent = () => {
   const [items, setItems] = useState(icons)
+  const [selected, setSelected] = useState(icons)
   return (
     <Section>
       <SkillList>
-        {skills.sort((a,b)=>b.progress-a.progress).map(skill => {
+        {skills.sort((a, b) => b.progress - a.progress).map(skill => {
           return (
             <SkillItem onMouseOver={() => {
-              console.log(skill)
               if (skill.techs.length === 0) {
                 setItems(icons)
-                return
-              }
-              setItems(icons.filter(icon => skill.techs.includes(icon.name)))
+              } else
+                setItems(icons.filter(icon => skill.techs.includes(icon.name)))
             }}
-                       onMouseLeave={() => setItems(icons)}
+                       onClick={() => {
+                         skills = falseAll(skills, skill.name)
+                         if (skill.techs.length === 0)
+                           setSelected(icons)
+                         else
+                           setSelected(icons.filter(icon => skill.techs.includes(icon.name)))
+                       }}
+                       active={skill.active}
+                       onMouseLeave={() => {
+                         setItems(selected)
+                       }}
                        progress={skill.progress} key={skill.name}>
               <h4>
                 {skill.name}
@@ -268,8 +288,8 @@ const SkillsComponent = () => {
       <IconLister>
         {items.map(icon => {
           return (
-            <ToolTipItem  tooltip={icon.name} key={icon.name}>
-              <img  src={icon.icon} alt=""/>
+            <ToolTipItem tooltip={icon.name} key={icon.name}>
+              <img src={icon.icon} alt=""/>
             </ToolTipItem>
           )
         })}

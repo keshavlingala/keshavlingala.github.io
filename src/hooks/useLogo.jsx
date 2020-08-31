@@ -14,7 +14,7 @@ const Logo = () => {
       }
     }
   `)
-  return <Img fixed={data.file.childImageSharp.fixed} />
+  return <Img alt='Keshav Lingala' fixed={data.file.childImageSharp.fixed}/>
 }
 
 export default Logo

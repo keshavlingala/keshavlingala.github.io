@@ -45,7 +45,7 @@ const TippedLI = styled.li
     }
     position:relative;
     &::before {
-      content: ${p => "'" + p.tooltip + "'"};
+       content: ${p => "'" + p.tooltip + "'"};
       font-size: 0.85em;
       position: absolute;
       display: flex;
