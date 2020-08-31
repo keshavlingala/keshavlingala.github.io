@@ -45,7 +45,7 @@ const TippedLI = styled.li
     }
     position:relative;
     &::before {
-       content: ${p => "'" + p.tooltip + "'"};
+      content: ${p => "'" + p.tooltip + "'"};
       font-size: 0.85em;
       position: absolute;
       display: flex;
@@ -64,13 +64,12 @@ const TippedLI = styled.li
       height: 33px;
       white-space: nowrap;
       justify-content: center;
-      align-items: center;
     }
     
 `
 export const ToolTipItem = ({ children, tooltip }) => {
   const [show, setShow] = useState(false)
-  return <TippedLI onMouseEnter={() => setShow(true)} tooltip={tooltip} show={show}
+  return <TippedLI tabIndex='0' onMouseEnter={() => setShow(true)} tooltip={tooltip} show={show}
                    onTouchStart={() => setShow(true)}
                    onTouchEnd={() => setShow(false)}
                    onMouseLeave={() => setShow(false)}>{children}</TippedLI>
@@ -81,7 +80,7 @@ const TabsPanel = styled(({ value, className }) => {
       <div className={className}>
         <h3>About</h3>
         <UL>
-          <ToolTipItem tooltip='Email'>
+          <ToolTipItem  tooltip='Email'>
             <i className="fa fa-envelope fa-2x"/>
             Email
           </ToolTipItem>

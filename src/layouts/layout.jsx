@@ -40,8 +40,22 @@ const Header = () => {
 const Screen = styled.div`
   min-height: 100vh;
 `
+const Row = styled.div`
+  display: flex;
+  justify-content: center;
+  min-height: 10vh;
+  align-items: center;
+  span{
+  margin:5px
+  }
+`
 const Footer = styled.footer`
-  margin-top: 10vh;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  background-color: #1b1b1b;
 `
 const Layout = ({ children }) => {
   return (
@@ -49,7 +63,15 @@ const Layout = ({ children }) => {
       <Header/>
       {children}
       <Footer>
-        This is Some Kind of Footer
+        <h6 style={{
+          marginBottom: "5px"
+        }}>Designed and Developed by <a href="https://www.linkedin.com/in/keshavlingala/">Keshav Lingala</a></h6>
+        <Row>
+          <span title='Gatsby' className="k-icon gatsby"/>
+          <span title='GraphQL' className="k-icon graphql"/>
+          <span title='ReactJS' className="k-icon react"/>
+          <span title='NestJS' className="k-icon nestjs"/>
+        </Row>
       </Footer>
     </Screen>
   )

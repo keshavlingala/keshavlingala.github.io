@@ -2,8 +2,7 @@ import React from "react"
 import styled from "@emotion/styled"
 import ProfilePic from "../hooks/useProfile"
 
-const Background = styled.div`
-  //margin-top: 9.2vh;
+const Background = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,7 +14,6 @@ const Background = styled.div`
   }
 `
 const Circle = styled.div`
-  //position: absolute;
   width: 50vw;
   margin-left: -50%;
   margin-right: 5vw;
@@ -27,14 +25,12 @@ const Circle = styled.div`
     margin-right: 0;
     clip-path: polygon(0.13% 2px, 3px 99.98%, 99.84% 100%, 100.02% 0.39%);;
   }
-  
-  //margin-bottom: 0;
-  //right: 2vw;
-  //top:9.2vh;
 `
-const Title = styled.h1`
+const Title = styled.span`
+      display: block;
       margin-left: 2vw;
       font-size: 8vw;
+      font-weight: lighter;
       @keyframes fadeInLeft{
         0% {
           opacity: 0;
@@ -50,18 +46,16 @@ const Title = styled.h1`
         margin-left: 0;
       }
 `
-const SubTitle = styled.h3`
+const SubTitle = styled.span`
+display: block;
 margin-left: 2vw;
 font-size: 3vw;
 font-weight: initial;
-//font-size: 1.3rem;
 `
-const StyledProfile = styled(ProfilePic)`
-  clip-path: circle();
-`
+
 export default () => {
   return (
-    <Background>
+    <Background role='profile'>
       <div>
         <Title>Keshav Lingala</Title>
         <SubTitle>Computer Science Student</SubTitle>

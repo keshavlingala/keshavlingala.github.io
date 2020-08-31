@@ -204,34 +204,19 @@ const Section = styled.div`
     min-height: 794px;
   }
 `
-const MyIcon = styled(({ src, className }) => {
-  return <div className={className}><img src={src} alt=""/></div>
-})
-  `
-  width: 40px;
-  padding: 5px;
-`
 
-const IconLister = styled.div`
+const IconLister = styled.ul`
   display: grid;
-  //flex-direction: row;
-  //justify-content: center;
-  //align-items: center;
   flex-wrap: wrap;
-  //margin-top: -33px;
   width: 50%;
   align-items: flex-start;
-  //grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
   grid-template-columns: auto auto auto auto auto;
   grid-gap: 1rem;
-  //grid-template-columns: auto auto auto;
   grid-column-gap: 3px;
   grid-row-gap: 3px;
   text-align: center;
   margin-bottom: auto;
   li{
-    //margin:5px;
-    //margin-top:33px;
     margin-bottom: 33px;
     width: 50px;
     height: 50px;
@@ -260,7 +245,7 @@ const SkillsComponent = () => {
       <SkillList>
         {skills.sort((a, b) => b.progress - a.progress).map(skill => {
           return (
-            <SkillItem onMouseOver={() => {
+            <SkillItem tabIndex='0' onMouseOver={() => {
               if (skill.techs.length === 0) {
                 setItems(icons)
               } else

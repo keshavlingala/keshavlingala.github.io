@@ -29,15 +29,15 @@ const IndexPage = () => {
           I Like to program things like IOT, Web Apps, Automation Scripts, CS Algorithms , Cloud Orchestration Cloud
           Automation and Educational Applications more useful to Students like Me.
         </Description>
-        <h3>Projects</h3>
+        <h2>Projects</h2>
         <Projects/>
-        <h3>Work Experience</h3>
+        <h2>Work Experience</h2>
         <WorkExperience/>
-        <h3>Education</h3>
+        <h2>Education</h2>
         <Education/>
-        <h3>Skills & Languages</h3>
+        <h2>Skills & Languages</h2>
         <SkillsComponent/>
-        <h3 title='Anytime, Anywhere'>Get In Touch</h3>
+        <h2 title='Anytime, Anywhere'>Get In Touch</h2>
         <ContactMe/>
       </Container>
     </Layout>

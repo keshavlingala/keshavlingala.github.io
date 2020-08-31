@@ -1,32 +1,9 @@
 import React from "react"
-import { graphql, navigate, useStaticQuery } from "gatsby"
+import { graphql, Link, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import styled from "@emotion/styled"
-/*query MyQuery {
-  allMdx {
-    nodes {
-      id
-      excerpt(truncate: true, pruneLength: 150)
-      slug
-      frontmatter {
-        tags
-        title
-        description
-        featuredImage {
-          id
-          childImageSharp {
-            fluid {
-              tracedSVG
-              src
-            }
-          }
-        }
-      }
-    }
-  }
-}*/
 
-const ProjectCard = styled.div`
+const ProjectCard = styled(Link)`
     display: flex;
     margin-bottom: 50px;
     box-shadow: 2px 2px 5px 0 black;
@@ -35,6 +12,8 @@ const ProjectCard = styled.div`
     padding: 10px;
     position: relative;
     cursor: pointer;
+    text-decoration: none;
+    color: inherit;
     &:after{
       content: '';
       display:flex;
@@ -46,15 +25,12 @@ const ProjectCard = styled.div`
       left: 0;
       right: 0;
       background-color: #ffd285;
-      //transition: transform 0.5s cubic-bezier();
       text-align: center;
       justify-content: center;
-      //animation: growCenter 0.5s reverse;
     }
     &:hover,:active{
       :after{
       content: '';
-      //width: 100%;
       transform: scale(1);
       animation: growCenter 0.5s ease-in-out ;
       }
@@ -106,7 +82,7 @@ const Projects = () => {
             featuredImage {
               childImageSharp {
                 fluid {
-                  ...GatsbyImageSharpFluid_tracedSVG
+                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
                 }
               }
             }
@@ -119,11 +95,9 @@ const Projects = () => {
   return data.allMdx.nodes.sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)).map(project => {
       const { fluid } = project.frontmatter.featuredImage.childImageSharp
       return (
-        <ProjectCard onClick={() => {
-          navigate(project.frontmatter.slug)
-        }} key={project.id}>
+        <ProjectCard to={project.frontmatter.slug} tabIndex='0' key={project.id}>
           <ProjectCardContent>
-            <h2>{project.frontmatter.title}</h2>
+            <h3>{project.frontmatter.title}</h3>
             <p>{project.frontmatter.description}</p>
             <CreatedOn>- {project.frontmatter.date}</CreatedOn>
           </ProjectCardContent>

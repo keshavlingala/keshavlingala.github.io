@@ -15,7 +15,7 @@ const Input = styled.input`
     background-color: #1b1b1b;
   }
   width: 100%;
-  margin-right: 4vw;
+  margin-right: 20vw;
 `
 const Row = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ const Row = styled.div`
 const TextArea = styled.textarea`
   color: inherit;
   resize: none;
-  width: calc(100% - 10vw);
+  width: calc(100% - 20vw);
   background-color: inherit;
   box-shadow: none;
   border: 1px solid;
@@ -89,7 +89,7 @@ const ContactMe = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        "Accept": "application/json"
       }
     }).then(() => {
       console.log("Done")
@@ -100,11 +100,15 @@ const ContactMe = () => {
   return (
     <>
       <Row>
+        <label hidden htmlFor="name"/>
         <Input value={form.name} onChange={(c) => handleForm(c, "name")} name='name' placeholder='Name' type="text"/>
+        <label hidden htmlFor="email"/>
         <Input value={form.email} onChange={(c) => handleForm(c, "email")} name='email' placeholder='Email'
                type="text"/>
+
       </Row>
       <Row>
+        <label hidden htmlFor="content"/>
         <TextArea value={form.content} onChange={(c) => handleForm(c, "content")} placeholder='Type Your Message Here'
                   name='content'
                   type="text"/>
