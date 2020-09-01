@@ -3,7 +3,7 @@ import Tabs from "@bit/mui-org.material-ui.tabs"
 import Tab from "@bit/mui-org.material-ui.tab"
 import { createMuiTheme, ThemeProvider } from "@bit/mui-org.material-ui.styles"
 import styled from "@emotion/styled"
-import "font-awesome/css/font-awesome.min.css"
+// import "font-awesome/css/font-awesome.min.css"
 import deepPurple from "@bit/mui-org.material-ui.colors/deepPurple"
 
 const theme = createMuiTheme({

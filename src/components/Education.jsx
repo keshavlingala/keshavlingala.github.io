@@ -120,78 +120,78 @@ const Education = () => {
       <TimelineItem>
         <Div>
           <div className="col-9">
-            <h4>
+            <span>
               Keshav Memorial Institute of Technology
-            </h4>
-            <h6>
+            </span>
+            <span>
               2017-2021
-            </h6>
+            </span>
             <p>
               Computer Science and Engineering Percentage: 75%
             </p>
           </div>
           <div className="col-3 mobile-none">
-            <h3>
+            <span>
               July
-            </h3>
-            <h1>
+            </span>
+            <span>
               27
-            </h1>
-            <h3>
+            </span>
+            <span>
               2017
-            </h3>
+            </span>
           </div>
         </Div>
       </TimelineItem>
       <TimelineItem>
         <Div>
           <div className="col-9">
-            <h4>
+            <span>
               SR Junior College
-            </h4>
-            <h6>
+            </span>
+            <span>
               2015-2017
-            </h6>
+            </span>
             <p>
               Mathematics and Physics Percentage: 94%
             </p>
           </div>
           <div className="col-3 mobile-none">
-            <h3>
+            <span>
               June
-            </h3>
-            <h1>
+            </span>
+            <span>
               7
-            </h1>
-            <h3>
+            </span>
+            <span>
               2015
-            </h3>
+            </span>
           </div>
         </Div>
       </TimelineItem>
       <TimelineItem>
         <Div>
           <div className="col-9">
-            <h4>
+            <span>
               Holy Angels High School
-            </h4>
-            <h6>
+            </span>
+            <span>
               - 2015
-            </h6>
+            </span>
             <p>
               Secondary School Certificate (CCE) Percentage: 95%
             </p>
           </div>
           <div className="col-3 mobile-none">
-            <h3>
+            <span>
               March
-            </h3>
-            <h1>
+            </span>
+            <span>
               19
-            </h1>
-            <h3>
+            </span>
+            <span>
               2015
-            </h3>
+            </span>
           </div>
         </Div>
       </TimelineItem>

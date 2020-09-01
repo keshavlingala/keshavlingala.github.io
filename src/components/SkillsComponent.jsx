@@ -263,9 +263,7 @@ const SkillsComponent = () => {
                          setItems(selected)
                        }}
                        progress={skill.progress} key={skill.name}>
-              <h4>
-                {skill.name}
-              </h4>
+              {skill.name}
             </SkillItem>
           )
         })}

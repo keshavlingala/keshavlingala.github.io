@@ -266,14 +266,14 @@ img {
 }
 
 h1 {
-    padding: 0;
     margin: 0 0 1.45rem;
+    padding: 0;
     color: inherit;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-weight: lighter;
     text-rendering: optimizeLegibility;
-    font-size: 3.5rem;
+    font-size: 2.25rem;
     line-height: 1.1;
 }
 
@@ -295,10 +295,10 @@ h3 {
     color: inherit;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    font-weight: 500;
+    font-weight: bold;
     text-rendering: optimizeLegibility;
-    font-size: 2.1rem;
-    line-height: 1.3;
+    font-size: 1.38316rem;
+    line-height: 1.1;
 }
 
 h4 {
@@ -323,11 +323,12 @@ h5 {
     text-rendering: optimizeLegibility;
     font-size: 0.85028rem;
     line-height: 1.1;
+
 }
 
 h6 {
     padding: 0;
-    margin: 0 0 1.45rem;
+    margin: 0 0 0.45rem;
     color: inherit;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -610,7 +611,7 @@ pre tt:after {
 body {
     color: #ffd285;
     background-color: #1b1b1b;
-    background-image: url(./wood.png);
+    background-image: url(../content/images/wood.webp);
     background-size: 10%;
 }
 
@@ -664,74 +665,67 @@ body {
     background-image: url("../content/icons/react.svg");
 }
 
-h1 {
-    margin: 0 0 1.45rem;
-    padding: 0;
-    color: inherit;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    font-weight: lighter;
-    text-rendering: optimizeLegibility;
-    font-size: 2.25rem;
-    line-height: 1.1;
+
+.fa {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-h2 {
-    padding: 0;
-    margin: 0 0 1.45rem;
-    color: inherit;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    font-weight: bold;
-    text-rendering: optimizeLegibility;
-    font-size: 1.62671rem;
-    line-height: 1.1;
+.fa-2x {
+    height: 2em;
 }
 
-h3 {
-    padding: 0;
-    margin: 0 0 1.45rem;
-    color: inherit;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    font-weight: bold;
-    text-rendering: optimizeLegibility;
-    font-size: 1.38316rem;
-    line-height: 1.1;
+.fa-envelope {
+    background-image: url("../content/icons/envelope.svg");
 }
 
-h4 {
-    padding: 0;
-    margin: 0 0 1.45rem;
-    color: inherit;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    font-weight: bold;
-    text-rendering: optimizeLegibility;
-    font-size: 1rem;
-    line-height: 1.1;
+.fa-phone {
+    background-image: url("../content/icons/phone.svg");
 }
 
-h5 {
-    padding: 0;
-    margin: 0 0 1.45rem;
-    color: inherit;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    font-weight: bold;
-    text-rendering: optimizeLegibility;
-    font-size: 0.85028rem;
-    line-height: 1.1;
+.fa-map-marker {
+    background-image: url("../content/icons/map-marker.svg");
 }
 
-h6 {
-    padding: 0;
-    margin: 0 0 1.45rem;
+.fa-file {
+    background-image: url("../content/icons/file.svg");
+}
+
+.fa-github {
+    background-image: url("../content/icons/github.svg");
+}
+
+.fa-linkedin {
+    background-image: url("../content/icons/linkedin.svg");
+}
+
+.fa-instagram {
+    background-image: url("../content/icons/instagram.svg");
+}
+
+.fa-facebook {
+    background-image: url("../content/icons/facebook.svg");
+}
+
+.MuiTabs-flexContainer {
+    display: flex;
+}
+
+.MuiTabs-flexContainer button {
+    box-shadow: none;
+    background-color: inherit;
     color: inherit;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    font-weight: bold;
-    text-rendering: optimizeLegibility;
-    font-size: 0.78405rem;
-    line-height: 1.1;
+    border-radius: 4px;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+label {
+    width: 0;
+    height: 0;
+    opacity: 0;
 }

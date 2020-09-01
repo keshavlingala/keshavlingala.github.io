@@ -63,9 +63,8 @@ const Layout = ({ children }) => {
       <Header/>
       {children}
       <Footer>
-        <h6 style={{
-          marginBottom: "5px"
-        }}>Designed and Developed by <a href="https://www.linkedin.com/in/keshavlingala/">Keshav Lingala</a></h6>
+        <i><span>Designed and Developed by <a
+          href="https://www.linkedin.com/in/keshavlingala/">Keshav Lingala</a></span></i>
         <Row>
           <span title='Gatsby' className="k-icon gatsby"/>
           <span title='GraphQL' className="k-icon graphql"/>

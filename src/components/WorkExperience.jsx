@@ -112,11 +112,11 @@ export const Div = styled(({ className, children }) => {
   box-shadow: 2px 2px 5px 0 black;
   .col-9 {
     width: 75%;
+    span{
+      display: block;
+    }
   }
-  .col-9 h6 {
-    font-weight: normal;
-    font-size: 1rem;
-  }
+
   .col-3 {
     width: 25%;
     display: flex;
@@ -124,13 +124,46 @@ export const Div = styled(({ className, children }) => {
     align-items: center;
     justify-content: center;
     border-left: 1px solid #dee2e6 !important;
+    span{
+      line-height: 1.1;
+      display: block;
+    }
   }
-  .col-3 h3 {
-      font-size: 1.1rem;
+  .col-3 span:nth-of-type(1){
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0 0 1.45rem;
   }
-  .col-3 h1 {
-      font-size: 1.5rem;
-      font-weight: 500;
+  .col-3 span:nth-of-type(2){
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0 0 1.45rem;
+  }
+    .col-3 span:nth-of-type(3){
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  .col-9 span:nth-of-type(1){
+    padding: 0;
+    margin: 0 0 1.45rem;
+    color: inherit;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+    font-size: 1rem;
+    line-height: 1.1;
+  }
+  .col-9 span:nth-of-type(2){
+    padding: 0;
+    margin: 0 0 1.45rem;
+    color: inherit;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+    font-size: 0.85028rem;
+    line-height: 1.1;
   }
   @media only screen and (max-width: 600px) {
     .col-9{width: 100%}
@@ -145,29 +178,29 @@ const WorkExperience = () => {
       <TimelineItem>
         <Div>
           <div className="col-9">
-            <h4>
+            <span>
               Software Engineer Intern
-            </h4>
-            <h6>
+            </span>
+            <span>
               Virtusa
-            </h6>
+            </span>
             <p>
               Lorem Ipsum has been the industry's standard
             </p>
           </div>
           <div className="col-3 mobile-none">
             {/*style="font-size: 1.3rem"*/}
-            <h3>
+            <span>
               June
-            </h3>
+            </span>
             {/*style="font-size: 2rem;font-weight: 500"*/}
-            <h1>
+            <span>
               19
-            </h1>
+            </span>
             {/*style="font-size: 1.1rem"*/}
-            <h3>
+            <span>
               2020
-            </h3>
+            </span>
           </div>
         </Div>
       </TimelineItem>

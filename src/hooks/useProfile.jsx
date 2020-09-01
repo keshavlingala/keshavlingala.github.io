@@ -8,7 +8,7 @@ const ProfilePic = () => {
       file(relativePath: { eq: "images/profile.jpg" }) {
         childImageSharp {
             fluid(traceSVG: {threshold: 100, blackOnWhite: false, background: "#353432"}) {
-            ...GatsbyImageSharpFluid_tracedSVG
+            ...GatsbyImageSharpFluid_withWebp_tracedSVG
           }
         }
       }

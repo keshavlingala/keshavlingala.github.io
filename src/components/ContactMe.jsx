@@ -100,18 +100,20 @@ const ContactMe = () => {
   return (
     <>
       <Row>
-        <label hidden htmlFor="name"/>
-        <Input value={form.name} onChange={(c) => handleForm(c, "name")} name='name' placeholder='Name' type="text"/>
-        <label hidden htmlFor="email"/>
-        <Input value={form.email} onChange={(c) => handleForm(c, "email")} name='email' placeholder='Email'
+        <Input id='name' value={form.name} onChange={(c) => handleForm(c, "name")} name='name' placeholder='Name'
                type="text"/>
+        <label htmlFor="name">Name</label>
+        <Input id='email' value={form.email} onChange={(c) => handleForm(c, "email")} name='email' placeholder='Email'
+               type="text"/>
+        <label htmlFor="email">Email</label>
 
       </Row>
       <Row>
-        <label hidden htmlFor="content"/>
-        <TextArea value={form.content} onChange={(c) => handleForm(c, "content")} placeholder='Type Your Message Here'
+        <TextArea id='content' value={form.content} onChange={(c) => handleForm(c, "content")}
+                  placeholder='Type Your Message Here'
                   name='content'
                   type="text"/>
+        <label htmlFor="content">Message</label>
       </Row>
       <Row>
         <Button disabled={!valid} onClick={(d) => submitForm(d)}>Submit</Button>
