@@ -2,6 +2,7 @@ import React from "react"
 import { graphql, Link, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import styled from "@emotion/styled"
+import { ToolTipItem } from "./TabSection"
 
 const ProjectCard = styled(Link)`
     display: flex;
@@ -71,6 +72,13 @@ const ProjectCardContent = styled.div`
 const CreatedOn = styled.span`
   margin-top: auto;
 `
+const Actions = styled.ul`
+display: flex;
+justify-content: flex-start;
+`
+const Item = styled.span`
+
+`
 const Projects = () => {
   const data = useStaticQuery(graphql`
     query MyQuery {
@@ -97,19 +105,28 @@ const Projects = () => {
     }
 `)
   // console.log(data)
-  return data.allMdx.nodes.sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)).map(project => {
-      const { fluid } = project.frontmatter.featuredImage.childImageSharp
-      return (
-        <ProjectCard to={project.frontmatter.slug} tabIndex='0' key={project.id}>
-          <ProjectCardContent>
-            <h3>{project.frontmatter.title}</h3>
-            <p>{project.frontmatter.description}</p>
-            <CreatedOn>- {project.frontmatter.date}</CreatedOn>
-          </ProjectCardContent>
-          <FeatureImg fluid={fluid}/>
-        </ProjectCard>
-      )
-    }
-  )
+  return data.allMdx.nodes
+    .sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
+    .map(project => {
+        const { fluid } = project.frontmatter.featuredImage.childImageSharp
+        return (
+          <ProjectCard to={project.frontmatter.slug} tabIndex='0' key={project.id}>
+            <ProjectCardContent>
+              <h3>{project.frontmatter.title}</h3>
+              <p>{project.frontmatter.description}</p>
+              <Actions>
+                <ToolTipItem link={project.frontmatter.code} tooltip='Visit Github Repo'>
+                  <i className='fa fa-github fa-2x'/>
+                  Repo
+                </ToolTipItem>
+              </Actions>
+              <CreatedOn>- {project.frontmatter.date}</CreatedOn>
+            </ProjectCardContent>
+            <FeatureImg fluid={fluid}/>
+          </ProjectCard>
+        )
+      }
+    )
 }
 export default Projects
+

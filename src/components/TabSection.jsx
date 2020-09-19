@@ -16,7 +16,7 @@ const theme = createMuiTheme({
     }
   }
 })
-const UL = styled.ul
+export const UL = styled.ul
   `
 display: flex;
 flex-direction: row;
