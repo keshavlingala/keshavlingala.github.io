@@ -14,6 +14,7 @@ const ProjectCard = styled(Link)`
     cursor: pointer;
     text-decoration: none;
     color: inherit;
+    overflow: hidden;
     &:after{
       content: '';
       display:flex;
@@ -52,6 +53,10 @@ const FeatureImg = styled(Img)`
     min-width: 20vw;
     margin-left: auto;
     margin-bottom: 0;
+    transition: transform 0.5s ease-in-out;
+    &:hover{
+      transform: scale(0.9);
+    }
     @media only screen and (max-width: 600px) {
       width: 100%;
       max-height: 30vh;

@@ -63,13 +63,13 @@ const Button = styled.button`
   }
 `
 const Span = styled.span`
-  display: ${p => p.show ? "inline-block" : "none"};
+  display: ${p => p.show !== 0 ? "inline-block" : "none"};
   margin-left: 30px;
 `
 const ContactMe = () => {
   const [form, setForm] = useState({ name: "", email: "", content: "" })
   const [valid, setValid] = useState(false)
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(0)
   const handleForm = (change, k) => {
     let obj = form
     obj[k] = change.target.value
@@ -84,18 +84,22 @@ const ContactMe = () => {
     console.log(form)
     setForm({ name: "", email: "", content: "" })
     setValid(false)
-    fetch("http://localhost:3000/mail", {
+    fetch("https://mailingserver.herokuapp.com/", {
       body: JSON.stringify(form),
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
       }
-    }).then(() => {
-      console.log("Done")
+    }).then((d) => {
+      if (d.ok) {
+        setShow(1)
+        setTimeout(() => setShow(0), 3000)
+      } else {
+        setShow(-1)
+      }
     })
-    setShow(true)
-    setTimeout(() => setShow(false), 3000)
+
   }
   return (
     <>
@@ -117,7 +121,8 @@ const ContactMe = () => {
       </Row>
       <Row>
         <Button disabled={!valid} onClick={(d) => submitForm(d)}>Submit</Button>
-        <Span show={show}>Submitted Successfully</Span>
+        <Span
+          show={show}>{show === -1 ? "Something Went Wrong Please try to contact with email" : "Submitted Successfully"}</Span>
       </Row>
     </>
   )

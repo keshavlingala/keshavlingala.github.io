@@ -7,16 +7,30 @@ import Logo from "../hooks/useLogo"
 const AppBar = styled.header`
   width: 100%;
   height: 9.2vh;
-  //background-color: #673ab7;
-  background-color: inherit;
+  //background-color: #1b1b1b;
+  //background-color: inherit;
   display: flex;
   box-sizing: border-box;
+  //border-bottom: 1px solid;
   padding: 0 16px;
   flex-direction: row;
   align-items: center;
   white-space: nowrap;
-  z-index: 3;
-  position: sticky;
+  position: fixed;
+  z-index: 4;
+  top:0;
+  &:before{
+    content: '';
+    position:absolute;
+    box-shadow: inset 0 0 1000px #1b1b1b;
+    width: 100%;
+    top:0;
+    left: 0;
+    right: 0;
+    height: 9.2vh;
+    backdrop-filter: opacity(0.8) blur(150px);
+    z-index: -1;
+  }
 `
 const Brand = styled(Link)`
   filter:invert(0);
@@ -39,6 +53,7 @@ const Header = () => {
 }
 const Screen = styled.div`
   min-height: 100vh;
+  padding-top: 10vh;
 `
 const Row = styled.div`
   display: flex;

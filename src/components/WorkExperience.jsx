@@ -112,6 +112,7 @@ export const Div = styled(({ className, children }) => {
   box-shadow: 2px 2px 5px 0 black;
   .col-9 {
     width: 75%;
+    padding-right: 10px;
     span{
       display: block;
     }
@@ -185,7 +186,7 @@ const WorkExperience = () => {
               Virtusa
             </span>
             <p>
-              Lorem Ipsum has been the industry's standard
+              Full stack Application Developer
             </p>
           </div>
           <div className="col-3 mobile-none">

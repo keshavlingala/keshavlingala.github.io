@@ -425,10 +425,12 @@ iframe {
 hr {
     padding: 0;
     margin: 0 0 calc(1.45rem - 1px);
-    background: hsla(0, 0%, 0%, 0.2);
+    background: #858583;
+    border-radius: 3px;
     border: none;
     height: 1px;
 }
+
 
 address {
     padding: 0;
@@ -728,4 +730,23 @@ label {
     width: 0;
     height: 0;
     opacity: 0;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.half-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.half-flex .img-mdx {
+    width: 25%;
+}
+
+.w-75 {
+    width: 75%;
 }

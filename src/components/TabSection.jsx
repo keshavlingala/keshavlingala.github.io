@@ -67,10 +67,11 @@ const TippedLI = styled.li
     }
     
 `
-export const ToolTipItem = ({ children, tooltip }) => {
+export const ToolTipItem = ({ children, tooltip, link }) => {
   const [show, setShow] = useState(false)
   return <TippedLI tabIndex='0' onMouseEnter={() => setShow(true)} tooltip={tooltip} show={show}
                    onTouchStart={() => setShow(true)}
+                   onClick={() => link && window.open(link, "_blank")}
                    onTouchEnd={() => setShow(false)}
                    onMouseLeave={() => setShow(false)}>{children}</TippedLI>
 }
@@ -80,19 +81,20 @@ const TabsPanel = styled(({ value, className }) => {
       <div className={className}>
         <h3>About</h3>
         <UL>
-          <ToolTipItem  tooltip='Email'>
+          <ToolTipItem link='mailto:keshavlingala@gmail.com' tooltip='Email'>
             <i className="fa fa-envelope fa-2x"/>
             Email
           </ToolTipItem>
-          <ToolTipItem tooltip='Contact'>
+          <ToolTipItem link='tel:8639207832' tooltip='Contact'>
             <i className="fa fa-phone fa-2x"/>
             Contact
           </ToolTipItem>
-          <ToolTipItem tooltip='Locate'>
+          <ToolTipItem link='https://goo.gl/maps/XdWKrrCvRsxHTr4PA' tooltip='Locate'>
             <i className="fa fa-map-marker fa-2x"/>
             Locate
           </ToolTipItem>
-          <ToolTipItem tooltip='Resume'>
+          <ToolTipItem link='https://drive.google.com/file/d/18J3t_xuDEsnC3R2jxEqBxNRDrYhU4AAI/view?usp=sharing'
+                       tooltip='Resume'>
             <i className="fa fa-file fa-2x"/>
             Resume
           </ToolTipItem>
@@ -104,19 +106,19 @@ const TabsPanel = styled(({ value, className }) => {
       <div className={className}>
         <h3>Profiles</h3>
         <UL>
-          <ToolTipItem tooltip='Github'>
+          <ToolTipItem link='http://github.com/keshavlingala' tooltip='Github'>
             <i className='fa fa-github fa-2x'/>
             Github
           </ToolTipItem>
-          <ToolTipItem tooltip='LinkedIn'>
+          <ToolTipItem link='https://www.linkedin.com/in/keshavlingala/' tooltip='LinkedIn'>
             <i className="fa fa-linkedin fa-2x"/>
             LinkedIn
           </ToolTipItem>
-          <ToolTipItem tooltip='Instagram'>
+          <ToolTipItem link='http://instagram.com/im__immortal' tooltip='Instagram'>
             <i className="fa fa-instagram fa-2x"/>
             Instagram
           </ToolTipItem>
-          <ToolTipItem tooltip='Facebook'>
+          <ToolTipItem link='https://www.facebook.com/keshavlingala' tooltip='Facebook'>
             <i className="fa fa-facebook fa-2x"/>
             Facebook
           </ToolTipItem>
@@ -127,6 +129,8 @@ const TabsPanel = styled(({ value, className }) => {
 })`
   text-align: center;
   animation:fadeUp 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  margin-top: 2em;
 `
 const TabSection = () => {
   const [value, setValue] = useState(0)
