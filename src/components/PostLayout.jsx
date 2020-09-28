@@ -1,45 +1,75 @@
 import React from "react"
 import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../layouts/layout"
 import SEO from "../layouts/seo"
 import { Container } from "./CustomComponents"
-import { css, Global } from "@emotion/core"
+import styled from "@emotion/styled"
+import { ToolTipItem, UL } from "./TabSection"
+import { css } from "@emotion/core"
 
-const shortcodes = { Link } // Provide common components here
 export default ({ data: { mdx } }) => {
-  console.log(mdx)
-  // return <pre>{JSON.stringify(data, null, 4)}</pre>
-  console.log(shortcodes)
+  const ProjectLinks = styled(({ className }) => {
+    return (<div className={className}>
+      <h2>Links</h2>
+      <UL css={css`
+       justify-content: flex-start;
+       margin-top: 40px;
+       li{
+       margin-right: 30px;
+       }
+      `}>
+        <ToolTipItem tooltip={"Github Link"} link={mdx.frontmatter.code}>
+          <i className='fa fa-github fa-2x' />
+          Github
+        </ToolTipItem>
+        <ToolTipItem tooltip={"Visit Prototype"} link={mdx.frontmatter.demo}>
+          <i className='fa fa-link fa-2x' />
+          Demo
+        </ToolTipItem>
+      </UL>
+    </div>)
+  })`
+    border-bottom: 2px solid;
+    `
+  console.log({ mdx })
   return (
     <div>
-      <SEO title={mdx.frontmatter.title}/>
-      <Global styles={css`
-        span{
-        box-shadow: 1px 1px 10px;
-        }
-      `}/>
+      <SEO tags={mdx.frontmatter.tags} img={mdx.frontmatter.featuredImage.childImageSharp.fixed.src} description={mdx.frontmatter.description} title={mdx.frontmatter.title} />
       <Layout>
         <Container>
           <MDXProvider>
             <MDXRenderer>{mdx.body}</MDXRenderer>
           </MDXProvider>
+          {mdx.frontmatter.demo && mdx.frontmatter.code && <ProjectLinks />}
         </Container>
       </Layout>
     </div>
   )
 }
 export const pageQuery = graphql`
-    query BlogPostQuery($id: String){
-      mdx(id: { eq: $id }) {
-        id
-        frontmatter {
-          tags
-          title
+    query BlogPostQuery($id: String) {
+  mdx(id: {eq: $id}) {
+    id
+    frontmatter {
+      description
+      tags
+      title
+      code
+      date
+      demo
+      featuredImage {
+        childImageSharp {
+          fixed {
+            src
+          }
         }
-        body
       }
     }
+    body
+  }
+}
+
   `
 

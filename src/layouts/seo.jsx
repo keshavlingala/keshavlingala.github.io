@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { graphql, useStaticQuery } from "gatsby"
 
-function SEO({ description, lang, meta, title, tags }) {
+function SEO({ img, description, lang, meta, title, tags }) {
   const { site, file } = useStaticQuery(
     graphql`
       {
@@ -26,8 +26,8 @@ function SEO({ description, lang, meta, title, tags }) {
   )
   console.log(file)
   const metaDescription = description || site.siteMetadata.description
-  const image = file.childImageSharp.fixed.src
-  console.log(image)
+  const image = img || file.childImageSharp.fixed.src
+  console.log({ image })
   return (
     <Helmet
       htmlAttributes={{
@@ -74,7 +74,7 @@ function SEO({ description, lang, meta, title, tags }) {
         },
         {
           name: "tags",
-          content: tags.join(",")
+          content: tags.join(", ")
         }
       ].concat(meta)}
     />

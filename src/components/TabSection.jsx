@@ -21,6 +21,7 @@ export const UL = styled.ul
 display: flex;
 flex-direction: row;
 justify-content: space-around;
+margin-left: 0;
 `
 const TippedLI = styled.li
   `
@@ -82,20 +83,20 @@ const TabsPanel = styled(({ value, className }) => {
         <h3>About</h3>
         <UL>
           <ToolTipItem link='mailto:keshavlingala@gmail.com' tooltip='Email'>
-            <i className="fa fa-envelope fa-2x"/>
+            <i className="fa fa-envelope fa-2x" />
             Email
           </ToolTipItem>
           <ToolTipItem link='tel:8639207832' tooltip='Contact'>
-            <i className="fa fa-phone fa-2x"/>
+            <i className="fa fa-phone fa-2x" />
             Contact
           </ToolTipItem>
           <ToolTipItem link='https://goo.gl/maps/XdWKrrCvRsxHTr4PA' tooltip='Locate'>
-            <i className="fa fa-map-marker fa-2x"/>
+            <i className="fa fa-map-marker fa-2x" />
             Locate
           </ToolTipItem>
           <ToolTipItem link='https://drive.google.com/file/d/18J3t_xuDEsnC3R2jxEqBxNRDrYhU4AAI/view?usp=sharing'
                        tooltip='Resume'>
-            <i className="fa fa-file fa-2x"/>
+            <i className="fa fa-file fa-2x" />
             Resume
           </ToolTipItem>
         </UL>
@@ -107,19 +108,19 @@ const TabsPanel = styled(({ value, className }) => {
         <h3>Profiles</h3>
         <UL>
           <ToolTipItem link='http://github.com/keshavlingala' tooltip='Github'>
-            <i className='fa fa-github fa-2x'/>
+            <i className='fa fa-github fa-2x' />
             Github
           </ToolTipItem>
           <ToolTipItem link='https://www.linkedin.com/in/keshavlingala/' tooltip='LinkedIn'>
-            <i className="fa fa-linkedin fa-2x"/>
+            <i className="fa fa-linkedin fa-2x" />
             LinkedIn
           </ToolTipItem>
           <ToolTipItem link='http://instagram.com/im__immortal' tooltip='Instagram'>
-            <i className="fa fa-instagram fa-2x"/>
+            <i className="fa fa-instagram fa-2x" />
             Instagram
           </ToolTipItem>
           <ToolTipItem link='https://www.facebook.com/keshavlingala' tooltip='Facebook'>
-            <i className="fa fa-facebook fa-2x"/>
+            <i className="fa fa-facebook fa-2x" />
             Facebook
           </ToolTipItem>
         </UL>
@@ -148,10 +149,10 @@ const TabSection = () => {
           borderBottom: "1px solid"
         }}
       >
-        <Tab textColor='inherit' label='About'/>
-        <Tab textColor='inherit' label="Profiles"/>
+        <Tab textColor='inherit' label='About' />
+        <Tab textColor='inherit' label="Profiles" />
       </Tabs>
-      <TabsPanel value={value}/>
+      <TabsPanel value={value} />
     </ThemeProvider>
   )
 }

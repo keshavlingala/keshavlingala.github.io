@@ -19,26 +19,27 @@ const Description = styled.p`
 const IndexPage = () => {
   return (
     <Layout>
-      <SEO title='Profile'/>
-      <Profile/>
-      <TabSection/>
+      <SEO title='Profile' />
+      <Profile />
+      <TabSection />
       <Container>
         <Description>
-          B-tech UnderGraduate in Keshav Memorial Institute of Technology in Department of Computer Science and
-          Technology
-          I Like to program things like IOT, Web Apps, Automation Scripts, CS Algorithms , Cloud Orchestration Cloud
+          B-tech underGraduate in Keshav Memorial Institute of Technology in department of Computer Science and
+          Technology,
+          I like to program things like IOT and worked on Web Apps, Automation Scripts, CS Algorithms , Cloud
+          Orchestration Cloud
           Automation and Educational Applications more useful to Students like Me.
         </Description>
         <h2>Projects</h2>
-        <Projects/>
+        <Projects />
         <h2>Work Experience</h2>
-        <WorkExperience/>
+        <WorkExperience />
         <h2>Education</h2>
-        <Education/>
+        <Education />
         <h2>Skills & Languages</h2>
-        <SkillsComponent/>
+        <SkillsComponent />
         <h2 title='Anytime, Anywhere'>Get In Touch</h2>
-        <ContactMe/>
+        <ContactMe />
       </Container>
     </Layout>
   )

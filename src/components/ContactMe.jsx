@@ -16,6 +16,12 @@ const Input = styled.input`
   }
   width: 100%;
   margin-right: 20vw;
+  @media only screen and (max-width: 600px){
+      //margin-right: 2vw;
+      margin-right: 0;
+      margin-top: 2vw;
+      width: 100%;
+  }
 `
 const Row = styled.div`
   display: flex;
@@ -23,6 +29,10 @@ const Row = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin-top: 20px;
+  @media only screen and (max-width: 600px){
+      flex-direction: column;
+      
+  }
 `
 const TextArea = styled.textarea`
   color: inherit;
@@ -37,6 +47,9 @@ const TextArea = styled.textarea`
     outline: none;
     box-shadow: 1px 1px 1px black;
     background-color: #1b1b1b;
+  }
+  @media only screen and (max-width: 600px){
+      width: 100%;
   }
 `
 
@@ -94,7 +107,7 @@ const ContactMe = () => {
     }).then((d) => {
       if (d.ok) {
         setShow(1)
-        setTimeout(() => setShow(0), 3000)
+        setTimeout(() => setShow(0), 10000)
       } else {
         setShow(-1)
       }
@@ -105,10 +118,10 @@ const ContactMe = () => {
     <>
       <Row>
         <Input id='name' value={form.name} onChange={(c) => handleForm(c, "name")} name='name' placeholder='Name'
-               type="text"/>
+               type="text" />
         <label htmlFor="name">Name</label>
         <Input id='email' value={form.email} onChange={(c) => handleForm(c, "email")} name='email' placeholder='Email'
-               type="text"/>
+               type="text" />
         <label htmlFor="email">Email</label>
 
       </Row>
@@ -116,7 +129,7 @@ const ContactMe = () => {
         <TextArea id='content' value={form.content} onChange={(c) => handleForm(c, "content")}
                   placeholder='Type Your Message Here'
                   name='content'
-                  type="text"/>
+                  type="text" />
         <label htmlFor="content">Message</label>
       </Row>
       <Row>

@@ -124,7 +124,7 @@ export const Div = styled(({ className, children }) => {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-left: 1px solid #dee2e6 !important;
+    border-left: 1px solid #ffd285 !important;
     span{
       line-height: 1.1;
       display: block;
