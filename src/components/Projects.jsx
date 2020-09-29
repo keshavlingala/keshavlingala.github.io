@@ -71,38 +71,8 @@ const ProjectCardContent = styled.div`
 const CreatedOn = styled.span`
   margin-top: auto;
 `
-const Actions = styled.ul`
-display: flex;
-justify-content: flex-start;
-`
-const Item = styled((children, tooltip, className) => {
-  return <li className={className}>{children}</li>
-})`
-position: relative;
-&:before{
-  font-size: 0.85em;
-  position: absolute;
-  display: flex;
-  //background-color: #1b1b1b;
-  padding: 0.5rem;
-  border-radius: 6px;
-  color: #ffd285;
-  opacity: ${p => (p.show ? "1" : "0")};
-  transition: all 0.3s ease;
-  z-index: -1;
-  bottom: 110%;
-  left: 0;
-  //right: -50%;
-  width: 100%;
-  align-items: center;
-  height: 33px;
-  white-space: nowrap;
-  justify-content: center;
-}
-&:hover{
-  
-}
-`
+
+
 const Projects = () => {
   const data = useStaticQuery(graphql`
     query MyQuery {
@@ -130,7 +100,6 @@ const Projects = () => {
       }
     }
 `)
-  // console.log(data)
   return data.allMdx.nodes
     .sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
     .map(project => {
@@ -140,15 +109,9 @@ const Projects = () => {
             <ProjectCardContent>
               <h3>{project.frontmatter.title}</h3>
               <p>{project.frontmatter.description}</p>
-              <Actions>
-                {/*<Item link={project.frontmatter.code} tooltip='Visit Github Repo'>*/}
-                {/*  <i className='fa fa-github fa-2x'/>*/}
-                {/*  Repo*/}
-                {/*</Item>*/}
-              </Actions>
               <CreatedOn>- {project.frontmatter.date}</CreatedOn>
             </ProjectCardContent>
-            <FeatureImg fluid={fluid}/>
+            <FeatureImg fluid={fluid} />
           </ProjectCard>
         )
       }

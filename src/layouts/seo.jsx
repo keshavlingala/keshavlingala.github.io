@@ -26,10 +26,8 @@ function SEO({ img, description, lang, meta, title, tags }) {
           }
     `
   )
-  console.log(file)
   const metaDescription = description || site.siteMetadata.description
   const image = img || file.childImageSharp.fixed.src
-  console.log({ image })
   return (
     <Helmet
       htmlAttributes={{

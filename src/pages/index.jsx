@@ -16,6 +16,7 @@ const Description = styled.p`
   margin: 100px 0;
 `
 const IndexPage = () => {
+  console.log("%c Hey 👋", "font-size:10vw");
   return (
     <Layout>
       <SEO title='Profile' />
@@ -29,7 +30,7 @@ const IndexPage = () => {
           Orchestration Cloud
           Automation and Educational Applications more useful to Students like Me.
         </Description>
-        <h2>Projects</h2>gi
+        <h2>Projects</h2>
         <Projects />
         <h2>Work Experience</h2>
         <WorkExperience />
