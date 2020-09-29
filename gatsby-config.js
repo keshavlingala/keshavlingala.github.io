@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/keshavlingala.github.io",
   siteMetadata: {
     title: `Keshav Lingala`,
     description: `Hi I'm Keshav, B-tech UnderGraduate in Keshav Memorial Institute of Technology in Department of Computer Science and
