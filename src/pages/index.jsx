@@ -11,7 +11,6 @@ import SEO from "../layouts/seo"
 import SkillsComponent from "../components/SkillsComponent"
 import ContactMe from "../components/ContactMe"
 
-
 const Description = styled.p`
   text-align: center;
   margin: 100px 0;
@@ -30,7 +29,7 @@ const IndexPage = () => {
           Orchestration Cloud
           Automation and Educational Applications more useful to Students like Me.
         </Description>
-        <h2>Projects</h2>
+        <h2>Projects</h2>gi
         <Projects />
         <h2>Work Experience</h2>
         <WorkExperience />
@@ -38,6 +37,7 @@ const IndexPage = () => {
         <Education />
         <h2>Skills & Languages</h2>
         <SkillsComponent />
+
         <h2 title='Anytime, Anywhere'>Get In Touch</h2>
         <ContactMe />
       </Container>

@@ -26,10 +26,10 @@ module.exports = {
         name: `Keshav Lingala`,
         short_name: `Keshav`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `keshav`,
-        icon: `src/content/images/iconround.png` // This path is relative to the root of the site.
+        background_color: `#1b1b1b`,
+        theme_color: `#ffd285`,
+        display: `fullscreen`,
+        icon: `src/content/images/logo.png` // This path is relative to the root of the site.
       }
     },
     `gatsby-plugin-emotion`,
@@ -52,6 +52,12 @@ module.exports = {
           }
         ]
       }
+    },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`/static/*`, '/*'],
+      },
     }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

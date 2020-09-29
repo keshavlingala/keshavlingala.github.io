@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "@emotion/styled"
-import "./layout.css"
 import { Link } from "gatsby"
 import Logo from "../hooks/useLogo"
+import "./layout.css"
 
 const AppBar = styled.header`
   width: 100%;
@@ -46,7 +46,7 @@ const Header = () => {
   return (
     <AppBar>
       <Brand to={"/"}>
-        <Logo/>
+        <Logo />
       </Brand>
     </AppBar>
   )
@@ -75,16 +75,16 @@ const Footer = styled.footer`
 const Layout = ({ children }) => {
   return (
     <Screen>
-      <Header/>
+      <Header />
       {children}
       <Footer>
         <i><span>Designed and Developed by <a
           href="https://www.linkedin.com/in/keshavlingala/">Keshav Lingala</a></span></i>
         <Row>
-          <span title='Gatsby' className="k-icon gatsby"/>
-          <span title='GraphQL' className="k-icon graphql"/>
-          <span title='ReactJS' className="k-icon react"/>
-          <span title='NestJS' className="k-icon nestjs"/>
+          <span title='Gatsby' className="k-icon gatsby" />
+          <span title='GraphQL' className="k-icon graphql" />
+          <span title='ReactJS' className="k-icon react" />
+          <span title='NestJS' className="k-icon nestjs" />
         </Row>
       </Footer>
     </Screen>
