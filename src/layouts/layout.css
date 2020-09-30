@@ -724,12 +724,23 @@ body {
     background-color: inherit;
     color: inherit;
     border-radius: 4px;
-    padding: 5px;
     text-align: center;
+    min-height: 48px;
     cursor: pointer;
     flex-grow: 1;
     flex-basis: 0;
+    outline: none;
+    border: none;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1.75;
+    white-space: normal;
+    letter-spacing: 0.02857em;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    padding: 5px;
 }
+
 
 label {
     width: 0;
