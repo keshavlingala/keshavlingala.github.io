@@ -698,7 +698,8 @@ body {
 .fa-github {
     background-image: url("../content/icons/github.svg");
 }
-.fa-link{
+
+.fa-link {
     background-image: url("../content/icons/link.svg");
 }
 
@@ -753,4 +754,8 @@ label {
 
 .w-75 {
     width: 75%;
+}
+
+*:focus {
+    outline: none;
 }

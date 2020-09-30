@@ -40,6 +40,9 @@ const TippedLI = styled.li
     padding: 5px;
     /* box-shadow: 0px 0px 1px 0px black; */
     border-radius: 10%;
+    &:focus{
+    outline: none;
+    }
     //width: 50px;
     //height: 50px;
     cursor: pointer;
