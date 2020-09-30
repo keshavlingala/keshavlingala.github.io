@@ -235,6 +235,7 @@ const IconLister = styled.ul`
   @media only screen and (max-width: 600px){
     width: 100%;
     margin-top:66px;
+    margin-left: 0;
   }
 `
 const SkillsComponent = () => {

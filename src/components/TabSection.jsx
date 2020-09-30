@@ -5,6 +5,7 @@ import { createMuiTheme, ThemeProvider } from "@bit/mui-org.material-ui.styles"
 import styled from "@emotion/styled"
 // import "font-awesome/css/font-awesome.min.css"
 import deepPurple from "@bit/mui-org.material-ui.colors/deepPurple"
+import { css } from "@emotion/core"
 
 const theme = createMuiTheme({
   palette: {
@@ -18,10 +19,19 @@ const theme = createMuiTheme({
 })
 export const UL = styled.ul
   `
-display: flex;
-flex-direction: row;
-justify-content: space-around;
-margin-left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-left: 0;
+  animation: fadeUp 0.5s ease-in-out;
+  @keyframes fadeUp{
+    from{
+      opacity: 0;
+    }
+    to{
+      opacity: 1;
+    }
+  }
 `
 const TippedLI = styled.li
   `
@@ -76,10 +86,26 @@ export const ToolTipItem = ({ children, tooltip, link }) => {
                    onTouchEnd={() => setShow(false)}
                    onMouseLeave={() => setShow(false)}>{children}</TippedLI>
 }
-const TabsPanel = styled(({ value, className }) => {
+const TabsPanel = ({ value, className }) => {
   if (!value) {
     return (
-      <div className={className}>
+      <div css={css`
+        @keyframes fadeInRight{
+        0% {
+          opacity: 0;
+          transform: translateX(-64%);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+        text-align: center;
+        margin-top: 10px;
+        transition: transform 1s ease-in-out;
+        animation: fadeInRight 0.5s ease-in-out;
+        
+        `}>
         <h3>About</h3>
         <UL>
           <ToolTipItem link='mailto:keshavlingala@gmail.com' tooltip='Email'>
@@ -104,7 +130,22 @@ const TabsPanel = styled(({ value, className }) => {
     )
   } else {
     return (
-      <div className={className}>
+      <div css={css`
+        @keyframes fadeInLeft{
+          0% {
+            opacity: 0;
+            transform: translateX(64%);
+          }
+          100% {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        animation: fadeInLeft 0.5s ease-in-out;
+        text-align: center;
+        margin-top: 10px;
+        
+        `}>
         <h3>Profiles</h3>
         <UL>
           <ToolTipItem link='http://github.com/keshavlingala' tooltip='Github'>
@@ -127,12 +168,7 @@ const TabsPanel = styled(({ value, className }) => {
       </div>
     )
   }
-})`
-  text-align: center;
-  animation:fadeUp 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-  margin-top: 2em;
-`
+}
 const TabSection = () => {
   const [value, setValue] = useState(0)
   return (

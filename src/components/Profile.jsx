@@ -17,7 +17,6 @@ const Circle = styled.div`
   width: 50vw;
   margin-left: -50%;
   margin-right: 5vw;
-  z-index: -1;
   transition: clip-path 0.5s ease-in-out;
   clip-path: polygon(37.75% 0px, 2px 99.65%, 100% 100%, 99.69% -0.11%);
   @media only screen and (max-width: 600px){
