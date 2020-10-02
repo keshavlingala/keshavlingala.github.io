@@ -21,7 +21,7 @@ import CPP from "../content/icons/cpp.svg"
 import TensorFlow from "../content/icons/tensorflow.svg"
 import Gatsby from "../content/icons/gatsby.svg"
 import Google from "../content/icons/google.svg"
-
+import Docker from '../content/icons/docker.svg'
 export {
   Gatsby,
   Google,
@@ -33,6 +33,7 @@ export {
   Bash,
   Firebase,
   GCloud,
+  Docker,
   Python,
   Git,
   Hadoop,

@@ -6,6 +6,7 @@ import {
   AWS,
   Bash,
   CPP,
+  Docker,
   Firebase,
   Gatsby,
   GCloud,
@@ -114,6 +115,10 @@ const icons = [
   {
     name: "Typescript",
     icon: Typescript
+  },
+  {
+    name: "Docker",
+    icon: Docker
   }
 
 ]
@@ -136,7 +141,7 @@ let skills = [
   {
     name: "Cloud Computing",
     progress: 72,
-    techs: ["Google Cloud", "AWS", "Kubernetes", "Hadoop", "Spark"]
+    techs: ["Google Cloud", "Docker", "AWS", "Kubernetes", "Hadoop", "Spark"]
   },
   {
     name: "Machine Learning",
@@ -273,7 +278,7 @@ const SkillsComponent = () => {
         {items.map(icon => {
           return (
             <ToolTipItem tooltip={icon.name} key={icon.name}>
-              <img src={icon.icon} alt=""/>
+              <img src={icon.icon} alt="" />
             </ToolTipItem>
           )
         })}

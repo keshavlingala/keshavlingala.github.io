@@ -26,7 +26,7 @@ module.exports = {
       options: {
         name: `Keshav Lingala`,
         short_name: `Keshav`,
-        start_url: `/`,
+        start_url: `/?source=pwa`,
         background_color: `#1b1b1b`,
         theme_color: `#ffd285`,
         display: `fullscreen`,
@@ -58,6 +58,8 @@ module.exports = {
       resolve: `gatsby-plugin-offline`,
       options: {
         precachePages: [`/static/*`, '/*'],
+        start_url: '/?source=pwa',
+        short_name: 'Keshav'
       },
     }
     // this (optional) plugin enables Progressive Web App + Offline functionality
