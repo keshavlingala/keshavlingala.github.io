@@ -40,9 +40,6 @@ audio:not([controls]) {
     height: 0;
 }
 
-progress {
-    vertical-align: baseline;
-}
 
 [hidden],
 template {
@@ -613,7 +610,7 @@ pre tt:after {
 body {
     color: #ffd285;
     background-color: #1b1b1b;
-    background-image: url(../content/images/wood.webp);
+    background-image: url(../content/images/wood.webp),url("../content/images/wood.jpg");
     background-size: 10%;
 }
 
@@ -628,7 +625,6 @@ body {
 
 ::-webkit-scrollbar-thumb {
     width: 2px;
-    /*height: 2px;*/
     background-color: #ffd285;
 }
 

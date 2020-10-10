@@ -23,7 +23,7 @@ const Circle = styled.div`
     margin-left: 0;
     width: 40vw;
     margin-right: 0;
-    clip-path: polygon(0.13% 2px, 3px 99.98%, 99.84% 100%, 100.02% 0.39%);;
+    clip-path: polygon(0.13% 2px, 3px 99.98%, 99.84% 100%, 100.02% 0.39%);
   }
 `
 const Title = styled.span`

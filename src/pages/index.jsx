@@ -38,7 +38,6 @@ const IndexPage = () => {
         <Education />
         <h2>Skills & Languages</h2>
         <SkillsComponent />
-
         <h2 title='Anytime, Anywhere'>Get In Touch</h2>
         <ContactMe />
       </Container>

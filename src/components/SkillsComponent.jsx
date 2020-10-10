@@ -278,7 +278,7 @@ const SkillsComponent = () => {
         {items.map(icon => {
           return (
             <ToolTipItem tooltip={icon.name} key={icon.name}>
-              <img src={icon.icon} alt="" />
+              <img width='40px' height='40px' src={icon.icon} alt={icon.name} />
             </ToolTipItem>
           )
         })}

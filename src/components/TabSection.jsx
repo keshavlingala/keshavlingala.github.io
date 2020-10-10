@@ -3,15 +3,11 @@ import Tabs from "@bit/mui-org.material-ui.tabs"
 import Tab from "@bit/mui-org.material-ui.tab"
 import { createMuiTheme, ThemeProvider } from "@bit/mui-org.material-ui.styles"
 import styled from "@emotion/styled"
-// import "font-awesome/css/font-awesome.min.css"
 import deepPurple from "@bit/mui-org.material-ui.colors/deepPurple"
 import { css } from "@emotion/core"
 
 const theme = createMuiTheme({
   palette: {
-    // primary: {
-    //   main: "#0e0a26"
-    // },
     secondary: {
       main: deepPurple[50]
     }
@@ -36,15 +32,11 @@ export const UL = styled.ul
 const TippedLI = styled.li
   `
     list-style: none;
-    /* border: 1px solid black; */
     padding: 5px;
-    /* box-shadow: 0px 0px 1px 0px black; */
     border-radius: 10%;
     &:focus{
     outline: none;
     }
-    //width: 50px;
-    //height: 50px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -63,7 +55,7 @@ const TippedLI = styled.li
       font-size: 0.85em;
       position: absolute;
       display: flex;
-      //background-color: #1b1b1b;
+      user-select: none;
       padding: 0.5rem;
       border-radius: 6px;
       color: #ffd285;
@@ -72,12 +64,16 @@ const TippedLI = styled.li
       z-index: -1;
       bottom: 110%;
       left: 0;
-      //right: -50%;
       width: 100%;
       align-items: center;
       height: 33px;
       white-space: nowrap;
       justify-content: center;
+    }
+    img{
+    width: 40px;
+    height: 40px;
+    object-fit: scale-down;
     }
     
 `
@@ -89,7 +85,7 @@ export const ToolTipItem = ({ children, tooltip, link }) => {
                    onTouchEnd={() => setShow(false)}
                    onMouseLeave={() => setShow(false)}>{children}</TippedLI>
 }
-const TabsPanel = ({ value, className }) => {
+const TabsPanel = ({ value }) => {
   if (!value) {
     return (
       <div css={css`
