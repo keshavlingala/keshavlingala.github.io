@@ -27,17 +27,17 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-6a909a3eaff7cc7d4641.js"
+    "url": "webpack-runtime-e3f89d8e162af39f6adf.js"
   },
   {
     "url": "framework-b5b229d58c3c710d5429.js"
   },
   {
-    "url": "app-c80ddfa41762b093f5ab.js"
+    "url": "app-05b473d14f2c4a3dffa7.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "cc85fd0775b3af00d12e1de224bccea8"
+    "revision": "27680b35f1cce7f7faf7bf4b09c95826"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-e5cb9e0c77a823b86dc2.js"
@@ -67,7 +67,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "462e1656b85d7e1fe9a0df981f4a84c9"
+    "revision": "16256d07ea84c182f1b13fbb06a5695c"
   },
   {
     "url": "page-data/404.html/page-data.json",
@@ -96,7 +96,7 @@ self.__precacheManifest = [
     "revision": "4d33b7bf2bbf9af3ee1fe776de45a5ed"
   },
   {
-    "url": "component---src-pages-index-jsx-d68051308856355f8dae.js"
+    "url": "component---src-pages-index-jsx-b77d8eeac897dad135dd.js"
   },
   {
     "url": "page-data/index/page-data.json",
@@ -108,7 +108,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/3716579500.json",
-    "revision": "589ab2d9eb6ebd7d2d895daba2b88b2f"
+    "revision": "011f1d7c60f8eea7eb52de0385cb9120"
   },
   {
     "url": "page-data/iot/page-data.json",
@@ -212,7 +212,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-c80ddfa41762b093f5ab.js`))) {
+  if (!resources || !(await caches.match(`/app-05b473d14f2c4a3dffa7.js`))) {
     return await fetch(event.request)
   }
 
