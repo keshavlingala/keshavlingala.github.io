@@ -120,7 +120,6 @@ const icons = [
     name: "Docker",
     icon: Docker
   }
-
 ]
 let skills = [
   {
@@ -131,17 +130,17 @@ let skills = [
   {
     name: "Web Development Front-end & Back-end",
     progress: 85,
-    techs: ["Angular", "React", "Firebase", "Gatsby", "NodeJS", "Javascript", "MongoDB", "TypeScript", "MySQL"]
+    techs: ["Angular","Typescript","Docker", "React", "Firebase", "Gatsby", "NodeJS", "Javascript", "MongoDB","MySQL"]
   },
   {
     name: "Automation scripting",
     progress: 83,
-    techs: ["Python", "Bash", "Git", "Google Cloud", "AWS"]
+    techs: ["Python", "Bash", "Git", "Google Cloud","Docker", "AWS"]
   },
   {
     name: "Cloud Computing",
     progress: 72,
-    techs: ["Google Cloud", "Docker", "AWS", "Kubernetes", "Hadoop", "Spark"]
+    techs: ["Google Cloud", "Docker", "AWS", "Kubernetes", "Hadoop", "Spark","Bash"]
   },
   {
     name: "Machine Learning",

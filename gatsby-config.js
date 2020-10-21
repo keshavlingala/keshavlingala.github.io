@@ -11,6 +11,13 @@ module.exports = {
     twitterUsername: "@keshavlingala"
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "G-HBCJRGYHLE",
+        head: true
+      }
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -46,7 +53,7 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 800,
-              tracedSVG: {threshold: 100},
+              tracedSVG: { threshold: 100 },
               withWebp: true,
               linkImagesToOriginal: false
             }
@@ -57,11 +64,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-offline`,
       options: {
-        precachePages: [`/static/*`, '/*'],
-        start_url: '/?source=pwa',
-        short_name: 'Keshav'
-      },
+        precachePages: [`/static/*`, "/*"],
+        start_url: "/?source=pwa",
+        short_name: "Keshav"
+      }
     }
+
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
