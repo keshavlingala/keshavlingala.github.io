@@ -81,7 +81,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/aakarshan/page-data.json",
-    "revision": "e14e04b35c8a660ba1059669e5c9a6d9"
+    "revision": "b4ca2bc703d518ed53a109d6ac8043f7"
   },
   {
     "url": "page-data/sq/d/2990369020.json",
@@ -108,7 +108,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/3716579500.json",
-    "revision": "011f1d7c60f8eea7eb52de0385cb9120"
+    "revision": "6b3742e3dad9c856d511d38a6fc4e45d"
   },
   {
     "url": "page-data/iot/page-data.json",
@@ -116,7 +116,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/seeinghome/page-data.json",
-    "revision": "bd0b7e765ef814939bd3ff62728d28bc"
+    "revision": "f403266e5530884cd8f66db4b2f17275"
   },
   {
     "url": "manifest.webmanifest",
