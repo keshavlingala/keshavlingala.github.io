@@ -92,6 +92,10 @@ self.__precacheManifest = [
     "revision": "6bad3f9c3a4d5ee87c98f468832cd07b"
   },
   {
+    "url": "page-data/edithminibot/page-data.json",
+    "revision": "356baf76308e0464cf589c12a7d1203b"
+  },
+  {
     "url": "page-data/havmormovies/page-data.json",
     "revision": "4d33b7bf2bbf9af3ee1fe776de45a5ed"
   },
@@ -108,7 +112,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/3716579500.json",
-    "revision": "6b3742e3dad9c856d511d38a6fc4e45d"
+    "revision": "f0560698d55c5512990a88fb753cb62e"
   },
   {
     "url": "page-data/iot/page-data.json",
