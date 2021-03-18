@@ -42,7 +42,7 @@
   "scripts": {
     "build": "npm run clean && gatsby build && npm run serve",
     "develop": "gatsby develop",
-    "deploy": "gatsby clean && gatsby build && echo keshavlingala.me > public/CNAME && cp README.md audits.png public/README.md  && gh-pages -d public -b master",
+    "deploy": "gatsby clean && gatsby build && echo keshavlingala.me > public/CNAME && cp README.md audits.png public/  && gh-pages -d public -b master",
     "gitploy": "gh-pages -d public -b master",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
