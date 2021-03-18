@@ -93,7 +93,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/edithminibot/page-data.json",
-    "revision": "356baf76308e0464cf589c12a7d1203b"
+    "revision": "ac51dfa9a282e19bd27371de9a566dbb"
   },
   {
     "url": "page-data/havmormovies/page-data.json",
@@ -112,7 +112,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/3716579500.json",
-    "revision": "2c631b121b0b4350fc9092a56759cc07"
+    "revision": "9a6f56891a383a2afeadb25be755d623"
   },
   {
     "url": "page-data/iot/page-data.json",
