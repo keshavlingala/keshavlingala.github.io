@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { graphql, useStaticQuery } from "gatsby"
 
-const domain = "https://keshavlingala.me"
+const domain = "https://keshav.tech"
 
 function SEO({ img, description, lang, meta, title, tags }) {
   const { site, file } = useStaticQuery(
