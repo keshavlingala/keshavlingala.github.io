@@ -19,6 +19,7 @@ const Circle = styled.div`
   margin-right: 5vw;
   transition: clip-path 0.5s ease-in-out;
   clip-path: polygon(37.75% 0px, 2px 99.65%, 100% 100%, 99.69% -0.11%);
+  animation: bubble 2s;
   @media only screen and (max-width: 600px){
     margin-left: 0;
     width: 40vw;
@@ -31,26 +32,17 @@ const Title = styled.span`
       margin-left: 2vw;
       font-size: 8vw;
       font-weight: lighter;
-      @keyframes fadeInLeft{
-        0% {
-          opacity: 0;
-          transform: translateX(64%);
-        }
-        100% {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
       animation: fadeInLeft 2s;
       @media only screen and (max-width: 600px){
         margin-left: 0;
       }
 `
 const SubTitle = styled.span`
-display: block;
-margin-left: 2vw;
-font-size: 3vw;
-font-weight: initial;
+  display: block;
+  margin-left: 2vw;
+  font-size: 3vw;
+  font-weight: initial;
+  animation: fadeInUp 2s;
 `
 
 export default () => {
