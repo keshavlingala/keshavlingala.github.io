@@ -14,7 +14,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "G-HBCJRGYHLE",
+        trackingId: "G-GF8WLTZYSP",
         head: true
       }
     },
@@ -55,8 +55,11 @@ module.exports = {
               maxWidth: 800,
               tracedSVG: { threshold: 100 },
               withWebp: true,
-              linkImagesToOriginal: false
+              linkImagesToOriginal: true
             }
+          },
+          {
+            resolve: "gatsby-remark-gifs"
           }
         ]
       }

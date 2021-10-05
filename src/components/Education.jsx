@@ -15,7 +15,8 @@ const Education = () => {
               2017-2021
             </span>
             <p>
-              Computer Science and Engineering Percentage: 75%
+              Computer Science and Engineering <br/>
+              Percentage: 77.1%
             </p>
           </div>
           <div className="col-3 mobile-none">
@@ -41,7 +42,7 @@ const Education = () => {
               2015-2017
             </span>
             <p>
-              Mathematics and Physics Percentage: 94%
+              Mathematics and Physics <br/> Percentage: 94%
             </p>
           </div>
           <div className="col-3 mobile-none">
@@ -67,7 +68,7 @@ const Education = () => {
               - 2015
             </span>
             <p>
-              Secondary School Certificate (CCE) Percentage: 95%
+              Secondary School Certificate (CCE) <br/> Percentage: 95%
             </p>
           </div>
           <div className="col-3 mobile-none">

@@ -9,7 +9,9 @@ import styled from "@emotion/styled"
 import { ToolTipItem, UL } from "./TabSection"
 import { css } from "@emotion/core"
 
-export default ({ data: { mdx } }) => {
+export default (props) => {
+  const mdx=props.data.mdx
+  console.log({ props })
   const ProjectLinks = styled(({ className }) => {
     return (<div className={className}>
       <h2>Links</h2>
