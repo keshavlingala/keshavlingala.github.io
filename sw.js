@@ -27,7 +27,7 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-b8ec2561d0a2a6088fd9.js"
+    "url": "webpack-runtime-a8a557c0ad580093dfc9.js"
   },
   {
     "url": "framework-b5b229d58c3c710d5429.js"
@@ -37,7 +37,7 @@ self.__precacheManifest = [
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "4f6913d6951001bb7f3a12280ebfab6a"
+    "revision": "64473e5aac89402f0c599886687e55a8"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-e5cb9e0c77a823b86dc2.js"
@@ -52,7 +52,7 @@ self.__precacheManifest = [
     "url": "styles-c2fe8482057191dca484.js"
   },
   {
-    "url": "0a8091863b01680e96d685047a5274cf82e5ec9e-743c11a37bfe10cfee66.js"
+    "url": "0a8091863b01680e96d685047a5274cf82e5ec9e-46355ba1ac119880d26c.js"
   },
   {
     "url": "component---src-pages-404-mdx-dd8a95f9525502ca5445.js"
@@ -67,21 +67,21 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "b179965302db3ddb14b7952fc8b5db6f"
+    "revision": "15d130d75d527131727b6c06d49cefef"
   },
   {
     "url": "page-data/404.html/page-data.json",
     "revision": "086efaeaf24215743066e7b0ee24d63a"
   },
   {
-    "url": "626ab95abc79aae436b2012dc69cd0a647fb869d-23a8b6e9baeae5f87bef.js"
+    "url": "626ab95abc79aae436b2012dc69cd0a647fb869d-e1523de72c0ca2b9cf02.js"
   },
   {
-    "url": "component---src-components-post-layout-jsx-c21bd9cde2d2d3d037c5.js"
+    "url": "component---src-components-post-layout-jsx-dd6f95a0e38465cb1744.js"
   },
   {
     "url": "page-data/aakarshan/page-data.json",
-    "revision": "7b45a3a5dade7e3c521166c40709a85a"
+    "revision": "d7ac1830e3be01c6000ffbcbf7696194"
   },
   {
     "url": "page-data/sq/d/2990369020.json",
@@ -89,22 +89,22 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/angular2-timeline/page-data.json",
-    "revision": "123a3eccd1e33864ef8d21c8543df5f4"
+    "revision": "331b67d291d12f76b81f28cd898a81ce"
   },
   {
     "url": "page-data/bump/page-data.json",
-    "revision": "0c4fd0e928534d1e6527850db72199fd"
+    "revision": "f0e39674b242f35ba486c27d4b9eab96"
   },
   {
     "url": "page-data/edithminibot/page-data.json",
-    "revision": "fe073a1ec434ea35689566ad0c34f8a9"
+    "revision": "4286d29b798352cf5c8efc27202b588a"
   },
   {
-    "url": "page-data/havmormovies/page-data.json",
-    "revision": "d0a0fd2015271b81bdaa9c87e6bc399f"
+    "url": "page-data/havmor-movies/page-data.json",
+    "revision": "03c336206eaee6ecaba1a5d2e8677076"
   },
   {
-    "url": "component---src-pages-index-jsx-1caf24339a3887bf89e5.js"
+    "url": "component---src-pages-index-jsx-e72075bd633a18d196b3.js"
   },
   {
     "url": "page-data/index/page-data.json",
@@ -116,23 +116,23 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/3716579500.json",
-    "revision": "9417a291e994aa3fe32bd55bbd695f14"
+    "revision": "b7cdd173f54062108ba7678e41b85011"
   },
   {
     "url": "page-data/iot/page-data.json",
-    "revision": "03627cf236d3a3b48f2c9ed0d1cf2c2a"
+    "revision": "a5d3bf3eee91e26f32402a7ee12f2943"
   },
   {
     "url": "page-data/payment-dbs/page-data.json",
-    "revision": "ec581fc4f0ad7b08d3ba247aa1fe969e"
+    "revision": "bb9fb977acda7240cb3bfe09198df12b"
   },
   {
     "url": "page-data/seeinghome/page-data.json",
-    "revision": "20f143a14a13a39328ad7a057340dd69"
+    "revision": "b486e9af8d4d3ecbc53c051fbe48e7ee"
   },
   {
-    "url": "page-data/synopsis proj/page-data.json",
-    "revision": "04131c25d81c8cd41da86a29fb6ca3b4"
+    "url": "page-data/synopsis/page-data.json",
+    "revision": "a8d1640d00fc3336e415a22c979eec94"
   },
   {
     "url": "manifest.webmanifest",
