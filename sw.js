@@ -85,7 +85,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/2990369020.json",
-    "revision": "fe356e0fe7ec062bd4d974c686a8de4f"
+    "revision": "7ed718c6e0cd63ae2a80e1d66fc2ab3e"
   },
   {
     "url": "page-data/angular2-timeline/page-data.json",
@@ -116,7 +116,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/3716579500.json",
-    "revision": "27ab14d55de4d5f585e1107689e08275"
+    "revision": "6e856686519d01e93bec7bc0a61d0947"
   },
   {
     "url": "page-data/iot/page-data.json",
