@@ -26,7 +26,7 @@ function SEO({ img, description, lang, meta, title, tags }) {
           }
     `
   )
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription = description || site.siteMetadata.description + tags.join(' ')
   const image = img || file.childImageSharp.fixed.src
   return (
     <Helmet
@@ -39,6 +39,10 @@ function SEO({ img, description, lang, meta, title, tags }) {
         {
           name: `description`,
           content: metaDescription
+        },
+        {
+          name: `theme-color`,
+          content: '#1b1b1b'
         },
         {
           property: `og:title`,

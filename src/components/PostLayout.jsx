@@ -10,41 +10,46 @@ import { ToolTipItem, UL } from "./TabSection"
 import { css } from "@emotion/core"
 
 export default (props) => {
-  const mdx=props.data.mdx
+  const mdx = props.data.mdx
   console.log({ props })
   const ProjectLinks = styled(({ className }) => {
     return (<div className={className}>
       <h2>Links</h2>
       <UL css={css`
-       justify-content: flex-start;
-       margin-top: 40px;
-       li{
-       margin-right: 30px;
-       }
+        justify-content: flex-start;
+        margin-top: 40px;
+        li {
+          margin-right: 30px;
+        }
       `}>
-        <ToolTipItem tooltip={"Github Link"} link={mdx.frontmatter.code}>
-          <i className='fa fa-github fa-2x' />
+        {mdx.frontmatter.code && <ToolTipItem tooltip={"Github App"} link={mdx.frontmatter.code}>
+          <i className="fa fa-github fa-2x" />
           Github
-        </ToolTipItem>
-        <ToolTipItem tooltip={"Visit Prototype"} link={mdx.frontmatter.demo}>
-          <i className='fa fa-link fa-2x' />
+        </ToolTipItem>}
+        {mdx.frontmatter.code2 && <ToolTipItem tooltip={"Github API"} link={mdx.frontmatter.code2}>
+          <i className="fa fa-github fa-2x" />
+          Github
+        </ToolTipItem>}
+        {mdx.frontmatter.demo && <ToolTipItem tooltip={"Visit Prototype"} link={mdx.frontmatter.demo}>
+          <i className="fa fa-link fa-2x" />
           Demo
-        </ToolTipItem>
+        </ToolTipItem>}
       </UL>
     </div>)
   })`
     border-bottom: 2px solid;
-    `
+  `
   console.log({ mdx })
   return (
     <div>
-      <SEO tags={mdx.frontmatter.tags} img={mdx.frontmatter.featuredImage.childImageSharp.fixed.src} description={mdx.frontmatter.description} title={mdx.frontmatter.title} />
+      <SEO tags={mdx.frontmatter.tags} img={mdx.frontmatter.featuredImage.childImageSharp.fixed.src}
+           description={mdx.frontmatter.description} title={mdx.frontmatter.title} />
       <Layout>
         <Container>
           <MDXProvider>
             <MDXRenderer>{mdx.body}</MDXRenderer>
           </MDXProvider>
-          {mdx.frontmatter.demo && mdx.frontmatter.code && <ProjectLinks />}
+          <ProjectLinks />
         </Container>
       </Layout>
     </div>
@@ -59,6 +64,7 @@ export const pageQuery = graphql`
       tags
       title
       code
+      code2
       date
       demo
       featuredImage {

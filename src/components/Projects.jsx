@@ -37,10 +37,10 @@ const ProjectCard = styled(Link)`
       transform: scale(1);
       animation: growCenter 0.5s ease-in-out;
     }
-    animation: pulse 1s;
+    animation: pulse 0.5s ease-in-out;
   }
   :active{
-    animation:zoomOut 0.5s;
+    animation:zoomOut 0.5s ease-in-out;
   }
 
   @media only screen and (max-width: 600px) {

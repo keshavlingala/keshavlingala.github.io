@@ -35,7 +35,7 @@ module.exports = {
         short_name: `Keshav`,
         start_url: `/?source=pwa`,
         background_color: `#1b1b1b`,
-        theme_color: `#ffd285`,
+        theme_color: `#1b1b1b`,
         display: `fullscreen`,
         icon: `src/content/images/logo.png` // This path is relative to the root of the site.
       }
