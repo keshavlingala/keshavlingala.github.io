@@ -764,6 +764,12 @@ p > img {
     transform: scale(0.9);
 }
 
+.anchor {
+    position: relative;
+    top: -84px;
+    visibility: hidden;
+}
+
 @keyframes bubble {
     0% {
         clip-path: polygon(52.91% 111px, 121px 46.01%, 50.33% 70.05%, 70.29% 45.77%)
@@ -808,6 +814,7 @@ p > img {
         transform: scale3d(1, 1, 1);
     }
 }
+
 @keyframes zoomOut {
     from {
         opacity: 1;
@@ -823,6 +830,7 @@ p > img {
         opacity: 0;
     }
 }
+
 @keyframes zoomIn {
     from {
         opacity: 0;
@@ -834,6 +842,7 @@ p > img {
         opacity: 1;
     }
 }
+
 @keyframes zoomInUp {
     from {
         opacity: 0;
@@ -851,7 +860,8 @@ p > img {
         animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
     }
 }
-@keyframes fadeInLeft{
+
+@keyframes fadeInLeft {
     0% {
         opacity: 0;
         transform: translateX(64%);
@@ -861,7 +871,8 @@ p > img {
         transform: translateX(0);
     }
 }
-@keyframes fadeInUp{
+
+@keyframes fadeInUp {
     0% {
         opacity: 0;
         transform: translateY(84%);

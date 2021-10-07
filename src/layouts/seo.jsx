@@ -7,23 +7,22 @@ const domain = "https://keshav.tech"
 
 function SEO({ img, description, lang, meta, title, tags }) {
   const { site, file } = useStaticQuery(
-    graphql`
-          {
-            site {
-              siteMetadata {
-                title
-                description
-                author
+    graphql`{
+              site {
+                siteMetadata {
+                  title
+                  description
+                  author
+                }
               }
-            }
-            file(relativePath: {eq: "images/profile.jpg"}) {
-              childImageSharp {
-                fixed(jpegProgressive: true, jpegQuality: 100) {
-                  src
+              file(relativePath: {eq: "images/profile.jpg"}) {
+                childImageSharp {
+                  fixed(jpegQuality: 99) {
+                    src
+                  }
                 }
               }
             }
-          }
     `
   )
   const metaDescription = description || site.siteMetadata.description + tags.join(' ')

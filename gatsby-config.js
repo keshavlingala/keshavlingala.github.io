@@ -2,10 +2,9 @@ module.exports = {
   pathPrefix: "/keshavlingala.github.io",
   siteMetadata: {
     title: `Keshav Lingala`,
-    description: `Hi I'm Keshav, B-tech UnderGraduate in Keshav Memorial Institute of Technology in Department of Computer Science and
-  Technology. I like working on real world problems and provide an easy software solution, My moto Update, Evolve, Enjoy`,
+    description: `Hi Welcome to my portfolio, This is a place where I would like to keep my works, projects, experiences and skills organized in one place. I am currently working at DBS Bank as a Full-Stack Developer. I like working on real-world problems and provide easy software solutions.  Check out my Projects, feel free to contact me.`,
     author: `@keshavlingala`,
-    keywords: `keshav lingala,keshavlingala,lingalakeshav,keshav lingala,keshav reddy lingala,lingala keshav reddy,
+    keywords: `keshav lingala, keshavLingala, lingalaKeshav,keshav lingala,keshav reddy lingala,lingala keshav reddy,
         keshav,keshav lingala portfolio, keshav lingala profile,keshav reddy lingala,
          reddy,keshav reddy portfolio,keshav lingala profile`,
     twitterUsername: "@keshavlingala"
