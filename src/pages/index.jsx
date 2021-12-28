@@ -125,7 +125,7 @@ const IndexPage = () => {
           onClick={() => scrollBy("education")}>education</span> and <span
           onClick={() => scrollBy("skills")}>skills</span> organized in one place. I am currently working at <a
           target="_blank"
-          href="https://www.dbs.com/asia-hub-2/index.html">DBS
+          href="https://www.dbs.com/asia-hub-2/index.html" rel="noreferrer">DBS
           Bank</a> as a Full-Stack Developer. I like working on
           real-world problems and provide easy software solutions. Check out my Projects, feel free to <span
           onClick={() => scrollBy("contact")}>contact me</span>.

@@ -115,11 +115,11 @@ const TabsPanel = ({ value }) => {
             <i className="fa fa-phone fa-2x" />
             Contact
           </ToolTipItem>
-          <ToolTipItem link='https://goo.gl/maps/XdWKrrCvRsxHTr4PA' tooltip='Locate'>
+          <ToolTipItem link='https://goo.gl/maps/n2ErbFeVcD6f4prp9' tooltip='Locate'>
             <i className="fa fa-map-marker fa-2x" />
             Locate
           </ToolTipItem>
-          <ToolTipItem link='https://drive.google.com/file/d/18J3t_xuDEsnC3R2jxEqBxNRDrYhU4AAI/view?usp=sharing'
+          <ToolTipItem link='https://drive.google.com/file/d/1bEb_XPuwsaa5BZMQI9i0pZtvN2hLy5k6/view?usp=sharing'
                        tooltip='Resume'>
             <i className="fa fa-file fa-2x" />
             Resume

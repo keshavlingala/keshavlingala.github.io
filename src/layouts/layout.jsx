@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import Logo from "../hooks/useLogo"
 import "./layout.css"
 
+
 const AppBar = styled.header`
   width: 100%;
   height: 9.2vh;
@@ -18,13 +19,14 @@ const AppBar = styled.header`
   white-space: nowrap;
   position: fixed;
   z-index: 4;
-  top:0;
-  &:before{
+  top: 0;
+
+  &:before {
     content: '';
-    position:absolute;
+    position: absolute;
     box-shadow: inset 0 0 100px #1b1b1b;
     width: 100%;
-    top:0;
+    top: 0;
     left: 0;
     right: 0;
     height: 9.2vh;
@@ -33,13 +35,15 @@ const AppBar = styled.header`
   }
 `
 const Brand = styled(Link)`
-  filter:invert(0);
+  filter: invert(0);
   transition: filter 0.3s ease-in-out;
-  &:active{
-    filter:invert(1);
+
+  &:active {
+    filter: invert(1);
   }
-  &:hover{
-  filter:invert(1);
+
+  &:hover {
+    filter: invert(1);
   }
 `
 const Header = () => {
@@ -60,31 +64,41 @@ const Row = styled.div`
   justify-content: center;
   min-height: 10vh;
   align-items: center;
-  span{
-  margin:5px
+
+  span {
+    margin: 5px
   }
 `
 const Footer = styled.footer`
   margin-top: 50px;
   display: flex;
-  flex-direction: column-reverse;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   background-color: #1b1b1b;
+  padding: 0 10px;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
 `
 const Layout = ({ children }) => {
   return (
     <Screen>
       <Header />
       {children}
-      <Footer>
-        <i><span>Designed and Developed by <a
-          href="https://www.linkedin.com/in/keshavlingala/">Keshav Lingala</a></span></i>
+      <Footer title="100% Lighthouse Performance Score">
+        <i title="100% Lighthouse Performance Score"><span>Designed and Developed by <a
+          href="https://www.linkedin.com/in/keshavlingala/" target="_blank">Keshav Lingala</a></span> <br />
+          <a title="100% Lighthouse Performance Score" target="_blank"
+             href="https://github.com/keshavlingala/keshavlingala.github.io">Blazing
+            fast</a> with <span>Gatsby</span> and <span>Emotion</span>
+        </i>
         <Row>
-          <span title='Gatsby' className="k-icon gatsby" />
-          <span title='GraphQL' className="k-icon graphql" />
-          <span title='ReactJS' className="k-icon react" />
-          <span title='NestJS' className="k-icon nestjs" />
+          <span title="Gatsby" className="k-icon gatsby" />
+          <span title="GraphQL" className="k-icon graphql" />
+          <span title="ReactJS" className="k-icon react" />
+          <span title="NestJS" className="k-icon nestjs" />
         </Row>
       </Footer>
     </Screen>
