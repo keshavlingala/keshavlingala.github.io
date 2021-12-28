@@ -30,6 +30,7 @@ const Navigator = styled.div`
   background: #1b1b1b;
   z-index: 3;
   transition: right 0.5s ease-in-out;
+  animation: none;
 `
 
 const TippedSpan = styled.span`
@@ -101,6 +102,7 @@ const NaviOpener = styled.span`
   align-items: center;
   display: flex;
   opacity: ${p => p.show ? "1" : "1"};
+  animation: none;
 `
 const IndexPage = () => {
   console.log("%c Hey 👋", "font-size:10vw")
@@ -109,7 +111,7 @@ const IndexPage = () => {
     console.log(document.querySelector("#" + tag))
     document.querySelector("#" + tag).scrollIntoView({ behavior: "smooth" })
   }
-  const [showNavi, setNavi] = useState(true)
+  const [showNavi, setNavi] = useState(false)
   return (
     <Layout>
       <SEO title="Profile" />

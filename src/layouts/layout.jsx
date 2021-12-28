@@ -22,13 +22,13 @@ const AppBar = styled.header`
   &:before{
     content: '';
     position:absolute;
-    box-shadow: inset 0 0 1000px #1b1b1b;
+    box-shadow: inset 0 0 100px #1b1b1b;
     width: 100%;
     top:0;
     left: 0;
     right: 0;
     height: 9.2vh;
-    backdrop-filter: opacity(0.8) blur(150px);
+    backdrop-filter: opacity(0.9) blur(21px);
     z-index: -1;
   }
 `

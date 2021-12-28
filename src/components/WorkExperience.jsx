@@ -42,7 +42,7 @@ export const TimelineItem = styled(({ children, className }) => {
       > div:first-of-type {
         width: 80%;
         z-index: 3;
-        background-color: #1b1b1b;
+        background-color: inherit;
         margin-left: auto;
       }
 
@@ -108,109 +108,78 @@ export const Div = styled(({ className, children }) => {
   )
 })
   `
-    display: flex;
-    flex-direction: row;
-    padding: 16px;
-    //box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);;
+    background-color: #1b1b1b !important;
+    padding: 15px;
     box-shadow: 2px 2px 5px 0 black;
+    border-radius: 10px;
 
-    .col-9 {
-      width: 75%;
-      padding-right: 10px;
-
-      span {
-        display: block;
-      }
+    h3 {
+      margin: 0 0 3px;
     }
 
-    .col-3 {
-      width: 25%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border-left: 1px solid #ffd285 !important;
-
-      span {
-        line-height: 1.1;
-        display: block;
-      }
-    }
-
-    .col-3 span:nth-of-type(1) {
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin: 0 0 1.45rem;
-    }
-
-    .col-3 span:nth-of-type(2) {
-      font-size: 1.5rem;
-      font-weight: 500;
-      margin: 0 0 1.45rem;
-    }
-
-    .col-3 span:nth-of-type(3) {
-      font-size: 1.1rem;
+    h6 {
       font-weight: bold;
     }
 
-    .col-9 span:nth-of-type(1) {
-      padding: 0;
-      margin: 0 0 1.45rem;
-      color: inherit;
-      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-      font-weight: bold;
-      text-rendering: optimizeLegibility;
-      font-size: 1rem;
-      line-height: 1.1;
+    p {
+      margin-bottom: 4px;
     }
 
-    .col-9 span:nth-of-type(2) {
-      padding: 0;
-      margin: 0 0 1.45rem;
-      color: inherit;
-      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-      font-weight: bold;
-      text-rendering: optimizeLegibility;
-      font-size: 0.85028rem;
-      line-height: 1.1;
+    .date {
+      font-weight: lighter;
+      display: block;
     }
 
-    @media only screen and (max-width: 600px) {
-      .col-9 {
-        width: 100%
-      }
+    .location {
+      font-size: 0.9em;
+      font-weight: 200;
+      display: block;
     }
 
-    &:hover {
-      //animation:borderRotate 0.5s ease-in-out;
+    .description {
+      font-size: 0.8rem;
     }
+    transition: transform 0.5s, box-shadow 0.5s;
+    :hover {
+      transform: translateX(25px);
+      box-shadow: -12px 2px 5px 0 black;
+    }
+
   `
 
 const works = [
+  {
+    key: "3",
+    role: "Senior Officer, Full Stack Development",
+    organization: "DBS Bank",
+    description: "Tech Stack: Angular, Java Spring Boot, Microservices, MySQL, Jenkins and GIT ",
+    date: {
+      startDate: "August 2021",
+      endDate: "Present"
+    },
+    location: "Hyderabad, India"
+  },
   {
     key: "2",
     role: "Software Engineer Intern",
     organization: "CoMakeIT",
     description: "Full stack Application Developer \n Developed front-end Web Application for Virtusa’s Product to Manage IOT Devices for Enterprise customers",
     date: {
-      month: "June",
-      day: "19",
-      year: "2020"
-    }
+      startDate: "April 2021",
+      endDate: "July 2021"
+    },
+    location: "Hyderabad, India"
   },
   {
     key: "1",
-    role: "Software Engineer Intern",
+    role: "Software Development Intern",
     organization: "Virtusa",
-    description: "Full stack Application Developer",
+    description: "Front-end Development in Angular, Worked intensively on developing and improving performance of Angular Dynamic Dashboard for enterprise application",
     date: {
-      month: "June",
-      day: "19",
-      year: "2020"
-    }
+      startDate: "June 2020",
+      endDate: "Nov 2020"
+    },
+    location: "Bangalore, India"
   }
 ]
 
@@ -221,30 +190,22 @@ const WorkExperience = () => {
       {works.map(work => {
         return <TimelineItem key={work.key}>
           <Div>
-            <div className="col-9">
-            <span>
+            <h3>
               {work.role}
-            </span>
-              <span>
-                {work.organization}
-            </span>
+            </h3>
+            <h6>
+              {work.organization}
+            </h6>
+            <span className="date">{work.date.startDate} - {work.date.endDate}</span>
+            <div className="description">
               {work.description.split("\n").map(p => {
                 return <p key={p}>
                   {p}
                 </p>
               })}
             </div>
-            <div className="col-3 mobile-none">
-            <span>
-              {work.date.month}
-            </span>
-              <span>
-                {work.date.day}
-            </span>
-              <span>
-              {work.date.year}
-            </span>
-            </div>
+            <span className="location">
+              {work.location}</span>
           </Div>
         </TimelineItem>
       })}

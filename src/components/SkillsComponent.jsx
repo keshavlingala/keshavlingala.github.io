@@ -22,6 +22,7 @@ import {
   RaspberryPi,
   ReactLogo,
   Spark,
+  Spring,
   TensorFlow,
   Typescript
 } from "../hooks/useIcons"
@@ -109,6 +110,10 @@ const icons = [
     icon: Spark
   },
   {
+    name: "Spring Boot Java",
+    icon: Spring
+  },
+  {
     name: "TensorFlow",
     icon: TensorFlow
   },
@@ -130,17 +135,17 @@ let skills = [
   {
     name: "Web Development Front-end & Back-end",
     progress: 85,
-    techs: ["Angular","Typescript","Docker", "React", "Firebase", "Gatsby", "NodeJS", "Javascript", "MongoDB","MySQL"]
+    techs: ["Spring Boot Java","Angular", "Typescript", "Docker", "React", "Firebase", "Gatsby", "NodeJS", "Javascript", "MongoDB", "MySQL"]
   },
   {
     name: "Automation scripting",
     progress: 83,
-    techs: ["Python", "Bash", "Git", "Google Cloud","Docker", "AWS"]
+    techs: ["Python", "Bash", "Git", "Google Cloud", "Docker", "AWS"]
   },
   {
     name: "Cloud Computing",
     progress: 72,
-    techs: ["Google Cloud", "Docker", "AWS", "Kubernetes", "Hadoop", "Spark","Bash"]
+    techs: ["Google Cloud", "Docker", "AWS", "Kubernetes", "Hadoop", "Spark", "Bash"]
   },
   {
     name: "Machine Learning",
@@ -166,9 +171,9 @@ const falseAll = (skills, name) => {
 }
 skills = falseAll(skills, "")
 const SkillList = styled.ul`
-  margin:0;
+  margin: 0;
   width: 50%;
-  @media only screen and (max-width: 600px){
+  @media only screen and (max-width: 600px) {
     width: 100%;
   }
 `
@@ -179,15 +184,18 @@ const SkillItem = styled.li`
   list-style: none;
   border-radius: 10px 10px 0 0;
   cursor: pointer;
-  position:relative;
+  position: relative;
   background-color: ${p => p.active ? "#d0cfcf45" : "inherit"};
-  &:hover{
+
+  &:hover {
     background-color: #d0cfcf45;
-    ::after{
+
+    ::after {
       width: ${p => p.progress}%;
     }
   }
-  &::after{
+
+  &::after {
     content: '';
     width: ${p => p.active ? p.progress : 0}%;
     transition: width 0.5s ease-out;
@@ -203,7 +211,7 @@ const Section = styled.div`
   display: flex;
   width: 100%;
   min-height: 429px;
-  @media only screen and (max-width: 600px){
+  @media only screen and (max-width: 600px) {
     flex-direction: column;
     min-height: 794px;
   }
@@ -220,25 +228,27 @@ const IconLister = styled.ul`
   grid-row-gap: 3px;
   text-align: center;
   margin-bottom: auto;
-  li{
+
+  li {
     margin-bottom: 33px;
     width: 50px;
     height: 50px;
     animation: fadeUp 0.5s ease-in-out;
   }
-  @keyframes fadeUp{
-    from{
+
+  @keyframes fadeUp {
+    from {
       opacity: 0;
       transform: translateY(-10px);
     }
-    to{
+    to {
       opacity: 1;
       transform: translateY(0px);
     }
   }
-  @media only screen and (max-width: 600px){
+  @media only screen and (max-width: 600px) {
     width: 100%;
-    margin-top:66px;
+    margin-top: 66px;
     margin-left: 0;
   }
 `
@@ -250,7 +260,7 @@ const SkillsComponent = () => {
       <SkillList>
         {skills.sort((a, b) => b.progress - a.progress).map(skill => {
           return (
-            <SkillItem tabIndex='0' onMouseOver={() => {
+            <SkillItem tabIndex="0" onMouseOver={() => {
               if (skill.techs.length === 0) {
                 setItems(icons)
               } else
@@ -277,7 +287,7 @@ const SkillsComponent = () => {
         {items.map(icon => {
           return (
             <ToolTipItem tooltip={icon.name} key={icon.name}>
-              <img width='40px' height='40px' src={icon.icon} alt={icon.name} />
+              <img width="40px" height="40px" src={icon.icon} alt={icon.name} />
             </ToolTipItem>
           )
         })}

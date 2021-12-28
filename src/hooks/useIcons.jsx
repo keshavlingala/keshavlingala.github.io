@@ -22,6 +22,7 @@ import TensorFlow from "../content/icons/tensorflow.svg"
 import Gatsby from "../content/icons/gatsby.svg"
 import Google from "../content/icons/google.svg"
 import Docker from '../content/icons/docker.svg'
+import Spring from '../content/icons/spring.svg'
 export {
   Gatsby,
   Google,
@@ -46,5 +47,6 @@ export {
   RaspberryPi,
   ReactLogo,
   Spark,
-  Typescript
+  Typescript,
+  Spring
 }

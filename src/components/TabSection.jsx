@@ -111,7 +111,7 @@ const TabsPanel = ({ value }) => {
             <i className="fa fa-envelope fa-2x" />
             Email
           </ToolTipItem>
-          <ToolTipItem link='tel:8639207832' tooltip='Contact'>
+          <ToolTipItem link='mailto:keshavlingala@gmail.com' tooltip='Contact'>
             <i className="fa fa-phone fa-2x" />
             Contact
           </ToolTipItem>
