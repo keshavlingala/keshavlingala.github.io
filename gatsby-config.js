@@ -11,11 +11,20 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingId: "G-C9X7X86GHE",
-        head: true
-      }
+        trackingIds: [
+          "G-VNY508N935",
+        ],
+        gtagConfig: {
+          optimize_id: "OPT_CONTAINER_ID",
+          anonymize_ip: true,
+          cookie_expires: 0,
+        },
+        pluginConfig: {
+          head: true,
+        },
+      },
     },
     `gatsby-plugin-react-helmet`,
     {
