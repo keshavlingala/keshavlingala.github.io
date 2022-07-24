@@ -116,7 +116,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/3716579500.json",
-    "revision": "f8dfb3e36151357c329e05a4f3e4134c"
+    "revision": "eaf0c554c85b3714fba8e2f4df38b8ba"
   },
   {
     "url": "page-data/iot/page-data.json",
