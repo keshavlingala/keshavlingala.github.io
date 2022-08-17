@@ -27,7 +27,7 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-b0ee3c2eafd2ce247f80.js"
+    "url": "webpack-runtime-5357e227d1cc824ca276.js"
   },
   {
     "url": "framework-de237a875aa45b276a9d.js"
@@ -37,7 +37,7 @@ self.__precacheManifest = [
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "a8d4464f7bbe065082e5c9d7299a4eb0"
+    "revision": "1a2e601cc9dcb1f71fec534b19cc0ded"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-ad6431e4664bcf916d19.js"
@@ -52,10 +52,10 @@ self.__precacheManifest = [
     "url": "styles-e9d24b1846c7d6eb9685.js"
   },
   {
-    "url": "0a8091863b01680e96d685047a5274cf82e5ec9e-4e3e55859a58b03b1682.js"
+    "url": "0a8091863b01680e96d685047a5274cf82e5ec9e-e056d70c170aac366b5b.js"
   },
   {
-    "url": "component---src-pages-404-mdx-cd3a28123c3dbd85f2dd.js"
+    "url": "component---src-pages-404-mdx-7841088b275de5fef4f8.js"
   },
   {
     "url": "page-data/404/page-data.json",
@@ -67,14 +67,14 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "ee4fad40efed473a3e763c61801d2a53"
+    "revision": "237608f0006f1b7ff6eec4ad695d875a"
   },
   {
     "url": "page-data/404.html/page-data.json",
     "revision": "086efaeaf24215743066e7b0ee24d63a"
   },
   {
-    "url": "626ab95abc79aae436b2012dc69cd0a647fb869d-fb8c6bb868be8bb94da2.js"
+    "url": "626ab95abc79aae436b2012dc69cd0a647fb869d-2e0478d35e1a65971e35.js"
   },
   {
     "url": "component---src-components-post-layout-jsx-f23cac75a1f3ca2263ca.js"
@@ -104,7 +104,7 @@ self.__precacheManifest = [
     "revision": "54380f8df4aa4c8d94ac0d22df5d1625"
   },
   {
-    "url": "component---src-pages-index-jsx-eb46d4d5ddb1e78215e1.js"
+    "url": "component---src-pages-index-jsx-bd73c65007fa54f60791.js"
   },
   {
     "url": "page-data/index/page-data.json",
@@ -116,7 +116,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/3716579500.json",
-    "revision": "eaf0c554c85b3714fba8e2f4df38b8ba"
+    "revision": "ac9f9158aebd49bba6785c831b5b7a95"
   },
   {
     "url": "page-data/iot/page-data.json",
