@@ -13,13 +13,25 @@ const educations=[
       startDate:'2017',
       endDate:'2021'
     }
+  },
+  {
+    key:'2',
+    name:'California State University, Fullerton',
+    course:'Master of Science in Computer Science',
+    percentage:'',
+    description:'',
+    location:'Fullerton, California',
+    date:{
+      startDate:'2022',
+      endDate:'Present'
+    }
   }
 ]
 
 const Education = () => {
   return (
     <TimeLine>
-      {educations.map(edu=>{
+      {educations.sort(o=>-o.date.startDate).map(edu=>{
         return <TimelineItem key={edu.key}>
           <Div>
             <h3>
