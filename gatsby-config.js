@@ -2,7 +2,7 @@ module.exports = {
   pathPrefix: "/keshavlingala.github.io",
   siteMetadata: {
     title: `Keshav Lingala`,
-    description: `Hi Welcome to my portfolio, This is a place where I would like to keep my works, projects, experiences and skills organized in one place. I am currently working at DBS Bank as a Full-Stack Developer. I like working on real-world problems and provide easy software solutions.  Check out my Projects, feel free to contact me.`,
+    description: `This portfolio showcases the work and accomplishments of a Computer Science Master's student at California State University, Fullerton. The portfolio covers coursework, research projects, internships, and other relevant experiences. It provides an insight into the student’s knowledge, skills, and abilities and will serve as a testament to their hard work and dedication to their degree. Feel free to contact me.`,
     author: `@keshavlingala`,
     keywords: `keshav lingala, keshavLingala, lingalaKeshav,keshav lingala,keshav reddy lingala,lingala keshav reddy,
         keshav,keshav lingala portfolio, keshav lingala profile,keshav reddy lingala,

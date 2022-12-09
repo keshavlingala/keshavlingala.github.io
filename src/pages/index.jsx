@@ -1,15 +1,15 @@
-import React, { useState } from "react"
-import Layout from "../layouts/layout"
-import Profile from "../components/Profile"
-import TabSection from "../components/TabSection"
-import styled from "@emotion/styled"
-import { Container } from "../components/CustomComponents"
-import Projects from "../components/Projects"
-import Education from "../components/Education"
-import WorkExperience from "../components/WorkExperience"
-import SEO from "../layouts/seo"
-import SkillsComponent from "../components/SkillsComponent"
-import ContactMe from "../components/ContactMe"
+import React, { useState } from "react";
+import Layout from "../layouts/layout";
+import Profile from "../components/Profile";
+import TabSection from "../components/TabSection";
+import styled from "@emotion/styled";
+import { Container } from "../components/CustomComponents";
+import Projects from "../components/Projects";
+import Education from "../components/Education";
+import WorkExperience from "../components/WorkExperience";
+import SEO from "../layouts/seo";
+import SkillsComponent from "../components/SkillsComponent";
+import ContactMe from "../components/ContactMe";
 
 const Description = styled.p`
   text-align: center;
@@ -19,7 +19,7 @@ const Description = styled.p`
     text-decoration: underline;
     cursor: pointer;
   }
-`
+`;
 
 const Navigator = styled.div`
   position: fixed;
@@ -31,7 +31,7 @@ const Navigator = styled.div`
   z-index: 3;
   transition: right 0.5s ease-in-out;
   animation: none;
-`
+`;
 
 const TippedSpan = styled.span`
   border: 1px solid;
@@ -76,15 +76,15 @@ const TippedSpan = styled.span`
     text-shadow: 3px 4px 4px black;
     font-weight: 900;
   }
-`
+`;
 const NaviItem = ({ children, tooltip, onClick }) => {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
   return <TippedSpan tabIndex="0" onMouseEnter={() => setShow(true)} tooltip={tooltip} show={show}
                      onTouchStart={() => setShow(true)}
                      onClick={onClick}
                      onTouchEnd={() => setShow(false)}
-                     onMouseLeave={() => setShow(false)}>{children}</TippedSpan>
-}
+                     onMouseLeave={() => setShow(false)}>{children}</TippedSpan>;
+};
 
 const NaviOpener = styled.span`
   color: #1b1b1b;
@@ -96,22 +96,22 @@ const NaviOpener = styled.span`
   background-color: #ffd285;
   border-radius: 10px 0 0 10px;
   top: calc(calc(50vh - 92px) + 85px);
-  right: ${p=>p.show?'46px':'0px'};
+  right: ${p => p.show ? "46px" : "0px"};
   transition: right 0.5s ease-in-out;
   justify-content: center;
   align-items: center;
   display: flex;
   opacity: ${p => p.show ? "1" : "1"};
   animation: none;
-`
+`;
 const IndexPage = () => {
-  console.log("%c Hey 👋", "font-size:10vw")
+  console.log("%c Hey 👋", "font-size:10vw");
   const scrollBy = (tag) => {
-    console.log("Moving to Tag")
-    console.log(document.querySelector("#" + tag))
-    document.querySelector("#" + tag).scrollIntoView({ behavior: "smooth" })
-  }
-  const [showNavi, setNavi] = useState(false)
+    console.log("Moving to Tag");
+    console.log(document.querySelector("#" + tag));
+    document.querySelector("#" + tag).scrollIntoView({ behavior: "smooth" });
+  };
+  const [showNavi, setNavi] = useState(false);
   return (
     <Layout>
       <SEO title="Profile" />
@@ -119,16 +119,10 @@ const IndexPage = () => {
       <TabSection />
       <Container>
         <Description>
-          Hi Welcome to my portfolio, This is a place where I would like to keep my <span
-          onClick={() => scrollBy("projects")}>projects</span>, <span
-          onClick={() => scrollBy("experience")}>experiences</span>, <span
-          onClick={() => scrollBy("education")}>education</span> and <span
-          onClick={() => scrollBy("skills")}>skills</span> organized in one place. I am currently working at <a
-          target="_blank"
-          href="https://www.dbs.com/asia-hub-2/index.html" rel="noreferrer">DBS
-          Bank</a> as a Full-Stack Developer. I like working on
-          real-world problems and provide easy software solutions. Check out my Projects, feel free to <span
-          onClick={() => scrollBy("contact")}>contact me</span>.
+          This portfolio showcases the work and accomplishments of a Computer Science Master's student at California
+          State University, Fullerton. The portfolio covers coursework, research projects, internships, and other
+          relevant experiences. It provides an insight into the student’s knowledge, skills, and abilities and will
+          serve as a testament to their hard work and dedication to their degree. Feel free to contact me at any time from below form.
         </Description>
 
 
@@ -170,6 +164,6 @@ const IndexPage = () => {
         <ContactMe />
       </Container>
     </Layout>
-  )
-}
-export default IndexPage
+  );
+};
+export default IndexPage;
