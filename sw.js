@@ -27,35 +27,38 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-5357e227d1cc824ca276.js"
+    "url": "webpack-runtime-5edb3fc0c7f4ae8932bc.js"
   },
   {
-    "url": "framework-de237a875aa45b276a9d.js"
+    "url": "framework-8de36d3fd07627b19105.js"
   },
   {
-    "url": "app-427381d5f84ca43d7601.js"
+    "url": "app-1d5e1956297590e486f0.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "1a2e601cc9dcb1f71fec534b19cc0ded"
+    "revision": "5204009f3d0b13c83cc5404449924563"
   },
   {
-    "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-ad6431e4664bcf916d19.js"
+    "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-d949a7cd525de9463f1c.js"
   },
   {
-    "url": "polyfill-4c9e5ca557f297a65cac.js"
+    "url": "polyfill-c52e951fbd5d4c567e58.js"
   },
   {
     "url": "styles.dc8e10d4064b8725cb0a.css"
   },
   {
-    "url": "styles-e9d24b1846c7d6eb9685.js"
+    "url": "styles-29147cbc04bbc833f6a0.js"
   },
   {
-    "url": "0a8091863b01680e96d685047a5274cf82e5ec9e-e056d70c170aac366b5b.js"
+    "url": "0a8091863b01680e96d685047a5274cf82e5ec9e-c481093177e6f742f270.js"
   },
   {
-    "url": "component---src-pages-404-mdx-7841088b275de5fef4f8.js"
+    "url": "eaed999c7eb065486e6ce61a2bc53a5cd506c14c-108fe3308b8271ebf6b0.js"
+  },
+  {
+    "url": "component---src-pages-404-mdx-eb27598bcdd9b3db990f.js"
   },
   {
     "url": "page-data/404/page-data.json",
@@ -67,72 +70,72 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "237608f0006f1b7ff6eec4ad695d875a"
+    "revision": "6bdca22936880e0b080c112aac7de43a"
   },
   {
     "url": "page-data/404.html/page-data.json",
     "revision": "086efaeaf24215743066e7b0ee24d63a"
   },
   {
-    "url": "626ab95abc79aae436b2012dc69cd0a647fb869d-2e0478d35e1a65971e35.js"
+    "url": "626ab95abc79aae436b2012dc69cd0a647fb869d-c39912b740648b65ba45.js"
   },
   {
-    "url": "component---src-components-post-layout-jsx-f23cac75a1f3ca2263ca.js"
+    "url": "component---src-components-post-layout-jsx-302b4a41a62e346b4e8e.js"
   },
   {
     "url": "page-data/aakarshan/page-data.json",
-    "revision": "690d3d2f86f6e995e1d34a295b3502f4"
+    "revision": "1c39a8c53ea32d86f745205e6d77a1cf"
   },
   {
     "url": "page-data/sq/d/2878307606.json",
-    "revision": "3053852dd0587de6669d55d249d94490"
+    "revision": "4cb749beb31b59ec33f3b25903e5f68f"
   },
   {
     "url": "page-data/angular2-timeline/page-data.json",
-    "revision": "4f14ba39a2294b2117d3b9f058180e8d"
+    "revision": "99ce82e4048e7720ddf266e425cd6a32"
   },
   {
     "url": "page-data/bump/page-data.json",
-    "revision": "b4d7be55345a23090f35c18de978dfd1"
+    "revision": "8056d343b4a61031652e05e935962494"
   },
   {
     "url": "page-data/edithminibot/page-data.json",
-    "revision": "20b94a7e537b2cf261d988d8d6e7ddf6"
+    "revision": "0bcc882fcd31080f4a9fa568fad1442b"
   },
   {
     "url": "page-data/havmor-movies/page-data.json",
-    "revision": "54380f8df4aa4c8d94ac0d22df5d1625"
+    "revision": "977b1a8965b860f7c8b623eff8cc296d"
   },
   {
-    "url": "component---src-pages-index-jsx-bd73c65007fa54f60791.js"
+    "url": "component---src-pages-index-jsx-c5a46cbb33e9c1efd7dd.js"
   },
   {
     "url": "page-data/index/page-data.json",
-    "revision": "7ded20c865f29ea5aabf93ee0712734b"
+    "revision": "1f099269ec0088d5ed57f5d0ed0f87cb"
   },
   {
-    "url": "page-data/sq/d/3250122160.json",
-    "revision": "c3f7ad38c92280c223def7bd9d4414fb"
+    "url": "page-data/sq/d/1110098956.json",
+    "revision": "821246a01f92d7532f19c3d111665be9"
   },
   {
     "url": "page-data/sq/d/3716579500.json",
-    "revision": "4ea981d0768cbe3fa57f626b1f0e143f"
+    "revision": "4b0127ab3488e856b9319231b8243ca8"
   },
   {
     "url": "page-data/iot/page-data.json",
-    "revision": "88516d0f6fc21881ef4662dac1248a96"
+    "revision": "b1f07daa4ea15ca58394ea9fbbd60f75"
   },
   {
     "url": "page-data/payment-dbs/page-data.json",
-    "revision": "e0c19e3eafe68ed9f2011e86e4ca55af"
+    "revision": "37ea5ce9d8e76e2f8a3e189fa9d32f6b"
   },
   {
     "url": "page-data/seeinghome/page-data.json",
-    "revision": "ae18f9a86980c2b45d2b27c210979fd9"
+    "revision": "0fe649f60770a78080fd11ac427fee91"
   },
   {
     "url": "page-data/synopsis/page-data.json",
-    "revision": "d9175e0cd21487dcc2aea65a3578e228"
+    "revision": "63ff8bc37ec99613984d51a4ff944015"
   },
   {
     "url": "manifest.webmanifest",
@@ -143,7 +146,7 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 workbox.routing.registerRoute(/(\.js$|\.css$|static\/)/, new workbox.strategies.CacheFirst(), 'GET');
 workbox.routing.registerRoute(/^https?:.*\/page-data\/.*\.json/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
-workbox.routing.registerRoute(/^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
+workbox.routing.registerRoute(/^https?:.*\.(png|jpg|jpeg|webp|avif|svg|gif|tiff|js|woff|woff2|json|css)$/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
 workbox.routing.registerRoute(/^https?:\/\/fonts\.googleapis\.com\/css/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
 
 /* global importScripts, workbox, idbKeyval */
@@ -228,7 +231,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-427381d5f84ca43d7601.js`))) {
+  if (!resources || !(await caches.match(`/app-1d5e1956297590e486f0.js`))) {
     return await fetch(event.request)
   }
 
