@@ -51,11 +51,11 @@ export default () => {
     <Background>
       <div>
         <Title>Keshav Lingala</Title>
-        <SubTitle>Computer Science Student</SubTitle>
+        <SubTitle>Software Development Engineer</SubTitle>
       </div>
-      <Circle>
-        <ProfilePic/>
-      </Circle>
+      {/*<Circle>*/}
+      {/*  /!*<ProfilePic/>*!/*/}
+      {/*</Circle>*/}
     </Background>
   )
 }

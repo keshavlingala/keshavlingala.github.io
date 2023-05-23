@@ -116,14 +116,14 @@ const IndexPage = () => {
     <Layout>
       <SEO title="Profile" />
       <Profile />
-      <TabSection />
+      {/*<TabSection />*/}
       <Container>
-        <Description>
-          This portfolio showcases the work and accomplishments of a Computer Science Master's student at California
-          State University, Fullerton. The portfolio covers coursework, research projects, internships, and other
-          relevant experiences. It provides an insight into the student’s knowledge, skills, and abilities and will
-          serve as a testament to their hard work and dedication to their degree. Feel free to contact me at any time from below form.
-        </Description>
+        {/*<Description>*/}
+        {/*  This portfolio showcases the work and accomplishments of a Computer Science Master's student at California*/}
+        {/*  State University, Fullerton. The portfolio covers coursework, research projects, internships, and other*/}
+        {/*  relevant experiences. It provides an insight into the student’s knowledge, skills, and abilities and will*/}
+        {/*  serve as a testament to their hard work and dedication to their degree. Feel free to contact me at any time from below form.*/}
+        {/*</Description>*/}
 
 
         <Navigator show={showNavi}>
