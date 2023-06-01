@@ -43,7 +43,7 @@ export default (props) => {
   return (
     <div>
       <SEO tags={mdx.frontmatter.tags} img={mdx.frontmatter.featuredImage.childImageSharp.fixed.src}
-           description={mdx.frontmatter.description} title={mdx.frontmatter.title} />
+           description={mdx.frontmatter.description} title={mdx.frontmatter.title}  slug={mdx.frontmatter.slug} />
       <Layout>
         <Container>
           <MDXProvider>

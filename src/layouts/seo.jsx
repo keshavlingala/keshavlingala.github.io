@@ -2,10 +2,11 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { graphql, useStaticQuery } from "gatsby"
+import * as url from "url";
 
-const domain = "https://keshav.tech"
+const domain = "https://keshav.codes"
 
-function SEO({ img, description, lang, meta, title, tags }) {
+function SEO({ img, description, lang, meta, title, tags, slug }) {
   const { site, file } = useStaticQuery(
     graphql`{
               site {
@@ -46,6 +47,10 @@ function SEO({ img, description, lang, meta, title, tags }) {
         {
           property: `og:title`,
           content: title
+        },
+        {
+          property: `og:url`,
+          content: domain+slug
         },
         {
           property: `og:image`,
