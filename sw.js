@@ -27,7 +27,7 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-001acb70a760dcf1fe4b.js"
+    "url": "webpack-runtime-8b4f9f0d645ba298b165.js"
   },
   {
     "url": "framework-8de36d3fd07627b19105.js"
@@ -37,7 +37,7 @@ self.__precacheManifest = [
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "7b6cbec204c31148d1431607ff9f9299"
+    "revision": "47153f21016fd0e9488b7ebf9a5f32e5"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-d949a7cd525de9463f1c.js"
@@ -70,17 +70,17 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "d6e3fe863fecdd168b34a21492de26ca"
+    "revision": "833d5786fa603372b690caf0d853f9ec"
   },
   {
     "url": "page-data/404.html/page-data.json",
     "revision": "086efaeaf24215743066e7b0ee24d63a"
   },
   {
-    "url": "626ab95abc79aae436b2012dc69cd0a647fb869d-6ac7dfea313d069882c7.js"
+    "url": "626ab95abc79aae436b2012dc69cd0a647fb869d-10572931c691aea2aa7d.js"
   },
   {
-    "url": "component---src-components-post-layout-jsx-302b4a41a62e346b4e8e.js"
+    "url": "component---src-components-post-layout-jsx-167c88be5bc2a527c406.js"
   },
   {
     "url": "page-data/aakarshan/page-data.json",
@@ -135,7 +135,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/3716579500.json",
-    "revision": "1f8c504fd9373b88801a90e22a89dc4a"
+    "revision": "1cba6c87242beb6693f513ce80c05b8e"
   },
   {
     "url": "page-data/iot/page-data.json",

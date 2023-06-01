@@ -1,3 +1,5 @@
+/*! https://mths.be/punycode v1.4.1 by @mathias */
+
 /**
  * A better abstraction over CSS.
  *
