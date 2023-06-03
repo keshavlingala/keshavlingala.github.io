@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Layout from "../layouts/layout";
 import Profile from "../components/Profile";
-import TabSection from "../components/TabSection";
 import styled from "@emotion/styled";
-import { Container } from "../components/CustomComponents";
+import {Container} from "../components/CustomComponents";
 import Projects from "../components/Projects";
 import Education from "../components/Education";
 import WorkExperience from "../components/WorkExperience";
@@ -12,8 +11,8 @@ import SkillsComponent from "../components/SkillsComponent";
 import ContactMe from "../components/ContactMe";
 
 const Description = styled.p`
-  text-align: center;
-  margin: 100px 0;
+  //text-align: ;
+  margin: 20px 0;
 
   span {
     text-decoration: underline;
@@ -77,13 +76,13 @@ const TippedSpan = styled.span`
     font-weight: 900;
   }
 `;
-const NaviItem = ({ children, tooltip, onClick }) => {
-  const [show, setShow] = useState(false);
-  return <TippedSpan tabIndex="0" onMouseEnter={() => setShow(true)} tooltip={tooltip} show={show}
-                     onTouchStart={() => setShow(true)}
-                     onClick={onClick}
-                     onTouchEnd={() => setShow(false)}
-                     onMouseLeave={() => setShow(false)}>{children}</TippedSpan>;
+const NaviItem = ({children, tooltip, onClick}) => {
+    const [show, setShow] = useState(false);
+    return <TippedSpan tabIndex="0" onMouseEnter={() => setShow(true)} tooltip={tooltip} show={show}
+                       onTouchStart={() => setShow(true)}
+                       onClick={onClick}
+                       onTouchEnd={() => setShow(false)}
+                       onMouseLeave={() => setShow(false)}>{children}</TippedSpan>;
 };
 
 const NaviOpener = styled.span`
@@ -104,66 +103,75 @@ const NaviOpener = styled.span`
   opacity: ${p => p.show ? "1" : "1"};
   animation: none;
 `;
+const UnStyledUL = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`
 const IndexPage = () => {
-  console.log("%c Hey 👋", "font-size:10vw");
-  const scrollBy = (tag) => {
-    console.log("Moving to Tag");
-    console.log(document.querySelector("#" + tag));
-    document.querySelector("#" + tag).scrollIntoView({ behavior: "smooth" });
-  };
-  const [showNavi, setNavi] = useState(false);
-  return (
-    <Layout>
-      <SEO title="Profile" />
-      <Profile />
-      {/*<TabSection />*/}
-      <Container>
-        {/*<Description>*/}
-        {/*  This portfolio showcases the work and accomplishments of a Computer Science Master's student at California*/}
-        {/*  State University, Fullerton. The portfolio covers coursework, research projects, internships, and other*/}
-        {/*  relevant experiences. It provides an insight into the student’s knowledge, skills, and abilities and will*/}
-        {/*  serve as a testament to their hard work and dedication to their degree. Feel free to contact me at any time from below form.*/}
-        {/*</Description>*/}
+    console.log("%c Hey 👋", "font-size:10vw");
+    const scrollBy = (tag) => {
+        console.log("Moving to Tag");
+        console.log(document.querySelector("#" + tag));
+        document.querySelector("#" + tag).scrollIntoView({behavior: "smooth"});
+    };
+    const [showNavi, setNavi] = useState(false);
+    return (
+        <Layout>
+            <SEO title="Profile"/>
+            <Profile/>
+            {/*<TabSection />*/}
+            <Container>
+                <Description>
+                    <UnStyledUL>
+                        <li>
+                            Self-motivated, hardworking, and passionate developer, Skilled in Full Stack Web Developer with expertise in developing applications and experience in Cloud Computing, Application Containerization, and Automation using Bash and Python. Also proficient in using Front-end Frameworks such as React and Angular.
+                        </li>
+                        <li>Specialized in solving real-world complex problems.</li>
+                        <li>With hands-on experience in building high-performance, scalable and highly available systems. </li>
+                        <li>Feel Free to Contact me at <a href="mailto:keshavlingala@gmail.com">keshavlingala@gmail.com</a></li>
+                    </UnStyledUL>
+                </Description>
 
 
-        <Navigator show={showNavi}>
-          <NaviOpener onClick={() => setNavi(!showNavi)} show={showNavi}>
-            <span className="material-icons">{showNavi ? "arrow_right" : "arrow_left"}</span>
-          </NaviOpener>
-          <NaviItem className="navi-item" tooltip="Projects" onClick={() => scrollBy("projects")}>
-            <span className="material-icons">science</span>
-          </NaviItem>
-          <NaviItem className="navi-item" tooltip="Experience" onClick={() => scrollBy("experience")}>
-            <span className="material-icons">work</span>
-          </NaviItem>
-          <NaviItem className="navi-item" tooltip="Education" onClick={() => scrollBy("education")}>
-            <span className="material-icons">school</span>
-          </NaviItem>
-          <NaviItem className="navi-item" tooltip="Skills" onClick={() => scrollBy("skills")}>
-            <span className="material-icons">handyman</span>
-          </NaviItem>
-          <NaviItem className="navi-item" tooltip="Get In Touch" onClick={() => scrollBy("contact")}>
-            <span className="material-icons">mail</span>
-          </NaviItem>
-        </Navigator>
+                <Navigator show={showNavi}>
+                    <NaviOpener onClick={() => setNavi(!showNavi)} show={showNavi}>
+                        <span className="material-icons">{showNavi ? "arrow_right" : "arrow_left"}</span>
+                    </NaviOpener>
+                    <NaviItem className="navi-item" tooltip="Projects" onClick={() => scrollBy("projects")}>
+                        <span className="material-icons">science</span>
+                    </NaviItem>
+                    <NaviItem className="navi-item" tooltip="Experience" onClick={() => scrollBy("experience")}>
+                        <span className="material-icons">work</span>
+                    </NaviItem>
+                    <NaviItem className="navi-item" tooltip="Education" onClick={() => scrollBy("education")}>
+                        <span className="material-icons">school</span>
+                    </NaviItem>
+                    <NaviItem className="navi-item" tooltip="Skills" onClick={() => scrollBy("skills")}>
+                        <span className="material-icons">handyman</span>
+                    </NaviItem>
+                    <NaviItem className="navi-item" tooltip="Get In Touch" onClick={() => scrollBy("contact")}>
+                        <span className="material-icons">mail</span>
+                    </NaviItem>
+                </Navigator>
 
-        <span className="anchor" id="projects" />
-        <h2>Projects</h2>
-        <Projects />
-        <span className="anchor" id="experience" />
-        <h2>Work Experience</h2>
-        <WorkExperience />
-        <span className="anchor" id="education" />
-        <h2>Education</h2>
-        <Education />
-        <span className="anchor" id="skills" />
-        <h2>Skills & Languages</h2>
-        <SkillsComponent />
-        <span className="anchor" id="contact" />
-        <h2 title="Anytime, Anywhere">Get In Touch</h2>
-        <ContactMe />
-      </Container>
-    </Layout>
-  );
+                <span className="anchor" id="projects"/>
+                <h2>Projects</h2>
+                <Projects/>
+                <span className="anchor" id="experience"/>
+                <h2>Work Experience</h2>
+                <WorkExperience/>
+                <span className="anchor" id="education"/>
+                <h2>Education</h2>
+                <Education/>
+                <span className="anchor" id="skills"/>
+                <h2>Skills & Languages</h2>
+                <SkillsComponent/>
+                <span className="anchor" id="contact"/>
+                <h2 title="Anytime, Anywhere">Get In Touch</h2>
+                <ContactMe/>
+            </Container>
+        </Layout>
+    );
 };
 export default IndexPage;

@@ -23,30 +23,50 @@ import Gatsby from "../content/icons/gatsby.svg"
 import Google from "../content/icons/google.svg"
 import Docker from '../content/icons/docker.svg'
 import Spring from '../content/icons/spring.svg'
+import KotlinLang from '../content/icons/kotlinlang.svg'
+import Ansible from '../content/icons/ansible.svg'
+import Bootstrap from '../content/icons/bootstrap.svg'
+import Cassandra from '../content/icons/cassandra.svg'
+import HTML from '../content/icons/html.svg'
+import Jenkins from '../content/icons/jenkins.svg'
+import Kafka from '../content/icons/kafka.svg'
+import Keras from '../content/icons/keras.svg'
+import NeuralNetwork from '../content/icons/neuralnetwork.svg'
+import CSS from '../content/icons/css.svg'
 export {
-  Gatsby,
-  Google,
-  TensorFlow,
-  CPP,
-  Angular,
-  Arduino,
-  AWS,
-  Bash,
-  Firebase,
-  GCloud,
-  Docker,
-  Python,
-  Git,
-  Hadoop,
-  Java,
-  JavaScript,
-  Kubernetes,
-  MangoDB,
-  MYSql,
-  NodeJS,
-  RaspberryPi,
-  ReactLogo,
-  Spark,
-  Typescript,
-  Spring
+    Gatsby,
+    Google,
+    TensorFlow,
+    CPP,
+    Angular,
+    Arduino,
+    AWS,
+    Bash,
+    Firebase,
+    GCloud,
+    Docker,
+    Python,
+    Git,
+    Hadoop,
+    Java,
+    JavaScript,
+    Kubernetes,
+    MangoDB,
+    MYSql,
+    NodeJS,
+    RaspberryPi,
+    ReactLogo,
+    Spark,
+    Typescript,
+    Spring,
+    KotlinLang,
+    Ansible,
+    Bootstrap,
+    Cassandra,
+    HTML,
+    Jenkins,
+    Kafka,
+    Keras,
+    NeuralNetwork,
+    CSS
 }

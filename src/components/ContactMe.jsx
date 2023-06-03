@@ -124,6 +124,8 @@ const ContactMe = () => {
       } else {
         setShow(-1);
       }
+    }).catch((e) => {
+        setShow(-1);
     });
 
   };

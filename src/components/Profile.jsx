@@ -54,7 +54,7 @@ export default () => {
         <SubTitle>Software Development Engineer</SubTitle>
       </div>
       {/*<Circle>*/}
-      {/*  /!*<ProfilePic/>*!/*/}
+      {/*  <ProfilePic/>*/}
       {/*</Circle>*/}
     </Background>
   )
