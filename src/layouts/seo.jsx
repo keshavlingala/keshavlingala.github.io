@@ -16,7 +16,7 @@ function SEO({ img, description, lang, meta, title, tags, slug }) {
                   author
                 }
               }
-              file(relativePath: {eq: "images/profile.jpg"}) {
+              file(relativePath: {eq: "images/ShapeB.jpg"}) {
                 childImageSharp {
                   fixed(jpegQuality: 99) {
                     src

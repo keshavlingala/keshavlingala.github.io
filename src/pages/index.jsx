@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import Layout from "../layouts/layout";
 import Profile from "../components/Profile";
 import styled from "@emotion/styled";
@@ -10,150 +10,30 @@ import SEO from "../layouts/seo";
 import SkillsComponent from "../components/SkillsComponent";
 import ContactMe from "../components/ContactMe";
 
-const Description = styled.p`
-  //text-align: ;
+const Description = styled.ul`
   margin: 20px 0;
-
-  span {
-    text-decoration: underline;
-    cursor: pointer;
-  }
-`;
-
-const Navigator = styled.div`
-  position: fixed;
-  right: ${p => p.show ? 0 : "-50px"};
-  top: calc(50vh - 92px);
-  display: flex;
-  flex-direction: column;
-  background: #1b1b1b;
-  z-index: 3;
-  transition: right 0.5s ease-in-out;
-  animation: none;
-`;
-
-const TippedSpan = styled.span`
-  border: 1px solid;
-  background-color: #1b1b1b;
-  padding: 10px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #d0cfcf45;
-  }
-
-  &:active {
-    box-shadow: 0 0 1px 0 black;
-  }
-
-  position: relative;
-
-  &::before {
-    content: ${p => p.show ? "'" + p.tooltip + "'" : ""};
-    font-size: 0.85em;
-    position: absolute;
-    display: flex;
-    user-select: none;
-    padding: 0.5rem;
-    border-radius: 6px;
-    color: #ffd285;
-    opacity: ${p => (p.show ? "1" : "0")};
-    transition: all 0.3s ease;
-    z-index: -1;
-    bottom: 0;
-    right: 200%;
-    width: 100%;
-    align-items: center;
-    height: 33px;
-    white-space: nowrap;
-    justify-content: center;
-    text-shadow: 3px 4px 4px black;
-    font-weight: 900;
-  }
-`;
-const NaviItem = ({children, tooltip, onClick}) => {
-    const [show, setShow] = useState(false);
-    return <TippedSpan tabIndex="0" onMouseEnter={() => setShow(true)} tooltip={tooltip} show={show}
-                       onTouchStart={() => setShow(true)}
-                       onClick={onClick}
-                       onTouchEnd={() => setShow(false)}
-                       onMouseLeave={() => setShow(false)}>{children}</TippedSpan>;
-};
-
-const NaviOpener = styled.span`
-  color: #1b1b1b;
-  font-size: large;
-  cursor: pointer;
-  position: fixed;
-  height: 60px;
-  width: 14px;
-  background-color: #ffd285;
-  border-radius: 10px 0 0 10px;
-  top: calc(calc(50vh - 92px) + 85px);
-  right: ${p => p.show ? "46px" : "0px"};
-  transition: right 0.5s ease-in-out;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  opacity: ${p => p.show ? "1" : "1"};
-  animation: none;
-`;
-const UnStyledUL = styled.ul`
   list-style: none;
-  padding: 0;
-  margin: 0;
-`
+`;
 const IndexPage = () => {
     console.log("%c Hey 👋", "font-size:10vw");
-    const scrollBy = (tag) => {
-        console.log("Moving to Tag");
-        console.log(document.querySelector("#" + tag));
-        document.querySelector("#" + tag).scrollIntoView({behavior: "smooth"});
-    };
-    const [showNavi, setNavi] = useState(false);
     return (
         <Layout>
             <SEO title="Profile"/>
             <Profile/>
-            {/*<TabSection />*/}
             <Container>
                 <Description>
-                    <UnStyledUL>
-                        <li>
-                            Self-motivated, hardworking, and passionate developer, Skilled in Full Stack Web Developer with expertise in developing applications and experience in Cloud Computing, Application Containerization, and Automation using Bash and Python. Also proficient in using Front-end Frameworks such as React and Angular.
-                        </li>
-                        <li>Specialized in solving real-world complex problems.</li>
-                        <li>With hands-on experience in building high-performance, scalable and highly available systems. </li>
-                        <li>Feel Free to Contact me at <a href="mailto:keshavlingala@gmail.com">keshavlingala@gmail.com</a></li>
-                    </UnStyledUL>
+                    <li>
+                        Self-motivated, hardworking, and passionate developer, Skilled in Full Stack Web Developer with
+                        expertise in developing applications and experience in Cloud Computing, Application
+                        Containerization, and Automation using Bash and Python. Also proficient in using Front-end
+                        Frameworks such as React and Angular.
+                    </li>
+                    <li>Specialized in solving real-world complex problems.</li>
+                    <li>With hands-on experience in building high-performance, scalable and highly available systems.
+                    </li>
+                    <li>Feel Free to Contact me at <a href="mailto:keshavlingala@gmail.com">keshavlingala@gmail.com</a>
+                    </li>
                 </Description>
-
-
-                <Navigator show={showNavi}>
-                    <NaviOpener onClick={() => setNavi(!showNavi)} show={showNavi}>
-                        <span className="material-icons">{showNavi ? "arrow_right" : "arrow_left"}</span>
-                    </NaviOpener>
-                    <NaviItem className="navi-item" tooltip="Projects" onClick={() => scrollBy("projects")}>
-                        <span className="material-icons">science</span>
-                    </NaviItem>
-                    <NaviItem className="navi-item" tooltip="Experience" onClick={() => scrollBy("experience")}>
-                        <span className="material-icons">work</span>
-                    </NaviItem>
-                    <NaviItem className="navi-item" tooltip="Education" onClick={() => scrollBy("education")}>
-                        <span className="material-icons">school</span>
-                    </NaviItem>
-                    <NaviItem className="navi-item" tooltip="Skills" onClick={() => scrollBy("skills")}>
-                        <span className="material-icons">handyman</span>
-                    </NaviItem>
-                    <NaviItem className="navi-item" tooltip="Get In Touch" onClick={() => scrollBy("contact")}>
-                        <span className="material-icons">mail</span>
-                    </NaviItem>
-                </Navigator>
 
                 <span className="anchor" id="projects"/>
                 <h2>Projects</h2>
