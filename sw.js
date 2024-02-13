@@ -112,7 +112,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/chainreaction/page-data.json",
-    "revision": "1956d6710b3c2fcf840e5e37f61ad179"
+    "revision": "bf784a8e9f2356e22fc236d5928ad6ef"
   },
   {
     "url": "page-data/edithminibot/page-data.json",
@@ -135,7 +135,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/3716579500.json",
-    "revision": "f04168d2584a64a68f5811f761370207"
+    "revision": "a9fe93280c82453c827bd2010fe37af6"
   },
   {
     "url": "page-data/iot/page-data.json",
