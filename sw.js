@@ -27,23 +27,23 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-94638417b5bf989906a3.js"
+    "url": "webpack-runtime-443af148bcc91ee0e4ad.js"
   },
   {
-    "url": "framework-8de36d3fd07627b19105.js"
+    "url": "framework-4ce5382688c7c66a6d68.js"
   },
   {
-    "url": "app-1d5e1956297590e486f0.js"
+    "url": "app-ac2cd15523934e6d0383.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "2e5f4f3ec0303cd114215d5bcdae1741"
+    "revision": "918c0dc5304cf9435c8f296287237683"
   },
   {
-    "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-d949a7cd525de9463f1c.js"
+    "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-73eb8154f41d356e5f76.js"
   },
   {
-    "url": "polyfill-c52e951fbd5d4c567e58.js"
+    "url": "polyfill-9217de6ac40c524f2054.js"
   },
   {
     "url": "styles.dc8e10d4064b8725cb0a.css"
@@ -52,13 +52,10 @@ self.__precacheManifest = [
     "url": "styles-29147cbc04bbc833f6a0.js"
   },
   {
-    "url": "0a8091863b01680e96d685047a5274cf82e5ec9e-926dfef8bb10e6a254c4.js"
+    "url": "0a8091863b01680e96d685047a5274cf82e5ec9e-06220c20418eaa239c2b.js"
   },
   {
-    "url": "eaed999c7eb065486e6ce61a2bc53a5cd506c14c-3429a9d1fa082dfa9837.js"
-  },
-  {
-    "url": "component---src-pages-404-mdx-eb27598bcdd9b3db990f.js"
+    "url": "component---src-pages-404-mdx-7867cff084c8629a5964.js"
   },
   {
     "url": "page-data/404/page-data.json",
@@ -70,7 +67,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "54f3cf8a8d0603fdd84fcdb1703d4098"
+    "revision": "ac4562af4a22d28e5b9e830a00d8be44"
   },
   {
     "url": "page-data/404.html/page-data.json",
@@ -80,7 +77,7 @@ self.__precacheManifest = [
     "url": "626ab95abc79aae436b2012dc69cd0a647fb869d-ed5b54c25c49792bd95e.js"
   },
   {
-    "url": "component---src-components-post-layout-jsx-167c88be5bc2a527c406.js"
+    "url": "component---src-components-post-layout-jsx-e80935b7740af44b668f.js"
   },
   {
     "url": "page-data/aakarshan/page-data.json",
@@ -88,7 +85,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/275038021.json",
-    "revision": "7937bb3b5b1f48ffc60fa2b8e88a739e"
+    "revision": "c9291cd88435dd2cd8200758f5efd8fe"
   },
   {
     "url": "page-data/admin-dashboard/page-data.json",
@@ -123,23 +120,19 @@ self.__precacheManifest = [
     "revision": "040ce6a31bb1d83aeee7c5856d815c9a"
   },
   {
-    "url": "component---src-pages-index-jsx-6bd2e732fd84310a2ccf.js"
+    "url": "component---src-pages-index-jsx-53065358728565ac5b03.js"
   },
   {
     "url": "page-data/index/page-data.json",
-    "revision": "8335fe6787fa2128da49a9f18f2acf4b"
-  },
-  {
-    "url": "page-data/sq/d/1568960894.json",
-    "revision": "ccc731a4dede9ecf652236082791dd71"
+    "revision": "00e56ca4862759c03d9d6f40571a1791"
   },
   {
     "url": "page-data/sq/d/3716579500.json",
-    "revision": "a9fe93280c82453c827bd2010fe37af6"
+    "revision": "a3ddc0c74050a3d268818b451c5c3de4"
   },
   {
     "url": "page-data/iot/page-data.json",
-    "revision": "2faf447b77f1580be128a777f69994d3"
+    "revision": "249d938e79ce8cfaf176191cdb122707"
   },
   {
     "url": "page-data/payment-dbs/page-data.json",
@@ -247,7 +240,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-1d5e1956297590e486f0.js`))) {
+  if (!resources || !(await caches.match(`/app-ac2cd15523934e6d0383.js`))) {
     return await fetch(event.request)
   }
 
