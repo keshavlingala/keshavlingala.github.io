@@ -116,6 +116,10 @@ self.__precacheManifest = [
     "revision": "9fb6cb5512f2a054cd63bae2b8e73244"
   },
   {
+    "url": "page-data/floyd-visualizer/page-data.json",
+    "revision": "8709504769efbaa21f555d3981bc988d"
+  },
+  {
     "url": "page-data/havmor-movies/page-data.json",
     "revision": "040ce6a31bb1d83aeee7c5856d815c9a"
   },
@@ -128,11 +132,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/3716579500.json",
-    "revision": "a3ddc0c74050a3d268818b451c5c3de4"
-  },
-  {
-    "url": "page-data/iot/page-data.json",
-    "revision": "249d938e79ce8cfaf176191cdb122707"
+    "revision": "a9272eed5397c4d0836ab70f07108a8b"
   },
   {
     "url": "page-data/payment-dbs/page-data.json",
