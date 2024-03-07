@@ -5,13 +5,13 @@ import {
     Ansible,
     Arduino,
     AWS,
+    Azure,
     Bash,
     Bootstrap,
     Cassandra,
     CPP,
     CSS,
     Docker,
-    Firebase,
     Gatsby,
     GCloud,
     Git,
@@ -28,8 +28,9 @@ import {
     MYSql,
     NeuralNetwork,
     NodeJS,
+    Oracle,
+    Postgresql,
     Python,
-    RaspberryPi,
     ReactLogo,
     Spark,
     Spring,
@@ -52,16 +53,16 @@ const icons = [
         icon: AWS
     },
     {
+        name: "Azure",
+        icon: Azure
+    },
+    {
         name: "Bash",
         icon: Bash
     },
     {
         name: "C++",
         icon: CPP
-    },
-    {
-        name: "Firebase",
-        icon: Firebase
     },
     {
         name: "Gatsby",
@@ -108,12 +109,16 @@ const icons = [
         icon: NodeJS
     },
     {
+        name: "Oracle",
+        icon: Oracle
+    },
+    {
         name: "Python",
         icon: Python
     },
     {
-        name: "Raspberry Pi",
-        icon: RaspberryPi
+        name: "Postgresql",
+        icon: Postgresql
     },
     {
         name: "React",
@@ -178,49 +183,34 @@ const icons = [
 ].sort((a, b) => a.name.localeCompare(b.name))
 let skills = [
     {
-        name: "Analytical and Problem solving",
-        progress: 87,
-        techs: ["Java", "Python", "Kotlin", "Javascript", "C++"]
-    },
-    {
-        name: "Web Technologies",
-        progress: 85,
-        techs: ["Angular", "Typescript", "React", "Firebase", "Gatsby", "NodeJS", "Javascript", "HTML", "CSS", "Bootstrap"]
-    },
-    {
-        name: "Server Side Technologies",
-        progress: 90,
+        name: "Java & Server Side Development",
+        progress: 100,
         techs: ["Java", "Spring Boot", "Python", "Kotlin", "NodeJS", "Javascript", "Apache Kafka", "Apache Spark", "Apache Cassandra"]
     },
     {
-        name: "Database Technologies",
-        progress: 80,
-        techs: ["MySQL", "MongoDB", "Firebase", "Google Cloud", "Apache Cassandra"]
+        name: "Full Stack Web Development",
+        progress: 100,
+        techs: ["Angular", "Typescript", "React", "Spring Boot", "NodeJS", "Docker", "Javascript", "HTML", "CSS", "Bootstrap", "AWS", "Google Cloud", "Kubernetes", "Apache Kafka", "Jenkins", "Ansible", "Git", "Postgresql", "MySQL", "MongoDB"]
+    },
+    {
+        name: "Cloud Technologies and DevOps",
+        progress: 100,
+        techs: ["Google Cloud", "AWS", "Azure", "Docker", "Kubernetes", "Apache Hadoop", "Apache Spark", "Bash", "Apache Kafka", "Jenkins", "Git", "Ansible"]
+    },
+    {
+        name: "Database Design and Management",
+        progress: 100,
+        techs: ["MySQL", "MongoDB", "Google Cloud", "Apache Cassandra", "Oracle", "Postgresql"]
     },
     {
         name: "Automation scripting",
-        progress: 83,
+        progress: 100,
         techs: ["Python", "Bash", "Git", "Google Cloud", "Docker", "AWS"]
-    },
-    {
-        name: "DevOps & Cloud Technologies",
-        progress: 72,
-        techs: ["Google Cloud", "AWS", "Docker", "Kubernetes", "Apache Hadoop", "Apache Spark", "Bash", "Apache Kafka", "Jenkins", "Git", "Ansible"]
-    },
-    {
-        name: "Machine Learning",
-        progress: 78,
-        techs: ["Python", "TensorFlow", "Keras", "Neural Networks"]
     },
     {
         name: "All Skills",
         progress: 100,
         techs: []
-    },
-    {
-        name: "IOT",
-        progress: 79,
-        techs: ["Python", "Raspberry Pi", "Arduino", "C++"]
     }
 ]
 const falseAll = (skills, name) => {
@@ -287,6 +277,8 @@ const IconLister = styled.ul`
   grid-row-gap: 3px;
   text-align: center;
   margin-bottom: auto;
+  transition: height 0.5s ease-in-out;
+  height: auto;
 
   li {
     margin-bottom: 33px;
@@ -313,29 +305,19 @@ const IconLister = styled.ul`
 `
 const SkillsComponent = () => {
     const [items, setItems] = useState(icons)
-    const [selected, setSelected] = useState(icons)
     return (
         <Section>
             <SkillList>
                 {skills.sort((a, b) => b.progress - a.progress).map(skill => {
                     return (
-                        <SkillItem tabIndex="0" onMouseOver={() => {
-                            if (skill.techs.length === 0) {
-                                setItems(icons)
-                            } else
-                                setItems(icons.filter(icon => skill.techs.includes(icon.name)))
-                        }}
+                        <SkillItem tabIndex="0"
                                    onClick={() => {
-                                       skills = falseAll(skills, skill.name)
-                                       if (skill.techs.length === 0)
-                                           setSelected(icons)
-                                       else
-                                           setSelected(icons.filter(icon => skill.techs.includes(icon.name)))
+                                       if (skill.techs.length === 0) {
+                                           setItems(icons)
+                                       } else
+                                           setItems(icons.filter(icon => skill.techs.includes(icon.name)))
                                    }}
                                    active={skill.active}
-                                   onMouseLeave={() => {
-                                       setItems(selected)
-                                   }}
                                    progress={skill.progress} key={skill.name}>
                             {skill.name}
                         </SkillItem>

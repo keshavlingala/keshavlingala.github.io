@@ -33,6 +33,9 @@ import Kafka from '../content/icons/kafka.svg'
 import Keras from '../content/icons/keras.svg'
 import NeuralNetwork from '../content/icons/neuralnetwork.svg'
 import CSS from '../content/icons/css.svg'
+import Postgresql from '../content/icons/postgresql.svg'
+import Azure from '../content/icons/azure.svg'
+import Oracle from '../content/icons/oracle.svg'
 export {
     Gatsby,
     Google,
@@ -68,5 +71,8 @@ export {
     Kafka,
     Keras,
     NeuralNetwork,
-    CSS
+    CSS,
+    Postgresql,
+    Azure,
+    Oracle
 }

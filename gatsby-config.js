@@ -2,7 +2,7 @@ module.exports = {
     pathPrefix: "/keshavlingala.github.io",
     siteMetadata: {
         title: `Keshav Lingala`,
-        description: `This portfolio showcases the work and accomplishments of a Computer Science Master's student at California State University, Fullerton. The portfolio covers coursework, research projects, internships, and other relevant experiences. It provides an insight into the student’s knowledge, skills, and abilities and will serve as a testament to their hard work and dedication to their degree. Feel free to contact me.`,
+        description: `This portfolio showcases my work and accomplishments in the realm of computer science, focusing on personal projects and initiatives. It covers a range of topics from innovative research projects to hands-on programming tasks, reflecting my knowledge, skills, and abilities in the field. This portfolio serves as a testament to my dedication and hard work in pursuing my passion for technology. Feel free to contact me for further discussion or inquiries.`,
         author: `@keshavlingala`,
         keywords: `keshav lingala, keshavLingala, lingalaKeshav,keshav lingala,keshav reddy lingala,lingala keshav reddy,
         keshav,keshav lingala portfolio, keshav lingala profile,keshav reddy lingala,

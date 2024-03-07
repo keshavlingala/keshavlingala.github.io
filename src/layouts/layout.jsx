@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "@emotion/styled"
-import { Link } from "gatsby"
+import {Link} from "gatsby"
 import Logo from "../hooks/useLogo"
 import "./layout.css"
-
+import '../static/cursor-animation'
 
 const AppBar = styled.header`
   width: 100%;
@@ -47,13 +47,13 @@ const Brand = styled(Link)`
   }
 `
 const Header = () => {
-  return (
-    <AppBar>
-      <Brand to={"/"}>
-        <Logo />
-      </Brand>
-    </AppBar>
-  )
+    return (
+        <AppBar>
+            <Brand to={"/"}>
+                <Logo/>
+            </Brand>
+        </AppBar>
+    )
 }
 const Screen = styled.div`
   min-height: 100vh;
@@ -82,26 +82,25 @@ const Footer = styled.footer`
     text-align: center;
   }
 `
-const Layout = ({ children }) => {
-  return (
-    <Screen>
-      <Header />
-      {children}
-      <Footer title="100% Lighthouse Performance Score">
-        <i title="100% Lighthouse Performance Score"><span>Designed and Developed by <a
-          href="https://www.linkedin.com/in/keshavlingala/" target="_blank">Keshav Lingala</a></span> <br />
-          <a title="100% Lighthouse Performance Score" target="_blank"
-             href="https://github.com/keshavlingala/keshavlingala.github.io">Blazing
-            fast</a> with <span>Gatsby</span> and <span>Emotion</span>
-        </i>
-        <Row>
-          <span title="Gatsby" className="k-icon gatsby" />
-          <span title="GraphQL" className="k-icon graphql" />
-          <span title="ReactJS" className="k-icon react" />
-          <span title="NestJS" className="k-icon nestjs" />
-        </Row>
-      </Footer>
-    </Screen>
-  )
+const Layout = ({children}) => {
+    return (
+        <Screen>
+            <Header/>
+            {children}
+            <Footer title="100% Lighthouse Performance Score">
+                <i title="100% Lighthouse Performance Score"><span>Designed and Developed by Keshav Lingala</span> <br/>
+                    <a title="100% Lighthouse Performance Score" target="_blank" rel="noreferrer"
+                       href="https://github.com/keshavlingala/keshavlingala.github.io">Blazing
+                        fast</a> with <span>Gatsby</span> and <span>Emotion</span>
+                </i>
+                <Row>
+                    <span title="Gatsby" className="k-icon gatsby"/>
+                    <span title="GraphQL" className="k-icon graphql"/>
+                    <span title="ReactJS" className="k-icon react"/>
+                    <span title="NestJS" className="k-icon nestjs"/>
+                </Row>
+            </Footer>
+        </Screen>
+    )
 }
 export default Layout
