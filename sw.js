@@ -27,7 +27,7 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-443af148bcc91ee0e4ad.js"
+    "url": "webpack-runtime-a61c1509c6f23e5205d6.js"
   },
   {
     "url": "framework-4ce5382688c7c66a6d68.js"
@@ -37,7 +37,7 @@ self.__precacheManifest = [
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "918c0dc5304cf9435c8f296287237683"
+    "revision": "adfa437a518b0ba2d8ff171f72de3eea"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-73eb8154f41d356e5f76.js"
@@ -52,7 +52,7 @@ self.__precacheManifest = [
     "url": "styles-29147cbc04bbc833f6a0.js"
   },
   {
-    "url": "0a8091863b01680e96d685047a5274cf82e5ec9e-06220c20418eaa239c2b.js"
+    "url": "0a8091863b01680e96d685047a5274cf82e5ec9e-d774dcea6512d95f6622.js"
   },
   {
     "url": "component---src-pages-404-mdx-7867cff084c8629a5964.js"
@@ -67,7 +67,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "ac4562af4a22d28e5b9e830a00d8be44"
+    "revision": "84ff803d6d4158273e966917b0bbbf29"
   },
   {
     "url": "page-data/404.html/page-data.json",
@@ -92,6 +92,10 @@ self.__precacheManifest = [
     "revision": "fd9d4a465ff19d6dde9e685020d05c41"
   },
   {
+    "url": "page-data/algorithm-analyzer/page-data.json",
+    "revision": "432439dbed28c27565915fcf46ff2c24"
+  },
+  {
     "url": "page-data/angular2-timeline/page-data.json",
     "revision": "dc6273efeaf2b2a1e17af18ecb48afa7"
   },
@@ -109,7 +113,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/chainreaction/page-data.json",
-    "revision": "bf784a8e9f2356e22fc236d5928ad6ef"
+    "revision": "e9e4a56bd17de9a0439f295a11c09a2d"
   },
   {
     "url": "page-data/edithminibot/page-data.json",
@@ -117,14 +121,14 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/floyd-visualizer/page-data.json",
-    "revision": "8709504769efbaa21f555d3981bc988d"
+    "revision": "df3106c1243307f98f3c729cfc42e610"
   },
   {
     "url": "page-data/havmor-movies/page-data.json",
     "revision": "040ce6a31bb1d83aeee7c5856d815c9a"
   },
   {
-    "url": "component---src-pages-index-jsx-53065358728565ac5b03.js"
+    "url": "component---src-pages-index-jsx-7d28b0ccf3e3d3763c78.js"
   },
   {
     "url": "page-data/index/page-data.json",
@@ -132,7 +136,11 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/3716579500.json",
-    "revision": "a9272eed5397c4d0836ab70f07108a8b"
+    "revision": "fb504ae3bbb2dc6c97a298c071b6d477"
+  },
+  {
+    "url": "page-data/mylocaltask/page-data.json",
+    "revision": "e2cd0babfa208580e8e607b28eb62707"
   },
   {
     "url": "page-data/payment-dbs/page-data.json",
