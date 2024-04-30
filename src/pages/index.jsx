@@ -7,11 +7,10 @@ import Projects from "../components/Projects";
 import SEO from "../layouts/seo";
 import SkillsComponent from "../components/SkillsComponent";
 import ContactMe from "../components/ContactMe";
-import MovingCircles from "../static/cursor-animation";
 
 const Description = styled.ul`
-  margin: 20px 0;
-  list-style: none;
+    margin: 20px 0;
+    list-style: none;
 `;
 const IndexPage = () => {
     console.log("%c Hey 👋", "font-size:10vw");
