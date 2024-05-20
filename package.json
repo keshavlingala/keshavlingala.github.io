@@ -3,10 +3,6 @@
   "private": true,
   "version": "0.1.0",
   "dependencies": {
-    "@bit/mui-org.material-ui.colors": "^4.9.10",
-    "@bit/mui-org.material-ui.styles": "^4.9.10",
-    "@bit/mui-org.material-ui.tab": "^4.9.10",
-    "@bit/mui-org.material-ui.tabs": "^4.9.10",
     "@emotion/core": "^10.0.35",
     "@emotion/styled": "^10.0.27",
     "@mdx-js/mdx": "^1.6.17",
