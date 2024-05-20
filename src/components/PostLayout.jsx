@@ -6,7 +6,7 @@ import Layout from "../layouts/layout"
 import SEO from "../layouts/seo"
 import { Container } from "./CustomComponents"
 import styled from "@emotion/styled"
-import { ToolTipItem, UL } from "./TabSection"
+import { ToolTipItem, UL } from "./ToolTip"
 import { css } from "@emotion/core"
 
 export default (props) => {

@@ -37,7 +37,7 @@ import {
     TensorFlow,
     Typescript
 } from "../hooks/useIcons"
-import {ToolTipItem} from "./TabSection"
+import {ToolTipItem} from "./ToolTip"
 
 const icons = [
     {

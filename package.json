@@ -38,7 +38,7 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "build": "npm run clean && gatsby build && npm run serve",
+    "build": "npm run clean && gatsby build",
     "develop": "gatsby develop",
     "deploy": "gatsby clean && gatsby build && echo keshav.codes > public/CNAME && cp README.md audits.png public/  && gh-pages -d public -b master",
     "gitploy": "gh-pages -d public -b master",
