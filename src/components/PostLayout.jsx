@@ -11,7 +11,6 @@ import { css } from "@emotion/core"
 
 export default (props) => {
   const mdx = props.data.mdx
-  console.log({ props })
   const ProjectLinks = styled(({ className }) => {
     return (<div className={className}>
       <h2>Links</h2>
@@ -39,7 +38,6 @@ export default (props) => {
   })`
     border-bottom: 2px solid;
   `
-  console.log({ mdx })
   return (
     <div>
       <SEO tags={mdx.frontmatter.tags} img={mdx.frontmatter.featuredImage.childImageSharp.fixed.src}

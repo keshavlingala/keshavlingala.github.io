@@ -25,7 +25,7 @@ const IndexPage = () => {
                         system optimization. Proficient in Java, Python, AWS, Kubernetes, and beyond. Committed to
                         excellence in clean code and cutting-edge technologies.
                         Dive into my projects below. Get in touch: <a
-                        href="mailto:keshav.zsh@gmail.com">keshav.zsh@gmail.com</a>
+                        href="mailto:admin@keshav.codes">admin@keshav.codes</a>
                     </li>
                 </Description>
 
