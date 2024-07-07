@@ -89,7 +89,7 @@ const Layout = ({ children }) => {
             {children}
             <Footer title="100% Lighthouse Performance Score">
                 <i title="100% Lighthouse Performance Score"><span>Designed and Developed by <a
-                    href="https://www.linkedin.com/in/keshavlingala/" rel="noreferrer"  target="_blank">Keshav Lingala</a></span> <br />
+                    href="https://github.com/keshavlingala" rel="noreferrer"  target="_blank">Keshav Lingala</a></span> <br />
                     <a title="100% Lighthouse Performance Score" target="_blank" rel="noreferrer"
                        href="https://github.com/keshavlingala/keshavlingala.github.io">Blazing
                         fast</a> with <span>Gatsby</span> and <span>Emotion</span>
