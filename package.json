@@ -47,7 +47,8 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "simulate": "gatsby clean && gatsby build && gatsby serve"
+    "simulate": "gatsby clean && gatsby build && gatsby serve",
+    "install": "npm install --legacy-peer-deps"
   },
   "repository": {
     "type": "git",
