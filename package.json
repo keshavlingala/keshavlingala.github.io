@@ -18,7 +18,7 @@
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-react-svg": "^3.0.0",
     "gatsby-plugin-sharp": "^2.6.35",
-    "gatsby-plugin-sitemap": "^6.10.0",
+    "gatsby-plugin-sitemap": "^3.3.0",
     "gatsby-remark-gifs": "^1.0.0",
     "gatsby-remark-images": "^3.3.29",
     "gatsby-source-filesystem": "^2.3.29",
