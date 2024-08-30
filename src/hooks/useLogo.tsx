@@ -1,8 +1,7 @@
 import React from "react";
 import {graphql, useStaticQuery} from "gatsby";
-import {GatsbyImage, getImage, IGatsbyImageData} from "gatsby-plugin-image";
+import {GatsbyImage, getImage} from "gatsby-plugin-image";
 import {LogoData} from "../types";
-
 
 
 const Logo: React.FC = () => {
