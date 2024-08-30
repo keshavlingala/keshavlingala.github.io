@@ -1,0 +1,127 @@
+import Angular from "../content/icons/angular.svg"
+import Arduino from "../content/icons/arduino.svg"
+import AWS from "../content/icons/aws.svg"
+import Bash from "../content/icons/bash.svg"
+import GCloud from "../content/icons/gcloud.svg"
+import Git from "../content/icons/git.svg"
+import Hadoop from "../content/icons/hadoop.svg"
+import Java from "../content/icons/java.svg"
+import JavaScript from "../content/icons/javascript.svg"
+import Kubernetes from "../content/icons/kubernetes.svg"
+import MangoDB from "../content/icons/mongodb.svg"
+import MYSql from "../content/icons/mysql.svg"
+import NodeJS from "../content/icons/nodejs.svg"
+import Python from "../content/icons/python.svg"
+import ReactLogo from "../content/icons/react.svg"
+import Spark from "../content/icons/spark.svg"
+import Typescript from "../content/icons/typescript.svg"
+import CPP from "../content/icons/cpp.svg"
+import TensorFlow from "../content/icons/tensorflow.svg"
+import Gatsby from "../content/icons/gatsby.svg"
+import Docker from '../content/icons/docker.svg'
+import Spring from '../content/icons/spring.svg'
+import KotlinLang from '../content/icons/kotlinlang.svg'
+import Ansible from '../content/icons/ansible.svg'
+import Bootstrap from '../content/icons/bootstrap.svg'
+import Cassandra from '../content/icons/cassandra.svg'
+import HTML from '../content/icons/html.svg'
+import Jenkins from '../content/icons/jenkins.svg'
+import Kafka from '../content/icons/kafka.svg'
+import Keras from '../content/icons/keras.svg'
+import NeuralNetwork from '../content/icons/neuralnetwork.svg'
+import CSS from '../content/icons/css.svg'
+import Postgresql from '../content/icons/postgresql.svg'
+import Azure from '../content/icons/azure.svg'
+import Oracle from '../content/icons/oracle.svg'
+import GoLang from '../content/icons/golang.svg'
+import GoGin from "../content/icons/gin.svg";
+import {Icon} from "../types";
+import NestJs from "../content/icons/nestjs.svg";
+import Graphql from "../content/icons/graphql.svg";
+import Redis from "../content/icons/redis.svg";
+import BitBucket from "../content/icons/bitbucket.svg";
+import BlazeMeter from "../content/icons/blazemeter.svg";
+import Confluence from "../content/icons/confluence.svg";
+import Discord from "../content/icons/discord.svg";
+import ElasticSearch from "../content/icons/elasticsearch.svg";
+import Grafana from "../content/icons/grafana.svg";
+import Idea from "../content/icons/idea.svg";
+import Insomnia from "../content/icons/insomnia.svg";
+import Jira from "../content/icons/jira.svg";
+import Jmeter from "../content/icons/jmeter.svg";
+import Kanban from "../content/icons/kanban.svg";
+import Kibana from "../content/icons/kibana.svg";
+import Postman from "../content/icons/postman.svg";
+import Prometheus from "../content/icons/prometheus.svg";
+import Pycharm from "../content/icons/pycharm.svg";
+import Scrum from "../content/icons/scrum.svg";
+import Splunk from "../content/icons/splunk.svg";
+import VsCode from "../content/icons/vscode.svg";
+import WaterFall from "../content/icons/waterfall.svg";
+import WebStorm from "../content/icons/webstorm.svg";
+import GoLand from "../content/icons/goland.svg";
+export const icons: Icon[] = [
+    {name: "Angular", icon: Angular},
+    {name: "Arduino", icon: Arduino},
+    {name: "AWS", icon: AWS},
+    {name: "Azure", icon: Azure},
+    {name: "Bash", icon: Bash},
+    {name: "C++", icon: CPP},
+    {name: "Gatsby", icon: Gatsby},
+    {name: "Google Cloud", icon: GCloud},
+    {name: "Git", icon: Git},
+    {name: "Apache Hadoop", icon: Hadoop},
+    {name: "Java", icon: Java},
+    {name: "Javascript", icon: JavaScript},
+    {name: "Kotlin", icon: KotlinLang},
+    {name: "Kubernetes", icon: Kubernetes},
+    {name: "MongoDB", icon: MangoDB},
+    {name: "MySQL", icon: MYSql},
+    {name: "NodeJS", icon: NodeJS},
+    {name: "Oracle", icon: Oracle},
+    {name: "Python", icon: Python},
+    {name: "Postgresql", icon: Postgresql},
+    {name: "React", icon: ReactLogo},
+    {name: "Apache Spark", icon: Spark},
+    {name: "Spring Boot", icon: Spring},
+    {name: "TensorFlow", icon: TensorFlow},
+    {name: "Typescript", icon: Typescript},
+    {name: "Docker", icon: Docker},
+    {name: "Ansible", icon: Ansible},
+    {name: "Bootstrap", icon: Bootstrap},
+    {name: "Apache Cassandra", icon: Cassandra},
+    {name: "HTML", icon: HTML},
+    {name: "Jenkins", icon: Jenkins},
+    {name: "Apache Kafka", icon: Kafka},
+    {name: "Keras", icon: Keras},
+    {name: "Neural Networks", icon: NeuralNetwork},
+    {name: "CSS", icon: CSS},
+    {name: "GoLang", icon: GoLang},
+    {name: "Go Gin", icon: GoGin},
+    {name: "NestJs", icon: NestJs},
+    {name: "GraphQL", icon: Graphql},
+    {name: "Redis", icon: Redis},
+    {name: "BitBucket", icon: BitBucket},
+    {name: "BlazeMeter", icon: BlazeMeter},
+    {name: "Confluence", icon: Confluence},
+    {name: "Discord", icon: Discord},
+    {name: "ElasticSearch", icon: ElasticSearch},
+    {name: "Grafana", icon: Grafana},
+    {name: "Idea", icon: Idea},
+    {name: "Insomnia", icon: Insomnia},
+    {name: "Jira", icon: Jira},
+    {name: "Jmeter", icon: Jmeter},
+    {name: "Kanban", icon: Kanban},
+    {name: "Kibana", icon: Kibana},
+    {name: "Postman", icon: Postman},
+    {name: "Prometheus", icon: Prometheus},
+    {name: "Pycharm", icon: Pycharm},
+    {name: "Scrum", icon: Scrum},
+    {name: "Agile", icon: Scrum},
+    {name: "Splunk", icon: Splunk},
+    {name: "VsCode", icon: VsCode},
+    {name: "WaterFall", icon: WaterFall},
+    {name: "WebStorm", icon: WebStorm},
+    {name: "GoLand", icon: GoLand}
+].sort((a, b) => a.name.localeCompare(b.name));
+
