@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import styled from "@emotion/styled";
-import {icons} from "../misc/useIcons";
 import {ToolTipItem} from "./ToolTip";
 import {Icon, Skill} from "../types";
+import {icons} from "../hooks/useIcons";
 
 
 //  Emotion styled components

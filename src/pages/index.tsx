@@ -5,12 +5,8 @@ import {Container} from "../components/CustomComponents";
 import Projects from "../components/Projects";
 import Profile from "../components/Profile";
 import {SEO} from "../components/SEO";
-import {html} from "gatsby/dist/redux/reducers";
 import Skills from "../components/Skills";
 import ContactMe from "../components/ContactMe";
-// import Projects from "../components/Projects";
-// import SkillsComponent from "../components/SkillsComponent";
-// import ContactMe from "../components/ContactMe";
 
 const Description = styled.p`
     margin: 20px 0;

@@ -1,8 +1,8 @@
-import React, {ReactNode} from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import {Link} from "gatsby";
 import "./layout.css";
-import Logo from "../misc/useLogo";
+import Logo from "../hooks/useLogo";
 import {LayoutProps} from "../types";
 
 const AppBar = styled.header`

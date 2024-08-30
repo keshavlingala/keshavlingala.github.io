@@ -1,6 +1,5 @@
 import React from "react"
-import {useSiteMetadata} from "../misc/useSiteMetadata";
-import {html} from "gatsby/dist/redux/reducers";
+import {useSiteMetadata} from "../hooks/useSiteMetadata";
 import {SEOProps} from "../types";
 
 
@@ -22,9 +21,8 @@ export const SEO: React.FC<SEOProps> = ({
         twitterUsername,
         keywords: defaultKeywords,
         image: defaultImage,
-        profileImage
     } = useSiteMetadata()
-    siteUrl = 'http://localhost:8000'
+    // siteUrl = 'http://localhost:8000'
 
     const seo = {
         title: title || defaultTitle,
