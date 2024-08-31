@@ -27,6 +27,9 @@ const TippedLI = styled.li<TippedLIProps>`
 
   &:focus {
     outline: none;
+      &::before {
+          opacity: 1;
+      }
   }
 
   cursor: pointer;
@@ -37,11 +40,19 @@ const TippedLI = styled.li<TippedLIProps>`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #d0cfcf45;
+      background-color: #d0cfcf45;
+      &::before {
+          opacity: 1;
+          z-index: 1;
+      }
   }
 
   &:active {
-    box-shadow: 0 0 1px 0 black;
+      box-shadow: 0 0 1px 0 black;
+      &::before {
+          opacity: 1;
+          z-index: 1;
+      }
   }
 
   position: relative;
@@ -55,7 +66,7 @@ const TippedLI = styled.li<TippedLIProps>`
     padding: 0.5rem;
     border-radius: 6px;
     color: #ffd285;
-    opacity: ${p => (p.show ? "1" : "0")};
+    opacity: 0;
     transition: all 0.3s ease;
     z-index: -1;
     bottom: 110%;
@@ -77,16 +88,21 @@ const TippedLI = styled.li<TippedLIProps>`
 
 
 export const ToolTipItem: React.FC<ToolTipItemProps> = ({ children, tooltip, link }) => {
-    const [show, setShow] = useState(false);
+    // const [show, setShow] = useState(false);
     return (
         <TippedLI
-            onMouseEnter={() => setShow(true)}
+            // onMouseEnter={() => setShow(true)}
             tooltip={tooltip}
-            show={show}
-            onTouchStart={() => setShow(true)}
-            onClick={() => link && window.open(link, "_blank")}
-            onTouchEnd={() => setShow(false)}
-            onMouseLeave={() => setShow(false)}
+            // show={show}
+            // onTouchStart={() => setShow(true)}
+            onClick={($event) => {
+                link && window.open(link, "_blank");
+                $event.preventDefault();
+                $event.stopPropagation();
+                console.log('propgation stopped');
+            }}
+            // onTouchEnd={() => setShow(false)}
+            // onMouseLeave={() => setShow(false)}
         >
             {children}
         </TippedLI>

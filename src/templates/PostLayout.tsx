@@ -3,9 +3,9 @@ import {MDXProvider} from "@mdx-js/react";
 import Layout from "../layouts/layout";
 import {Container} from "../components/CustomComponents";
 import {SEO} from "../components/SEO";
-import {AdjacentNode, PostLayoutNode} from "../../gatsby-node";
 import {Link} from "gatsby";
 import styled from "@emotion/styled";
+import {AdjacentNode, PostLayoutNode} from "../types";
 
 const Navigator = styled.div`
     display: flex;

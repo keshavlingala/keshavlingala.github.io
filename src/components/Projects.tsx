@@ -1,8 +1,10 @@
-import React from "react"
+import React, {useState} from "react"
 import {graphql, Link, useStaticQuery} from "gatsby"
 import {GatsbyImage, getImage} from "gatsby-plugin-image"
 import styled from "@emotion/styled"
 import {Project} from "../types";
+import {icons} from "../hooks/useIcons";
+import {ToolTipItem} from "./ToolTip";
 
 const ProjectCard = styled(Link)`
     display: flex;
@@ -24,7 +26,7 @@ const ProjectCard = styled(Link)`
         bottom: 0;
         height: 2px;
         width: 100%;
-        transform: scale(0);
+        //transform: scale(0);
         left: 0;
         right: 0;
         background-color: #ffd285;
@@ -43,7 +45,7 @@ const ProjectCard = styled(Link)`
     }
 
     &:active {
-        animation: zoomOut 0.5s ease-in-out;
+        //animation: fadeToLeft 0.3s ease-in-out;
     }
 
     @media only screen and (max-width: 600px) {
@@ -79,6 +81,18 @@ const CreatedOn = styled.span`
     margin-top: auto;
 `
 
+const SkillImg = styled.img`
+    width: 40px;
+    height: 40px;
+`
+
+const SkillIconListContainer = styled.div`
+    display: flex;
+    margin-bottom: 10px;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 2px;
+`
 
 const Projects: React.FC = () => {
     const data = useStaticQuery(graphql`
@@ -94,6 +108,7 @@ const Projects: React.FC = () => {
                 demo
                 description
                 date
+                techs
                 featuredImage {
                   childImageSharp {
                     gatsbyImageData(
@@ -113,13 +128,32 @@ const Projects: React.FC = () => {
     return data?.allMdx?.nodes
         .sort((a: Project, b: Project) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
         .map((project: Project) => {
+            const [isExpanded, setIsExpanded] = useState(false);
             const image = getImage(project.frontmatter.featuredImage.childImageSharp.gatsbyImageData)
             const date = new Date(project.frontmatter.date).toLocaleString('en-US', {year: 'numeric', month: 'short'})
             return (
                 <ProjectCard to={project.frontmatter.slug} tabIndex={0} key={project.id}>
                     <ProjectCardContent>
                         <h3>{project.frontmatter.title}</h3>
-                        <p>{project.frontmatter.description}</p>
+                        <p>
+                            {isExpanded ? project.frontmatter.description+' ': project.frontmatter.description.substring(0, 300) + "..."}
+                            <Link to={project.frontmatter.slug} onClick={(e) => {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                setIsExpanded(!isExpanded);
+                            }}>
+                                {isExpanded ? "Read Less" : "Read More"}
+                            </Link>
+                        </p>
+
+                        <SkillIconListContainer>
+                            {project.frontmatter.techs &&
+                                icons.filter(icon => project.frontmatter.techs.includes(icon.name))
+                                    .map(icon => <ToolTipItem tooltip={icon.name} key={icon.name}>
+                                        <img width="40px" height="40px" src={icon.icon} alt={icon.name}/>
+                                    </ToolTipItem>)
+                            }
+                        </SkillIconListContainer>
                         <CreatedOn>- {date}</CreatedOn>
                     </ProjectCardContent>
                     {image && <FeatureImg image={image} alt={project.frontmatter.title}/>}

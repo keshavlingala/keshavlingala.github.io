@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import {ToolTipItem} from "./ToolTip";
 import {Icon, Skill} from "../types";
 import {icons} from "../hooks/useIcons";
+import {IconNames} from "../iconNames";
 
 
 //  Emotion styled components
@@ -97,56 +98,90 @@ const IconLister = styled.ul`
 
 
 let skills: Skill[] = [
-    {
-        name: "Front-end Web Development",
-        progress: 100,
-        techs: ["Angular", "Typescript", "React", "Javascript", "HTML", "CSS", "Bootstrap", "Gatsby"]
-    },
-    {
-        name: "Back-end Development",
-        progress: 100,
-        techs: ["Java", "Spring Boot", "Python", "Kotlin", "NodeJS", "GoLang", "Go Gin", "Javascript", "Apache Kafka", "Apache Spark", "Apache" +
-        " Cassandra", "NestJs", "Typescript"]
-    },
-    {
-        name: "Database Design and Management",
-        progress: 100,
-        techs: ["MySQL", "MongoDB", "Google Cloud", "Apache Cassandra", "Oracle", "Postgresql", "GraphQL", "Redis"]
-    },
-    {
-        name: "Cloud Technologies and DevOps",
-        progress: 100,
-        techs: ["Google Cloud", "AWS", "Azure", "Docker", "Kubernetes", "Apache Hadoop", "Apache Spark", "Bash", "Apache Kafka", "Jenkins", "Git", "Ansible"]
-    },
-    {
-        name: "Full Stack Development",
-        progress: 100,
-        techs: [
-            "Gatsby", "Python", "GraphQL", "Redis",
-            "Angular", "Typescript", "React", "Spring Boot", "NodeJS", "Docker", "Javascript", "HTML", "CSS", "Bootstrap", "AWS", "Kubernetes", "Apache Kafka", "Jenkins", "Ansible", "Git", "Postgresql", "MySQL", "MongoDB",
-            "Java", "Kotlin", "GoLang", "Go Gin", "Apache Spark", "Apache Cassandra", "NestJs"
-        ]
-    },
-    {
-        name: "Neural Networks and Machine Learning",
-        progress: 100,
-        techs: ["Neural Networks", "TensorFlow", "Keras", "Python", "Java", "C++", "Javascript", "Arduino"]
-    },
-    {
-        name: "Tools and IDEs for Development",
-        progress: 100,
-        techs: ["Idea", "GoLand", "WebStorm", "Pycharm", "Visual Studio Code", "Postman", "Insomnia", "BlazeMeter", "Jmeter", "Prometheus", "Grafana", "Kibana", "ElasticSearch", "Splunk", "Jira", "Discord", "Slack", "Confluence", "BitBucket", "Scrum", "Kanban", "Agile", "WaterFall", "VsCode"]
-    },
-    {
-        name: "Automation scripting",
-        progress: 100,
-        techs: ["Python", "Bash", "Git", "Google Cloud", "Docker", "AWS"]
-    },
-    {
-        name: "All Skills",
-        progress: 100,
-        techs: []
-    }
+   {
+    name: "Front-end Web Development",
+    progress: 100,
+    techs: [
+        IconNames.Angular, IconNames.Typescript, IconNames.React, IconNames.Javascript,
+        IconNames.HTML, IconNames.CSS, IconNames.Bootstrap, IconNames.Gatsby, IconNames.PWA
+    ]
+},
+{
+    name: "Back-end Development",
+    progress: 100,
+    techs: [
+        IconNames.Java, IconNames.SpringBoot, IconNames.Python, IconNames.Kotlin,
+        IconNames.NodeJS, IconNames.GoLang, IconNames.GoGin, IconNames.Javascript,
+        IconNames.ApacheKafka, IconNames.ApacheSpark, IconNames.ApacheCassandra,
+        IconNames.NestJs, IconNames.Typescript
+    ]
+},
+{
+    name: "Database Design and Management",
+    progress: 100,
+    techs: [
+        IconNames.MySQL, IconNames.MongoDB, IconNames.GoogleCloud, IconNames.ApacheCassandra,
+        IconNames.Oracle, IconNames.Postgresql, IconNames.GraphQL, IconNames.Redis
+    ]
+},
+{
+    name: "Cloud Technologies and DevOps",
+    progress: 100,
+    techs: [
+        IconNames.GoogleCloud, IconNames.AWS, IconNames.Azure, IconNames.Docker,
+        IconNames.Kubernetes, IconNames.ApacheHadoop, IconNames.ApacheSpark,
+        IconNames.Bash, IconNames.ApacheKafka, IconNames.Jenkins, IconNames.Git,
+        IconNames.Ansible, IconNames.GithubActions
+    ]
+},
+{
+    name: "Full Stack Development",
+    progress: 100,
+    techs: [
+        IconNames.Gatsby, IconNames.Python, IconNames.GraphQL, IconNames.Redis,
+        IconNames.Angular, IconNames.Typescript, IconNames.React, IconNames.SpringBoot,
+        IconNames.NodeJS, IconNames.Docker, IconNames.Javascript, IconNames.HTML,
+        IconNames.CSS, IconNames.Bootstrap, IconNames.AWS, IconNames.Kubernetes,
+        IconNames.ApacheKafka, IconNames.Jenkins, IconNames.Ansible, IconNames.Git,
+        IconNames.Postgresql, IconNames.MySQL, IconNames.MongoDB, IconNames.Java,
+        IconNames.Kotlin, IconNames.GoLang, IconNames.GoGin, IconNames.ApacheSpark,
+        IconNames.ApacheCassandra, IconNames.NestJs, IconNames.GithubActions, IconNames.PWA
+    ]
+},
+{
+    name: "Neural Networks and Machine Learning",
+    progress: 100,
+    techs: [
+        IconNames.NeuralNetworks, IconNames.TensorFlow, IconNames.Keras,
+        IconNames.Python, IconNames.Java, IconNames.CPP, IconNames.Javascript,
+        IconNames.Arduino
+    ]
+},
+{
+    name: "Tools and IDEs for Development",
+    progress: 100,
+    techs: [
+        IconNames.Idea, IconNames.GoLand, IconNames.WebStorm, IconNames.Pycharm,
+        IconNames.VsCode, IconNames.Postman, IconNames.Insomnia, IconNames.BlazeMeter,
+        IconNames.Jmeter, IconNames.Prometheus, IconNames.Grafana, IconNames.Kibana,
+        IconNames.ElasticSearch, IconNames.Splunk, IconNames.Jira, IconNames.Discord,
+        IconNames.Slack, IconNames.Confluence, IconNames.BitBucket, IconNames.Scrum,
+        IconNames.Kanban, IconNames.Agile, IconNames.WaterFall
+    ]
+},
+{
+    name: "Automation scripting",
+    progress: 100,
+    techs: [
+        IconNames.Python, IconNames.Bash, IconNames.Git, IconNames.GoogleCloud,
+        IconNames.Docker, IconNames.AWS
+    ]
+},
+{
+    name: "All Skills",
+    progress: 100,
+    techs: []
+}
 ].map(skill => ({...skill, active: skill.name === "Full Stack Development"}));
 
 

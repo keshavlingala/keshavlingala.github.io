@@ -18,6 +18,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
       description: String
       date: Date @dateformat
       featuredImage: File @fileByRelativePath
+      techs: [String]
     }
   `);
 };
@@ -40,6 +41,7 @@ export const createPages: GatsbyNode["createPages"] = async ({graphql, actions, 
                 featuredImage {
                   publicURL
                 }
+                techs
               }
               internal {
                 contentFilePath

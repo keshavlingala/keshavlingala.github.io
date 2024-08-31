@@ -1,5 +1,6 @@
 import {ReactNode} from "react";
 import {IGatsbyImageData} from "gatsby-plugin-image";
+import {IconNames} from "./iconNames";
 
 // SEO related types
 interface SEOProps {
@@ -30,6 +31,7 @@ interface Project {
         demo: string;
         description: string;
         date: string;
+        techs: string[];
         featuredImage: {
             childImageSharp: {
                 gatsbyImageData: IGatsbyImageData;
@@ -122,7 +124,7 @@ interface NotFoundImageData {
 // Tooltip related types
 interface TippedLIProps {
     tooltip: string;
-    show: boolean;
+    show?: boolean;
 }
 
 interface ToolTipItemProps {
@@ -144,6 +146,8 @@ interface Item {
 }
 
 interface Icon {
-    name: string;
+    name: IconNames;
     icon: string;
 }
+
+
