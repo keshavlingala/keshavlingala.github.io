@@ -258,6 +258,7 @@ img {
     max-width: 100%;
     padding: 0;
     margin: 0 0 1.45rem;
+    /*margin-bottom: 30px;*/
 }
 
 h1 {
@@ -665,41 +666,41 @@ body {
     height: 2em;
 }
 
-.fa-envelope {
-    background-image: url("../content/icons/envelope.svg");
-}
+/*.fa-envelope {*/
+/*    background-image: url("../content/icons/envelope.svg");*/
+/*}*/
 
-.fa-phone {
-    background-image: url("../content/icons/phone.svg");
-}
+/*.fa-phone {*/
+/*    background-image: url("../content/icons/phone.svg");*/
+/*}*/
 
-.fa-map-marker {
-    background-image: url("../content/icons/map-marker.svg");
-}
+/*.fa-map-marker {*/
+/*    background-image: url("../content/icons/map-marker.svg");*/
+/*}*/
 
-.fa-file {
-    background-image: url("../content/icons/file.svg");
-}
+/*.fa-file {*/
+/*    background-image: url("../content/icons/file.svg");*/
+/*}*/
 
-.fa-github {
-    background-image: url("../content/icons/github.svg");
-}
+/*.fa-github {*/
+/*    background-image: url("../content/icons/github.svg");*/
+/*}*/
 
-.fa-link {
-    background-image: url("../content/icons/link.svg");
-}
+/*.fa-link {*/
+/*    background-image: url("../content/icons/link.svg");*/
+/*}*/
 
-.fa-linkedin {
-    background-image: url("../content/icons/linkedin.svg");
-}
+/*.fa-linkedin {*/
+/*    background-image: url("../content/icons/linkedin.svg");*/
+/*}*/
 
-.fa-instagram {
-    background-image: url("../content/icons/instagram.svg");
-}
+/*.fa-instagram {*/
+/*    background-image: url("../content/icons/instagram.svg");*/
+/*}*/
 
-.fa-facebook {
-    background-image: url("../content/icons/facebook.svg");
-}
+/*.fa-facebook {*/
+/*    background-image: url("../content/icons/facebook.svg");*/
+/*}*/
 
 .MuiTabs-flexContainer {
     display: flex;
@@ -769,10 +770,10 @@ p > img {
 
 @keyframes bubble {
     0% {
-        clip-path: polygon(52.91% 111px, 121px 46.01%, 50.33% 70.05%, 70.29% 45.77%)
+        clip-path: circle(0% at 0% 50%);
     }
     100% {
-        clip-path: polygon(37.75% 0px, 2px 99.65%, 100% 100%, 99.69% -0.11%)
+        clip-path: circle(100% at 50% 50%);
     }
 }
 
@@ -792,8 +793,11 @@ p > img {
     from {
         transform: scale(0);
     }
+    50% {
+        transform: scale(1.1);
+    }
     to {
-        transform: scale(1);
+        transform: scale(0);
     }
 }
 
@@ -862,6 +866,18 @@ p > img {
     }
 }
 
+@keyframes fadeToLeft {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-64%);
+    }
+}
+
 @keyframes fadeInUp {
     0% {
         opacity: 0;
@@ -879,4 +895,9 @@ p > img {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+}
+figcaption{
+    text-align: center;
+    font-size: 0.9rem;
+    color: #858583;
 }
