@@ -18,6 +18,8 @@ const ProjectCard = styled(Link)`
     text-decoration: none;
     color: inherit;
     overflow: hidden;
+    border-radius: 1em;
+    animation: bubble 0.7s ease-in;
 
     &:after {
         content: '';
@@ -38,10 +40,11 @@ const ProjectCard = styled(Link)`
         &:after {
             content: '';
             transform: scale(1);
-            animation: growCenter 0.5s ease-in-out;
+            animation: infinite growCenter 2s ease-in-out;
         }
 
-        animation: pulse 0.5s ease-in-out;
+        //animation: pulse 0.5s ease-in-out;
+        box-shadow: 2px 2px 5px 0 #ffd285;
     }
 
     &:active {
@@ -86,8 +89,9 @@ const SkillImg = styled.img`
     height: 40px;
 `
 
-const SkillIconListContainer = styled.div`
+export const SkillIconListContainer = styled.ol`
     display: flex;
+    margin-left: 0;
     margin-bottom: 10px;
     flex-direction: row;
     justify-content: flex-start;
@@ -136,22 +140,26 @@ const Projects: React.FC = () => {
                     <ProjectCardContent>
                         <h3>{project.frontmatter.title}</h3>
                         <p>
-                            {isExpanded ? project.frontmatter.description+' ': project.frontmatter.description.substring(0, 300) + "..."}
-                            <Link to={project.frontmatter.slug} onClick={(e) => {
+                            {isExpanded ? project.frontmatter.description + ' ' : project.frontmatter.description.substring(0, 300) + "..."}
+                            <span style={{textDecoration:'underline'}} onClick={(e) => {
                                 e.stopPropagation();
                                 e.preventDefault();
                                 setIsExpanded(!isExpanded);
                             }}>
                                 {isExpanded ? "Read Less" : "Read More"}
-                            </Link>
+                            </span>
                         </p>
 
                         <SkillIconListContainer>
                             {project.frontmatter.techs &&
-                                icons.filter(icon => project.frontmatter.techs.includes(icon.name))
-                                    .map(icon => <ToolTipItem tooltip={icon.name} key={icon.name}>
-                                        <img width="40px" height="40px" src={icon.icon} alt={icon.name}/>
-                                    </ToolTipItem>)
+                                project.frontmatter.techs.map(tech => {
+                                    const icon = icons.find(icon => icon.name === tech);
+                                    return icon ? (
+                                        <ToolTipItem tooltip={icon.name} key={icon.name}>
+                                            <img width="40px" height="40px" src={icon.icon} alt={icon.name}/>
+                                        </ToolTipItem>
+                                    ) : null;
+                                })
                             }
                         </SkillIconListContainer>
                         <CreatedOn>- {date}</CreatedOn>

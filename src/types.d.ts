@@ -63,6 +63,7 @@ interface PostLayoutNode {
         featuredImage: {
             publicURL: string;
         };
+        techs: string[];
     };
     internal: {
         contentFilePath: string;

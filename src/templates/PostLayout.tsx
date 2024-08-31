@@ -6,6 +6,9 @@ import {SEO} from "../components/SEO";
 import {Link} from "gatsby";
 import styled from "@emotion/styled";
 import {AdjacentNode, PostLayoutNode} from "../types";
+import {icons} from "../hooks/useIcons";
+import {ToolTipItem} from "../components/ToolTip";
+import {SkillIconListContainer} from "../components/Projects";
 
 const Navigator = styled.div`
     display: flex;
@@ -67,6 +70,17 @@ const PostLayout: React.FC<{
                         </NavigationLink>
                     )}
                 </Navigator>
+                <h1>{node.frontmatter.title}</h1>
+                <h3>Technologies Used</h3>
+                <SkillIconListContainer>
+                    {node.frontmatter.techs &&
+                        icons.filter(icon => node.frontmatter.techs.includes(icon.name))
+                            .map(icon => <ToolTipItem tooltip={icon.name} key={icon.name}>
+                                <img width="40px" height="40px" src={icon.icon} alt={icon.name}/>
+                            </ToolTipItem>)
+                    }
+                </SkillIconListContainer>
+                <hr/>
                 <MDXProvider>
                     {props.children}
                 </MDXProvider>

@@ -770,10 +770,10 @@ p > img {
 
 @keyframes bubble {
     0% {
-        clip-path: polygon(52.91% 111px, 121px 46.01%, 50.33% 70.05%, 70.29% 45.77%)
+        clip-path: circle(0% at 0% 50%);
     }
     100% {
-        clip-path: polygon(37.75% 0px, 2px 99.65%, 100% 100%, 99.69% -0.11%)
+        clip-path: circle(100% at 50% 50%);
     }
 }
 
@@ -793,8 +793,11 @@ p > img {
     from {
         transform: scale(0);
     }
+    50% {
+        transform: scale(1.1);
+    }
     to {
-        transform: scale(1);
+        transform: scale(0);
     }
 }
 
