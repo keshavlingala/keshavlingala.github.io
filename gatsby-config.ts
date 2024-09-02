@@ -32,6 +32,7 @@ const config: GatsbyConfig = {
                 },
                 pluginConfig: {
                     head: true,
+                    defer: true
                 },
             },
         },

@@ -119,6 +119,7 @@ const Projects: React.FC = () => {
                       layout: FULL_WIDTH
                       placeholder: BLURRED
                       formats: [AUTO, WEBP]
+                      sizes: "(max-width: 600px) 100vw, 20vw"
                     )
                   }
                 }
