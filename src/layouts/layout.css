@@ -601,7 +601,7 @@ pre tt:after {
 body {
     color: #ffd285;
     background-color: #1b1b1b;
-    background-image: url(../content/images/wood.webp), url("../content/images/wood.jpg");
+    background-image: url(../content/images/wood.webp);
     background-size: 10%;
 }
 
