@@ -31,8 +31,7 @@ const config: GatsbyConfig = {
                     optimize_id: "OPT_CONTAINER_ID",
                 },
                 pluginConfig: {
-                    head: true,
-                    defer: true
+                    head: true
                 },
             },
         },
