@@ -682,13 +682,13 @@ body {
 /*    background-image: url("../content/icons/file.svg");*/
 /*}*/
 
-/*.fa-github {*/
-/*    background-image: url("../content/icons/github.svg");*/
-/*}*/
+.fa-github {
+    background-image: url("../content/icons/github.svg");
+}
 
-/*.fa-link {*/
-/*    background-image: url("../content/icons/link.svg");*/
-/*}*/
+.fa-link {
+    background-image: url("../content/icons/link.svg");
+}
 
 /*.fa-linkedin {*/
 /*    background-image: url("../content/icons/linkedin.svg");*/

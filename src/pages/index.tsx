@@ -14,7 +14,7 @@ const Description = styled.p`
 `;
 
 const IndexPage: React.FC = () => {
-    console.log("%c Hey 👋", "font-size:10vw");
+    console.log("%c Hey 👋", "font-size:10vw;color:orange");
     return (
         <Layout>
             <Profile/>

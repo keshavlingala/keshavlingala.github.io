@@ -1,6 +1,7 @@
 import {ReactNode} from "react";
 import {IGatsbyImageData} from "gatsby-plugin-image";
 import {IconNames} from "./iconNames";
+import {SerializedStyles} from "@emotion/react";
 
 // SEO related types
 interface SEOProps {
@@ -64,6 +65,9 @@ interface PostLayoutNode {
             publicURL: string;
         };
         techs: string[];
+        code: string;
+        code2?: string;
+        demo: string;
     };
     internal: {
         contentFilePath: string;
@@ -149,6 +153,10 @@ interface Item {
 interface Icon {
     name: IconNames;
     icon: string;
+}
+
+interface ULProps {
+    css?: SerializedStyles
 }
 
 

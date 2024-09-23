@@ -24,7 +24,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
 };
 
 
-export const createPages: GatsbyNode["createPages"] = async ({graphql, actions, reporter}) => {
+export const createPages: GatsbyNode["createPages"] = async ({graphql, actions}) => {
     const {createPage} = actions;
     const result = await graphql<PostLayoutType>(`
     {
@@ -38,6 +38,9 @@ export const createPages: GatsbyNode["createPages"] = async ({graphql, actions, 
                 date
                 description
                 tags
+                code
+                code2
+                demo
                 featuredImage {
                   publicURL
                 }
@@ -83,7 +86,7 @@ export const createPages: GatsbyNode["createPages"] = async ({graphql, actions, 
       }
     }
     `);
-
+    
     if (result.errors) {
         console.log('Error Creating Projects', result.errors);
         return;
@@ -91,11 +94,9 @@ export const createPages: GatsbyNode["createPages"] = async ({graphql, actions, 
     const postTemplate = path.resolve("src/templates/PostLayout.tsx");
     const posts = result.data?.allMdx.edges || [];
     posts.forEach(({node, next, previous}) => {
-        const {id, frontmatter, internal: {contentFilePath}, tableOfContents} = node;
+        const {frontmatter, internal: {contentFilePath}} = node;
         createPage({
-            path: frontmatter.slug,
-            component: `${postTemplate}?__contentFilePath=${contentFilePath}`,
-            context: {node, next, previous},
+            path: frontmatter.slug, component: `${postTemplate}?__contentFilePath=${contentFilePath}`, context: {node, next, previous},
         });
     });
 };
@@ -104,15 +105,12 @@ export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({acti
     actions.setWebpackConfig({
         output: {
             filename: '[name].[fullhash].js', // Replace [hash] with [fullhash]
-        },
-        plugins: [
-            {
-                apply: (compiler: any) => {
-                    compiler.hooks.compilation.tap('MyPlugin', (compilation: any) => {
-                        compilation.getAssetPath = Compilation.prototype.getAssetPath; // Replace MainTemplate.getAssetPath
-                    });
-                },
+        }, plugins: [{
+            apply: (compiler: any) => {
+                compiler.hooks.compilation.tap('MyPlugin', (compilation: any) => {
+                    compilation.getAssetPath = Compilation.prototype.getAssetPath; // Replace MainTemplate.getAssetPath
+                });
             },
-        ],
+        },],
     });
 };
