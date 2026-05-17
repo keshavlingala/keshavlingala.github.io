@@ -10,6 +10,8 @@ interface SEOProps {
     pathname?: string;
     keywords?: string;
     image?: string;
+    article?: boolean;
+    datePublished?: string;
     children?: ReactNode;
 }
 

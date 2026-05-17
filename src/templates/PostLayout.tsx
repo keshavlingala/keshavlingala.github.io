@@ -105,5 +105,7 @@ export default PostLayout;
 
 export const Head = ({pageContext}: {pageContext: { node: PostLayoutNode }}) => {
     const {node} = pageContext;
-    return <SEO title={node.frontmatter.title} description={node.frontmatter.description} image={node.frontmatter.featuredImage.publicURL} pathname={node.frontmatter.slug}/>
+    return <SEO title={node.frontmatter.title} description={node.frontmatter.description}
+                image={node.frontmatter.featuredImage.publicURL} pathname={node.frontmatter.slug}
+                keywords={node.frontmatter.tags?.join(", ")} article datePublished={node.frontmatter.date}/>
 };

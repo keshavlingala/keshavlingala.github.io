@@ -66,23 +66,6 @@ const config: GatsbyConfig = {
                 ],
             },
         },
-        {
-            resolve: `gatsby-transformer-remark`,
-            options: {
-                plugins: [
-                    {
-                        resolve: `gatsby-remark-images`,
-                        options: {
-                            maxWidth: 800,
-                            withWebp: true,
-                            linkImagesToOriginal: false,
-                            showCaptions: true,
-                            wrapperStyle: `margin: 0 0 1.45rem; text-align: center;`,
-                        },
-                    },
-                ],
-            },
-        },
     ],
 };
 

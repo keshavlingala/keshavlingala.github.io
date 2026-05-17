@@ -1,5 +1,13 @@
 node_modules/
 .cache/
-public
+public/
 src/gatsby-types.d.ts
 .idea
+
+# OS / editor junk
+.DS_Store
+
+# Local env files
+.env
+.env.*
+!.env.example
