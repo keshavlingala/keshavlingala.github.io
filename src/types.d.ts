@@ -18,7 +18,6 @@ interface Skill {
     name: string;
     progress: number;
     techs: string[];
-    active?: boolean;
 }
 
 // Project related types
@@ -72,7 +71,6 @@ interface PostLayoutNode {
     internal: {
         contentFilePath: string;
     };
-    tableOfContents: { items: Item[] };
 }
 
 interface PostLayoutType {
@@ -144,12 +142,6 @@ interface LayoutProps {
 }
 
 // Miscellaneous types
-interface Item {
-    title: string;
-    url: string;
-    items?: Item[];
-}
-
 interface Icon {
     name: IconNames;
     icon: string;

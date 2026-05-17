@@ -84,9 +84,15 @@ const CreatedOn = styled.span`
     margin-top: auto;
 `
 
-const SkillImg = styled.img`
-    width: 40px;
-    height: 40px;
+const ReadMoreToggle = styled.span`
+    text-decoration: underline;
+    cursor: pointer;
+    color: inherit;
+
+    &:focus-visible {
+        outline: 2px solid #ffd285;
+        outline-offset: 2px;
+    }
 `
 
 export const SkillIconListContainer = styled.ol`
@@ -97,6 +103,55 @@ export const SkillIconListContainer = styled.ol`
     justify-content: flex-start;
     gap: 2px;
 `
+
+const ProjectCardItem: React.FC<{ project: Project }> = ({project}) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const image = getImage(project.frontmatter.featuredImage.childImageSharp.gatsbyImageData)
+    const date = new Date(project.frontmatter.date).toLocaleString('en-US', {year: 'numeric', month: 'short'})
+
+    const toggleExpanded = (e: React.SyntheticEvent) => {
+        e.stopPropagation();
+        e.preventDefault();
+        setIsExpanded(prev => !prev);
+    };
+
+    return (
+        <ProjectCard to={project.frontmatter.slug} tabIndex={0} key={project.id}>
+            <ProjectCardContent>
+                <h3>{project.frontmatter.title}</h3>
+                <p>
+                    {isExpanded ? project.frontmatter.description + ' ' : project.frontmatter.description.substring(0, 300) + "... "}
+                    <ReadMoreToggle
+                        role="button"
+                        tabIndex={0}
+                        aria-expanded={isExpanded}
+                        onClick={toggleExpanded}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') toggleExpanded(e);
+                        }}
+                    >
+                        {isExpanded ? "Read Less" : "Read More"}
+                    </ReadMoreToggle>
+                </p>
+
+                <SkillIconListContainer>
+                    {project.frontmatter.techs &&
+                        project.frontmatter.techs.map(tech => {
+                            const icon = icons.find(icon => icon.name === tech);
+                            return icon ? (
+                                <ToolTipItem tooltip={icon.name} key={icon.name}>
+                                    <img width="40px" height="40px" src={icon.icon} alt={icon.name}/>
+                                </ToolTipItem>
+                            ) : null;
+                        })
+                    }
+                </SkillIconListContainer>
+                <CreatedOn>- {date}</CreatedOn>
+            </ProjectCardContent>
+            {image && <FeatureImg image={image} alt={project.frontmatter.title}/>}
+        </ProjectCard>
+    )
+}
 
 const Projects: React.FC = () => {
     const data = useStaticQuery(graphql`
@@ -130,45 +185,10 @@ const Projects: React.FC = () => {
     `)
     if (!data) return <></>
 
-    return data?.allMdx?.nodes
+    const projects: Project[] = [...(data?.allMdx?.nodes ?? [])]
         .sort((a: Project, b: Project) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
-        .map((project: Project) => {
-            const [isExpanded, setIsExpanded] = useState(false);
-            const image = getImage(project.frontmatter.featuredImage.childImageSharp.gatsbyImageData)
-            const date = new Date(project.frontmatter.date).toLocaleString('en-US', {year: 'numeric', month: 'short'})
-            return (
-                <ProjectCard to={project.frontmatter.slug} tabIndex={0} key={project.id}>
-                    <ProjectCardContent>
-                        <h3>{project.frontmatter.title}</h3>
-                        <p>
-                            {isExpanded ? project.frontmatter.description + ' ' : project.frontmatter.description.substring(0, 300) + "..."}
-                            <span style={{textDecoration:'underline'}} onClick={(e) => {
-                                e.stopPropagation();
-                                e.preventDefault();
-                                setIsExpanded(!isExpanded);
-                            }}>
-                                {isExpanded ? "Read Less" : "Read More"}
-                            </span>
-                        </p>
 
-                        <SkillIconListContainer>
-                            {project.frontmatter.techs &&
-                                project.frontmatter.techs.map(tech => {
-                                    const icon = icons.find(icon => icon.name === tech);
-                                    return icon ? (
-                                        <ToolTipItem tooltip={icon.name} key={icon.name}>
-                                            <img width="40px" height="40px" src={icon.icon} alt={icon.name}/>
-                                        </ToolTipItem>
-                                    ) : null;
-                                })
-                            }
-                        </SkillIconListContainer>
-                        <CreatedOn>- {date}</CreatedOn>
-                    </ProjectCardContent>
-                    {image && <FeatureImg image={image} alt={project.frontmatter.title}/>}
-                </ProjectCard>
-            )
-        }) || <></>
+    return <>{projects.map(project => <ProjectCardItem project={project} key={project.id}/>)}</>
 }
 
 export default Projects

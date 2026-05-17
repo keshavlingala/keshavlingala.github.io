@@ -90,19 +90,21 @@ const TippedLI = styled.li<TippedLIProps>`
 
 
 export const ToolTipItem: React.FC<ToolTipItemProps> = ({children, tooltip, link}) => {
-    // const [show, setShow] = useState(false);
+    const open = ($event: React.SyntheticEvent) => {
+        $event.preventDefault();
+        $event.stopPropagation();
+        if (link) window.open(link, "_blank", "noopener,noreferrer");
+    };
+
     return (<TippedLI
-            // onMouseEnter={() => setShow(true)}
             tooltip={tooltip}
-            // show={show}
-            // onTouchStart={() => setShow(true)}
-            onClick={($event) => {
-                link && window.open(link, "_blank");
-                $event.preventDefault();
-                $event.stopPropagation();
-            }}
-            // onTouchEnd={() => setShow(false)}
-            // onMouseLeave={() => setShow(false)}
+            role={link ? "link" : undefined}
+            tabIndex={link ? 0 : undefined}
+            aria-label={link ? tooltip : undefined}
+            onClick={open}
+            onKeyDown={link ? ($event) => {
+                if ($event.key === 'Enter' || $event.key === ' ') open($event);
+            } : undefined}
         >
             {children}
         </TippedLI>);

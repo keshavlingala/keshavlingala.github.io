@@ -27,6 +27,11 @@ const SkillItem = styled.li<{ active?: boolean; progress: number }>`
     position: relative;
     background-color: ${p => (p.active ? "#d0cfcf45" : "inherit")};
 
+    &:focus-visible {
+        outline: 2px solid #ffd285;
+        outline-offset: -2px;
+    }
+
     &:hover {
         background-color: #d0cfcf45;
 
@@ -97,116 +102,124 @@ const IconLister = styled.ul`
 `;
 
 
-let skills: Skill[] = [
-   {
-    name: "Front-end Web Development",
-    progress: 100,
-    techs: [
-        IconNames.Angular, IconNames.Typescript, IconNames.React, IconNames.Javascript,
-        IconNames.HTML, IconNames.CSS, IconNames.Bootstrap, IconNames.Gatsby, IconNames.PWA
-    ]
-},
-{
-    name: "Back-end Development",
-    progress: 100,
-    techs: [
-        IconNames.Java, IconNames.SpringBoot, IconNames.Python, IconNames.Kotlin,
-        IconNames.NodeJS, IconNames.GoLang, IconNames.GoGin, IconNames.Javascript,
-        IconNames.ApacheKafka, IconNames.ApacheSpark, IconNames.ApacheCassandra,
-        IconNames.NestJs, IconNames.Typescript
-    ]
-},
-{
-    name: "Database Design and Management",
-    progress: 100,
-    techs: [
-        IconNames.MySQL, IconNames.MongoDB, IconNames.GoogleCloud, IconNames.ApacheCassandra,
-        IconNames.Oracle, IconNames.Postgresql, IconNames.GraphQL, IconNames.Redis
-    ]
-},
-{
-    name: "Cloud Technologies and DevOps",
-    progress: 100,
-    techs: [
-        IconNames.GoogleCloud, IconNames.AWS, IconNames.Azure, IconNames.Docker,
-        IconNames.Kubernetes, IconNames.ApacheHadoop, IconNames.ApacheSpark,
-        IconNames.Bash, IconNames.ApacheKafka, IconNames.Jenkins, IconNames.Git,
-        IconNames.Ansible, IconNames.GithubActions
-    ]
-},
-{
-    name: "Full Stack Development",
-    progress: 100,
-    techs: [
-        IconNames.Gatsby, IconNames.Python, IconNames.GraphQL, IconNames.Redis,
-        IconNames.Angular, IconNames.Typescript, IconNames.React, IconNames.SpringBoot,
-        IconNames.NodeJS, IconNames.Docker, IconNames.Javascript, IconNames.HTML,
-        IconNames.CSS, IconNames.Bootstrap, IconNames.AWS, IconNames.Kubernetes,
-        IconNames.ApacheKafka, IconNames.Jenkins, IconNames.Ansible, IconNames.Git,
-        IconNames.Postgresql, IconNames.MySQL, IconNames.MongoDB, IconNames.Java,
-        IconNames.Kotlin, IconNames.GoLang, IconNames.GoGin, IconNames.ApacheSpark,
-        IconNames.ApacheCassandra, IconNames.NestJs, IconNames.GithubActions, IconNames.PWA
-    ]
-},
-{
-    name: "Neural Networks and Machine Learning",
-    progress: 100,
-    techs: [
-        IconNames.NeuralNetworks, IconNames.TensorFlow, IconNames.Keras,
-        IconNames.Python, IconNames.Java, IconNames.CPP, IconNames.Javascript,
-        IconNames.Arduino
-    ]
-},
-{
-    name: "Tools and IDEs for Development",
-    progress: 100,
-    techs: [
-        IconNames.Idea, IconNames.GoLand, IconNames.WebStorm, IconNames.Pycharm,
-        IconNames.VsCode, IconNames.Postman, IconNames.Insomnia, IconNames.BlazeMeter,
-        IconNames.Jmeter, IconNames.Prometheus, IconNames.Grafana, IconNames.Kibana,
-        IconNames.ElasticSearch, IconNames.Splunk, IconNames.Jira, IconNames.Discord,
-        IconNames.Slack, IconNames.Confluence, IconNames.BitBucket, IconNames.Scrum,
-        IconNames.Kanban, IconNames.Agile, IconNames.WaterFall
-    ]
-},
-{
-    name: "Automation scripting",
-    progress: 100,
-    techs: [
-        IconNames.Python, IconNames.Bash, IconNames.Git, IconNames.GoogleCloud,
-        IconNames.Docker, IconNames.AWS
-    ]
-},
-{
-    name: "All Skills",
-    progress: 100,
-    techs: []
-}
-].map(skill => ({...skill, active: skill.name === "Full Stack Development"}));
+const DEFAULT_SKILL = "Full Stack Development";
+
+const skills: Skill[] = [
+    {
+        name: "Front-end Web Development",
+        progress: 100,
+        techs: [
+            IconNames.Angular, IconNames.Typescript, IconNames.React, IconNames.Javascript,
+            IconNames.HTML, IconNames.CSS, IconNames.Bootstrap, IconNames.Gatsby, IconNames.PWA
+        ]
+    },
+    {
+        name: "Back-end Development",
+        progress: 100,
+        techs: [
+            IconNames.Java, IconNames.SpringBoot, IconNames.Python, IconNames.Kotlin,
+            IconNames.NodeJS, IconNames.GoLang, IconNames.GoGin, IconNames.Javascript,
+            IconNames.ApacheKafka, IconNames.ApacheSpark, IconNames.ApacheCassandra,
+            IconNames.NestJs, IconNames.Typescript
+        ]
+    },
+    {
+        name: "Database Design and Management",
+        progress: 100,
+        techs: [
+            IconNames.MySQL, IconNames.MongoDB, IconNames.GoogleCloud, IconNames.ApacheCassandra,
+            IconNames.Oracle, IconNames.Postgresql, IconNames.GraphQL, IconNames.Redis
+        ]
+    },
+    {
+        name: "Cloud Technologies and DevOps",
+        progress: 100,
+        techs: [
+            IconNames.GoogleCloud, IconNames.AWS, IconNames.Azure, IconNames.Docker,
+            IconNames.Kubernetes, IconNames.ApacheHadoop, IconNames.ApacheSpark,
+            IconNames.Bash, IconNames.ApacheKafka, IconNames.Jenkins, IconNames.Git,
+            IconNames.Ansible, IconNames.GithubActions
+        ]
+    },
+    {
+        name: DEFAULT_SKILL,
+        progress: 100,
+        techs: [
+            IconNames.Gatsby, IconNames.Python, IconNames.GraphQL, IconNames.Redis,
+            IconNames.Angular, IconNames.Typescript, IconNames.React, IconNames.SpringBoot,
+            IconNames.NodeJS, IconNames.Docker, IconNames.Javascript, IconNames.HTML,
+            IconNames.CSS, IconNames.Bootstrap, IconNames.AWS, IconNames.Kubernetes,
+            IconNames.ApacheKafka, IconNames.Jenkins, IconNames.Ansible, IconNames.Git,
+            IconNames.Postgresql, IconNames.MySQL, IconNames.MongoDB, IconNames.Java,
+            IconNames.Kotlin, IconNames.GoLang, IconNames.GoGin, IconNames.ApacheSpark,
+            IconNames.ApacheCassandra, IconNames.NestJs, IconNames.GithubActions, IconNames.PWA
+        ]
+    },
+    {
+        name: "Neural Networks and Machine Learning",
+        progress: 100,
+        techs: [
+            IconNames.NeuralNetworks, IconNames.TensorFlow, IconNames.Keras,
+            IconNames.Python, IconNames.Java, IconNames.CPP, IconNames.Javascript,
+            IconNames.Arduino
+        ]
+    },
+    {
+        name: "Tools and IDEs for Development",
+        progress: 100,
+        techs: [
+            IconNames.Idea, IconNames.GoLand, IconNames.WebStorm, IconNames.Pycharm,
+            IconNames.VsCode, IconNames.Postman, IconNames.Insomnia, IconNames.BlazeMeter,
+            IconNames.Jmeter, IconNames.Prometheus, IconNames.Grafana, IconNames.Kibana,
+            IconNames.ElasticSearch, IconNames.Splunk, IconNames.Jira, IconNames.Discord,
+            IconNames.Slack, IconNames.Confluence, IconNames.BitBucket, IconNames.Scrum,
+            IconNames.Kanban, IconNames.Agile, IconNames.WaterFall
+        ]
+    },
+    {
+        name: "Automation scripting",
+        progress: 100,
+        techs: [
+            IconNames.Python, IconNames.Bash, IconNames.Git, IconNames.GoogleCloud,
+            IconNames.Docker, IconNames.AWS
+        ]
+    },
+    {
+        name: "All Skills",
+        progress: 100,
+        techs: []
+    }
+];
+
+const iconsForSkill = (skill: Skill): Icon[] =>
+    skill.techs.length === 0 ? icons : icons.filter(icon => skill.techs.includes(icon.name));
 
 
 const SkillsComponent: React.FC = () => {
-    const [items, setItems] = useState<Icon[]>(icons.filter(icon => skills.find(skill => skill.active)?.techs.includes(icon.name)));
+    const [activeName, setActiveName] = useState<string>(DEFAULT_SKILL);
+    const activeSkill = skills.find(s => s.name === activeName) ?? skills[0];
+    const items = iconsForSkill(activeSkill);
 
     return (
         <Section>
             <SkillList>
                 {skills.map(skill => (
                     <SkillItem
+                        role="button"
                         tabIndex={0}
-                        onClick={() => {
-                            if (skill.techs.length === 0) {
-                                setItems(icons);
-                            } else {
-                                setItems(icons.filter(icon => skill.techs.includes(icon.name)));
+                        aria-pressed={skill.name === activeName}
+                        onClick={() => setActiveName(skill.name)}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                setActiveName(skill.name);
                             }
-                            skills = skills.map(s => ({...s, active: s.name === skill.name}));
                         }}
-                        active={skill.active}
+                        active={skill.name === activeName}
                         progress={skill.progress}
                         key={skill.name}
                     >
-                        {skill.name} {skill.active}
+                        {skill.name}
                     </SkillItem>
                 ))}
             </SkillList>

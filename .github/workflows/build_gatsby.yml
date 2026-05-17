@@ -11,24 +11,36 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
+          cache: 'npm'
 
       - name: List Versions
         run: node --version && npm --version
 
+      - name: Cache Gatsby build
+        uses: actions/cache@v4
+        with:
+          path: |
+            .cache
+            public
+          key: ${{ runner.os }}-gatsby-${{ hashFiles('package-lock.json') }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-gatsby-${{ hashFiles('package-lock.json') }}-
+            ${{ runner.os }}-gatsby-
+
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build Gatsby site
         run: npm run build && echo keshav.codes > public/CNAME
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages

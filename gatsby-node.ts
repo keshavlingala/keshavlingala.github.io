@@ -14,6 +14,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
       tags: [String]
       title: String
       code: String
+      code2: String
       demo: String
       description: String
       date: Date @dateformat
@@ -49,8 +50,6 @@ export const createPages: GatsbyNode["createPages"] = async ({graphql, actions})
               internal {
                 contentFilePath
               }
-              body
-              tableOfContents
           }
           next {
             frontmatter {
