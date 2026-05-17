@@ -9,35 +9,27 @@ code: https://github.com/keshavlingala/BlockVote
 techs: [HTML, CSS, Javascript, Typescript, Angular, Firebase]
 ---
 
-Secure and Transparent Elections: Implementing a Blockchain-Based Voting System
-
-## Introduction
+Secure and transparent elections, implemented as a blockchain-based voting system.
 
 [![Block-Vote](https://img.shields.io/badge/github-BlockVote-blue.svg)](https://github.com/keshavlingala/BlockVote)
 
 ## Project Description
 
-The application lets any user create campaigns, whoever creates the Campaign will be the Campaign's owner, and only he can
-modify the Campaign. Each Campaign will have candidates. The Campaign owner can only add candidates.
+Any user can create a voting campaign. The user who creates a campaign becomes its owner and is the only one who can modify it or add candidates. To participate, voters install Metamask as their blockchain wallet and connect to the appropriate network; users with voting rights can then cast their vote.
 
-In order to use the application, the user must install Metamask as a Blockchain wallet and connect to the respective network.
-Users with voting rights can vote.
+The campaign owner can mark a campaign inactive once voting is complete, after which no further votes can be cast. Every campaign and candidate has a unique blockchain address, so results are fully transparent — anyone can view the votes and the winner, download the results as a PDF, and verify every transaction in the in-app history or on Etherscan. A help screen with rules and FAQs is always available for guidance.
 
-Moreover, the Campaign owner can make the Campaign Inactive. Everyone can see the votes and the Winner and Download the Results in PDF format. Each Campaign and candidate in the Campaign will have a unique blockchain address so It can be transparent, and all the vote transactions can be seen in transaction history and Etherscan.
-Users can always go to the help screen to understand the rules and see FAQs for better usability.
-
-The application is also accessible for visually impaired users using a voiceover when hovered over the screen.
-The application also supports multiple languages with a single click of a button.
+The application is also accessible to visually impaired users through voiceover on hover, and supports multiple languages with a single click.
 
 ## Technical Details
 
-- Used Truffle to deploy smart contracts to Ganache and Sepolia Ethereum Network
-- Used Angular 11 and NX Workspace for front-end development
-- ng-web3 library to connect to Metamask and make blockchain transactions
-- Used Google's Material Design Standard Components
-- Used Multiple Solidity contracts and inheritance features to develop  robust smart contracts
-- Used Dexie for Minimalist IndexedDB to store eligible voters
-- Used JsPDF Library to generate PDF files
+- Truffle to compile and deploy smart contracts to Ganache and the Sepolia Ethereum network
+- Angular 11 with an Nx workspace for the front end
+- `ng-web3` to connect to Metamask and submit blockchain transactions
+- Google Material Design components
+- Multiple Solidity contracts using inheritance for robust, modular smart contracts
+- Dexie (a minimalist IndexedDB wrapper) to store the eligible-voter list
+- jsPDF to generate the downloadable results
 
 # Instructions to run the project
 
@@ -45,34 +37,33 @@ The application also supports multiple languages with a single click of a button
 - Run `npm install` in the root directory
 - Run `npm run truffle:develop` to start the local blockchain
 - Run `npm run truffle:migrate` to deploy the smart contracts to the local blockchain
-- Modify the `truffle-config.js` file to point to the local blockchain
-- Copy the contract addresses from the terminal and paste them in the file `environment..campaignFactory.address`
+- Modify `truffle-config.js` to point to the local blockchain
+- Copy the contract addresses from the terminal into `environment.campaignFactory.address`
 - Run `npm run start` to start the frontend application
-- Navigate to `http://localhost:4200/` to view the application
+- Open `http://localhost:4200/` to view the application
 
 ## Project Features
 
-- Create Campaign
-- Adding Candidates to Campaign
-- Voting for Candidates
-- Smart Contracts for Campaign operations and voting operations
-- Ability to make a Campaign InActive after Voting is done, so that no more votes can be cast
-- Security, cannot access any campaigns without logging in
-- ID verification and ability to add eligible voters ( Voter ID and Social Security)
-- Ability to Download Voting Results as PDF file
-- UI Improvements, Card Designs, Colors, Buttons, Animation, Icons, Images etc
-- Multiple Language Support
-- Improve accessibility for visually impaired users
-- Upcoming Elections Headers
-- Help Screen with Instructions and FAQs for Voters
-- Share Campaign on Any Social Media Platform with a single click
-- Deployed to Sepolia Testnet and Ganache
+- Create campaigns and add candidates
+- Cast votes for candidates through Metamask
+- Smart contracts for all campaign and voting operations
+- Mark a campaign inactive once voting is done, locking out further votes
+- Authentication required — no campaign is accessible without logging in
+- ID verification and an eligible-voter list (Voter ID and Social Security)
+- Download voting results as a PDF
+- Polished UI: card designs, colors, buttons, animations, icons, and imagery
+- Multi-language support
+- Improved accessibility for visually impaired users
+- Upcoming-elections header
+- Help screen with instructions and FAQs for voters
+- One-click campaign sharing to any social platform
+- Deployed to the Sepolia testnet and Ganache
 
 ## Project Screenshots
 
 ### Home Page
 
-![HomePage](images/ss5.png)
+![Home Page](images/ss5.png)
 
 
 <br/>
@@ -85,7 +76,7 @@ The application also supports multiple languages with a single click of a button
 <br/>
 
 
-### Casting User Vote using Metamask
+### Casting a Vote with Metamask
 
 ![Vote](images/ss4.png)
 
@@ -99,7 +90,7 @@ The application also supports multiple languages with a single click of a button
 <br/>
 
 
-### Local DB for storing eligible voters
+### Local DB for Eligible Voters
 
 ![Local DB](images/ss3.png)
 
@@ -111,4 +102,3 @@ The application also supports multiple languages with a single click of a button
 ![Help Screen](images/ss1.png)
 
 <br/>
-

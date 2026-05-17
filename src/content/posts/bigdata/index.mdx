@@ -12,19 +12,11 @@ techs: ['Apache Kafka', 'Apache Spark','Spring Boot', Hadoop, 'Apache Cassandra'
 
 ## Introduction
 
-Splitwise is a free tool for friends and roommates to track bills and other shared expenses, so that everyone gets paid
-back. On the other hand, Big data is a term that describes the large volume of data – both structured and unstructured –
-that inundates a business on a day-to-day basis. But it’s not the amount of data that’s important. It’s what
-organizations do with the data that matters. Big data can be analyzed for insights that lead to better decisions and
-strategic business moves.
-
-This is project to demonstrate the use of multiple big data technologies to process the splitwise data in real time. The
-project is divided into two parts. The first part is to process the data in real time and the second part is to process
-the data in batch mode. The project is implemented using Kafka, Spark, Spring Boot, Cassandra, Docker, Docker Compose.
+[Splitwise](https://www.splitwise.com/) is a free tool friends and roommates use to track shared bills and expenses. This project pulls that financial data and processes it with a Big Data stack in two modes: a real-time streaming pipeline and a batch analytics job. It is built with Kafka, Spark, Spring Boot, Cassandra, and Docker Compose, and is meant as an end-to-end demonstration of wiring these tools together into a working pipeline.
 
 ## Architecture
 
-![Architecture ](images/Architecture.jpg)
+![Architecture](images/Architecture.jpg)
 
 ## Technologies Used
 
@@ -43,43 +35,41 @@ the data in batch mode. The project is implemented using Kafka, Spark, Spring Bo
 ## How to run the project
 
 ### Prerequisites
+
 - Docker
 
-### Steps to run the project
+### Steps
 
-- Clone the project
-- Go to the project directory
-- Run the following command to start the project
+Clone the project, change into its directory, and build the images:
+
 ```shell
 docker build -t jobscheduler ./scheduler
 docker build -t spark-analysis ./sparkanalysis
 docker build -t kafka-streaming-app ./kafka-streaming-app
 ```
-This will build the docker images for the project.
-- Run the following command to start the project
+
+Start everything with Docker Compose:
 
 ```shell
 docker-compose up -d
 ```
 
-Docker Desktop should look like this
+Docker Desktop should look like this:
 
 ![Docker Desktop](images/DockerSS.png)
 
-- Wait for 60 seconds to let the cassandra and kafka to start
-- cassandra-init service is expected to stop after 65 seconds (depends on system speed), and init the cassandra database, if it stopped and the
-database is not initialized, run init service again and wait for 60 seconds. ( only required for the first time )
-- After Cassandra service started and inited successfully, start jobscheduler service then
-- Use the below command to add a splitwise user to the system
+Give Cassandra and Kafka about 60 seconds to start. The `cassandra-init` service is expected to stop after ~65 seconds (depending on machine speed) once it has initialized the database — if it stops before the database is ready, run it again and wait another 60 seconds. This is only needed the first time.
+
+Once Cassandra is up and initialized, start the `jobscheduler` service, then register a Splitwise user:
 
 ```shell
 curl --location --request POST 'localhost:8080/add_user_key?key=<splitwise-api-key>' \
 --data ''
 ```
 
-> Splitwise api key can be generated [here](https://secure.splitwise.com/apps/new)
+> A Splitwise API key can be generated [here](https://secure.splitwise.com/apps/new).
 
-- Start Kafka-streaming-app service and trigger scheduler application using the below command
+Start the `kafka-streaming-app` service and trigger the scheduler:
 
 ```shell
 curl --location --request GET 'localhost:8080/job/splitwise'
@@ -87,11 +77,8 @@ curl --location --request GET 'localhost:8080/job/splitwise'
 
 ![Trigger Scheduler manually](images/TriggerScheduler.png)
 
+This triggers the scheduler to fetch data from Splitwise and push it to Kafka. The `kafka-streaming-app` service consumes from Kafka, processes the data, and writes it to Cassandra.
 
-- This will trigger the scheduler application to fetch the data from splitwise and push it to kafka
-- Kafka-streaming-app service will consume the data from kafka and process it and push it to cassandra
-- You can start the sparkanalysis service to get the reports generated in [output](./output) folder
 ![Add User Key](images/AddUser.png)
-- Spark Analysis service will stop automatically after reports are generated
-- Generated CSV can be interpreted directly using excel or any other tool and can be visualized using any visualization
-tool like Tableau, Power BI, etc.
+
+Finally, start the `sparkanalysis` service to generate reports into the [output](./output) folder. It stops automatically once the reports are written. The generated CSVs can be opened directly in Excel or fed into a visualization tool such as Tableau or Power BI.

@@ -14,53 +14,46 @@ techs: [Angular, 'Spring Boot', AWS, MySQL, Firebase, PWA, Jira, Bootstrap]
 ![Logo](feature.png)
 
 ## Introduction
- ---
 
+Bump was built around a problem statement from the Smart India Hackathon (SIH):
 
-Problem Statement took from SIH ( Smart India Hackathon )
+> **Problem:** Goa faced heavy rains, and potholes became the government's biggest maintenance challenge. The core issue is coordination — there is a fundamental disconnect between civil agencies, the public, and elected representatives. The goal is a mobile-based dynamic reporting system that keeps information flowing between all stakeholders and improves governance through greater public involvement.
 
-|                            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Description**            | Goa has faced the rage of rains this year and potholes are the biggest problem which government is tackling. Now problem lies in the fact that concerned departments are not able to co-ordinate to resolve the issue. ISSUES (a) Fundamentally there is disconnection between civil agencies, people and elected representatives. (b) The aim is to build a mobile based dynamic reporting system which will facilitate into flow of information among all concerned stakeholders. (c) The aim is to provide better Governance by more involvement of public. |
-| **Organization**           | Govt of Goa                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| **Category**               | Software                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| **Domain Bucket	Software** | Mobile App development                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-
+- **Organization:** Govt. of Goa
+- **Category:** Software
+- **Domain:** Mobile app development
 
 ## Project Design
----
 
 ![Project Design](images/system_design.png)
 
-> This is just a miniaturized software solution for all the paper work done by government which is very complex
+> This is a miniaturized software solution for the otherwise very complex paperwork the government handles manually.
 
-Angular PWA Application talks to Spring Boot Web Server.
-Web Server is connected and communicates to Amazon S3 Bucket and MySQL Server
-
+An Angular PWA talks to a Spring Boot web server, which in turn communicates with an Amazon S3 bucket and a MySQL database.
 
 ### Functionalities
 
-Users can upload details of pothole, and the location at which the pothole picture is clicked is tracked by using GPS. There is also a feature where the citizens can register their details along with their license number and get approved by the government  as contractors for filling in the potholes. Contracts can bid for a particular pothole, the government can select the best bid and award the pothole repair contract. The status of repairing of pothole is updated to both government and the citizens.
+Citizens upload pothole details, with the location captured automatically via GPS at the time the photo is taken. Citizens can also register with their license number and, once approved by the government, act as contractors. Contractors bid on a given pothole, the government selects the best bid and awards the repair contract, and the repair status is then kept up to date for both the government and the reporting citizens.
 
-* Pothole complaints can be directly registered by citizens
-* People can provide their contract and stand a chance to repair the pothole
-* Citizens receive updates regarding the complaints registered
-* Prioritize potholes in order to reduce inconvenience to public
-* Government authorities have complete access and control over the application
+- Citizens can register pothole complaints directly
+- Citizens can offer a contract and bid for the chance to repair a pothole
+- Citizens receive updates on the complaints they registered
+- Potholes are prioritized to minimize public inconvenience
+- Government authorities have full access and control over the system
 
 ### Technical Implementation
-* Platform Independent
-* Details of pothole are saved in the absence of internet
-* Efficient and reliable
-* Material Design
-* Mobile Responsive
+
+- Platform independent
+- Pothole details are saved even without an internet connection
+- Efficient and reliable
+- Material Design
+- Mobile responsive
 
 ## Technology Stack
 
 ![Technology Stack](images/technology_stack.png)
 
 ## Use Cases
----
 
 ### User Use Case
 
@@ -68,14 +61,12 @@ Users can upload details of pothole, and the location at which the pothole pictu
 
 ### Contractor Use Case
 
-
 ![Contractor Use Case](images/con_usecase.png)
 
 ## Screenshots
----
 
 ![User Dashboard](images/user_d.png)
 
-![Contactor Dashboard](images/con_d.png)
+![Contractor Dashboard](images/con_d.png)
 
 ![Admin Dashboard](images/admin_d.png)

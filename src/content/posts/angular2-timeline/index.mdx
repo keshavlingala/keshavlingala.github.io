@@ -1,7 +1,7 @@
 ---
 title: "Dynamic Timeline for Angular: angular2-timeline"
 slug: angular2-timeline
-tags: ['Angular Library','Angular Reusable library','angular2','timeline','npm module','NPM Registery','Keshav Lingala','Keshav Reddy','Keshav Reddy Lingala','Lingala Keshav Reddy','Keshav']
+tags: ['Angular Library','Angular Reusable library','angular2','timeline','npm module','NPM Registry','Keshav Lingala','Keshav Reddy','Keshav Reddy Lingala','Lingala Keshav Reddy','Keshav']
 description: Build visually compelling timelines effortlessly with angular2-timeline—a CSS-based Angular library designed to display dynamic data in a sleek, customizable timeline view. Tailor the design and colors of each timeline item to suit your application's style, ensuring that your content stands out. Perfect for creating responsive timelines that look great on any device, this library offers simple installation and intuitive usage to streamline your development process. Elevate your Angular projects with a timeline component that’s both powerful and easy to implement.
 featuredImage: feature.jpg
 date: '2020-08-05'
@@ -10,19 +10,24 @@ demo: https://www.npmjs.com/package/angular2-timeline
 techs: ['Angular', 'CSS', 'HTML', 'Typescript']
 ---
 
-![ScreenShot of UI ](feature.jpg)
+![Screenshot of the timeline UI](feature.jpg)
 
 ## Overview
 
-> This Library is no longer maintained
+A lightweight, CSS-based Angular library, published to npm, for rendering dynamic data as a clean, responsive timeline. Each item's colors are individually customizable so the component blends into any design.
+
+> This library is no longer maintained.
 
 ## Installation
-Install using npm
+
+Install from npm:
+
 ```bash
 > npm i angular2-timeline
 ```
 
-Add Timeline Module
+Add the timeline module to your app:
+
 ```typescript
 import {TimelineModule} from "angular2-timeline";
 
@@ -33,12 +38,14 @@ import {TimelineModule} from "angular2-timeline";
     ...
   ],
 ```
+
 ## Exposed Components
 
-- TimelineComponent
-- TimelineItemCompoenent
+- `TimelineComponent`
+- `TimelineItemComponent`
 
 ## How to use
+
 ```html
 <timeline>
   <timeline-item>
@@ -46,7 +53,9 @@ import {TimelineModule} from "angular2-timeline";
   </timeline-item>
 </timeline>
 ```
-Create a simple timeline
+
+A complete example with statically and dynamically added items:
+
 ```typescript
 import {Component} from '@angular/core';
 
@@ -87,7 +96,8 @@ export class AppComponent {
 }
 ```
 
-set dots color for each item as HEX code
+Set a dot color per item with a HEX code:
+
 ```html
 <timeline>
     <timeline-item color="#42b5b6">
@@ -97,10 +107,8 @@ set dots color for each item as HEX code
 ```
 
 # Features
-- Mobile Responsive
-- Customizable colors for each timeline item
+
+- Mobile responsive
+- Customizable dot color for each timeline item
 
 ***
-
-
-
