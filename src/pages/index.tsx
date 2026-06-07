@@ -20,9 +20,10 @@ const IndexPage: React.FC = () => {
             <Profile/>
             <Container>
                 <Description>
-                    Adept Software Engineer with a robust portfolio in full-stack development, cloud solutions, and
-                    system optimization. Proficient in Java, Python, AWS, Kubernetes, and beyond. Committed to
-                    excellence in clean code and cutting-edge technologies.
+                    Software Development Engineer with a portfolio spanning full-stack development, cloud-native
+                    systems, and — most recently — generative AI: designing LLM-powered applications, autonomous
+                    agents, and MCP integrations. Proficient across Java, Python, TypeScript, AWS, and Kubernetes,
+                    with a focus on clean code and shipping practical AI systems.
                     Dive into my projects below. Get in touch: <a
                     href="mailto:admin@keshav.codes">admin@keshav.codes</a>
                 </Description>
@@ -30,12 +31,6 @@ const IndexPage: React.FC = () => {
                 <span className="anchor" id="projects"/>
                 <h2>Projects</h2>
                 <Projects/>
-                <span className="anchor" id="experience"/>
-                {/*<h2>Work Experience</h2>*/}
-                {/*<WorkExperience/>*/}
-                {/*<span className="anchor" id="education"/>*/}
-                {/*<h2>Education</h2>*/}
-                {/*<Education/>*/}
                 <span className="anchor" id="skills"/>
                 <h2>Skills & Languages</h2>
                 <Skills/>

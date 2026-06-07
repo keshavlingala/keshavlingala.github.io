@@ -65,4 +65,10 @@ export enum IconNames {
     Firebase = "Firebase",
     GithubActions= "Github Actions",
     PWA = "PWA",
+    Anthropic = "Anthropic",
+    LangChain = "LangChain",
+    HuggingFace = "Hugging Face",
+    Ollama = "Ollama",
+    N8N = "n8n",
+    ComfyUI = "ComfyUI",
 }

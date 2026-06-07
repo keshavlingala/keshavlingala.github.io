@@ -120,15 +120,15 @@ const skills: Skill[] = [
             IconNames.Java, IconNames.SpringBoot, IconNames.Python, IconNames.Kotlin,
             IconNames.NodeJS, IconNames.GoLang, IconNames.GoGin, IconNames.Javascript,
             IconNames.ApacheKafka, IconNames.ApacheSpark, IconNames.ApacheCassandra,
-            IconNames.NestJs, IconNames.Typescript
+            IconNames.NestJs, IconNames.Typescript, IconNames.GraphQL
         ]
     },
     {
         name: "Database Design and Management",
         progress: 100,
         techs: [
-            IconNames.MySQL, IconNames.MongoDB, IconNames.GoogleCloud, IconNames.ApacheCassandra,
-            IconNames.Oracle, IconNames.Postgresql, IconNames.GraphQL, IconNames.Redis
+            IconNames.MySQL, IconNames.MongoDB, IconNames.ApacheCassandra,
+            IconNames.Oracle, IconNames.Postgresql, IconNames.Redis
         ]
     },
     {
@@ -152,7 +152,9 @@ const skills: Skill[] = [
             IconNames.ApacheKafka, IconNames.Jenkins, IconNames.Ansible, IconNames.Git,
             IconNames.Postgresql, IconNames.MySQL, IconNames.MongoDB, IconNames.Java,
             IconNames.Kotlin, IconNames.GoLang, IconNames.GoGin, IconNames.ApacheSpark,
-            IconNames.ApacheCassandra, IconNames.NestJs, IconNames.GithubActions, IconNames.PWA
+            IconNames.ApacheCassandra, IconNames.NestJs, IconNames.GithubActions, IconNames.PWA,
+            IconNames.Anthropic, IconNames.LangChain, IconNames.HuggingFace, IconNames.Ollama,
+            IconNames.N8N, IconNames.ComfyUI
         ]
     },
     {
@@ -162,6 +164,14 @@ const skills: Skill[] = [
             IconNames.NeuralNetworks, IconNames.TensorFlow, IconNames.Keras,
             IconNames.Python, IconNames.Java, IconNames.CPP, IconNames.Javascript,
             IconNames.Arduino
+        ]
+    },
+    {
+        name: "Generative AI & Autonomous Agents",
+        progress: 100,
+        techs: [
+            IconNames.Anthropic, IconNames.LangChain, IconNames.HuggingFace,
+            IconNames.Ollama, IconNames.N8N, IconNames.ComfyUI, IconNames.Python
         ]
     },
     {

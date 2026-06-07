@@ -83,9 +83,9 @@ const PostLayout: React.FC<{
                         <i className='fa fa-github fa-2x'/>
                         Github
                     </ToolTipItem>}
-                    {node.frontmatter.code2 && <ToolTipItem tooltip={"Open in Github"} link={node.frontmatter.code2}>
+                    {node.frontmatter.code2 && <ToolTipItem tooltip={"Open Backend / API repo in Github"} link={node.frontmatter.code2}>
                         <i className='fa fa-github fa-2x'/>
-                        Github
+                        Backend
                     </ToolTipItem>}
                     {node.frontmatter.demo && <ToolTipItem tooltip={"Live Demo"} link={node.frontmatter.demo}>
                         <i className='fa fa-link fa-2x'/>

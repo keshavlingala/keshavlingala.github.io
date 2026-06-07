@@ -65,6 +65,12 @@ import {Icon} from "../types";
 import {IconNames} from "../iconNames";
 import GithubActions from "../content/icons/githubactions.svg";
 import PWA from "../content/icons/pwa.svg";
+import Anthropic from "../content/icons/anthropic.svg";
+import LangChain from "../content/icons/langchain.svg";
+import HuggingFace from "../content/icons/huggingface.svg";
+import Ollama from "../content/icons/ollama.svg";
+import N8N from "../content/icons/n8n.svg";
+import ComfyUI from "../content/icons/comfyui.svg";
 export const icons: Icon[] = [
     { name: IconNames.Angular, icon: Angular },
     { name: IconNames.Arduino, icon: Arduino },
@@ -132,4 +138,10 @@ export const icons: Icon[] = [
     { name: IconNames.Firebase, icon: Firebase },
     {name: IconNames.GithubActions, icon: GithubActions},
     {name: IconNames.PWA, icon: PWA},
+    {name: IconNames.Anthropic, icon: Anthropic},
+    {name: IconNames.LangChain, icon: LangChain},
+    {name: IconNames.HuggingFace, icon: HuggingFace},
+    {name: IconNames.Ollama, icon: Ollama},
+    {name: IconNames.N8N, icon: N8N},
+    {name: IconNames.ComfyUI, icon: ComfyUI},
 ].sort((a, b) => a.name.localeCompare(b.name));
