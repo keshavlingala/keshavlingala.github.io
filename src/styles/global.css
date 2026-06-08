@@ -246,6 +246,17 @@ a {
   color: var(--text);
   border-color: var(--line-2);
 }
+.chip.featured {
+  color: var(--amber-bright);
+  border-color: rgba(230, 180, 120, 0.4);
+}
+.chip.featured::before {
+  content: "★";
+  font-size: 8.5px;
+  margin-right: 5px;
+  vertical-align: 1px;
+  opacity: 0.85;
+}
 .chip.on {
   color: #2a2017;
   background: linear-gradient(120deg, var(--amber-bright), var(--amber-deep));
@@ -392,6 +403,18 @@ skill-galaxy {
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
+/* featured = headline specialties (Full-Stack · Cloud · Gen AI): bigger + amber */
+.hub.featured circle {
+  fill: #2c2620;
+  stroke: var(--amber);
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 8px rgba(230, 180, 120, 0.55));
+}
+.hub.featured .hub-t {
+  fill: var(--amber-bright);
+  font-size: 11px;
+  font-weight: 600;
+}
 .galaxy-svg.focused .edge {
   opacity: 0.06;
 }
@@ -412,11 +435,27 @@ skill-galaxy {
 }
 .gnode {
   cursor: grab;
+  transition: opacity 0.3s;
 }
 .gnode circle {
   fill: var(--bg-2);
   stroke-width: 2;
-  transition: opacity 0.25s;
+  transition:
+    opacity 0.25s,
+    stroke-width 0.25s;
+}
+/* familiar = breadth, not headline: smaller (set in JS) + dimmed at rest */
+.gnode.familiar {
+  opacity: 0.5;
+}
+.gnode.familiar:hover {
+  opacity: 1;
+}
+/* core = current / active stack: an amber accent ring, always visible */
+.gnode.core circle {
+  stroke-width: 2.75;
+  fill: #2a2218;
+  filter: drop-shadow(0 0 5px rgba(230, 180, 120, 0.7));
 }
 .gnode-ico {
   width: 100%;
@@ -580,6 +619,7 @@ skill-galaxy.ready .galaxy-fallback {
   color: var(--amber-bright);
 }
 .post-body img {
+  height: auto;
   border-radius: var(--r);
   border: 1px solid var(--line);
   margin: 1.2em 0;

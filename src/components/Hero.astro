@@ -51,29 +51,33 @@ const years = new Date().getFullYear() - 2019;
         <span class="stat-num">{projectCount}</span><span class="stat-lbl">Shipped projects</span>
       </div>
       <div class="stat">
-        <span class="stat-num">30+</span><span class="stat-lbl">Technologies</span>
+        <span class="stat-num">60+</span><span class="stat-lbl">Technologies</span>
       </div>
     </div>
   </div>
 
   <div class="hero-right">
-    <div class="codewin" role="img" aria-label="Keshav Lingala described as a TypeScript object">
+    <div class="codewin" role="img" aria-label="Keshav Lingala described as a TypeScript class, specializing in Full-Stack, Cloud and Gen AI">
       <div class="codewin-bar">
         <span class="cw-dots"><i></i><i></i><i></i></span>
         <span class="cw-file">engineer.ts</span>
         <span class="cw-tag">TS</span>
       </div>
-      <pre class="codewin-body"><code><span class="cw-line"><span class="cw-ln">1</span><span class="cw-code"><span class="t-kw">const</span> <span class="t-prop">engineer</span><span class="t-punc">:</span> <span class="t-type">Engineer</span> <span class="t-punc">= {`{`}</span></span></span>
-<span class="cw-line"><span class="cw-ln">2</span><span class="cw-code">  <span class="t-prop">name</span><span class="t-punc">:</span> <span class="t-str">"Keshav Lingala"</span><span class="t-punc">,</span></span></span>
-<span class="cw-line"><span class="cw-ln">3</span><span class="cw-code">  <span class="t-prop">title</span><span class="t-punc">:</span> <span class="t-str">"Senior Software Engineer"</span><span class="t-punc">,</span></span></span>
-<span class="cw-line"><span class="cw-ln">4</span><span class="cw-code">  <span class="t-prop">based</span><span class="t-punc">:</span> <span class="t-str">"Dayton, OH"</span><span class="t-punc">,</span></span></span>
-<span class="cw-line"><span class="cw-ln">5</span><span class="cw-code">  <span class="t-prop">stack</span><span class="t-punc">:</span> <span class="t-punc">[</span><span class="t-str">"TypeScript"</span><span class="t-punc">,</span> <span class="t-str">"Angular"</span><span class="t-punc">,</span> <span class="t-str">"React"</span><span class="t-punc">],</span></span></span>
-<span class="cw-line"><span class="cw-ln">6</span><span class="cw-code">  <span class="t-prop">services</span><span class="t-punc">:</span> <span class="t-punc">[</span><span class="t-str">"Spring Boot"</span><span class="t-punc">,</span> <span class="t-str">"Node"</span><span class="t-punc">,</span> <span class="t-str">"Go"</span><span class="t-punc">],</span></span></span>
-<span class="cw-line"><span class="cw-ln">7</span><span class="cw-code">  <span class="t-prop">cloud</span><span class="t-punc">:</span> <span class="t-punc">[</span><span class="t-str">"AWS"</span><span class="t-punc">,</span> <span class="t-str">"Kubernetes"</span><span class="t-punc">,</span> <span class="t-str">"Docker"</span><span class="t-punc">],</span></span></span>
-<span class="cw-line"><span class="cw-ln">8</span><span class="cw-code">  <span class="t-prop">experience</span><span class="t-punc">:</span> <span class="t-num">7</span><span class="t-punc">,</span>      <span class="t-com">// years, since 2019</span></span></span>
-<span class="cw-line"><span class="cw-ln">9</span><span class="cw-code">  <span class="t-prop">shipped</span><span class="t-punc">:</span> <span class="t-num">16</span><span class="t-punc">,</span>      <span class="t-com">// projects</span></span></span>
-<span class="cw-line"><span class="cw-ln">10</span><span class="cw-code">  <span class="t-prop">building</span><span class="t-punc">:</span> <span class="t-bool">true</span><span class="t-punc">,</span><span class="cw-caret"></span></span></span>
-<span class="cw-line"><span class="cw-ln">11</span><span class="cw-code"><span class="t-punc">{`};`}</span></span></span></code></pre>
+      <pre class="codewin-body"><code><span class="cw-line"><span class="cw-ln">1</span><span class="cw-code"><span class="t-kw">type</span> <span class="t-type">Domain</span> <span class="t-punc">=</span> <span class="t-str">"Full-Stack"</span> <span class="t-punc">|</span> <span class="t-str">"Cloud"</span> <span class="t-punc">|</span> <span class="t-str">"Gen AI"</span><span class="t-punc">;</span></span></span>
+<span class="cw-line"><span class="cw-ln">2</span><span class="cw-code"></span></span>
+<span class="cw-line"><span class="cw-ln">3</span><span class="cw-code"><span class="t-kw">class</span> <span class="t-type">Engineer</span> <span class="t-punc">{`{`}</span></span></span>
+<span class="cw-line"><span class="cw-ln">4</span><span class="cw-code">  <span class="t-prop">name</span>  <span class="t-punc">=</span> <span class="t-str">"Keshav Lingala"</span><span class="t-punc">;</span></span></span>
+<span class="cw-line"><span class="cw-ln">5</span><span class="cw-code">  <span class="t-prop">title</span> <span class="t-punc">=</span> <span class="t-str">"Senior Software Engineer"</span><span class="t-punc">;</span></span></span>
+<span class="cw-line"><span class="cw-ln">6</span><span class="cw-code">  <span class="t-prop">since</span> <span class="t-punc">=</span> <span class="t-num">2019</span><span class="t-punc">;</span>          <span class="t-com">// 7 yrs · 16 shipped</span></span></span>
+<span class="cw-line"><span class="cw-ln">7</span><span class="cw-code"></span></span>
+<span class="cw-line"><span class="cw-ln">8</span><span class="cw-code">  <span class="t-prop">fullStack</span> <span class="t-punc">= [</span><span class="t-str">"Angular"</span><span class="t-punc">,</span> <span class="t-str">"Spring Boot"</span><span class="t-punc">,</span> <span class="t-str">"SQL"</span><span class="t-punc">];</span></span></span>
+<span class="cw-line"><span class="cw-ln">9</span><span class="cw-code">  <span class="t-prop">cloud</span>     <span class="t-punc">= [</span><span class="t-str">"AWS"</span><span class="t-punc">,</span> <span class="t-str">"Kubernetes"</span><span class="t-punc">,</span> <span class="t-str">"Docker"</span><span class="t-punc">];</span></span></span>
+<span class="cw-line"><span class="cw-ln">10</span><span class="cw-code">  <span class="t-prop">genAI</span>     <span class="t-punc">= [</span><span class="t-str">"LangChain"</span><span class="t-punc">,</span> <span class="t-str">"RAG"</span><span class="t-punc">,</span> <span class="t-str">"Agents"</span><span class="t-punc">];</span></span></span>
+<span class="cw-line"><span class="cw-ln">11</span><span class="cw-code"></span></span>
+<span class="cw-line"><span class="cw-ln">12</span><span class="cw-code">  <span class="t-fn">build</span><span class="t-punc">(</span>idea<span class="t-punc">:</span> <span class="t-type">Idea</span><span class="t-punc">):</span> <span class="t-type">Product</span> <span class="t-punc">{`{`}</span></span></span>
+<span class="cw-line"><span class="cw-ln">13</span><span class="cw-code">    <span class="t-kw">return</span> <span class="t-fn">ship</span><span class="t-punc">(</span><span class="t-kw">this</span><span class="t-punc">.</span><span class="t-fn">code</span><span class="t-punc">(</span>idea<span class="t-punc">));</span></span></span>
+<span class="cw-line"><span class="cw-ln">14</span><span class="cw-code">  <span class="t-punc">{`}`}</span></span></span>
+<span class="cw-line"><span class="cw-ln">15</span><span class="cw-code"><span class="t-punc">{`}`}</span><span class="cw-caret"></span></span></span></code></pre>
     </div>
   </div>
 </section>
@@ -359,6 +363,9 @@ const years = new Date().getFullYear() - 2019;
   }
   .t-bool {
     color: #d08a86;
+  }
+  .t-fn {
+    color: #8bb8c7;
   }
   .t-punc {
     color: var(--text-4);

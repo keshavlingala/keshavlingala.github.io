@@ -5,7 +5,7 @@
    category gathers its cluster. Hover any node to trace links.
    Lazy: physics only runs while the element is on screen.
    ============================================================ */
-import { SKILLS, CATEGORIES, catShort, type Category, type Skill } from "../data/skills";
+import { SKILLS, CATEGORIES, catShort, skillRadius, type Category, type Skill } from "../data/skills";
 
 const SVGNS = "http://www.w3.org/2000/svg";
 const XHTML = "http://www.w3.org/1999/xhtml";
@@ -186,7 +186,7 @@ class SkillGalaxyEl extends HTMLElement {
       const a = (i / CATEGORIES.length) * Math.PI * 2 - Math.PI / 2;
       const sx = cx + Math.cos(a) * R,
         sy = cy + Math.sin(a) * R * 0.94;
-      return { c, x: sx, y: sy, vx: 0, vy: 0, sx, sy, r: 30 };
+      return { c, x: sx, y: sy, vx: 0, vy: 0, sx, sy, r: c.featured ? 40 : 30 };
     });
     this.sk = SKILLS.map((s) => {
       const hi = catIndex.get(s.cats[0]) ?? 0;
@@ -197,7 +197,7 @@ class SkillGalaxyEl extends HTMLElement {
         y: h.y + (Math.random() - 0.5) * 90,
         vx: (Math.random() - 0.5) * 20,
         vy: (Math.random() - 0.5) * 20,
-        r: 15 + s.level * 2.4,
+        r: skillRadius(s),
       };
     });
   }
@@ -219,9 +219,9 @@ class SkillGalaxyEl extends HTMLElement {
 
     this.hubG = this.hubs.map((h, i) => {
       const g = svgEl("g");
-      g.setAttribute("class", "hub on");
+      g.setAttribute("class", "hub on" + (h.c.featured ? " featured" : ""));
       const circle = svgEl("circle");
-      circle.setAttribute("r", "30");
+      circle.setAttribute("r", String(h.r));
       const text = svgEl("text");
       text.setAttribute("class", "hub-t");
       text.setAttribute("dy", "0.32em");
@@ -252,9 +252,9 @@ class SkillGalaxyEl extends HTMLElement {
     });
 
     this.skG = SKILLS.map((s, i) => {
-      const rr = 15 + s.level * 2.4;
+      const rr = skillRadius(s);
       const g = svgEl("g");
-      g.setAttribute("class", "gnode on");
+      g.setAttribute("class", "gnode on" + (s.core ? " core" : "") + (s.tier === "familiar" ? " familiar" : ""));
       const circle = svgEl("circle");
       circle.setAttribute("r", String(rr));
       circle.style.stroke = s.color;

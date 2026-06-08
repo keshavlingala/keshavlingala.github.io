@@ -12,7 +12,7 @@ const links = [
 <header class="nav" id="site-nav">
   <div class="nav-inner wrap">
     <a class="nav-brand" href="/#top" aria-label={`${siteMetadata.name} — home`}>
-      <span class="dot" aria-hidden="true">K</span>
+      <img class="brand-logo" src="/logo.svg" alt="" aria-hidden="true" width="30" height="30" />
       <span class="nav-name">{siteMetadata.name}</span>
     </a>
     <nav class="nav-links" aria-label="Primary">
@@ -60,17 +60,10 @@ const links = [
     text-decoration: none;
     color: var(--text);
   }
-  .nav-brand .dot {
+  .nav-brand .brand-logo {
     width: 30px;
     height: 30px;
-    border-radius: 8px;
-    background: linear-gradient(135deg, var(--amber), var(--amber-deep));
-    display: grid;
-    place-items: center;
-    color: #2a2017;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 15px;
+    display: block;
   }
   .nav-name {
     font-family: var(--font-display);

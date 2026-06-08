@@ -1,7 +1,10 @@
 ---
 import { CATEGORIES, SKILLS, catShort } from "../data/skills";
 
-const chips = [{ key: "", label: "All" }, ...CATEGORIES.map((c) => ({ key: c.key, label: catShort(c.key) }))];
+const chips = [
+  { key: "", label: "All", featured: false },
+  ...CATEGORIES.map((c) => ({ key: c.key, label: catShort(c.key), featured: !!c.featured })),
+];
 const byCat = CATEGORIES.map((c) => ({
   cat: c,
   skills: SKILLS.filter((s) => s.cats.includes(c.key)),
@@ -13,7 +16,11 @@ const byCat = CATEGORIES.map((c) => ({
     <div class="chip-row" role="tablist" aria-label="Filter skills by category">
       {
         chips.map((c, i) => (
-          <button class={"chip" + (i === 0 ? " on" : "")} data-cat={c.key} type="button">
+          <button
+            class={"chip" + (i === 0 ? " on" : "") + (c.featured ? " featured" : "")}
+            data-cat={c.key}
+            type="button"
+          >
             {c.label}
           </button>
         ))

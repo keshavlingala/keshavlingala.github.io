@@ -7,6 +7,7 @@ const roleSummary = (e: (typeof EXPERIENCE)[number]) => {
   return e.roles[0].title + (extra > 0 ? ` · +${extra} role${extra > 1 ? "s" : ""}` : "");
 };
 const startYear = (e: (typeof EXPERIENCE)[number]) => e.span.match(/\d{4}/)?.[0] ?? "";
+const startMon = (e: (typeof EXPERIENCE)[number]) => e.span.match(/^\s*([A-Za-z]{3})/)?.[1] ?? "";
 ---
 
 <div class="exp-wrap">
@@ -38,9 +39,13 @@ const startYear = (e: (typeof EXPERIENCE)[number]) => e.span.match(/\d{4}/)?.[0]
     <div class="exp-spine" aria-hidden="true"></div>
     {
       EXPERIENCE.map((e, i) => (
-        <details class={"exp-card" + (e.current ? " current" : "")} open={i === 0}>
-          <span class="exp-yr">{startYear(e)}</span>
+        <div class={"exp-card" + (e.current ? " current" : "")}>
+          <span class="exp-when" aria-hidden="true">
+            <span class="exp-mon">{startMon(e)}</span>
+            <span class="exp-yr">{startYear(e)}</span>
+          </span>
           <span class="exp-node" aria-hidden="true" />
+          <details class="exp-details" open={i === 0}>
           <summary class="exp-head">
             <span class="exp-logo" style={`--logo:${e.color}`}>
               {e.logo}
@@ -80,7 +85,8 @@ const startYear = (e: (typeof EXPERIENCE)[number]) => e.span.match(/\d{4}/)?.[0]
               ))}
             </div>
           </div>
-        </details>
+          </details>
+        </div>
       ))
     }
   </div>
@@ -194,27 +200,36 @@ const startYear = (e: (typeof EXPERIENCE)[number]) => e.span.match(/\d{4}/)?.[0]
     background: linear-gradient(
       180deg,
       transparent 0,
-      var(--amber) 4%,
-      var(--teal) 96%,
+      var(--line-2) 4%,
+      var(--line-2) 96%,
       transparent 100%
     );
-    opacity: 0.4;
   }
   .exp-card {
     position: relative;
     padding-left: 80px;
     margin-bottom: 12px;
   }
-  .exp-yr {
+  .exp-when {
     position: absolute;
     left: 0;
-    top: 24px;
+    top: 20px;
     width: 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     text-align: right;
     font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-4);
+    line-height: 1.25;
     letter-spacing: 0.02em;
+  }
+  .exp-mon {
+    font-size: 10.5px;
+    color: var(--text-4);
+  }
+  .exp-yr {
+    font-size: 12px;
+    color: var(--text-3);
   }
   .exp-card.current .exp-yr {
     color: var(--amber);
@@ -222,18 +237,30 @@ const startYear = (e: (typeof EXPERIENCE)[number]) => e.span.match(/\d{4}/)?.[0]
   .exp-node {
     position: absolute;
     left: 35px;
-    top: 26px;
+    top: 28px;
     transform: translateX(-50%);
-    width: 16px;
-    height: 16px;
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
-    background: var(--bg);
-    border: 3px solid var(--teal);
+    background: var(--bg-2);
+    border: 2px solid var(--line-2);
     z-index: 2;
+    transition:
+      transform 0.25s var(--ease),
+      border-color 0.25s,
+      box-shadow 0.25s;
   }
   .exp-card.current .exp-node {
+    background: var(--amber);
     border-color: var(--amber);
-    box-shadow: 0 0 0 4px rgba(230, 180, 120, 0.16);
+    box-shadow:
+      0 0 0 4px rgba(230, 180, 120, 0.13),
+      0 0 12px rgba(230, 180, 120, 0.5);
+  }
+  .exp-card:hover .exp-node {
+    border-color: var(--amber);
+    transform: translateX(-50%) scale(1.35);
+    box-shadow: 0 0 14px rgba(230, 180, 120, 0.55);
   }
   .exp-head {
     position: relative;
@@ -271,7 +298,7 @@ const startYear = (e: (typeof EXPERIENCE)[number]) => e.span.match(/\d{4}/)?.[0]
   .exp-head:hover {
     border-color: var(--line-2);
   }
-  .exp-card[open] .exp-head {
+  .exp-details[open] .exp-head {
     border-color: var(--line-2);
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
@@ -345,7 +372,7 @@ const startYear = (e: (typeof EXPERIENCE)[number]) => e.span.match(/\d{4}/)?.[0]
   .exp-chev::before {
     content: "+";
   }
-  .exp-card[open] .exp-chev::before {
+  .exp-details[open] .exp-chev::before {
     content: "−";
   }
   .exp-bodyin {
@@ -466,7 +493,7 @@ const startYear = (e: (typeof EXPERIENCE)[number]) => e.span.match(/\d{4}/)?.[0]
     .exp-card {
       padding-left: 44px;
     }
-    .exp-yr {
+    .exp-when {
       display: none;
     }
     .exp-spine {
