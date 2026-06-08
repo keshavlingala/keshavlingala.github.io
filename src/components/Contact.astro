@@ -1,0 +1,283 @@
+---
+import { siteMetadata } from "../site";
+const { email, github, linkedin } = siteMetadata;
+---
+
+<section id="contact" class="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-left">
+      <p class="section-kicker">Get in touch</p>
+      <h2 class="contact-h">Let's build something<br /><span class="accent">worth shipping.</span></h2>
+      <p class="contact-sub">
+        Open to interesting problems and collaborations. Drop a line below, or reach me directly.
+      </p>
+      <div class="contact-links">
+        <a href={`mailto:${email}`}><span class="cl-ico" aria-hidden="true">✉</span> {email}</a>
+        <a href={github} target="_blank" rel="noopener noreferrer">
+          <span class="cl-ico" aria-hidden="true">⌥</span> GitHub
+        </a>
+        <a href={linkedin} target="_blank" rel="noopener noreferrer">
+          <span class="cl-ico" aria-hidden="true">in</span> LinkedIn
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form-wrap" id="contact-form-wrap">
+      <form class="contact-form" id="contact-form" novalidate>
+        <label class="field">
+          <span>Name</span>
+          <input type="text" name="name" autocomplete="name" placeholder="Jane Doe" />
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input type="email" name="email" autocomplete="email" placeholder="jane@company.com" />
+        </label>
+        <label class="field">
+          <span>Message</span>
+          <textarea name="message" rows="4" placeholder="Tell me about the role or project…"
+          ></textarea>
+        </label>
+        <button type="submit" class="btn-primary lg form-submit" disabled>Send message →</button>
+        <p class="form-error" role="alert" hidden></p>
+      </form>
+      <div class="form-success" hidden>
+        <div class="fs-mark" aria-hidden="true">✓</div>
+        <h3>Thanks!</h3>
+        <p>Your message is on its way. I'll get back to you soon.</p>
+        <button type="button" class="btn-ghost" id="form-reset">Send another</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { MAILING_URL } from "../constants";
+
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  if (form) {
+    const wrap = document.getElementById("contact-form-wrap")!;
+    const submit = form.querySelector(".form-submit") as HTMLButtonElement;
+    const err = form.querySelector(".form-error") as HTMLElement;
+    const success = wrap.querySelector(".form-success") as HTMLElement;
+    const reset = document.getElementById("form-reset");
+    const val = (n: string) =>
+      (form.elements.namedItem(n) as HTMLInputElement | HTMLTextAreaElement).value.trim();
+    const emailRe = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+    const validate = () => {
+      const ok = val("name").length > 2 && emailRe.test(val("email")) && val("message").length > 4;
+      submit.disabled = !ok;
+      return ok;
+    };
+    form.addEventListener("input", validate);
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!validate()) return;
+      submit.disabled = true;
+      submit.textContent = "Sending…";
+      err.hidden = true;
+
+      let userData: unknown = null;
+      try {
+        userData = await (await fetch("https://api.db-ip.com/v2/free/self")).json();
+      } catch {
+        /* best-effort */
+      }
+      try {
+        const res = await fetch(MAILING_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            name: val("name"),
+            email: val("email"),
+            content: val("message"),
+            userData,
+          }),
+        });
+        if (!res.ok) throw new Error("bad status");
+        form.hidden = true;
+        success.hidden = false;
+      } catch {
+        err.textContent = "Something went wrong — please email admin@keshav.codes directly.";
+        err.hidden = false;
+        submit.textContent = "Send message →";
+        submit.disabled = false;
+      }
+    });
+
+    reset?.addEventListener("click", () => {
+      form.reset();
+      form.hidden = false;
+      success.hidden = true;
+      submit.textContent = "Send message →";
+      submit.disabled = true;
+    });
+  }
+</script>
+
+<style>
+  .contact {
+    position: relative;
+    z-index: 1;
+    padding: 90px 0 30px;
+    scroll-margin-top: 70px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .contact-h {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(32px, 4.4vw, 52px);
+    letter-spacing: -0.03em;
+    line-height: 1.04;
+    margin: 12px 0 0;
+  }
+  .contact-sub {
+    color: var(--text-3);
+    font-size: 15.5px;
+    line-height: 1.6;
+    max-width: 42ch;
+    margin: 18px 0 0;
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .contact-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--text-2);
+    text-decoration: none;
+    transition: color 0.2s;
+    width: fit-content;
+  }
+  .contact-links a:hover {
+    color: var(--amber);
+  }
+  .cl-ico {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--text-3);
+  }
+
+  .contact-form {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .field span {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+  .field input,
+  .field textarea {
+    background: var(--bg-1);
+    border: 1px solid var(--line-2);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+    resize: vertical;
+  }
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: var(--text-4);
+  }
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--amber-deep);
+    box-shadow: 0 0 0 3px rgba(230, 180, 120, 0.14);
+  }
+  .form-submit {
+    width: 100%;
+    margin-top: 4px;
+  }
+  .form-submit:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  .form-error {
+    margin: 0;
+    color: #e0a07a;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .form-success {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    text-align: center;
+    padding: 36px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    animation: paneIn 0.5s var(--ease) both;
+  }
+  .fs-mark {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 26px;
+    color: #2a2017;
+    background: linear-gradient(120deg, var(--amber-bright), var(--amber-deep));
+    box-shadow: 0 8px 26px rgba(230, 180, 120, 0.3);
+  }
+  .form-success h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    margin: 4px 0 0;
+  }
+  .form-success p {
+    color: var(--text-3);
+    font-size: 14px;
+    max-width: 32ch;
+    margin: 0 0 8px;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 760px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+</style>

@@ -1,0 +1,494 @@
+---
+import { EXPERIENCE, EARLY } from "../data/experience";
+
+const current = EXPERIENCE.filter((e) => e.current);
+const roleSummary = (e: (typeof EXPERIENCE)[number]) => {
+  const extra = e.roles.length - 1;
+  return e.roles[0].title + (extra > 0 ? ` · +${extra} role${extra > 1 ? "s" : ""}` : "");
+};
+const startYear = (e: (typeof EXPERIENCE)[number]) => e.span.match(/\d{4}/)?.[0] ?? "";
+---
+
+<div class="exp-wrap">
+  <div class="now-strip">
+    <div class="now-label"><i class="now-pulse" aria-hidden="true"></i> Currently</div>
+    <div class="now-cards">
+      {
+        current.map((e) => {
+          const role = e.roles.find((r) => r.now) || e.roles[0];
+          return (
+            <div class="now-card">
+              <span class="now-logo" style={`--logo:${e.color}`}>
+                {e.logo}
+              </span>
+              <div>
+                <div class="now-role">{role.title}</div>
+                <div class="now-co">
+                  {e.company} · <span>{e.location.split(" · ")[0]}</span>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+
+  <div class="exp-timeline">
+    <div class="exp-spine" aria-hidden="true"></div>
+    {
+      EXPERIENCE.map((e, i) => (
+        <details class={"exp-card" + (e.current ? " current" : "")} open={i === 0}>
+          <span class="exp-yr">{startYear(e)}</span>
+          <span class="exp-node" aria-hidden="true" />
+          <summary class="exp-head">
+            <span class="exp-logo" style={`--logo:${e.color}`}>
+              {e.logo}
+            </span>
+            <span class="exp-headmain">
+              <span class="exp-corow">
+                <span class="exp-co">{e.company}</span>
+                {e.current && <span class="exp-now">Now</span>}
+              </span>
+              <span class="exp-sub">{roleSummary(e)}</span>
+            </span>
+            <span class="exp-meta">
+              <span class="exp-span">{e.span}</span>
+              <span class="exp-loc">{e.location}</span>
+            </span>
+            <span class="exp-chev" aria-hidden="true" />
+          </summary>
+          <div class="exp-bodyin">
+            <div class="exp-roles">
+              {e.roles.map((r) => (
+                <div class={"exp-role" + (r.now ? " now" : "")}>
+                  <span class="exp-dot" />
+                  <span class="exp-rtitle">{r.title}</span>
+                  <span class="exp-rtype">{r.type}</span>
+                  <span class="exp-rdate">{r.date}</span>
+                </div>
+              ))}
+            </div>
+            <ul class="exp-bullets">
+              {e.bullets.map((b) => (
+                <li>{b}</li>
+              ))}
+            </ul>
+            <div class="pj-tech">
+              {e.tags.map((t) => (
+                <span>{t}</span>
+              ))}
+            </div>
+          </div>
+        </details>
+      ))
+    }
+  </div>
+
+  <div class="early">
+    <span class="early-label">Earlier · founding &amp; community</span>
+    <div class="early-row">
+      {
+        EARLY.map((x) => (
+          <div class="early-chip">
+            <b>{x.org}</b>
+            <span>{x.role}</span>
+            <em>{x.date}</em>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .exp-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+  .now-strip {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+    background: linear-gradient(100deg, rgba(230, 180, 120, 0.1), rgba(201, 168, 107, 0.05));
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 16px 22px;
+  }
+  .now-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--amber);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    white-space: nowrap;
+  }
+  .now-pulse {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--amber);
+    animation: livePulse 2.2s infinite;
+  }
+  .now-cards {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+  .now-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 10px 16px 10px 12px;
+  }
+  .now-logo,
+  .exp-logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    border: 1px solid color-mix(in srgb, var(--logo) 50%, transparent);
+    background: color-mix(in srgb, var(--logo) 15%, transparent);
+    color: var(--logo);
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+  }
+  .now-logo {
+    width: 38px;
+    height: 38px;
+    font-size: 17px;
+  }
+  .now-role {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 14.5px;
+  }
+  .now-co {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-3);
+  }
+  .now-co span {
+    color: var(--text-4);
+  }
+
+  .exp-timeline {
+    position: relative;
+  }
+  .exp-spine {
+    position: absolute;
+    left: 35px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    border-radius: 2px;
+    background: linear-gradient(
+      180deg,
+      transparent 0,
+      var(--amber) 4%,
+      var(--teal) 96%,
+      transparent 100%
+    );
+    opacity: 0.4;
+  }
+  .exp-card {
+    position: relative;
+    padding-left: 80px;
+    margin-bottom: 12px;
+  }
+  .exp-yr {
+    position: absolute;
+    left: 0;
+    top: 24px;
+    width: 26px;
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-4);
+    letter-spacing: 0.02em;
+  }
+  .exp-card.current .exp-yr {
+    color: var(--amber);
+  }
+  .exp-node {
+    position: absolute;
+    left: 35px;
+    top: 26px;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 3px solid var(--teal);
+    z-index: 2;
+  }
+  .exp-card.current .exp-node {
+    border-color: var(--amber);
+    box-shadow: 0 0 0 4px rgba(230, 180, 120, 0.16);
+  }
+  .exp-head {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 46px 1fr auto auto;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 16px 18px;
+    cursor: pointer;
+    transition:
+      border-color 0.2s,
+      background 0.2s;
+    list-style: none;
+  }
+  .exp-head::-webkit-details-marker {
+    display: none;
+  }
+  .exp-head::before {
+    content: "";
+    position: absolute;
+    left: -25px;
+    top: 34px;
+    width: 25px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--line-2), transparent);
+  }
+  .exp-card.current .exp-head::before {
+    background: linear-gradient(90deg, rgba(230, 180, 120, 0.5), transparent);
+  }
+  .exp-head:hover {
+    border-color: var(--line-2);
+  }
+  .exp-card[open] .exp-head {
+    border-color: var(--line-2);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .exp-logo {
+    width: 46px;
+    height: 46px;
+    font-size: 20px;
+    border-radius: 12px;
+  }
+  .exp-headmain {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+  }
+  .exp-corow {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .exp-co {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+  }
+  .exp-now {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: #2a2017;
+    background: linear-gradient(120deg, var(--amber-bright), var(--amber-deep));
+    border-radius: 999px;
+    padding: 2px 9px;
+    letter-spacing: 0.04em;
+  }
+  .exp-sub {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .exp-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+    text-align: right;
+  }
+  .exp-span {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--text-2);
+    white-space: nowrap;
+  }
+  .exp-loc {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-4);
+    white-space: nowrap;
+  }
+  .exp-chev {
+    width: 22px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 20px;
+    color: var(--text-3);
+  }
+  .exp-chev::before {
+    content: "+";
+  }
+  .exp-card[open] .exp-chev::before {
+    content: "−";
+  }
+  .exp-bodyin {
+    background: var(--bg-card);
+    border: 1px solid var(--line-2);
+    border-top: 0;
+    border-radius: 0 0 var(--r) var(--r);
+    padding: 4px 20px 20px;
+  }
+  .exp-roles {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 14px;
+  }
+  .exp-role {
+    display: grid;
+    grid-template-columns: 14px 1fr auto auto;
+    align-items: center;
+    gap: 12px;
+  }
+  .exp-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--text-4);
+  }
+  .exp-role.now .exp-dot {
+    background: var(--amber);
+  }
+  .exp-rtitle {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .exp-rtype {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-4);
+  }
+  .exp-rdate {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+  .exp-bullets {
+    margin: 0 0 14px;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .exp-bullets li {
+    position: relative;
+    padding-left: 18px;
+    color: var(--text-3);
+    font-size: 13.5px;
+    line-height: 1.55;
+    max-width: 80ch;
+  }
+  .exp-bullets li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--amber-deep);
+  }
+
+  .early-label {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-4);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .early-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .early-chip {
+    background: var(--bg-1);
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    padding: 11px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .early-chip b {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 13.5px;
+  }
+  .early-chip span {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-3);
+  }
+  .early-chip em {
+    font-style: normal;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--text-4);
+  }
+
+  @media (max-width: 760px) {
+    .exp-head {
+      grid-template-columns: 42px 1fr auto;
+    }
+    .exp-meta {
+      display: none;
+    }
+    .exp-card {
+      padding-left: 44px;
+    }
+    .exp-yr {
+      display: none;
+    }
+    .exp-spine {
+      left: 18px;
+    }
+    .exp-node {
+      left: 18px;
+    }
+    .exp-head::before {
+      left: -18px;
+      width: 18px;
+    }
+    .exp-role {
+      grid-template-columns: 12px 1fr auto;
+    }
+    .exp-rtype {
+      display: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .now-pulse {
+      animation: none;
+    }
+  }
+</style>

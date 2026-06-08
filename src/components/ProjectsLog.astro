@@ -1,0 +1,452 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+const posts = (await getCollection("posts")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+// group newest-first by year, preserving order
+const groups: [string, typeof posts][] = [];
+const byYear = new Map<string, typeof posts>();
+for (const p of posts) {
+  const y = p.data.date.getFullYear().toString();
+  if (!byYear.has(y)) {
+    const arr: typeof posts = [];
+    byYear.set(y, arr);
+    groups.push([y, arr]);
+  }
+  byYear.get(y)!.push(p);
+}
+const years = groups.map((g) => g[0]);
+
+const mon = (d: Date) => d.toLocaleDateString("en-US", { month: "short" });
+const blurb = (t: string, n = 155) => {
+  if (t.length <= n) return t;
+  const cut = t.slice(0, n);
+  return cut.slice(0, cut.lastIndexOf(" ")).trimEnd() + "…";
+};
+---
+
+<div class="log-view" id="projects-log">
+  <aside class="log-rail">
+    <div class="log-rail-inner">
+      {
+        years.map((y) => (
+          <a class="log-yr-btn" href={`#yr-${y}`} data-year-btn={y}>
+            <span class="log-yr-dot" aria-hidden="true" />
+            <span>{y}</span>
+          </a>
+        ))
+      }
+    </div>
+  </aside>
+
+  <div class="log-body">
+    <span class="log-spine" aria-hidden="true"></span>
+    {
+      groups.map(([year, items]) => (
+        <section class="log-group" id={`yr-${year}`} data-year={year}>
+          <div class="log-year">
+            <span class="log-year-node" aria-hidden="true" />
+            <h3>{year}</h3>
+            <span>
+              {items.length} project{items.length > 1 ? "s" : ""}
+            </span>
+          </div>
+          <div class="log-rows">
+            {items.map((p) => (
+              <div class={"log-row" + (p.data.featured ? " feat" : "")}>
+                <span class="log-mon">{mon(p.data.date)}</span>
+                <span class="log-node" aria-hidden="true" />
+                <a class="log-rowlink" href={`/${p.data.slug}`}>
+                  <div class="log-main">
+                    <div class="log-titlerow">
+                      <h4 class="log-title">{p.data.title}</h4>
+                      {p.data.featured && <span class="pj-star">★ Featured</span>}
+                    </div>
+                    <p class="log-blurb">{blurb(p.data.description)}</p>
+                    <div class="pj-tech">
+                      {p.data.techs.map((t) => (
+                        <span>{t}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <span class="log-arrow" aria-hidden="true">
+                    →
+                  </span>
+                </a>
+                <a class="log-thumb" href={`/${p.data.slug}`} tabindex="-1" aria-hidden="true">
+                  <Image src={p.data.featuredImage} alt={`${p.data.title} preview`} width={300} />
+                </a>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  const root = document.getElementById("projects-log");
+  if (root) {
+    const btns = Array.from(root.querySelectorAll<HTMLElement>(".log-yr-btn"));
+    const setActive = (y?: string) =>
+      btns.forEach((b) => b.classList.toggle("on", b.dataset.yearBtn === y));
+    setActive(root.querySelector<HTMLElement>(".log-group")?.dataset.year);
+
+    const ioActive = new IntersectionObserver(
+      (ents) =>
+        ents.forEach((e) => {
+          if (e.isIntersecting) setActive((e.target as HTMLElement).dataset.year);
+        }),
+      { threshold: 0.12, rootMargin: "-40% 0px -50% 0px" },
+    );
+    root.querySelectorAll(".log-group").forEach((el) => ioActive.observe(el));
+
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduce) {
+      root.classList.add("reveal-ready");
+      const ioReveal = new IntersectionObserver(
+        (ents) =>
+          ents.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              ioReveal.unobserve(e.target);
+            }
+          }),
+        { threshold: 0.15 },
+      );
+      root.querySelectorAll(".log-row").forEach((el) => ioReveal.observe(el));
+    }
+  }
+</script>
+
+<style>
+  .log-view {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 24px;
+  }
+  .log-rail-inner {
+    position: sticky;
+    top: 84px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .log-yr-btn {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    color: var(--text-4);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    padding: 7px 4px;
+    transition: color 0.2s;
+  }
+  .log-yr-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--line-2);
+    transition: 0.2s;
+  }
+  .log-yr-btn:hover {
+    color: var(--text-2);
+  }
+  .log-yr-btn.on {
+    color: var(--amber);
+  }
+  .log-yr-btn.on .log-yr-dot {
+    background: var(--amber);
+    box-shadow: 0 0 0 3px rgba(230, 180, 120, 0.18);
+  }
+
+  .log-body {
+    position: relative;
+  }
+  .log-spine {
+    position: absolute;
+    left: 35px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    border-radius: 2px;
+    background: linear-gradient(
+      180deg,
+      transparent 0,
+      var(--line-2) 4%,
+      var(--line-2) 96%,
+      transparent 100%
+    );
+  }
+  .log-group {
+    margin-bottom: 26px;
+    scroll-margin-top: 84px;
+  }
+  .log-year {
+    position: relative;
+    padding-left: 80px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    min-height: 30px;
+    margin-bottom: 14px;
+  }
+  .log-year h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 26px;
+    margin: 0;
+    color: var(--text);
+    line-height: 1;
+  }
+  .log-year span {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-4);
+  }
+  .log-year-node {
+    position: absolute;
+    left: 35px;
+    top: 1px;
+    transform: translateX(-50%);
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--amber);
+    z-index: 3;
+    box-shadow:
+      0 0 0 4px rgba(230, 180, 120, 0.1),
+      0 0 16px rgba(230, 180, 120, 0.45);
+  }
+
+  .log-rows {
+    position: relative;
+  }
+  .log-row {
+    position: relative;
+    padding-left: 80px;
+    margin-bottom: 12px;
+  }
+  .log-view.reveal-ready .log-row {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.5s var(--ease),
+      transform 0.5s var(--ease);
+  }
+  .log-view.reveal-ready .log-row.in {
+    opacity: 1;
+    transform: none;
+  }
+  .log-mon {
+    position: absolute;
+    left: 0;
+    top: 23px;
+    width: 24px;
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-4);
+    letter-spacing: 0.02em;
+  }
+  .log-node {
+    position: absolute;
+    left: 35px;
+    top: 26px;
+    transform: translateX(-50%);
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--bg-2);
+    border: 2px solid var(--line-2);
+    z-index: 2;
+    transition:
+      transform 0.25s var(--ease),
+      border-color 0.25s,
+      box-shadow 0.25s;
+  }
+  .log-row.feat .log-node {
+    background: var(--amber);
+    border-color: var(--amber);
+    box-shadow:
+      0 0 0 4px rgba(230, 180, 120, 0.13),
+      0 0 12px rgba(230, 180, 120, 0.5);
+  }
+  .log-row:hover .log-node {
+    border-color: var(--amber);
+    transform: translateX(-50%) scale(1.35);
+    box-shadow: 0 0 14px rgba(230, 180, 120, 0.55);
+  }
+  .log-rowlink {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 188px 18px 20px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    background: linear-gradient(155deg, rgba(54, 46, 38, 0.46), rgba(28, 23, 19, 0.3));
+    border: 1px solid var(--line);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    -webkit-backdrop-filter: blur(10px) saturate(1.15);
+    backdrop-filter: blur(10px) saturate(1.15);
+    transition:
+      background 0.25s,
+      border-color 0.25s,
+      box-shadow 0.25s,
+      transform 0.25s var(--ease);
+  }
+  .log-rowlink::before {
+    content: "";
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    width: 25px;
+    height: 2px;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg, var(--line-2), transparent);
+  }
+  .log-row.feat .log-rowlink {
+    border-color: rgba(230, 180, 120, 0.26);
+  }
+  .log-row.feat .log-rowlink::before {
+    background: linear-gradient(90deg, rgba(230, 180, 120, 0.5), transparent);
+  }
+  .log-row:hover .log-rowlink {
+    border-color: var(--glass-brd);
+    background: linear-gradient(155deg, rgba(58, 48, 39, 0.52), rgba(32, 26, 21, 0.34));
+    box-shadow:
+      0 10px 26px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transform: translateY(-2px);
+  }
+  .log-titlerow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .log-title {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    transition: color 0.2s;
+  }
+  .pj-star {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--amber);
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+  }
+  .log-row:hover .log-title {
+    color: var(--amber-bright);
+  }
+  .log-blurb {
+    margin: 7px 0 11px;
+    color: var(--text-3);
+    font-size: 13.5px;
+    line-height: 1.55;
+    max-width: 62ch;
+  }
+  .log-arrow {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    color: var(--text-4);
+    align-self: center;
+    transition: 0.2s;
+  }
+  .log-row:hover .log-arrow {
+    color: var(--amber);
+    transform: translateX(4px);
+  }
+  .log-thumb {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 146px;
+    height: 92px;
+    border: 1px solid var(--glass-brd);
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 2;
+    background: linear-gradient(155deg, rgba(52, 44, 36, 0.5), rgba(26, 21, 18, 0.32));
+    transition:
+      transform 0.25s var(--ease),
+      box-shadow 0.25s,
+      border-color 0.25s;
+  }
+  .log-thumb :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .log-row:hover .log-thumb {
+    transform: translateY(-50%) scale(1.045);
+    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.5);
+    border-color: rgba(230, 180, 120, 0.4);
+  }
+
+  @media (max-width: 760px) {
+    .log-view {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .log-rail {
+      display: none;
+    }
+    .log-spine {
+      left: 23px;
+    }
+    .log-year {
+      padding-left: 56px;
+    }
+    .log-year-node {
+      left: 23px;
+    }
+    .log-row {
+      padding-left: 56px;
+    }
+    .log-node {
+      left: 23px;
+    }
+    .log-mon {
+      display: none;
+    }
+    .log-rowlink {
+      grid-template-columns: 1fr;
+      padding: 16px 14px 16px 16px;
+    }
+    .log-rowlink::before {
+      left: -16px;
+      width: 16px;
+    }
+    .log-arrow {
+      display: none;
+    }
+    .log-thumb {
+      position: static;
+      transform: none;
+      width: 100%;
+      height: 150px;
+      margin: 12px 0 0;
+      max-width: 100%;
+    }
+    .log-row:hover .log-thumb {
+      transform: none;
+    }
+  }
+</style>

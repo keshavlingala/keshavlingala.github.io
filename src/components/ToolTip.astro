@@ -1,0 +1,27 @@
+---
+interface Props {
+  tooltip: string;
+  link?: string;
+}
+
+const { tooltip, link } = Astro.props;
+---
+
+{
+  link ? (
+    <a
+      class="tip"
+      data-tooltip={tooltip}
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={tooltip}
+    >
+      <slot />
+    </a>
+  ) : (
+    <li class="tip" data-tooltip={tooltip}>
+      <slot />
+    </li>
+  )
+}

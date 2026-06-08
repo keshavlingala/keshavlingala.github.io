@@ -1,0 +1,664 @@
+/* ============================================================
+   Global stylesheet — design tokens, base, wood + gold + glass.
+   Section-specific styles live scoped inside each .astro
+   component; everything here is shared or applies to JS-built
+   DOM (the Skill Galaxy) and rendered Markdown.
+   ============================================================ */
+
+/* self-hosted fonts (no external CDN) */
+@import "@fontsource/space-grotesk/400.css";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
+:root {
+  /* surfaces */
+  --bg: #1a1817;
+  --bg-1: #201d1b;
+  --bg-2: #262220;
+  --bg-3: #2f2a27;
+  --bg-card: #221f1d;
+
+  /* accents */
+  --amber: #e6b478;
+  --amber-bright: #f3c98c;
+  --amber-deep: #c8915a;
+  /* secondary accent — champagne gold (kept under --teal name) */
+  --teal: #c9a86b;
+  --teal-bright: #e4c896;
+
+  /* glass */
+  --glass: linear-gradient(150deg, rgba(48, 40, 33, 0.55), rgba(28, 23, 19, 0.42));
+  --glass-brd: rgba(230, 180, 120, 0.2);
+
+  /* text */
+  --text: #efe9e1;
+  --text-2: #c5bcb0;
+  --text-3: #8d837a;
+  --text-4: #635c54;
+
+  /* lines */
+  --line: rgba(255, 255, 255, 0.08);
+  --line-2: rgba(255, 255, 255, 0.13);
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --r: 14px;
+  --r-s: 9px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* the hidden attribute must win over component display rules
+   (e.g. .form-success/.contact-form set display:flex) */
+[hidden] {
+  display: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  background:
+    radial-gradient(1100px 650px at 80% -8%, rgba(230, 180, 120, 0.12), transparent 58%),
+    radial-gradient(900px 600px at 0% 100%, rgba(201, 168, 107, 0.06), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* `clip` prevents sideways scroll WITHOUT creating a scroll container —
+     `hidden` would, which breaks position:sticky (nav + year rail). */
+  overflow-x: clip;
+}
+
+/* soft vignette for depth over the wood */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(125% 120% at 50% 0%, transparent 55%, rgba(0, 0, 0, 0.45) 100%);
+  z-index: 0;
+}
+
+::selection {
+  background: rgba(230, 180, 120, 0.28);
+  color: #fff;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------- layout primitives ---------- */
+.wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.section {
+  position: relative;
+  z-index: 1;
+  padding-top: 64px;
+  padding-bottom: 18px;
+  scroll-margin-top: 70px;
+}
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.section-head > div:first-child {
+  flex: 1 1 380px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(30px, 4.6vw, 50px);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0;
+  color: var(--text);
+}
+.accent,
+.section-title .accent {
+  background: linear-gradient(120deg, var(--amber-bright), var(--amber-deep));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.section-sub {
+  margin: 12px 0 0;
+  color: var(--text-3);
+  font-size: 14.5px;
+  max-width: 46ch;
+  line-height: 1.5;
+}
+.section-kicker {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber-bright);
+  margin: 0 0 22px;
+  white-space: nowrap;
+  background: var(--glass);
+  border: 1px solid var(--glass-brd);
+  border-radius: 999px;
+  padding: 7px 14px 7px 11px;
+  -webkit-backdrop-filter: blur(11px) saturate(1.3);
+  backdrop-filter: blur(11px) saturate(1.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.22),
+    0 3px 11px rgba(0, 0, 0, 0.22);
+}
+.section-kicker::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--amber-bright), var(--amber-deep));
+  box-shadow: 0 0 10px rgba(230, 180, 120, 0.7);
+}
+
+/* ---------- buttons ---------- */
+.btn-primary,
+.btn-ghost {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  border-radius: 999px;
+  padding: 12px 22px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.22s var(--ease);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.btn-primary {
+  background: linear-gradient(120deg, var(--amber-bright), var(--amber-deep));
+  color: #2a2017;
+  font-weight: 500;
+  box-shadow: 0 6px 22px rgba(230, 180, 120, 0.25);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(230, 180, 120, 0.38);
+}
+.btn-ghost {
+  background: transparent;
+  border-color: var(--line-2);
+  color: var(--text);
+}
+.btn-ghost:hover {
+  border-color: var(--amber-deep);
+  color: var(--amber);
+}
+.btn-primary.lg,
+.btn-ghost.lg {
+  padding: 15px 28px;
+  font-size: 14px;
+}
+
+/* ---------- chips ---------- */
+.chip {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-3);
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: 0.2s var(--ease);
+  white-space: nowrap;
+}
+.chip:hover {
+  color: var(--text);
+  border-color: var(--line-2);
+}
+.chip.on {
+  color: #2a2017;
+  background: linear-gradient(120deg, var(--amber-bright), var(--amber-deep));
+  border-color: transparent;
+}
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+/* ---------- tech tags ---------- */
+.pj-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.pj-tech span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-2);
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 3px 7px;
+}
+
+/* ---------- small atoms ---------- */
+.hint {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-4);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.hint .k {
+  border: 1px solid var(--line-2);
+  border-radius: 5px;
+  padding: 2px 6px;
+  color: var(--text-3);
+}
+
+@keyframes paneIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes livePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(95, 208, 138, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(95, 208, 138, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(95, 208, 138, 0);
+  }
+}
+
+@keyframes caretBlink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   Skill Galaxy — global because the SVG is built in JS
+   (scoped styles won't reach JS-created nodes).
+   ============================================================ */
+skill-galaxy {
+  display: block;
+}
+.galaxy-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.galaxy-stage {
+  position: relative;
+  height: 600px;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: radial-gradient(130% 130% at 50% 45%, var(--bg-1), var(--bg));
+  overflow: hidden;
+  display: block;
+}
+.galaxy-svg {
+  display: block;
+  touch-action: none;
+  user-select: none;
+}
+.ico {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.ico-fallback {
+  width: 100%;
+  height: 100%;
+  border-radius: 22%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.edge {
+  stroke: var(--line-2);
+  stroke-width: 1;
+  opacity: 0.5;
+  transition:
+    opacity 0.25s,
+    stroke 0.25s;
+}
+.hub {
+  cursor: grab;
+}
+.hub circle {
+  fill: var(--bg-3);
+  stroke: var(--teal);
+  stroke-width: 1.5;
+  transition:
+    opacity 0.25s,
+    stroke 0.25s,
+    fill 0.25s;
+}
+.hub .hub-t {
+  fill: var(--teal-bright);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-anchor: middle;
+  pointer-events: none;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.galaxy-svg.focused .edge {
+  opacity: 0.06;
+}
+.galaxy-svg.focused .edge.on {
+  opacity: 0.9;
+  stroke: var(--amber);
+  stroke-width: 1.4;
+}
+.galaxy-svg.focused .hub {
+  opacity: 0.28;
+}
+.galaxy-svg.focused .hub.on {
+  opacity: 1;
+}
+.galaxy-svg.focused .hub.on circle {
+  stroke: var(--amber);
+  fill: #2c2620;
+}
+.gnode {
+  cursor: grab;
+}
+.gnode circle {
+  fill: var(--bg-2);
+  stroke-width: 2;
+  transition: opacity 0.25s;
+}
+.gnode-ico {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.gnode-t {
+  fill: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-anchor: middle;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+.gnode:hover .gnode-t {
+  opacity: 1;
+}
+.galaxy-svg.focused .gnode {
+  opacity: 0.16;
+}
+.galaxy-svg.focused .gnode.on {
+  opacity: 1;
+}
+.galaxy-svg.focused .gnode.on .gnode-t {
+  opacity: 1;
+}
+/* crawlable / no-JS fallback: a plain skill list, hidden once enhanced */
+.galaxy-fallback {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 24px;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px 24px;
+  overflow: auto;
+}
+.galaxy-fallback h3 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin: 0 0 6px;
+}
+.galaxy-fallback ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+.galaxy-fallback li {
+  font-size: 13px;
+  color: var(--text-2);
+}
+skill-galaxy.ready .galaxy-fallback {
+  display: none;
+}
+
+/* ============================================================
+   Tooltip (used by ToolTip.astro + post pages)
+   ============================================================ */
+.tip {
+  position: relative;
+}
+.tip::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background: var(--bg-3);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 5px 9px;
+  border-radius: 7px;
+  white-space: nowrap;
+  border: 1px solid var(--line-2);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.18s,
+    transform 0.18s;
+  z-index: 6;
+}
+.tip:hover::before,
+.tip:focus-visible::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-9px);
+}
+.icon-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+}
+.tip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.tip-list--links .tip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--amber);
+  text-decoration: none;
+}
+
+/* ============================================================
+   Article container + Markdown body (post pages)
+   ============================================================ */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 96px 32px 40px;
+}
+.post-body {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-2);
+}
+.post-body h1,
+.post-body h2,
+.post-body h3,
+.post-body h4 {
+  font-family: var(--font-display);
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 1.8em 0 0.6em;
+}
+.post-body h2 {
+  font-size: 1.6em;
+}
+.post-body h3 {
+  font-size: 1.3em;
+}
+.post-body a {
+  color: var(--amber);
+  text-decoration: none;
+  border-bottom: 1px solid var(--amber-deep);
+}
+.post-body a:hover {
+  color: var(--amber-bright);
+}
+.post-body img {
+  border-radius: var(--r);
+  border: 1px solid var(--line);
+  margin: 1.2em 0;
+}
+.post-body pre {
+  background: #232424;
+  border: 1px solid var(--line);
+  border-radius: var(--r-s);
+  padding: 16px 18px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+}
+.post-body code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+.post-body :not(pre) > code {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 1px 6px;
+}
+.post-body blockquote {
+  margin: 1.2em 0;
+  padding: 4px 18px;
+  border-left: 3px solid var(--amber-deep);
+  color: var(--text-3);
+}
+.post-body hr,
+.container hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 1.6em 0;
+}
+.container h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0.4em 0 0.5em;
+}
+.container > h3 {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin: 1.6em 0 0.8em;
+}
+
+/* ---------- scrollbars (webkit) ---------- */
+*::-webkit-scrollbar {
+  height: 9px;
+  width: 9px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--bg-3);
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (max-width: 760px) {
+  .wrap {
+    padding: 0 20px;
+  }
+  .galaxy-stage {
+    height: 520px;
+  }
+  .container {
+    padding: 84px 20px 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

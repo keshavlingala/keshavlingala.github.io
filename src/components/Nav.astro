@@ -1,0 +1,128 @@
+---
+import { siteMetadata } from "../site";
+const { email } = siteMetadata;
+const links = [
+  ["Work", "/#work"],
+  ["Experience", "/#experience"],
+  ["Skills", "/#skills"],
+  ["Contact", "/#contact"],
+] as const;
+---
+
+<header class="nav" id="site-nav">
+  <div class="nav-inner wrap">
+    <a class="nav-brand" href="/#top" aria-label={`${siteMetadata.name} — home`}>
+      <span class="dot" aria-hidden="true">K</span>
+      <span class="nav-name">{siteMetadata.name}</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      {links.map(([label, href]) => <a href={href}>{label}</a>)}
+      <a class="nav-cta" href={`mailto:${email}`}>Let's talk</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const nav = document.getElementById("site-nav");
+  if (nav) {
+    const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+</script>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    transition:
+      background 0.3s,
+      border-color 0.3s;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled {
+    background: rgba(26, 24, 23, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 62px;
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .nav-brand .dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--amber), var(--amber-deep));
+    display: grid;
+    place-items: center;
+    color: #2a2017;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .nav-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav-links a {
+    color: var(--text-3);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover {
+    color: var(--text);
+  }
+  .nav-cta {
+    color: var(--text) !important;
+    margin-left: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  .nav-cta::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #5fd08a;
+    animation: livePulse 2.2s infinite;
+  }
+  .nav-cta:hover {
+    color: var(--amber) !important;
+  }
+
+  @media (max-width: 760px) {
+    .nav-links a:not(.nav-cta) {
+      display: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-cta::before {
+      animation: none;
+    }
+  }
+</style>

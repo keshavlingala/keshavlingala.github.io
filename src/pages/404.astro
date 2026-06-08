@@ -1,0 +1,37 @@
+---
+import Base from "../layouts/Base.astro";
+import { Image } from "astro:assets";
+import notFoundImage from "../content/images/404.png";
+---
+
+<Base title="404 — Page Not Found" description="The page you're looking for doesn't exist.">
+  <div class="container notfound">
+    <p class="section-kicker">Error 404</p>
+    <h1>Lost in the <span class="accent">woodwork</span>.</h1>
+    <p class="nf-sub">That page doesn't exist — it may have moved or never shipped.</p>
+    <a class="btn-primary lg" href="/">← Back to home</a>
+    <Image class="nf-img" src={notFoundImage} alt="404 — page not found" widths={[480, 900]} />
+  </div>
+</Base>
+
+<style>
+  .notfound {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    min-height: 60vh;
+  }
+  .nf-sub {
+    color: var(--text-3);
+    font-size: 15px;
+    margin: 0 0 6px;
+  }
+  .nf-img {
+    width: min(80%, 520px);
+    height: auto;
+    margin-top: 24px;
+    opacity: 0.92;
+  }
+</style>

@@ -1,0 +1,402 @@
+---
+interface Props {
+  projectCount: number;
+}
+const { projectCount } = Astro.props;
+const years = new Date().getFullYear() - 2019;
+---
+
+<section id="top" class="hero wrap">
+  <div class="hero-left">
+    <p class="hero-status"><i class="live" aria-hidden="true"></i> Senior Software Engineer</p>
+    <h1 class="hero-name">Keshav<br /><span class="accent">Lingala</span></h1>
+    <p class="hero-role">MS in Computer Science · Based in Dayton, OH</p>
+    <p class="hero-tag">
+      Full-stack engineer building systems that scale — from Angular and React interfaces down to
+      Spring&nbsp;Boot and Node services on AWS and Kubernetes. Seven years across banking,
+      big-data and distribution.
+    </p>
+    <div class="hero-cta">
+      <a class="cta-go" href="#work">
+        <span class="cta-go-lbl">View my work</span>
+        <span class="cta-go-arr" aria-hidden="true">
+          <svg width="46" height="12" viewBox="0 0 46 12" fill="none">
+            <line
+              class="cta-ln"
+              x1="0"
+              y1="6"
+              x2="28"
+              y2="6"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"></line>
+            <path
+              class="cta-hd"
+              d="M25 1.5 L31 6 L25 10.5"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </span>
+      </a>
+      <span class="cta-sep" aria-hidden="true"></span>
+      <a class="cta-alt" href="#contact">Get in touch</a>
+    </div>
+    <div class="hero-meta">
+      <div class="stat">
+        <span class="stat-num">{years}</span><span class="stat-lbl">Years experience</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">{projectCount}</span><span class="stat-lbl">Shipped projects</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">30+</span><span class="stat-lbl">Technologies</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="codewin" role="img" aria-label="Keshav Lingala described as a TypeScript object">
+      <div class="codewin-bar">
+        <span class="cw-dots"><i></i><i></i><i></i></span>
+        <span class="cw-file">engineer.ts</span>
+        <span class="cw-tag">TS</span>
+      </div>
+      <pre class="codewin-body"><code><span class="cw-line"><span class="cw-ln">1</span><span class="cw-code"><span class="t-kw">const</span> <span class="t-prop">engineer</span><span class="t-punc">:</span> <span class="t-type">Engineer</span> <span class="t-punc">= {`{`}</span></span></span>
+<span class="cw-line"><span class="cw-ln">2</span><span class="cw-code">  <span class="t-prop">name</span><span class="t-punc">:</span> <span class="t-str">"Keshav Lingala"</span><span class="t-punc">,</span></span></span>
+<span class="cw-line"><span class="cw-ln">3</span><span class="cw-code">  <span class="t-prop">title</span><span class="t-punc">:</span> <span class="t-str">"Senior Software Engineer"</span><span class="t-punc">,</span></span></span>
+<span class="cw-line"><span class="cw-ln">4</span><span class="cw-code">  <span class="t-prop">based</span><span class="t-punc">:</span> <span class="t-str">"Dayton, OH"</span><span class="t-punc">,</span></span></span>
+<span class="cw-line"><span class="cw-ln">5</span><span class="cw-code">  <span class="t-prop">stack</span><span class="t-punc">:</span> <span class="t-punc">[</span><span class="t-str">"TypeScript"</span><span class="t-punc">,</span> <span class="t-str">"Angular"</span><span class="t-punc">,</span> <span class="t-str">"React"</span><span class="t-punc">],</span></span></span>
+<span class="cw-line"><span class="cw-ln">6</span><span class="cw-code">  <span class="t-prop">services</span><span class="t-punc">:</span> <span class="t-punc">[</span><span class="t-str">"Spring Boot"</span><span class="t-punc">,</span> <span class="t-str">"Node"</span><span class="t-punc">,</span> <span class="t-str">"Go"</span><span class="t-punc">],</span></span></span>
+<span class="cw-line"><span class="cw-ln">7</span><span class="cw-code">  <span class="t-prop">cloud</span><span class="t-punc">:</span> <span class="t-punc">[</span><span class="t-str">"AWS"</span><span class="t-punc">,</span> <span class="t-str">"Kubernetes"</span><span class="t-punc">,</span> <span class="t-str">"Docker"</span><span class="t-punc">],</span></span></span>
+<span class="cw-line"><span class="cw-ln">8</span><span class="cw-code">  <span class="t-prop">experience</span><span class="t-punc">:</span> <span class="t-num">7</span><span class="t-punc">,</span>      <span class="t-com">// years, since 2019</span></span></span>
+<span class="cw-line"><span class="cw-ln">9</span><span class="cw-code">  <span class="t-prop">shipped</span><span class="t-punc">:</span> <span class="t-num">16</span><span class="t-punc">,</span>      <span class="t-com">// projects</span></span></span>
+<span class="cw-line"><span class="cw-ln">10</span><span class="cw-code">  <span class="t-prop">building</span><span class="t-punc">:</span> <span class="t-bool">true</span><span class="t-punc">,</span><span class="cw-caret"></span></span></span>
+<span class="cw-line"><span class="cw-ln">11</span><span class="cw-code"><span class="t-punc">{`};`}</span></span></span></code></pre>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: 1.08fr 0.92fr;
+    gap: 40px;
+    align-items: center;
+    padding: 86px 32px 72px;
+    min-height: 84vh;
+    scroll-margin-top: 0;
+  }
+  .hero-status {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--text-2);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    letter-spacing: 0.03em;
+    margin: 0;
+  }
+  .hero-status .live {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #5fd08a;
+    animation: livePulse 2.2s infinite;
+  }
+  .hero-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(46px, 7.4vw, 90px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    margin: 18px 0 0;
+  }
+  .hero-role {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    color: var(--text-2);
+    margin: 16px 0 0;
+    letter-spacing: 0.02em;
+  }
+  .hero-tag {
+    color: var(--text-3);
+    font-size: 16px;
+    line-height: 1.62;
+    max-width: 50ch;
+    margin: 22px 0 0;
+    text-wrap: pretty;
+  }
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    margin-top: 34px;
+    flex-wrap: wrap;
+  }
+  .cta-go {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: var(--text);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+  }
+  .cta-go-lbl {
+    position: relative;
+    padding-bottom: 5px;
+  }
+  .cta-go-lbl::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--amber-bright), var(--amber-deep));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.42s var(--ease);
+  }
+  .cta-go:hover .cta-go-lbl::after {
+    transform: scaleX(1);
+  }
+  .cta-go-arr {
+    display: inline-flex;
+    color: var(--amber);
+  }
+  .cta-go:hover {
+    color: var(--amber-bright);
+  }
+  .cta-ln {
+    transition: transform 0.35s var(--ease);
+    transform-origin: left center;
+  }
+  .cta-hd {
+    transition: transform 0.35s var(--ease);
+  }
+  .cta-go:hover .cta-ln {
+    transform: scaleX(1.45);
+  }
+  .cta-go:hover .cta-hd {
+    transform: translateX(11px);
+  }
+  .cta-sep {
+    width: 1px;
+    height: 24px;
+    background: var(--line-2);
+  }
+  .cta-alt {
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    color: var(--text-3);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 3px;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .cta-alt::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--text-4);
+    transition: background 0.2s;
+  }
+  .cta-alt:hover {
+    color: var(--text);
+  }
+  .cta-alt:hover::after {
+    background: var(--amber);
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0;
+    margin-top: 40px;
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+    width: fit-content;
+  }
+  .hero-meta .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding: 0 20px;
+    border-right: 1px solid var(--line);
+  }
+  .hero-meta .stat:first-child {
+    padding-left: 0;
+  }
+  .hero-meta .stat:last-child {
+    border-right: 0;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .stat-lbl {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-4);
+    white-space: nowrap;
+  }
+
+  /* code panel */
+  .hero-right {
+    display: grid;
+    place-items: center;
+  }
+  .codewin {
+    width: 100%;
+    max-width: 472px;
+    margin-left: auto;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(155deg, rgba(46, 39, 32, 0.66), rgba(26, 21, 18, 0.5));
+    border: 1px solid var(--glass-brd);
+    -webkit-backdrop-filter: blur(18px) saturate(1.25);
+    backdrop-filter: blur(18px) saturate(1.25);
+    box-shadow:
+      0 34px 80px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+  .codewin-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.025);
+  }
+  .cw-dots {
+    display: flex;
+    gap: 7px;
+  }
+  .cw-dots i {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--bg-3);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .cw-dots i:first-child {
+    background: rgba(230, 180, 120, 0.55);
+    border-color: transparent;
+  }
+  .cw-file {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--text-3);
+  }
+  .cw-tag {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--amber);
+    border: 1px solid rgba(230, 180, 120, 0.32);
+    border-radius: 5px;
+    padding: 2px 7px;
+    letter-spacing: 0.05em;
+  }
+  .codewin-body {
+    margin: 0;
+    padding: 16px 18px 18px;
+    overflow-x: auto;
+    /* lines break via .cw-line (flex); avoid extra blank rows from
+       newline text nodes between rows in the source */
+    white-space: normal;
+  }
+  .codewin-body code {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.85;
+    display: block;
+  }
+  .cw-line {
+    display: flex;
+    gap: 18px;
+    white-space: pre;
+  }
+  .cw-ln {
+    min-width: 16px;
+    text-align: right;
+    color: var(--text-4);
+    user-select: none;
+    flex: 0 0 auto;
+  }
+  .cw-code {
+    color: var(--text-2);
+    white-space: pre;
+  }
+  .t-kw {
+    color: #d08a86;
+  }
+  .t-type {
+    color: var(--teal-bright);
+  }
+  .t-prop {
+    color: var(--amber-bright);
+  }
+  .t-str {
+    color: #cbb389;
+  }
+  .t-num {
+    color: #e0c98f;
+  }
+  .t-bool {
+    color: #d08a86;
+  }
+  .t-punc {
+    color: var(--text-4);
+  }
+  .t-com {
+    color: var(--text-4);
+    font-style: italic;
+  }
+  .cw-caret {
+    display: inline-block;
+    width: 7px;
+    height: 15px;
+    background: var(--amber);
+    margin-left: 3px;
+    vertical-align: -2px;
+    animation: caretBlink 1.1s steps(1) infinite;
+  }
+
+  @media (max-width: 920px) {
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: 0;
+      padding-top: 64px;
+      gap: 30px;
+    }
+    .hero-right {
+      display: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cw-caret,
+    .hero-status .live {
+      animation: none;
+    }
+    .cta-ln,
+    .cta-hd,
+    .cta-go-lbl::after {
+      transition: none;
+    }
+  }
+</style>

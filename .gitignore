@@ -1,7 +1,9 @@
 node_modules/
-.cache/
-public/
-src/gatsby-types.d.ts
+
+# Astro build output & cache
+dist/
+.astro/
+
 .idea
 
 # OS / editor junk

@@ -1,0 +1,33 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="foot wrap">
+  <span>© {year} Keshav Lingala · Built with Astro — zero framework runtime</span>
+  <a class="foot-top" href="/#top">Back to top ↑</a>
+</footer>
+
+<style>
+  .foot {
+    position: relative;
+    z-index: 1;
+    color: var(--text-4);
+    font-size: 12.5px;
+    font-family: var(--font-mono);
+    padding: 60px 0 50px;
+    border-top: 1px solid var(--line);
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .foot-top {
+    color: var(--text-3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .foot-top:hover {
+    color: var(--amber);
+  }
+</style>

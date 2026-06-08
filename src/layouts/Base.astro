@@ -1,0 +1,44 @@
+---
+import "../styles/global.css";
+import SEO from "../components/SEO.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import type { SEOProps } from "../types";
+import favicon from "../content/images/logo.png";
+
+const props = Astro.props as SEOProps;
+const GTAG_ID = "G-VNY508N935";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={favicon.src} />
+    <link rel="apple-touch-icon" href={favicon.src} />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#1a1817" />
+    <meta name="generator" content={Astro.generator} />
+    <SEO {...props} />
+    <slot name="head" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async is:inline src={`https://www.googletagmanager.com/gtag/js?id=${GTAG_ID}`}></script>
+    <script is:inline define:vars={{ GTAG_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", GTAG_ID);
+    </script>
+  </head>
+  <body>
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
