@@ -690,7 +690,7 @@ skill-galaxy.ready .galaxy-fallback {
     padding: 0 20px;
   }
   .galaxy-stage {
-    height: 520px;
+    height: clamp(560px, 82vh, 760px);
   }
   .container {
     padding: 84px 20px 40px;

@@ -165,27 +165,36 @@ class SkillGalaxyEl extends HTMLElement {
     this.H = r.height;
   }
 
-  private layoutHubs() {
+  // Constellation ring. On landscape (desktop) it's a balanced circle; on
+  // portrait (mobile) it stretches into an ellipse so the 10 hub clusters fan
+  // out across the full height instead of cramming into a small central circle.
+  private ring() {
     const { W, H } = this;
-    const cx = W / 2,
-      cy = H / 2,
-      R = Math.min(W * 0.46, H * 0.42);
+    const base = Math.min(W * 0.46, H * 0.42);
+    const portrait = H > W;
+    return {
+      cx: W / 2,
+      cy: H / 2,
+      rx: portrait ? W * 0.46 : base,
+      ry: portrait ? H * 0.42 : base,
+    };
+  }
+
+  private layoutHubs() {
+    const { cx, cy, rx, ry } = this.ring();
     this.hubs.forEach((h, i) => {
       const a = (i / CATEGORIES.length) * Math.PI * 2 - Math.PI / 2;
-      h.sx = cx + Math.cos(a) * R;
-      h.sy = cy + Math.sin(a) * R * 0.94;
+      h.sx = cx + Math.cos(a) * rx;
+      h.sy = cy + Math.sin(a) * ry;
     });
   }
 
   private buildState() {
-    const { W, H } = this;
-    const cx = W / 2,
-      cy = H / 2,
-      R = Math.min(W * 0.46, H * 0.42);
+    const { cx, cy, rx, ry } = this.ring();
     this.hubs = CATEGORIES.map((c, i) => {
       const a = (i / CATEGORIES.length) * Math.PI * 2 - Math.PI / 2;
-      const sx = cx + Math.cos(a) * R,
-        sy = cy + Math.sin(a) * R * 0.94;
+      const sx = cx + Math.cos(a) * rx,
+        sy = cy + Math.sin(a) * ry;
       return { c, x: sx, y: sy, vx: 0, vy: 0, sx, sy, r: c.featured ? 40 : 30 };
     });
     this.sk = SKILLS.map((s) => {

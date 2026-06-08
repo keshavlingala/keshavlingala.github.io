@@ -1,9 +1,102 @@
 ---
+import { siteMetadata } from "../site";
+
 interface Props {
   projectCount: number;
 }
 const { projectCount } = Astro.props;
 const years = new Date().getFullYear() - 2019;
+
+/* ------------------------------------------------------------------
+   Tiny token model → syntax-highlighted HTML for the code panel.
+   Rendered to a string and injected with set:html, so the matching
+   styles MUST live in the global <style> block below — Astro's scope
+   hash never reaches runtime-injected DOM (set:html / innerHTML).
+   ------------------------------------------------------------------ */
+interface Tok {
+  c: string;
+  t: string;
+  href?: string;
+  ext?: boolean;
+}
+const k = (t: string): Tok => ({ c: "t-kw", t });
+const ty = (t: string): Tok => ({ c: "t-type", t });
+const pr = (t: string): Tok => ({ c: "t-prop", t });
+const s = (t: string): Tok => ({ c: "t-str", t });
+const nu = (t: string): Tok => ({ c: "t-num", t });
+const fn = (t: string): Tok => ({ c: "t-fn", t });
+const p = (t: string): Tok => ({ c: "t-punc", t });
+const co = (t: string): Tok => ({ c: "t-com", t });
+const x = (t: string): Tok => ({ c: "", t });
+const ct = (t: string, href: string, ext = true): Tok => ({ c: "t-str", t, href, ext });
+
+const esc = (str: string): string =>
+  str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+const renderTok = (tk: Tok): string => {
+  const text = esc(tk.t);
+  if (tk.href !== undefined) {
+    const attrs = tk.ext ? ' target="_blank" rel="noopener"' : "";
+    return `<a class="${tk.c} cw-link" href="${esc(tk.href)}"${attrs}>${text}</a>`;
+  }
+  return tk.c ? `<span class="${tk.c}">${text}</span>` : text;
+};
+
+const renderPane = (lines: Tok[][]): string =>
+  lines
+    .map((toks, i) => {
+      const last = i === lines.length - 1;
+      const inner = toks.map(renderTok).join("") + (last ? '<span class="cw-caret"></span>' : "");
+      return `<span class="cw-line"><span class="cw-ln">${i + 1}</span><span class="cw-code">${inner}</span></span>`;
+    })
+    .join("");
+
+const engineer: Tok[][] = [
+  [k("type"), x(" "), ty("Domain"), x(" "), p("="), x(" "), s('"Full-Stack"'), x(" "), p("|"), x(" "), s('"Cloud"'), x(" "), p("|"), x(" "), s('"Gen AI"'), p(";")],
+  [],
+  [k("class"), x(" "), ty("Engineer"), x(" "), p("{")],
+  [x("  "), pr("name"), x("  "), p("="), x(" "), s('"Keshav Lingala"'), p(";")],
+  [x("  "), pr("title"), x(" "), p("="), x(" "), s('"Senior Software Engineer"'), p(";")],
+  [x("  "), pr("since"), x(" "), p("="), x(" "), nu("2019"), p(";"), x("          "), co(`// ${years} yrs · ${projectCount} shipped`)],
+  [],
+  [x("  "), pr("fullStack"), x(" "), p("= ["), s('"Angular"'), p(","), x(" "), s('"Spring Boot"'), p(","), x(" "), s('"SQL"'), p("];")],
+  [x("  "), pr("cloud"), x("     "), p("= ["), s('"AWS"'), p(","), x(" "), s('"Kubernetes"'), p(","), x(" "), s('"Docker"'), p("];")],
+  [x("  "), pr("genAI"), x("     "), p("= ["), s('"LangChain"'), p(","), x(" "), s('"RAG"'), p(","), x(" "), s('"Agents"'), p("];")],
+  [],
+  [x("  "), fn("build"), p("("), x("idea"), p(":"), x(" "), ty("Idea"), p("):"), x(" "), ty("Product"), x(" "), p("{")],
+  [x("    "), k("return"), x(" "), fn("ship"), p("("), k("this"), p("."), fn("code"), p("("), x("idea"), p("));")],
+  [x("  "), p("}")],
+  [p("}")],
+];
+
+const skills: Tok[][] = [
+  [p("{")],
+  [x("  "), pr('"languages"'), p(":"), x(" "), p("["), s('"TypeScript"'), p(","), x(" "), s('"Java"'), p(","), x(" "), s('"Go"'), p(","), x(" "), s('"Python"'), p("],")],
+  [x("  "), pr('"frontend"'), p(":"), x("  "), p("["), s('"Angular"'), p(","), x(" "), s('"React"'), p(","), x(" "), s('"GraphQL"'), p("],")],
+  [x("  "), pr('"backend"'), p(":"), x("   "), p("["), s('"Spring Boot"'), p(","), x(" "), s('"Node.js"'), p(","), x(" "), s('"NestJS"'), p("],")],
+  [x("  "), pr('"cloud"'), p(":"), x("     "), p("["), s('"AWS"'), p(","), x(" "), s('"Docker"'), p(","), x(" "), s('"Kubernetes"'), p(","), x(" "), s('"Kafka"'), p("],")],
+  [x("  "), pr('"genAI"'), p(":"), x("     "), p("["), s('"LangChain"'), p(","), x(" "), s('"RAG"'), p(","), x(" "), s('"Agents"'), p(","), x(" "), s('"Ollama"'), p("],")],
+  [x("  "), pr('"shipped"'), p(":"), x("   "), nu(String(projectCount))],
+  [p("}")],
+];
+
+const contact: Tok[][] = [
+  [k("const"), x(" "), x("reach"), x(" "), p("="), x(" "), p("{")],
+  [x("  "), pr("email"), p(":"), x("    "), ct('"admin@keshav.codes"', `mailto:${siteMetadata.email}`, false), p(",")],
+  [x("  "), pr("github"), p(":"), x("   "), ct('"keshavlingala"', siteMetadata.github), p(",")],
+  [x("  "), pr("linkedin"), p(":"), x(" "), ct('"keshavlingala"', siteMetadata.linkedin), p(",")],
+  [x("  "), pr("status"), p(":"), x("   "), s('"open to opportunities"'), p(",")],
+  [p("};")],
+  [],
+  [k("export"), x(" "), k("const"), x(" "), fn("say"), x(" "), p("="), x(" "), p("("), x("msg"), p(":"), x(" "), ty("string"), p(")"), x(" "), p("=>")],
+  [x("  "), fn("fetch"), p("("), s('"/contact"'), p(","), x(" "), p("{"), x(" "), pr("method"), p(":"), x(" "), s('"POST"'), p(","), x(" "), pr("body"), p(":"), x(" "), x("msg"), x(" "), p("});")],
+];
+
+const files = [
+  { name: "engineer.ts", body: renderPane(engineer) },
+  { name: "skills.json", body: renderPane(skills) },
+  { name: "contact.ts", body: renderPane(contact) },
+];
 ---
 
 <section id="top" class="hero wrap">
@@ -57,27 +150,41 @@ const years = new Date().getFullYear() - 2019;
   </div>
 
   <div class="hero-right">
-    <div class="codewin" role="img" aria-label="Keshav Lingala described as a TypeScript class, specializing in Full-Stack, Cloud and Gen AI">
+    <div class="codewin" role="group" aria-label="Code panel — switch files and run">
       <div class="codewin-bar">
-        <span class="cw-dots"><i></i><i></i><i></i></span>
-        <span class="cw-file">engineer.ts</span>
-        <span class="cw-tag">TS</span>
+        <span class="cw-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <div class="cw-tabs" role="tablist" aria-label="Code files">
+          {
+            files.map((f, i) => (
+              <button
+                class={"cw-tab" + (i === 0 ? " on" : "")}
+                role="tab"
+                type="button"
+                data-file={f.name}
+                aria-selected={i === 0 ? "true" : "false"}
+              >
+                {f.name}
+              </button>
+            ))
+          }
+        </div>
+        <button class="cw-run" type="button" aria-label="Run active file">
+          <svg class="cw-play" viewBox="0 0 10 11" width="9" height="10" aria-hidden="true">
+            <path d="M1 1 L9 5.5 L1 10 Z" fill="currentColor"></path>
+          </svg>
+          <span class="cw-spin" aria-hidden="true"></span>
+          <span class="cw-run-lbl">Run</span>
+        </button>
       </div>
-      <pre class="codewin-body"><code><span class="cw-line"><span class="cw-ln">1</span><span class="cw-code"><span class="t-kw">type</span> <span class="t-type">Domain</span> <span class="t-punc">=</span> <span class="t-str">"Full-Stack"</span> <span class="t-punc">|</span> <span class="t-str">"Cloud"</span> <span class="t-punc">|</span> <span class="t-str">"Gen AI"</span><span class="t-punc">;</span></span></span>
-<span class="cw-line"><span class="cw-ln">2</span><span class="cw-code"></span></span>
-<span class="cw-line"><span class="cw-ln">3</span><span class="cw-code"><span class="t-kw">class</span> <span class="t-type">Engineer</span> <span class="t-punc">{`{`}</span></span></span>
-<span class="cw-line"><span class="cw-ln">4</span><span class="cw-code">  <span class="t-prop">name</span>  <span class="t-punc">=</span> <span class="t-str">"Keshav Lingala"</span><span class="t-punc">;</span></span></span>
-<span class="cw-line"><span class="cw-ln">5</span><span class="cw-code">  <span class="t-prop">title</span> <span class="t-punc">=</span> <span class="t-str">"Senior Software Engineer"</span><span class="t-punc">;</span></span></span>
-<span class="cw-line"><span class="cw-ln">6</span><span class="cw-code">  <span class="t-prop">since</span> <span class="t-punc">=</span> <span class="t-num">2019</span><span class="t-punc">;</span>          <span class="t-com">// 7 yrs · 16 shipped</span></span></span>
-<span class="cw-line"><span class="cw-ln">7</span><span class="cw-code"></span></span>
-<span class="cw-line"><span class="cw-ln">8</span><span class="cw-code">  <span class="t-prop">fullStack</span> <span class="t-punc">= [</span><span class="t-str">"Angular"</span><span class="t-punc">,</span> <span class="t-str">"Spring Boot"</span><span class="t-punc">,</span> <span class="t-str">"SQL"</span><span class="t-punc">];</span></span></span>
-<span class="cw-line"><span class="cw-ln">9</span><span class="cw-code">  <span class="t-prop">cloud</span>     <span class="t-punc">= [</span><span class="t-str">"AWS"</span><span class="t-punc">,</span> <span class="t-str">"Kubernetes"</span><span class="t-punc">,</span> <span class="t-str">"Docker"</span><span class="t-punc">];</span></span></span>
-<span class="cw-line"><span class="cw-ln">10</span><span class="cw-code">  <span class="t-prop">genAI</span>     <span class="t-punc">= [</span><span class="t-str">"LangChain"</span><span class="t-punc">,</span> <span class="t-str">"RAG"</span><span class="t-punc">,</span> <span class="t-str">"Agents"</span><span class="t-punc">];</span></span></span>
-<span class="cw-line"><span class="cw-ln">11</span><span class="cw-code"></span></span>
-<span class="cw-line"><span class="cw-ln">12</span><span class="cw-code">  <span class="t-fn">build</span><span class="t-punc">(</span>idea<span class="t-punc">:</span> <span class="t-type">Idea</span><span class="t-punc">):</span> <span class="t-type">Product</span> <span class="t-punc">{`{`}</span></span></span>
-<span class="cw-line"><span class="cw-ln">13</span><span class="cw-code">    <span class="t-kw">return</span> <span class="t-fn">ship</span><span class="t-punc">(</span><span class="t-kw">this</span><span class="t-punc">.</span><span class="t-fn">code</span><span class="t-punc">(</span>idea<span class="t-punc">));</span></span></span>
-<span class="cw-line"><span class="cw-ln">14</span><span class="cw-code">  <span class="t-punc">{`}`}</span></span></span>
-<span class="cw-line"><span class="cw-ln">15</span><span class="cw-code"><span class="t-punc">{`}`}</span><span class="cw-caret"></span></span></span></code></pre>
+
+      <div class="codewin-main">
+        {
+          files.map((f, i) => (
+            <pre class="codewin-body cw-pane" data-file={f.name} hidden={i !== 0}><code set:html={f.body}></code></pre>
+          ))
+        }
+        <div class="cw-console" hidden aria-live="polite"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -259,10 +366,11 @@ const years = new Date().getFullYear() - 2019;
     white-space: nowrap;
   }
 
-  /* code panel */
+  /* code panel chrome (these elements exist at compile time → scoped) */
   .hero-right {
     display: grid;
     place-items: center;
+    perspective: 1100px;
   }
   .codewin {
     width: 100%;
@@ -277,18 +385,21 @@ const years = new Date().getFullYear() - 2019;
     box-shadow:
       0 34px 80px rgba(0, 0, 0, 0.55),
       inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transform-style: preserve-3d;
+    will-change: transform;
   }
   .codewin-bar {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 12px 16px;
+    padding: 10px 14px;
     border-bottom: 1px solid var(--line);
     background: rgba(255, 255, 255, 0.025);
   }
   .cw-dots {
     display: flex;
     gap: 7px;
+    flex: 0 0 auto;
   }
   .cw-dots i {
     width: 11px;
@@ -301,20 +412,88 @@ const years = new Date().getFullYear() - 2019;
     background: rgba(230, 180, 120, 0.55);
     border-color: transparent;
   }
-  .cw-file {
-    font-family: var(--font-mono);
-    font-size: 12.5px;
-    color: var(--text-3);
+
+  /* tabs */
+  .cw-tabs {
+    display: flex;
+    gap: 2px;
+    margin-right: auto;
+    overflow: hidden;
   }
-  .cw-tag {
-    margin-left: auto;
+  .cw-tab {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 12px;
+    color: var(--text-4);
+    background: transparent;
+    border: 0;
+    border-radius: 7px;
+    padding: 4px 9px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.18s var(--ease);
+  }
+  .cw-tab:hover {
+    color: var(--text-2);
+    background: rgba(255, 255, 255, 0.045);
+  }
+  .cw-tab.on {
+    color: var(--amber-bright);
+    background: rgba(230, 180, 120, 0.12);
+  }
+  .cw-tab:focus-visible {
+    outline: 1px solid var(--amber-deep);
+    outline-offset: 1px;
+  }
+
+  /* run button */
+  .cw-run {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
     color: var(--amber);
-    border: 1px solid rgba(230, 180, 120, 0.32);
-    border-radius: 5px;
-    padding: 2px 7px;
-    letter-spacing: 0.05em;
+    background: rgba(230, 180, 120, 0.08);
+    border: 1px solid rgba(230, 180, 120, 0.28);
+    border-radius: 6px;
+    padding: 3px 9px 3px 8px;
+    cursor: pointer;
+    transition: 0.18s var(--ease);
+  }
+  .cw-run:hover {
+    color: var(--amber-bright);
+    background: rgba(230, 180, 120, 0.16);
+    border-color: rgba(230, 180, 120, 0.5);
+  }
+  .cw-run:focus-visible {
+    outline: 1px solid var(--amber-deep);
+    outline-offset: 1px;
+  }
+  .cw-play {
+    display: block;
+  }
+  .cw-spin {
+    display: none;
+    width: 9px;
+    height: 9px;
+    border: 1.5px solid rgba(230, 180, 120, 0.35);
+    border-top-color: var(--amber);
+    border-radius: 50%;
+  }
+  .cw-run.running {
+    pointer-events: none;
+  }
+  .cw-run.running .cw-play {
+    display: none;
+  }
+  .cw-run.running .cw-spin {
+    display: inline-block;
+    animation: spin 0.6s linear infinite;
+  }
+
+  .codewin-main {
+    position: relative;
   }
   .codewin-body {
     margin: 0;
@@ -330,58 +509,22 @@ const years = new Date().getFullYear() - 2019;
     line-height: 1.85;
     display: block;
   }
-  .cw-line {
+  .cw-console {
+    border-top: 1px solid var(--line);
+    background: rgba(0, 0, 0, 0.28);
+    padding: 10px 18px 13px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
     display: flex;
-    gap: 18px;
-    white-space: pre;
+    flex-direction: column;
+    gap: 4px;
+    animation: paneIn 0.3s var(--ease);
   }
-  .cw-ln {
-    min-width: 16px;
-    text-align: right;
-    color: var(--text-4);
-    user-select: none;
-    flex: 0 0 auto;
-  }
-  .cw-code {
-    color: var(--text-2);
-    white-space: pre;
-  }
-  .t-kw {
-    color: #d08a86;
-  }
-  .t-type {
-    color: var(--teal-bright);
-  }
-  .t-prop {
-    color: var(--amber-bright);
-  }
-  .t-str {
-    color: #cbb389;
-  }
-  .t-num {
-    color: #e0c98f;
-  }
-  .t-bool {
-    color: #d08a86;
-  }
-  .t-fn {
-    color: #8bb8c7;
-  }
-  .t-punc {
-    color: var(--text-4);
-  }
-  .t-com {
-    color: var(--text-4);
-    font-style: italic;
-  }
-  .cw-caret {
-    display: inline-block;
-    width: 7px;
-    height: 15px;
-    background: var(--amber);
-    margin-left: 3px;
-    vertical-align: -2px;
-    animation: caretBlink 1.1s steps(1) infinite;
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   @media (max-width: 920px) {
@@ -396,8 +539,11 @@ const years = new Date().getFullYear() - 2019;
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .cw-caret,
-    .hero-status .live {
+    .hero-status .live,
+    .cw-run.running .cw-spin {
+      animation: none;
+    }
+    .cw-console {
       animation: none;
     }
     .cta-ln,
@@ -407,3 +553,205 @@ const years = new Date().getFullYear() - 2019;
     }
   }
 </style>
+
+<!-- Code-panel CONTENT is injected via set:html / innerHTML, so its styles
+     must be global (Astro's scope hash never reaches runtime-injected DOM).
+     Namespaced under .codewin / .cw-console to avoid leaking. -->
+<style is:global>
+  .codewin .cw-line {
+    display: flex;
+    gap: 18px;
+    white-space: pre;
+  }
+  .codewin .cw-ln {
+    min-width: 16px;
+    text-align: right;
+    color: var(--text-4);
+    user-select: none;
+    flex: 0 0 auto;
+  }
+  .codewin .cw-code {
+    color: var(--text-2);
+    white-space: pre;
+  }
+  .codewin .t-kw {
+    color: #d08a86;
+  }
+  .codewin .t-type {
+    color: var(--teal-bright);
+  }
+  .codewin .t-prop {
+    color: var(--amber-bright);
+  }
+  .codewin .t-str {
+    color: #cbb389;
+  }
+  .codewin .t-num {
+    color: #e0c98f;
+  }
+  .codewin .t-bool {
+    color: #d08a86;
+  }
+  .codewin .t-fn {
+    color: #8bb8c7;
+  }
+  .codewin .t-punc {
+    color: var(--text-4);
+  }
+  .codewin .t-com {
+    color: var(--text-4);
+    font-style: italic;
+  }
+  .codewin .cw-link {
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(203, 179, 137, 0.5);
+    cursor: pointer;
+    transition: color 0.15s;
+  }
+  .codewin .cw-link:hover {
+    color: var(--amber-bright);
+    border-bottom-color: var(--amber);
+  }
+  .codewin .cw-caret {
+    display: inline-block;
+    width: 7px;
+    height: 15px;
+    background: var(--amber);
+    margin-left: 3px;
+    vertical-align: -2px;
+    animation: caretBlink 1.1s steps(1) infinite;
+  }
+
+  /* console / REPL output */
+  .cw-console .cw-out-line {
+    white-space: pre-wrap;
+    opacity: 0;
+    animation: cwOut 0.28s var(--ease) forwards;
+  }
+  .cw-console .cw-out-line:nth-child(1) {
+    animation-delay: 0.02s;
+  }
+  .cw-console .cw-out-line:nth-child(2) {
+    animation-delay: 0.18s;
+  }
+  .cw-console .cw-in {
+    color: var(--text-3);
+  }
+  .cw-console .cw-ok {
+    color: #7fd39a;
+  }
+  .cw-console a {
+    color: var(--amber);
+    text-decoration: none;
+    border-bottom: 1px solid var(--amber-deep);
+  }
+  .cw-console a:hover {
+    color: var(--amber-bright);
+  }
+
+  @keyframes cwOut {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .codewin .cw-caret {
+      animation: none;
+    }
+    .cw-console .cw-out-line {
+      animation: none;
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  const win = document.querySelector<HTMLElement>(".codewin");
+  if (win) {
+    const heroRight = win.closest<HTMLElement>(".hero-right")!;
+    const tabs = [...win.querySelectorAll<HTMLButtonElement>(".cw-tab")];
+    const panes = [...win.querySelectorAll<HTMLElement>(".cw-pane")];
+    const runBtn = win.querySelector<HTMLButtonElement>(".cw-run")!;
+    const runLbl = win.querySelector<HTMLElement>(".cw-run-lbl")!;
+    const consoleEl = win.querySelector<HTMLElement>(".cw-console")!;
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Per-file REPL output revealed by Run.
+    const runOut: Record<string, string> = {
+      "engineer.ts": `<span class="cw-out-line cw-in">&gt; new Engineer().build(idea)</span><span class="cw-out-line cw-ok">✓ shipped in 0.42s — <a href="#work">view 16 projects →</a></span>`,
+      "skills.json": `<span class="cw-out-line cw-in">&gt; Object.values(skills).flat().length</span><span class="cw-out-line cw-ok">→ 60+ technologies — <a href="#skills">open the galaxy →</a></span>`,
+      "contact.ts": `<span class="cw-out-line cw-in">&gt; say("let's build something")</span><span class="cw-out-line cw-ok">✓ 202 Accepted — <a href="#contact">open channel →</a></span>`,
+    };
+
+    const activeFile = () =>
+      tabs.find((t) => t.classList.contains("on"))?.dataset.file ?? tabs[0].dataset.file!;
+
+    const closeConsole = () => {
+      consoleEl.hidden = true;
+      consoleEl.replaceChildren();
+    };
+
+    // ── file tabs ─────────────────────────────────────────────────
+    const activate = (file: string) => {
+      tabs.forEach((t) => {
+        const on = t.dataset.file === file;
+        t.classList.toggle("on", on);
+        t.setAttribute("aria-selected", String(on));
+      });
+      panes.forEach((p) => (p.hidden = p.dataset.file !== file));
+      closeConsole();
+    };
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => activate(tab.dataset.file!));
+      tab.addEventListener("keydown", (e) => {
+        if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+        e.preventDefault();
+        const next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
+        next.focus();
+        activate(next.dataset.file!);
+      });
+    });
+
+    // ── Run → console output ──────────────────────────────────────
+    let running = false;
+    runBtn.addEventListener("click", () => {
+      if (running) return;
+      const out = runOut[activeFile()];
+      if (!out) return;
+      running = true;
+      runBtn.classList.add("running");
+      runLbl.textContent = "Running";
+      window.setTimeout(
+        () => {
+          consoleEl.innerHTML = out;
+          consoleEl.hidden = false;
+          runBtn.classList.remove("running");
+          runLbl.textContent = "Run";
+          running = false;
+        },
+        reduce ? 0 : 420,
+      );
+    });
+
+    // ── cursor parallax tilt (fine pointers, motion allowed) ──────
+    if (matchMedia("(pointer: fine)").matches && !reduce) {
+      heroRight.addEventListener("pointermove", (e) => {
+        const r = heroRight.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        win.style.transition = "transform 0.08s linear";
+        win.style.transform = `rotateY(${px * 6}deg) rotateX(${-py * 6}deg)`;
+      });
+      heroRight.addEventListener("pointerleave", () => {
+        win.style.transition = "transform 0.6s var(--ease)";
+        win.style.transform = "";
+      });
+    }
+  }
+</script>
