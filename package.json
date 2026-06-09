@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
+    "@vite-pwa/astro": "^1.2.0",
     "typescript": "^5.7.3"
   },
   "engines": {
