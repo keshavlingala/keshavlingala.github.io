@@ -5,10 +5,6 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  server:{
-    host:true,
-    port:4321
-  },
   site: "https://keshav.codes",
   output: "static",
   trailingSlash: "ignore",
