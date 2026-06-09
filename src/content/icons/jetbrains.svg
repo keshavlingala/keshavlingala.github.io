@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="jetbrains-g" x1="10" y1="54" x2="54" y2="10" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FF318C"/>
+      <stop offset="0.5" stop-color="#FB6D2E"/>
+      <stop offset="1" stop-color="#FCEE39"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="48" height="48" rx="7" fill="url(#jetbrains-g)"/>
+  <rect x="16" y="43" width="22" height="5" rx="1.5" fill="#fff"/>
+</svg>

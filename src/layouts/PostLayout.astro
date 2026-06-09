@@ -1,0 +1,154 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import Base from "./Base.astro";
+import ToolTip from "../components/ToolTip.astro";
+import { icons } from "../icons";
+import githubIcon from "../content/icons/github.svg?url";
+import linkIcon from "../content/icons/link.svg?url";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+  prev: CollectionEntry<"posts"> | null;
+  next: CollectionEntry<"posts"> | null;
+}
+
+const { post, prev, next } = Astro.props;
+const { title, description, techs, code, code2, demo, slug, featuredImage, date, tags } = post.data;
+
+const trunc = (t: string) => (t.length > 30 ? t.slice(0, 30) + "…" : t);
+const postTechs = icons.filter((icon) => techs.includes(icon.name));
+const dateLabel = date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+---
+
+<Base
+  title={title}
+  description={description}
+  image={featuredImage.src}
+  pathname={slug}
+  keywords={tags?.join(", ")}
+  article
+  datePublished={date.toISOString()}
+>
+  <article class="container">
+    <nav class="navigator" aria-label="Project navigation">
+      <a class="back-link" href="/#work">← All projects</a>
+      <div class="prevnext">
+        {prev && <a class="nav-link" href={`/${prev.data.slug}`}>← {trunc(prev.data.title)}</a>}
+        {next && <a class="nav-link" href={`/${next.data.slug}`}>{trunc(next.data.title)} →</a>}
+      </div>
+    </nav>
+
+    <p class="post-date">{dateLabel}</p>
+    <h1>{title}</h1>
+
+    <div class="feature-banner">
+      <Image src={featuredImage} alt={`${title} — featured screenshot`} widths={[480, 960]} />
+    </div>
+
+    <h3>Technologies Used</h3>
+    <ol class="icon-list">
+      {
+        postTechs.map((icon) => (
+          <ToolTip tooltip={icon.name}>
+            <img width="40" height="40" src={icon.icon} alt={icon.name} loading="lazy" />
+          </ToolTip>
+        ))
+      }
+    </ol>
+
+    {
+      (code || code2 || demo) && (
+        <>
+          <h3>Links</h3>
+          <ul class="tip-list tip-list--links">
+            {code && (
+              <ToolTip tooltip="Open in GitHub" link={code}>
+                <img width="20" height="20" src={githubIcon} alt="" /> GitHub
+              </ToolTip>
+            )}
+            {code2 && (
+              <ToolTip tooltip="Open backend / API repo" link={code2}>
+                <img width="20" height="20" src={githubIcon} alt="" /> Backend
+              </ToolTip>
+            )}
+            {demo && (
+              <ToolTip tooltip="Live demo" link={demo}>
+                <img width="20" height="20" src={linkIcon} alt="" /> Demo
+              </ToolTip>
+            )}
+          </ul>
+        </>
+      )
+    }
+
+    <hr />
+
+    <div class="post-body">
+      <slot />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .navigator {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .back-link {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-3);
+    text-decoration: none;
+    width: fit-content;
+    transition: color 0.2s;
+  }
+  .back-link:hover {
+    color: var(--amber);
+  }
+  .prevnext {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--text-3);
+    text-decoration: none;
+    padding: 7px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--bg-2);
+    transition:
+      color 0.2s,
+      border-color 0.2s;
+  }
+  .nav-link:hover {
+    color: var(--amber);
+    border-color: var(--amber-deep);
+  }
+  .post-date {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin: 0;
+  }
+  .feature-banner {
+    margin: 8px 0 12px;
+    border-radius: var(--r);
+    overflow: hidden;
+    border: 1px solid var(--glass-brd);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  }
+  .feature-banner :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>

@@ -1,0 +1,10 @@
+---
+interface Props {
+  id: string;
+}
+const { id } = Astro.props;
+---
+
+<section class="section wrap" id={id}>
+  <slot />
+</section>

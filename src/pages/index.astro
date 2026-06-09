@@ -1,0 +1,74 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import ProjectsLog from "../components/ProjectsLog.astro";
+import SkillGalaxy from "../components/SkillGalaxy.astro";
+import Experience from "../components/Experience.astro";
+import Contact from "../components/Contact.astro";
+import defaultImage from "../content/images/logo.png";
+import { siteMetadata } from "../site";
+import { graphDoc, profilePageSchema, projectsItemList } from "../lib/schema";
+
+const posts = (await getCollection("posts")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const projectCount = posts.length;
+const image = `${siteMetadata.siteUrl}${defaultImage.src}`;
+
+const homeJsonLd = graphDoc([
+  profilePageSchema(image),
+  projectsItemList(
+    posts.map((p) => ({
+      title: p.data.title,
+      slug: p.data.slug,
+      description: p.data.description,
+    })),
+  ),
+]);
+---
+
+<Base title={`${siteMetadata.name} — ${siteMetadata.jobTitle}`} description={siteMetadata.description}>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(homeJsonLd)}
+    slot="head"
+  />
+
+  <Hero projectCount={projectCount} />
+
+  <Section id="work">
+    <SectionHeader
+      kicker="Selected work · 2019 — 2026"
+      title="Things I've"
+      accent="built"
+      sub="Sixteen shipped projects across full-stack apps, big-data pipelines and AI experiments. Every entry links to its own page."
+    />
+    <ProjectsLog />
+  </Section>
+
+  <Section id="experience">
+    <SectionHeader
+      kicker="Where I've worked"
+      title="Experience &amp;"
+      accent="companies"
+      sub="From Bengaluru to Dayton — seven years across banking, big-data and distribution. Tap any company to see the detail."
+    />
+    <Experience />
+  </Section>
+
+  <Section id="skills">
+    <SectionHeader
+      kicker="The toolbox"
+      title="Skills &amp;"
+      accent="Languages"
+      sub="A living map of what I build with — every skill is tethered to the categories it belongs to. Hover to trace connections, drag to fling, or tap a category to gather its cluster."
+    />
+    <SkillGalaxy />
+  </Section>
+
+  <Contact />
+</Base>

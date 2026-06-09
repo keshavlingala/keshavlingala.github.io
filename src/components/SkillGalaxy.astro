@@ -1,0 +1,54 @@
+---
+import { CATEGORIES, SKILLS, catShort } from "../data/skills";
+
+const chips = [
+  { key: "", label: "All", featured: false },
+  ...CATEGORIES.map((c) => ({ key: c.key, label: catShort(c.key), featured: !!c.featured })),
+];
+const byCat = CATEGORIES.map((c) => ({
+  cat: c,
+  skills: SKILLS.filter((s) => s.cats.includes(c.key)),
+}));
+---
+
+<skill-galaxy class="galaxy-view">
+  <div class="galaxy-bar">
+    <div class="chip-row" role="tablist" aria-label="Filter skills by category">
+      {
+        chips.map((c, i) => (
+          <button
+            class={"chip" + (i === 0 ? " on" : "") + (c.featured ? " featured" : "")}
+            data-cat={c.key}
+            type="button"
+          >
+            {c.label}
+          </button>
+        ))
+      }
+    </div>
+    <div class="hint">
+      <span class="k">hover</span> to trace · <span class="k">drag</span> to fling · cursor repels
+    </div>
+  </div>
+
+  <div class="galaxy-stage">
+    <ul class="galaxy-fallback">
+      {
+        byCat.map(({ cat, skills }) => (
+          <li>
+            <h3>{cat.label}</h3>
+            <ul>
+              {skills.map((s) => (
+                <li>{s.name}</li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</skill-galaxy>
+
+<script>
+  import "../scripts/skill-galaxy";
+</script>
