@@ -55,13 +55,15 @@ const engineer: Tok[][] = [
   [k("type"), x(" "), ty("Domain"), x(" "), p("="), x(" "), s('"Full-Stack"'), x(" "), p("|"), x(" "), s('"Cloud"'), x(" "), p("|"), x(" "), s('"Gen AI"'), p(";")],
   [],
   [k("class"), x(" "), ty("Engineer"), x(" "), p("{")],
-  [x("  "), pr("name"), x("  "), p("="), x(" "), s('"Keshav Lingala"'), p(";")],
-  [x("  "), pr("title"), x(" "), p("="), x(" "), s('"Senior Software Engineer"'), p(";")],
-  [x("  "), pr("since"), x(" "), p("="), x(" "), nu("2019"), p(";"), x("          "), co(`// ${years} yrs · ${projectCount} shipped`)],
+  [x("  "), pr("name"), x("    "), p("="), x(" "), s('"Keshav Lingala"'), p(";")],
+  [x("  "), pr("title"), x("   "), p("="), x(" "), s('"Senior Software Engineer"'), p(";")],
+  [x("  "), pr("based"), x("   "), p("="), x(" "), s('"Dayton, OH"'), p(";")],
+  [x("  "), pr("edu"), x("     "), p("="), x(" "), s('"MS, Computer Science"'), p(";")],
   [],
-  [x("  "), pr("fullStack"), x(" "), p("= ["), s('"Angular"'), p(","), x(" "), s('"Spring Boot"'), p(","), x(" "), s('"SQL"'), p("];")],
-  [x("  "), pr("cloud"), x("     "), p("= ["), s('"AWS"'), p(","), x(" "), s('"Kubernetes"'), p(","), x(" "), s('"Docker"'), p("];")],
-  [x("  "), pr("genAI"), x("     "), p("= ["), s('"LangChain"'), p(","), x(" "), s('"RAG"'), p(","), x(" "), s('"Agents"'), p("];")],
+  [x("  "), pr("since"), x("   "), p("="), x(" "), nu("2019"), p(";"), x("    "), co(`// ${years} yrs in production`)],
+  [x("  "), pr("shipped"), x(" "), p("="), x(" "), nu(`${projectCount}`), p(";"), x("      "), co(`// delivered end-to-end`)],
+  [],
+  [x("  "), pr("domains"), p(":"), x(" "), ty("Domain"), p("[]"), x(" "), p("="), x(" "), p("["), s('"Full-Stack"'), p(","), x(" "), s('"Cloud"'), p(","), x(" "), s('"Gen AI"'), p("];")],
   [],
   [x("  "), fn("build"), p("("), x("idea"), p(":"), x(" "), ty("Idea"), p("):"), x(" "), ty("Product"), x(" "), p("{")],
   [x("    "), k("return"), x(" "), fn("ship"), p("("), k("this"), p("."), fn("code"), p("("), x("idea"), p("));")],
@@ -71,13 +73,23 @@ const engineer: Tok[][] = [
 
 const skills: Tok[][] = [
   [p("{")],
-  [x("  "), pr('"languages"'), p(":"), x(" "), p("["), s('"TypeScript"'), p(","), x(" "), s('"Java"'), p(","), x(" "), s('"Go"'), p(","), x(" "), s('"Python"'), p("],")],
-  [x("  "), pr('"frontend"'), p(":"), x("  "), p("["), s('"Angular"'), p(","), x(" "), s('"React"'), p(","), x(" "), s('"GraphQL"'), p("],")],
-  [x("  "), pr('"backend"'), p(":"), x("   "), p("["), s('"Spring Boot"'), p(","), x(" "), s('"Node.js"'), p(","), x(" "), s('"NestJS"'), p("],")],
-  [x("  "), pr('"cloud"'), p(":"), x("     "), p("["), s('"AWS"'), p(","), x(" "), s('"Docker"'), p(","), x(" "), s('"Kubernetes"'), p(","), x(" "), s('"Kafka"'), p("],")],
-  [x("  "), pr('"genAI"'), p(":"), x("     "), p("["), s('"LangChain"'), p(","), x(" "), s('"RAG"'), p(","), x(" "), s('"Agents"'), p(","), x(" "), s('"Ollama"'), p("],")],
-  [x("  "), pr('"shipped"'), p(":"), x("   "), nu(String(projectCount))],
+  [x("  "), pr('"languages"'), p(":"), x("  "), p("["), s('"Java"'), p(","), x(" "), s('"Kotlin"'), p(","), x(" "), s('"TypeScript"'), p(","), x(" "), s('"Go"'), p(","), x(" "), s('"Python"'), p("],")],
+  [x("  "), pr('"interfaces"'), p(":"), x(" "), p("["), s('"Angular"'), p(","), x(" "), s('"React"'), p(","), x(" "), s('"GraphQL"'), p(","), x(" "), s('"WebSockets"'), p("],")],
+  [x("  "), pr('"services"'), p(":"), x("   "), p("["), s('"Spring Boot"'), p(","), x(" "), s('"gRPC"'), p(","), x(" "), s('"Kafka"'), p(","), x(" "), s('"Redis"'), p("],")],
+  [x("  "), pr('"platform"'), p(":"), x("   "), p("["), s('"AWS"'), p(","), x(" "), s('"Kubernetes"'), p(","), x(" "), s('"Docker"'), p(","), x(" "), s('"Terraform"'), p("],")],
+  [x("  "), pr('"ai"'), p(":"), x("         "), p("["), s('"LangChain"'), p(","), x(" "), s('"Prompt Eng"'), p(","), x(" "), s('"RAG"'), p(","), x(" "), s('"Evals"'), p("]")],
   [p("}")],
+];
+
+const career: Tok[][] = [
+  [k("interface"), x(" "), ty("Role"), x(" "), p("{"), x(" "), pr("since"), p(":"), x(" "), ty("number"), p(";"), x(" "), pr("sector"), p(":"), x(" "), ty("string"), p(";"), x(" "), pr("focus"), p(":"), x(" "), ty("Domain"), p(";"), x(" "), p("}")],
+  [],
+  [k("const"), x(" "), x("career"), p(":"), x(" "), ty("Role"), p("[]"), x(" "), p("="), x(" "), p("[")],
+  [x("  "), p("{"), x(" "), pr("since"), p(":"), x(" "), nu("2024"), p(","), x(" "), pr("sector"), p(":"), x(" "), s('"Retail"'), p(","), x("       "), pr("focus"), p(":"), x(" "), s('"Gen AI"'), x("     "), p("}"), p(",")],
+  [x("  "), p("{"), x(" "), pr("since"), p(":"), x(" "), nu("2023"), p(","), x(" "), pr("sector"), p(":"), x(" "), s('"Distribution"'), p(","), x(" "), pr("focus"), p(":"), x(" "), s('"Gen AI"'), x("     "), p("}"), p(",")],
+  [x("  "), p("{"), x(" "), pr("since"), p(":"), x(" "), nu("2021"), p(","), x(" "), pr("sector"), p(":"), x(" "), s('"Big Data"'), p(","), x("     "), pr("focus"), p(":"), x(" "), s('"Cloud"'), x("      "), p("}"), p(",")],
+  [x("  "), p("{"), x(" "), pr("since"), p(":"), x(" "), nu("2019"), p(","), x(" "), pr("sector"), p(":"), x(" "), s('"Banking"'), p(","), x("      "), pr("focus"), p(":"), x(" "), s('"Full-Stack"'), x(" "), p("}"), p(",")],
+  [p("];")],
 ];
 
 const contact: Tok[][] = [
@@ -85,7 +97,6 @@ const contact: Tok[][] = [
   [x("  "), pr("email"), p(":"), x("    "), ct('"admin@keshav.codes"', `mailto:${siteMetadata.email}`, false), p(",")],
   [x("  "), pr("github"), p(":"), x("   "), ct('"keshavlingala"', siteMetadata.github), p(",")],
   [x("  "), pr("linkedin"), p(":"), x(" "), ct('"keshavlingala"', siteMetadata.linkedin), p(",")],
-  [x("  "), pr("status"), p(":"), x("   "), s('"open to opportunities"'), p(",")],
   [p("};")],
   [],
   [k("export"), x(" "), k("const"), x(" "), fn("say"), x(" "), p("="), x(" "), p("("), x("msg"), p(":"), x(" "), ty("string"), p(")"), x(" "), p("=>")],
@@ -95,6 +106,7 @@ const contact: Tok[][] = [
 const files = [
   { name: "engineer.ts", body: renderPane(engineer) },
   { name: "skills.json", body: renderPane(skills) },
+  { name: "career.ts", body: renderPane(career) },
   { name: "contact.ts", body: renderPane(contact) },
 ];
 ---
@@ -374,7 +386,7 @@ const files = [
   }
   .codewin {
     width: 100%;
-    max-width: 472px;
+    max-width: 510px;
     margin-left: auto;
     border-radius: 16px;
     overflow: hidden;
@@ -391,7 +403,7 @@ const files = [
   .codewin-bar {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     padding: 10px 14px;
     border-bottom: 1px solid var(--line);
     background: rgba(255, 255, 255, 0.025);
@@ -418,6 +430,7 @@ const files = [
     display: flex;
     gap: 2px;
     margin-right: auto;
+    min-width: 0;
     overflow: hidden;
   }
   .cw-tab {
@@ -427,7 +440,7 @@ const files = [
     background: transparent;
     border: 0;
     border-radius: 7px;
-    padding: 4px 9px;
+    padding: 4px 7px;
     cursor: pointer;
     white-space: nowrap;
     transition: 0.18s var(--ease);
@@ -494,6 +507,10 @@ const files = [
 
   .codewin-main {
     position: relative;
+    /* Stack every pane in one grid cell so the area always sizes to the
+       TALLEST file — switching tabs never changes the card height, so the
+       centered card can't re-center and jump. */
+    display: grid;
   }
   .codewin-body {
     margin: 0;
@@ -503,6 +520,19 @@ const files = [
        newline text nodes between rows in the source */
     white-space: normal;
   }
+  .cw-pane {
+    grid-area: 1 / 1; /* all panes overlap in the same cell */
+  }
+  /* Inactive panes stay in layout (so the cell keeps the tallest height)
+     but are hidden + non-interactive — not display:none, which would drop
+     them from grid sizing and bring the jump back. */
+  .cw-pane[hidden] {
+    /* !important to beat the browser's UA `[hidden] { display:none }`,
+       which otherwise drops the pane from layout and collapses the grid
+       cell back to the active file's height (the jump returns). */
+    display: block !important;
+    visibility: hidden;
+  }
   .codewin-body code {
     font-family: var(--font-mono);
     font-size: 13px;
@@ -510,6 +540,7 @@ const files = [
     display: block;
   }
   .cw-console {
+    grid-row: 2; /* sits below the stacked panes when Run reveals it */
     border-top: 1px solid var(--line);
     background: rgba(0, 0, 0, 0.28);
     padding: 10px 18px 13px;
@@ -531,11 +562,26 @@ const files = [
     .hero {
       grid-template-columns: 1fr;
       min-height: 0;
-      padding-top: 64px;
+      padding: 64px 20px 56px;
       gap: 30px;
     }
     .hero-right {
       display: none;
+    }
+    /* stop the three stats from forcing the grid column wider than the
+       viewport (their nowrap labels were overflowing → page got clipped). */
+    .hero-meta {
+      width: 100%;
+      flex-wrap: nowrap;
+      margin-top: 32px;
+    }
+    .hero-meta .stat {
+      flex: 1 1 0;
+      min-width: 0;
+      padding: 0 14px;
+    }
+    .stat-lbl {
+      white-space: normal;
     }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -686,6 +732,7 @@ const files = [
     const runOut: Record<string, string> = {
       "engineer.ts": `<span class="cw-out-line cw-in">&gt; new Engineer().build(idea)</span><span class="cw-out-line cw-ok">✓ shipped in 0.42s — <a href="#work">view 16 projects →</a></span>`,
       "skills.json": `<span class="cw-out-line cw-in">&gt; Object.values(skills).flat().length</span><span class="cw-out-line cw-ok">→ 60+ technologies — <a href="#skills">open the galaxy →</a></span>`,
+      "career.ts": `<span class="cw-out-line cw-in">&gt; career.map(r =&gt; r.sector)</span><span class="cw-out-line cw-ok">→ 4 sectors over 7 years — <a href="#work">browse the work →</a></span>`,
       "contact.ts": `<span class="cw-out-line cw-in">&gt; say("let's build something")</span><span class="cw-out-line cw-ok">✓ 202 Accepted — <a href="#contact">open channel →</a></span>`,
     };
 

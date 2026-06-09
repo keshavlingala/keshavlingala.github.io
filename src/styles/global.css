@@ -689,6 +689,12 @@ skill-galaxy.ready .galaxy-fallback {
   .wrap {
     padding: 0 20px;
   }
+  /* more vertical breathing room between sections on small screens
+     (e.g. Experience → Skills was sticking together). */
+  .section {
+    padding-top: 72px;
+    padding-bottom: 36px;
+  }
   .galaxy-stage {
     height: clamp(560px, 82vh, 760px);
   }

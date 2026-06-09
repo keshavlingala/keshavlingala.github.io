@@ -20,12 +20,38 @@ const startMon = (e: (typeof EXPERIENCE)[number]) => e.span.match(/^\s*([A-Za-z]
           return (
             <div class="now-card">
               <span class="now-logo" style={`--logo:${e.color}`}>
-                {e.logo}
+                {e.logoSrc ? (
+                  <img
+                    src={e.logoSrc}
+                    alt={`${e.company} logo`}
+                    loading="lazy"
+                    style={e.logoBg ? `background:${e.logoBg}` : undefined}
+                  />
+                ) : (
+                  e.logo
+                )}
               </span>
               <div>
                 <div class="now-role">{role.title}</div>
                 <div class="now-co">
-                  {e.company} · <span>{e.location.split(" · ")[0]}</span>
+                  <span class="now-coname">
+                    {e.company}
+                    {e.url && (
+                      <a
+                        class="co-link"
+                        href={e.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Visit ${e.company} website`}
+                        title={`Visit ${e.company} website`}
+                      >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M14 3h7v7M21 3l-9 9M19 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6" />
+                        </svg>
+                      </a>
+                    )}
+                  </span>{" "}
+                  · <span>{e.location.split(" · ")[0]}</span>
                 </div>
               </div>
             </div>
@@ -48,11 +74,35 @@ const startMon = (e: (typeof EXPERIENCE)[number]) => e.span.match(/^\s*([A-Za-z]
           <details class="exp-details" open={i === 0}>
           <summary class="exp-head">
             <span class="exp-logo" style={`--logo:${e.color}`}>
-              {e.logo}
+              {e.logoSrc ? (
+                <img
+                  src={e.logoSrc}
+                  alt={`${e.company} logo`}
+                  loading="lazy"
+                  style={e.logoBg ? `background:${e.logoBg}` : undefined}
+                />
+              ) : (
+                e.logo
+              )}
             </span>
             <span class="exp-headmain">
               <span class="exp-corow">
                 <span class="exp-co">{e.company}</span>
+                {e.url && (
+                  <a
+                    class="co-link"
+                    href={e.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit ${e.company} website`}
+                    title={`Visit ${e.company} website`}
+                    onclick="event.stopPropagation()"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M14 3h7v7M21 3l-9 9M19 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6" />
+                    </svg>
+                  </a>
+                )}
                 {e.current && <span class="exp-now">Now</span>}
               </span>
               <span class="exp-sub">{roleSummary(e)}</span>
@@ -167,6 +217,51 @@ const startMon = (e: (typeof EXPERIENCE)[number]) => e.span.match(/^\s*([A-Za-z]
     display: grid;
     place-items: center;
     flex: 0 0 auto;
+    overflow: hidden;
+  }
+  .now-logo img,
+  .exp-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 5px;
+    background: #fff;
+    border-radius: inherit;
+  }
+
+  .co-link {
+    display: inline-grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    color: var(--text-4);
+    border: 1px solid var(--line);
+    transition:
+      color 0.18s,
+      border-color 0.18s,
+      background 0.18s;
+    flex: 0 0 auto;
+  }
+  .co-link:hover {
+    color: var(--amber);
+    border-color: color-mix(in srgb, var(--amber) 55%, transparent);
+    background: rgba(230, 180, 120, 0.1);
+  }
+  .co-link svg {
+    width: 12px;
+    height: 12px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .now-coname {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-2);
   }
   .now-logo {
     width: 38px;
@@ -484,6 +579,14 @@ const startMon = (e: (typeof EXPERIENCE)[number]) => e.span.match(/^\s*([A-Za-z]
   }
 
   @media (max-width: 760px) {
+    .early-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .early-chip {
+      min-width: 0;
+    }
     .exp-head {
       grid-template-columns: 42px 1fr auto;
     }

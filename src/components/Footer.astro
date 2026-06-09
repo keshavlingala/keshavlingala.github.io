@@ -14,7 +14,10 @@ const year = new Date().getFullYear();
     color: var(--text-4);
     font-size: 12.5px;
     font-family: var(--font-mono);
-    padding: 60px 0 50px;
+    /* horizontal padding comes from .wrap (32px / 20px on mobile);
+       only set the vertical here so the text never hits the screen edge. */
+    padding-top: 60px;
+    padding-bottom: 50px;
     border-top: 1px solid var(--line);
     margin-top: 70px;
     display: flex;

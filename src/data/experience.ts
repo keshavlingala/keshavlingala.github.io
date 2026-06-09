@@ -13,6 +13,9 @@ export interface Role {
 export interface Company {
   company: string;
   logo: string;
+  logoSrc?: string;
+  logoBg?: string;
+  url?: string;
   color: string;
   current?: boolean;
   location: string;
@@ -32,6 +35,7 @@ export const EXPERIENCE: Company[] = [
   {
     company: "Winsupply",
     logo: "W",
+    logoSrc: "/logos/winsupply.svg",
     color: "#1B7F4B",
     current: true,
     location: "Dayton, Ohio",
@@ -48,6 +52,8 @@ export const EXPERIENCE: Company[] = [
   {
     company: "Swasthomeo",
     logo: "S",
+    logoSrc: "/logos/swasthomeo.jpg",
+    url: "https://swasthomeo.com",
     color: "#C8915A",
     current: true,
     location: "Hyderabad, India · Remote",
@@ -59,6 +65,8 @@ export const EXPERIENCE: Company[] = [
   {
     company: "Dataflake LLC",
     logo: "D",
+    logoSrc: "/logos/dataflake.png",
+    logoBg: "#0d1b2a",
     color: "#2496ED",
     location: "Mason, Ohio · Hybrid",
     span: "Jan 2024 — Jul 2024",
@@ -73,6 +81,7 @@ export const EXPERIENCE: Company[] = [
   {
     company: "Cal State University, Fullerton",
     logo: "C",
+    logoSrc: "/logos/csuf.svg",
     color: "#E25A1C",
     location: "Fullerton, California",
     span: "Jul 2023 — Dec 2023",
@@ -85,6 +94,7 @@ export const EXPERIENCE: Company[] = [
   {
     company: "DBS Bank",
     logo: "D",
+    logoSrc: "/logos/dbs.png",
     color: "#E2231A",
     location: "Hyderabad, India · Hybrid",
     span: "Jul 2021 — Aug 2022",
@@ -101,6 +111,7 @@ export const EXPERIENCE: Company[] = [
   {
     company: "Xebia",
     logo: "X",
+    logoSrc: "/logos/xebia.png",
     color: "#6DB33F",
     location: "Hyderabad, India · Remote",
     span: "Feb 2021 — Jul 2021",
@@ -111,6 +122,7 @@ export const EXPERIENCE: Company[] = [
   {
     company: "Virtusa",
     logo: "V",
+    logoSrc: "/logos/virtusa.png",
     color: "#0033A0",
     location: "Bengaluru, India · Remote",
     span: "Nov 2019 — Nov 2020",

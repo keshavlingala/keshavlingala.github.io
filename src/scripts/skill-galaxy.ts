@@ -81,7 +81,7 @@ class SkillGalaxyEl extends HTMLElement {
   private ro?: ResizeObserver;
   private io?: IntersectionObserver;
   private boundMove = (e: PointerEvent) => this.onMove(e);
-  private boundUp = () => (this.drag = null);
+  private boundUp = (e: PointerEvent) => this.onUp(e);
 
   connectedCallback() {
     this.stage = this.querySelector(".galaxy-stage") as HTMLElement;
@@ -239,6 +239,11 @@ class SkillGalaxyEl extends HTMLElement {
       g.appendChild(text);
       g.addEventListener("pointerdown", (ev) => {
         this.drag = { node: this.hubs[i] };
+        // Touch/pen have no hover — drive the highlight from the drag itself.
+        if (ev.pointerType !== "mouse") {
+          this.hover = { type: "hub", i };
+          this.applyFocus();
+        }
         ev.preventDefault();
       });
       g.addEventListener("mouseenter", () => {
@@ -246,6 +251,7 @@ class SkillGalaxyEl extends HTMLElement {
         this.applyFocus();
       });
       g.addEventListener("mouseleave", () => {
+        if (this.drag) return; // keep the highlight steady while dragging
         this.hover = null;
         this.applyFocus();
       });
@@ -285,6 +291,11 @@ class SkillGalaxyEl extends HTMLElement {
       g.appendChild(text);
       g.addEventListener("pointerdown", (ev) => {
         this.drag = { node: this.sk[i] };
+        // Touch/pen have no hover — drive the highlight from the drag itself.
+        if (ev.pointerType !== "mouse") {
+          this.hover = { type: "skill", i };
+          this.applyFocus();
+        }
         ev.preventDefault();
       });
       g.addEventListener("mouseenter", () => {
@@ -292,6 +303,7 @@ class SkillGalaxyEl extends HTMLElement {
         this.applyFocus();
       });
       g.addEventListener("mouseleave", () => {
+        if (this.drag) return; // keep the highlight steady while dragging
         this.hover = null;
         this.applyFocus();
       });
@@ -333,6 +345,17 @@ class SkillGalaxyEl extends HTMLElement {
       this.drag.node.y = my;
       this.drag.node.vx = 0;
       this.drag.node.vy = 0;
+    }
+  }
+
+  private onUp(e: PointerEvent) {
+    // On touch/pen the highlight was set by the drag (no hover to fall back
+    // on), so clear it when the finger lifts — back to normal on release.
+    const clearHover = this.drag !== null && e.pointerType !== "mouse";
+    this.drag = null;
+    if (clearHover) {
+      this.hover = null;
+      this.applyFocus();
     }
   }
 
