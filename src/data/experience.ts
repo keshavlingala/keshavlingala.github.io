@@ -29,6 +29,8 @@ export interface EarlyRole {
   org: string;
   role: string;
   date: string;
+  /** Optional outbound link — renders the chip as an anchor. */
+  url?: string;
 }
 
 export const EXPERIENCE: Company[] = [
@@ -142,6 +144,12 @@ export const EXPERIENCE: Company[] = [
 export const EARLY: EarlyRole[] = [
   { org: "Aakarshan", role: "Founder & Developer", date: "2018 — 2021" },
   { org: "Recurse — KMIT Tech Club", role: "Founding Member", date: "2019 — 2021" },
+  {
+    org: "KMIT Cyber Security Club",
+    role: "Member",
+    date: "2018 — 2020",
+    url: "https://cyberkmit.github.io",
+  },
   { org: "Smart India Hackathon", role: "Lead Developer", date: "2019" },
   { org: "R&D Dept, KMIT", role: "R&D Engineer", date: "2018 — 2020" },
 ];

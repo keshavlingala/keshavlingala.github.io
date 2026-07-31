@@ -145,13 +145,26 @@ const startMon = (e: (typeof EXPERIENCE)[number]) => e.span.match(/^\s*([A-Za-z]
     <span class="early-label">Earlier · founding &amp; community</span>
     <div class="early-row">
       {
-        EARLY.map((x) => (
-          <div class="early-chip">
-            <b>{x.org}</b>
-            <span>{x.role}</span>
-            <em>{x.date}</em>
-          </div>
-        ))
+        EARLY.map((x) => {
+          const Tag = x.url ? "a" : "div";
+          const link = x.url
+            ? { href: x.url, target: "_blank", rel: "noopener noreferrer" }
+            : {};
+          return (
+            <Tag class:list={["early-chip", { linked: !!x.url }]} {...link}>
+              <b>
+                {x.org}
+                {x.url && (
+                  <span class="early-ext" aria-hidden="true">
+                    ↗
+                  </span>
+                )}
+              </b>
+              <span>{x.role}</span>
+              <em>{x.date}</em>
+            </Tag>
+          );
+        })
       }
     </div>
   </div>
@@ -565,6 +578,30 @@ const startMon = (e: (typeof EXPERIENCE)[number]) => e.span.match(/^\s*([A-Za-z]
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 13.5px;
+  }
+  a.early-chip {
+    text-decoration: none;
+    color: inherit;
+    transition:
+      border-color 0.2s,
+      background 0.2s;
+  }
+  a.early-chip:hover {
+    border-color: var(--amber-deep);
+    background: var(--bg-2);
+  }
+  a.early-chip:hover b {
+    color: var(--amber-bright);
+  }
+  .early-ext {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-4);
+    margin-left: 5px;
+    vertical-align: 1px;
+  }
+  a.early-chip:hover .early-ext {
+    color: var(--amber-bright);
   }
   .early-chip span {
     font-family: var(--font-mono);

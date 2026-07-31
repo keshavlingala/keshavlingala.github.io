@@ -31,6 +31,7 @@ export type CatKey =
   | "gen"
   | "tools"
   | "auto"
+  | "sec"
   | "pm";
 
 export interface Category {
@@ -61,6 +62,7 @@ export const CATEGORIES: Category[] = [
   { key: "ml", label: "Neural Networks & Machine Learning" },
   { key: "tools", label: "Tools & IDEs for Development" },
   { key: "auto", label: "Automation Scripting" },
+  { key: "sec", label: "Security & Ethical Hacking" },
   { key: "pm", label: "Project Management & Collaboration" },
 ];
 
@@ -134,6 +136,10 @@ export const SKILLS: Skill[] = [
   { name: "JMeter",      cats: ["tools", "auto"],         tier: "familiar", color: "#D22128", icon: icon("jmeter") },
   { name: "BlazeMeter",  cats: ["tools"],                 tier: "familiar", color: "#00A4A6", icon: icon("blazemeter") },
   { name: "Arduino",     cats: ["tools", "auto"],         tier: "familiar", color: "#00979D", icon: icon("arduino") },
+  { name: "Kali Linux",  cats: ["sec", "tools"],          tier: "familiar", color: "#557C94", icon: icon("kalilinux") },
+  { name: "Metasploit",  cats: ["sec"],                   tier: "familiar", color: "#2B79C2", icon: icon("metasploit") },
+  { name: "Wireshark",   cats: ["sec"],                   tier: "familiar", color: "#1679A7", icon: icon("wireshark") },
+  { name: "Nmap",        cats: ["sec"],                   tier: "familiar", color: "#8AB4D8", icon: icon("nmap") },
   { name: "Jira",        cats: ["pm", "tools"],           tier: "familiar", color: "#0052CC", icon: icon("jira") },
   { name: "Confluence",  cats: ["pm", "tools"],           tier: "familiar", color: "#2684FF", icon: icon("confluence") },
   { name: "Slack",       cats: ["pm", "tools"],           tier: "familiar", color: "#4A154B", icon: icon("slack") },
@@ -159,4 +165,5 @@ export const catShort = (key: CatKey): string =>
     .replace("Neural Networks & Machine Learning", "ML / Neural Nets")
     .replace("Generative AI & Autonomous Agents", "GenAI / Agents")
     .replace("Project Management & Collaboration", "PM / Collab")
+    .replace("Security & Ethical Hacking", "Security")
     .replace(" for Development", "");
