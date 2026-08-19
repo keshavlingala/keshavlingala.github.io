@@ -30,7 +30,11 @@ const homeJsonLd = graphDoc([
 ]);
 ---
 
-<Base title={`${siteMetadata.name} — ${siteMetadata.jobTitle}`} description={siteMetadata.description}>
+<Base
+  title={`${siteMetadata.name} — ${siteMetadata.jobTitle}`}
+  description={siteMetadata.description}
+  markdown="/about.md"
+>
   <script
     type="application/ld+json"
     is:inline
@@ -45,7 +49,7 @@ const homeJsonLd = graphDoc([
       kicker="Selected work · 2019 — 2026"
       title="Things I've"
       accent="built"
-      sub="Sixteen shipped projects across full-stack apps, big-data pipelines and AI experiments. Every entry links to its own page."
+      sub="Seventeen shipped projects across full-stack apps, big-data pipelines and AI experiments. Every entry links to its own page."
     />
     <ProjectsLog />
   </Section>

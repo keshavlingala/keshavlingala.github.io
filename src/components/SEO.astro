@@ -10,7 +10,7 @@ import {
   graphDoc,
 } from "../lib/schema";
 
-const { title, description, pathname, image, keywords, article, datePublished } =
+const { title, description, pathname, image, keywords, article, datePublished, markdown } =
   Astro.props as SEOProps;
 
 const {
@@ -23,11 +23,16 @@ const {
   keywords: defaultKeywords,
 } = siteMetadata;
 
+/* Pages are built as directories, so the server actually serves (and the
+   sitemap lists) the trailing-slash URL — "/sheetboard" 301s to
+   "/sheetboard/". The canonical must be the served URL, not the redirect,
+   or Google reports "duplicate, chose a different canonical". */
+const canonicalPath = (pathname || "").replace(/^\/+|\/+$/g, "");
 const seo = {
   title: title || `${authorName} — ${jobTitle}`,
   description: description || defaultDescription,
   image: `${siteUrl}${image || defaultImage.src}`,
-  url: `${siteUrl}/${pathname || ""}`,
+  url: canonicalPath ? `${siteUrl}/${canonicalPath}/` : `${siteUrl}/`,
   keywords: keywords || defaultKeywords,
 };
 
@@ -54,10 +59,20 @@ const jsonLd = graphDoc(graph);
 <meta name="keywords" content={seo.keywords} />
 <meta name="image" content={seo.image} />
 <meta name="revisit-after" content="15 days" />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 <meta name="language" content="English" />
 <meta name="author" content={authorName} />
 <link rel="canonical" href={seo.url} />
+{
+  markdown && (
+    <link
+      rel="alternate"
+      type="text/markdown"
+      href={`${siteUrl}${markdown}`}
+      title={`${seo.title} (markdown)`}
+    />
+  )
+}
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={seo.title} />

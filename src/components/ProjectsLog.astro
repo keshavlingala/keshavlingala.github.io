@@ -59,7 +59,7 @@ const blurb = (t: string, n = 155) => {
               <div class={"log-row" + (p.data.featured ? " feat" : "")}>
                 <span class="log-mon">{mon(p.data.date)}</span>
                 <span class="log-node" aria-hidden="true" />
-                <a class="log-rowlink" href={`/${p.data.slug}`}>
+                <a class="log-rowlink" href={`/${p.data.slug}/`}>
                   <div class="log-main">
                     <div class="log-titlerow">
                       <h4 class="log-title">{p.data.title}</h4>
@@ -76,7 +76,7 @@ const blurb = (t: string, n = 155) => {
                     →
                   </span>
                 </a>
-                <a class="log-thumb" href={`/${p.data.slug}`} tabindex="-1" aria-hidden="true">
+                <a class="log-thumb" href={`/${p.data.slug}/`} tabindex="-1" aria-hidden="true">
                   <Image src={p.data.featuredImage} alt={`${p.data.title} preview`} width={300} />
                 </a>
               </div>

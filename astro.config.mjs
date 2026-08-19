@@ -11,7 +11,12 @@ export default defineConfig({
   trailingSlash: "ignore",
   integrations: [
     mdx(),
-    sitemap(),
+    // The sitemap lists indexable HTML pages only — the machine-readable
+    // twins (/llms.txt, /about.md, /<slug>.md) are advertised in robots.txt
+    // and via <link rel="alternate"> instead.
+    sitemap({
+      filter: (page) => !/\.(md|txt)$/.test(new URL(page).pathname),
+    }),
     AstroPWA({
       registerType: "autoUpdate",
       // We ship our own public/manifest.webmanifest (linked in Base.astro),

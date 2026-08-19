@@ -78,7 +78,7 @@ export function projectsItemList(projects: ProjectRef[]) {
     itemListElement: projects.map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: `${siteUrl}/${p.slug}`,
+      url: `${siteUrl}/${p.slug}/`,
       name: p.title,
     })),
   };

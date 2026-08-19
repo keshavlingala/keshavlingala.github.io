@@ -15,4 +15,6 @@ export interface SEOProps {
   image?: string;
   article?: boolean;
   datePublished?: string;
+  /** Path to this page's plain-markdown twin (e.g. "/okepage.md"). */
+  markdown?: string;
 }

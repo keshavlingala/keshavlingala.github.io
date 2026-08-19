@@ -3,7 +3,7 @@ export const siteMetadata = {
   name: "Keshav Lingala",
   jobTitle: "Senior Software Engineer",
   description:
-    "Keshav Lingala — Senior Software Engineer based in Dayton, OH. Full-stack engineer building systems that scale, from Angular and React interfaces to Spring Boot, Node and Go services on AWS and Kubernetes. Seven years across banking, big-data and distribution, plus generative-AI and autonomous-agent experiments. Explore 16 shipped projects, skills and experience.",
+    "Keshav Lingala — Senior Software Engineer based in Dayton, OH. Full-stack engineer building systems that scale, from Angular and React interfaces to Spring Boot, Node and Go services on AWS and Kubernetes. Seven years across banking, big-data and distribution, plus generative-AI and autonomous-agent experiments. Explore 17 shipped projects, skills and experience.",
   tagline:
     "Full-stack engineer building systems that scale — from Angular and React interfaces to Spring Boot and Node services on AWS and Kubernetes.",
   author: "@keshavlingala",

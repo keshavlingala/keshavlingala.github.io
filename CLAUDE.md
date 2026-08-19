@@ -21,6 +21,7 @@ Node >= 18 (CI uses Node 20).
 - **Components** (`src/components/`): `Hero`, `Nav`, `Experience`, `ProjectsLog`, `SkillGalaxy`, `Contact`, `Footer`, plus `SEO`, `Section`, `SectionHeader`, `ToolTip`.
 - **Content collection**: project write-ups live in `src/content/posts/<name>/` (MDX + colocated `images/`), configured in `src/content.config.ts`. Each renders at `/<slug>` via `[slug].astro`.
 - **Data**: `src/data/experience.ts` and `src/data/skills.ts` drive the Experience and Skill sections. `src/constants.ts`, `src/site.ts`, `src/iconNames.ts`, `src/icons.ts` hold site config and icon registries.
+- **Machine-readable twins** (`src/lib/markdown.ts` + endpoints in `src/pages/`): `llms.txt.ts`, `llms-full.txt.ts`, `about.md.ts` and `[slug].md.ts` render the same content as plain markdown for LLM crawlers and agents. Pages advertise their twin with `<link rel="alternate" type="text/markdown">` (the `markdown` prop on `Base`/`SEO`); `public/robots.txt` points at them; the sitemap filters `.md`/`.txt` routes out.
 - **Client scripts**: `src/scripts/skill-galaxy.ts` (interactive skill visualization).
 - **Styles**: global CSS in `src/styles/global.css`; components use Astro scoped `<style>` blocks.
 - **Static assets**: `public/` — includes `CNAME` (`keshav.codes`), `manifest.webmanifest`, `robots.txt`, `logo.svg`, icons, gifs. Astro copies `public/` verbatim into `dist/`.

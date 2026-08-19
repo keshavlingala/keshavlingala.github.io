@@ -27,6 +27,7 @@ const dateLabel = date.toLocaleDateString("en-US", { month: "long", year: "numer
   image={featuredImage.src}
   pathname={slug}
   keywords={tags?.join(", ")}
+  markdown={`/${slug}.md`}
   article
   datePublished={date.toISOString()}
 >
@@ -34,8 +35,8 @@ const dateLabel = date.toLocaleDateString("en-US", { month: "long", year: "numer
     <nav class="navigator" aria-label="Project navigation">
       <a class="back-link" href="/#work">← All projects</a>
       <div class="prevnext">
-        {prev && <a class="nav-link" href={`/${prev.data.slug}`}>← {trunc(prev.data.title)}</a>}
-        {next && <a class="nav-link" href={`/${next.data.slug}`}>{trunc(next.data.title)} →</a>}
+        {prev && <a class="nav-link" href={`/${prev.data.slug}/`}>← {trunc(prev.data.title)}</a>}
+        {next && <a class="nav-link" href={`/${next.data.slug}/`}>{trunc(next.data.title)} →</a>}
       </div>
     </nav>
 
