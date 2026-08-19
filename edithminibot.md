@@ -1,0 +1,49 @@
+# Telegram NLP ChatBot with Node.js
+
+> Imagine a Telegram chatbot that not only tells jokes and provides weather updates but also fetches audio from YouTube. This Telegram NLP ChatBot is built with Node.js and integrates DialogFlow for natural language processing. It features functionalities such as fetching movie details, searching YouTube videos, and converting YouTube content to MP3. Easily interact with the bot via commands and enjoy a seamless experience in managing various tasks through Telegram.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** January 2021
+- **Project page:** https://keshav.codes/edithminibot/ (screenshots and diagrams are on that page)
+- **Tech:** NodeJS, Javascript, Typescript
+- **Live demo:** https://t.me/edithminibot
+- **Source:** https://github.com/keshavlingala/telegram-edithminibot
+- **Topics:** Telegram, NLP, Chatbot, DialogFlow, Webhook, NodeJS, Express, keshavlingala, youtube-to-mp3, download mp3 from youtube, youtube downloader, entertainment, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+*Figure: Feature Image*
+
+[![Telegram bot](https://img.shields.io/badge/try-telegram%20bot-blue)](https://t.me/edithminibot)
+
+A Telegram bot built in Node.js that handles weather, movie lookups, and random jokes, and can extract audio from a YouTube link so you can download it as an MP3. It uses DialogFlow for natural language processing, so it also replies conversationally with an appropriate message.
+
+## Features
+
+1. Tells a random joke
+2. Reports the weather for any location you send
+3. Looks up detailed movie information (in any language)
+4. Searches YouTube videos directly from the chat
+5. Extracts audio from a YouTube video by link
+
+## Commands
+
+| Command  | Description  |
+|---|---|
+| `joke`  | Get a random joke  |
+| `movie`   | Search for movie details by name   |
+| `yt`      | Search for YouTube videos  |
+| `yt3`     | Extract audio from a YouTube video (ID or link) |
+| `weather` | Get weather information, or send a location directly to see its weather |
+
+Example commands:
+
+1. `movie Big hero 6`
+2. `joke`
+3. `yt Faded by alan walker`
+4. `yt3 https://www.youtube.com/watch?v=60ItHLz5WEA` or `yt3 60ItHLz5WEA`
+5. `weather`
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt

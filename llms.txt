@@ -1,0 +1,37 @@
+# Keshav Lingala — Senior Software Engineer
+
+> Full-stack engineer building systems that scale — from Angular and React interfaces to Spring Boot and Node services on AWS and Kubernetes. Based in Dayton, OH. This site is a personal portfolio: a profile, work history, skills and 17 project write-ups.
+
+Every page has a plain-markdown twin at the same path with a `.md` suffix (for example https://keshav.codes/okepage.md). https://keshav.codes/llms-full.txt contains the whole site as one document.
+
+## Profile
+
+- [About, experience and skills](https://keshav.codes/about.md): Senior Software Engineer in Dayton, OH — full work history, current stack and skill breakdown.
+- [Portfolio homepage](https://keshav.codes/): profile, project log, skills and contact.
+- [GitHub](https://github.com/keshavlingala): source for most of the projects below.
+- [LinkedIn](https://www.linkedin.com/in/keshavlingala): professional profile.
+
+## Projects
+
+- [Okepage: Print Many Photos on One Page, In Your Browser](https://keshav.codes/okepage.md): Printing a stack of photos usually means one sheet per photo, a photo-shop trip, or fighting a word processor into a grid.
+- [SheetBoard: A Backend-less Kanban Board Built on Google Sheets](https://keshav.codes/sheetboard.md): Imagine a Kanban board where there is no backend, no database, and no vendor lock-in — because every board is simply a Google Sheet that you own.
+- [Kanban Task Manager - Angular 17](https://keshav.codes/mylocaltask.md): Imagine managing your tasks with a sleek, drag-and-drop Kanban board.
+- [Interactive Graph Algorithm Learning Platform](https://keshav.codes/floyd-visualizer.md): Imagine a platform where complex graph algorithms come to life.
+- [Interactive Python GUI for Visualizing Sorting Algorithms](https://keshav.codes/algorithm-analyzer.md): Dive into the world of sorting algorithms with this Interactive Python GUI, crafted using PyQt5 and Qt-Material.
+- [BlockVote: Secure Blockchain-Based Voting Application](https://keshav.codes/block-vote.md): Imagine a voting system that’s not only secure but also completely transparent.
+- [Real-Time and Batch Processing of Splitwise Data with Big Data Technologies](https://keshav.codes/bigdata.md): This project leverages cutting-edge Big Data technologies to process financial data from Splitwise, both in real-time and batch modes, providing valuable insights with lightning speed.
+- [Chain Reaction Game with AI: A Minimax Algorithm Challenge](https://keshav.codes/chainreaction.md): Imagine a classic board game with a twist: a strategic challenge powered by advanced AI.
+- [Seamless Payment Experience: A Full-Stack Solution](https://keshav.codes/payment-dbs.md): Imagine effortlessly managing all your transactions from a single, intuitive interface.
+- [Bump: Innovative Pothole Management System](https://keshav.codes/bump.md): Imagine a system where managing and fixing potholes is streamlined and efficient.
+- [Smart Conference Room IoT Dashboard](https://keshav.codes/admin-dashboard.md): Imagine managing a high-tech conference room with an intuitive and fast admin dashboard.
+- [Synopsis: Effortless Summarization and Highlighting Chrome Extension](https://keshav.codes/synopsis.md): Imagine transforming lengthy articles, documents, or webpages into concise summaries with just a click.
+- [Telegram NLP ChatBot with Node.js](https://keshav.codes/edithminibot.md): Imagine a Telegram chatbot that not only tells jokes and provides weather updates but also fetches audio from YouTube.
+- [Dynamic Timeline for Angular: angular2-timeline](https://keshav.codes/angular2-timeline.md): Build visually compelling timelines effortlessly with angular2-timeline—a CSS-based Angular library designed to display dynamic data in a sleek, customizable timeline view.
+- [Aakarshan Artboard: A Social Media Hub for Artists](https://keshav.codes/aakarshan.md): Imagine a vibrant online community where artists and art enthusiasts come together to share their creativity.
+- [Collaborative Student Hub: The Ultimate Zonal Dashboard](https://keshav.codes/seeinghome.md): Imagine a dynamic platform where students collaborate effortlessly, stay updated, and manage their academic lives in one place.
+- [Havmor Movies: Your Free Torrent Movie Hub](https://keshav.codes/havmor-movies.md): Imagine a dynamic movie app that keeps you updated with the latest YIFY torrents.
+
+## Optional
+
+- [Full site as one file](https://keshav.codes/llms-full.txt): every project write-up concatenated.
+- [Sitemap](https://keshav.codes/sitemap-index.xml): all indexable HTML pages.

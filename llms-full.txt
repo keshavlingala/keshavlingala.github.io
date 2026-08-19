@@ -1,0 +1,1484 @@
+# Keshav Lingala — Senior Software Engineer
+
+> Full-stack engineer building systems that scale — from Angular and React interfaces to Spring Boot and Node services on AWS and Kubernetes.
+
+- **Location:** Dayton, OH, US
+- **Website:** https://keshav.codes
+- **GitHub:** https://github.com/keshavlingala
+- **LinkedIn:** https://www.linkedin.com/in/keshavlingala
+- **Email:** admin@keshav.codes
+
+## About
+
+Keshav Lingala — Senior Software Engineer based in Dayton, OH. Full-stack engineer building systems that scale, from Angular and React interfaces to Spring Boot, Node and Go services on AWS and Kubernetes. Seven years across banking, big-data and distribution, plus generative-AI and autonomous-agent experiments. Explore 17 shipped projects, skills and experience.
+
+## Experience
+
+### Winsupply (current)
+
+- **When:** Jul 2024 — Present
+- **Where:** Dayton, Ohio
+- **Roles:** Senior Software Engineer (Full-time, Dec 2024 — Present); Senior Software Developer (Contract, Jul 2024 — Dec 2024)
+- **Stack:** Java, Spring Boot, Angular, IBM Db2
+
+- Building server-side Java systems and Angular interfaces over IBM Db2 for one of the largest distribution networks in the US.
+
+### Swasthomeo (current)
+
+- **When:** Oct 2022 — Present
+- **Where:** Hyderabad, India · Remote
+- **Roles:** Head of Technology (Seasonal, Oct 2022 — Present)
+- **Link:** https://swasthomeo.com
+- **Stack:** Leadership, Full Stack, Product
+
+- Leading technology and product direction for a homeopathy healthcare venture — swasthomeo.com.
+
+### Dataflake LLC
+
+- **When:** Jan 2024 — Jul 2024
+- **Where:** Mason, Ohio · Hybrid
+- **Roles:** Software Engineer (Contract, Jan 2024 — Jul 2024)
+- **Stack:** Kotlin, Kafka, Apache Camel, Java
+
+- Migrated legacy Java applications to Kotlin with clean-code principles — cutting the codebase by 40% and improving maintainability.
+- Built Kotlin data pipelines processing millions of shipment orders in under a minute.
+- Implemented Kafka real-time monitoring with automated Slack alerts, reducing data discrepancies by 25%.
+
+### Cal State University, Fullerton
+
+- **When:** Jul 2023 — Dec 2023
+- **Where:** Fullerton, California
+- **Roles:** Research Assistant (Freelance, Jul 2023 — Dec 2023)
+- **Stack:** Kotlin, Spring Boot, Angular, Docker, PostgreSQL, WebSockets
+
+- Co-authored an IEEE Xplore paper with Prof. Sampson Akwafuo on a full-stack platform for household and academic management.
+
+### DBS Bank
+
+- **When:** Jul 2021 — Aug 2022
+- **Where:** Hyderabad, India · Hybrid
+- **Roles:** Software Engineer II (Full-time, Jan 2022 — Aug 2022); Software Engineer (Full-time, Jul 2021 — May 2022)
+- **Stack:** Java, Spring Boot, Angular, MySQL, Jenkins, OAuth2
+
+- Built the Online Application Opening System (OAOS) in Angular, letting corporations open bank accounts online.
+- Developed secure REST APIs with Spring Boot, MySQL/JPA, Hibernate and OAuth2 for account management.
+
+### Xebia
+
+- **When:** Feb 2021 — Jul 2021
+- **Where:** Hyderabad, India · Remote
+- **Roles:** Software Engineer (Apprenticeship, Feb 2021 — Jul 2021)
+- **Stack:** Java, Spring Cloud, Angular
+
+- Built end-to-end backend systems with Spring Boot, Spring Cloud and Spring Data JPA for mobile apps.
+
+### Virtusa
+
+- **When:** Nov 2019 — Nov 2020
+- **Where:** Bengaluru, India · Remote
+- **Roles:** R&D Software Engineer (Apprenticeship, May 2020 — Nov 2020); Angular Developer (Apprenticeship, Nov 2019 — May 2020)
+- **Stack:** Angular, Java, TypeScript
+
+- Hit a 100% Angular Lighthouse score via lazy loading and optimized state management.
+- Built an IoT dashboard with dynamic imports and multiple charting libraries (Chart.js, D3, Google Charts).
+
+### Earlier roles and communities
+
+- **Aakarshan** — Founder & Developer (2018 — 2021)
+- **Recurse — KMIT Tech Club** — Founding Member (2019 — 2021)
+- **KMIT Cyber Security Club** — Member (2018 — 2020) — https://cyberkmit.github.io
+- **Smart India Hackathon** — Lead Developer (2019)
+- **R&D Dept, KMIT** — R&D Engineer (2018 — 2020)
+
+## Skills
+
+**Current stack:** TypeScript, Angular, React, Java, Spring Boot, Node.js, Go, AWS, Docker, Kubernetes
+
+- **Full Stack Development:** TypeScript, Angular, React, Java, Spring Boot, Node.js, JavaScript, GraphQL
+- **Cloud Deployment & DevOps:** AWS, Docker, Kubernetes, Firebase, Kafka, Spark, Jenkins, GitHub Actions, Elasticsearch, Hadoop, Azure, Google Cloud, Ansible, Grafana, Prometheus, Kibana, Splunk, Datadog
+- **Generative AI & Autonomous Agents:** Python, TensorFlow, LangChain, Anthropic, Hugging Face, Ollama, RAG Pipelines, LLM Agents, ComfyUI, n8n
+- **Front-end Web Development:** TypeScript, Angular, React, JavaScript, HTML5, CSS3, Bootstrap, PWA, Gatsby
+- **Back-end Development:** TypeScript, Java, Spring Boot, Node.js, Go, JavaScript, GraphQL, NestJS, Kotlin, Python, Kafka, C++, Gin
+- **Database Design & Management:** MySQL, PostgreSQL, MongoDB, Redis, Firebase, Cassandra, Oracle, Elasticsearch, Hadoop
+- **Neural Networks & Machine Learning:** Python, Spark, TensorFlow, Hugging Face, Keras, Neural Networks
+- **Tools & IDEs for Development:** Jenkins, Git, Bash, Splunk, VS Code, JetBrains, Postman, Insomnia, BitBucket, JMeter, BlazeMeter, Arduino, Kali Linux, Jira, Confluence, Slack, Discord
+- **Automation Scripting:** Python, GitHub Actions, Bash, Ansible, n8n, JMeter, Arduino
+- **Security & Ethical Hacking:** Kali Linux, Metasploit, Wireshark, Nmap
+- **Project Management & Collaboration:** Jira, Confluence, Slack, Discord, Agile, Scrum, Kanban
+
+## Projects
+
+- [Okepage: Print Many Photos on One Page, In Your Browser](https://keshav.codes/okepage/) — Printing a stack of photos usually means one sheet per photo, a photo-shop trip, or fighting a word processor into a grid. Okepage (ఒకేపేజీ — “just one page”) is a single-page browser tool that takes a pile of photos and lays them out on A4 sheets ready to print and cut: pick 1, 2, 4, 6, 9 per page or let Auto find the tightest grid the paper allows, flip between portrait and landscape, crop to fill or keep the whole photo, and set gap, paper-edge margin and a cutting line in real millimetres. It is deliberately dependency-free — no framework, no bundler, no npm packages, no server — four plain scripts that also run straight from a file:// URL, so the photos are read from disk in the browser and never leave the machine. The interface is bilingual (Telugu by default, English one click away), and the whole thing ships to Cloudflare Workers static assets from a GitHub Action.
+  - Markdown: https://keshav.codes/okepage.md
+- [SheetBoard: A Backend-less Kanban Board Built on Google Sheets](https://keshav.codes/sheetboard/) — Imagine a Kanban board where there is no backend, no database, and no vendor lock-in — because every board is simply a Google Sheet that you own. SheetBoard is the serverless evolution of my earlier Kanban Task Manager (Angular 17): the same drag-and-drop board, re-engineered in React 19 so your tasks live in your own Google Drive instead of browser local storage. It is a static single-page app that talks directly to the Google Sheets API from your browser — your access token never leaves the tab and your data never leaves your Drive. Cards drag instantly with optimistic updates and reconcile against the sheet on a five-second poll, columns are stored as per-board data rather than a hardcoded enum, and card ordering uses a sparse-integer scheme that rebalances itself. Built with Vite, React 19, and TypeScript and deployed as nothing but static files, SheetBoard turns a spreadsheet into a real-time, collaborative project board you can open, share, or delete in Google Sheets at any time.
+  - Markdown: https://keshav.codes/sheetboard.md
+- [Kanban Task Manager - Angular 17](https://keshav.codes/mylocaltask/) — Imagine managing your tasks with a sleek, drag-and-drop Kanban board. This dynamic Angular 17 application lets you organize tasks across Backlog, In Progress, and Completed stages. Built in just 2 days, it showcases Angular’s latest features for a modern, responsive UI and includes local storage for simplicity and privacy.
+  - Markdown: https://keshav.codes/mylocaltask.md
+- [Interactive Graph Algorithm Learning Platform](https://keshav.codes/floyd-visualizer/) — Imagine a platform where complex graph algorithms come to life. This interactive educational tool, built with Python and Angular, offers real-time visualization of the Floyd-Warshall algorithm and the Travelling Salesman Problem (TSP). It features dynamic graph manipulation, intuitive user interface, and API integration, making learning graph algorithms engaging and accessible. Dive into algorithmic visualization with an easy-to-use interface and explore the full capabilities of this educational platform.
+  - Markdown: https://keshav.codes/floyd-visualizer.md
+- [Interactive Python GUI for Visualizing Sorting Algorithms](https://keshav.codes/algorithm-analyzer/) — Dive into the world of sorting algorithms with this Interactive Python GUI, crafted using PyQt5 and Qt-Material. This app provides a visually engaging way to explore and compare various sorting algorithms, featuring real-time graphical representations that make the learning process both intuitive and fun. Ideal for students, educators, and anyone curious about algorithmic behavior, this tool offers a sleek, user-friendly interface that simplifies complex concepts. With easy setup instructions, it's an essential resource for understanding how different sorting algorithms operate and perform.
+  - Markdown: https://keshav.codes/algorithm-analyzer.md
+- [BlockVote: Secure Blockchain-Based Voting Application](https://keshav.codes/block-vote/) — Imagine a voting system that’s not only secure but also completely transparent. BlockVote is a revolutionary blockchain-based voting application designed to ensure fair and tamper-proof elections. Built with Angular and Truffle, this app allows users to create and manage voting campaigns, cast votes securely via Metamask, and view results with complete transparency on the blockchain. Every vote is recorded immutably, and results are available for public verification through Etherscan. With features like voiceover support for visually impaired users and multi-language options, BlockVote is designed for accessibility and inclusivity. Whether you're running a small election or a large-scale poll, BlockVote brings trust and efficiency to the voting process.
+  - Markdown: https://keshav.codes/block-vote.md
+- [Real-Time and Batch Processing of Splitwise Data with Big Data Technologies](https://keshav.codes/bigdata/) — This project leverages cutting-edge Big Data technologies to process financial data from Splitwise, both in real-time and batch modes, providing valuable insights with lightning speed. Utilizing a powerful stack that includes Kafka, Spark, Spring Boot, Cassandra, and Docker, this project showcases the seamless integration and real-time processing capabilities of modern Big Data tools. Whether you're tracking shared expenses with friends or analyzing large datasets for business decisions, this system delivers fast, efficient, and scalable solutions.
+  - Markdown: https://keshav.codes/bigdata.md
+- [Chain Reaction Game with AI: A Minimax Algorithm Challenge](https://keshav.codes/chainreaction/) — Imagine a classic board game with a twist: a strategic challenge powered by advanced AI. Chain Reaction combines Angular 15 and the Minimax algorithm to create a web-based game where players vie for control of the board. With sleek Angular Material design and AI that intelligently counters your moves, this game offers a compelling blend of strategy and technology. Play against friends or test your skills against an AI opponent on a dynamic web platform hosted on Firebase.
+  - Markdown: https://keshav.codes/chainreaction.md
+- [Seamless Payment Experience: A Full-Stack Solution](https://keshav.codes/payment-dbs/) — Imagine effortlessly managing all your transactions from a single, intuitive interface. This project delivers a cutting-edge payment portal that seamlessly integrates a sleek Angular front-end with a robust Spring Boot REST API and a MySQL backend. From logging in and making transactions to reviewing your transaction history and analyzing data through dynamic dashboards, this application ensures a smooth, efficient payment experience. Explore the advanced features of this full-stack solution and experience the future of digital payments.
+  - Markdown: https://keshav.codes/payment-dbs.md
+- [Bump: Innovative Pothole Management System](https://keshav.codes/bump/) — Imagine a system where managing and fixing potholes is streamlined and efficient. Bump is a cutting-edge pothole management application designed to bridge the gap between citizens, contractors, and government authorities. Built with Angular and Spring Boot, and utilizing AWS and Firebase, Bump allows citizens to report potholes with just a few clicks, including GPS location and photos. Contractors can bid on repair jobs, and the government can oversee the entire process, ensuring timely resolutions. With a Progressive Web App (PWA) design, Bump offers offline capabilities, mobile responsiveness, and a user-friendly interface for all stakeholders. Revolutionize pothole management and improve public infrastructure with Bump.
+  - Markdown: https://keshav.codes/bump.md
+- [Smart Conference Room IoT Dashboard](https://keshav.codes/admin-dashboard/) — Imagine managing a high-tech conference room with an intuitive and fast admin dashboard. This Smart Conference Room IoT Dashboard leverages Angular 11 and Angular Material to deliver a sleek, high-performance interface for managing IoT devices and room settings. With real-time updates, dynamic charts, and customizable layouts, this dashboard provides a seamless experience for monitoring and controlling smart conference environments. Hosted on GitHub, it offers a robust solution for modern administrative needs.
+  - Markdown: https://keshav.codes/admin-dashboard.md
+- [Synopsis: Effortless Summarization and Highlighting Chrome Extension](https://keshav.codes/synopsis/) — Imagine transforming lengthy articles, documents, or webpages into concise summaries with just a click. The Synopsis Chrome Extension does just that, leveraging advanced NLP and machine learning to automatically highlight key points and generate succinct summaries. Perfect for anyone needing quick insights or detailed overviews, this tool enhances your browsing experience by distilling information and emphasizing essential content.
+  - Markdown: https://keshav.codes/synopsis.md
+- [Telegram NLP ChatBot with Node.js](https://keshav.codes/edithminibot/) — Imagine a Telegram chatbot that not only tells jokes and provides weather updates but also fetches audio from YouTube. This Telegram NLP ChatBot is built with Node.js and integrates DialogFlow for natural language processing. It features functionalities such as fetching movie details, searching YouTube videos, and converting YouTube content to MP3. Easily interact with the bot via commands and enjoy a seamless experience in managing various tasks through Telegram.
+  - Markdown: https://keshav.codes/edithminibot.md
+- [Dynamic Timeline for Angular: angular2-timeline](https://keshav.codes/angular2-timeline/) — Build visually compelling timelines effortlessly with angular2-timeline—a CSS-based Angular library designed to display dynamic data in a sleek, customizable timeline view. Tailor the design and colors of each timeline item to suit your application's style, ensuring that your content stands out. Perfect for creating responsive timelines that look great on any device, this library offers simple installation and intuitive usage to streamline your development process. Elevate your Angular projects with a timeline component that’s both powerful and easy to implement.
+  - Markdown: https://keshav.codes/angular2-timeline.md
+- [Aakarshan Artboard: A Social Media Hub for Artists](https://keshav.codes/aakarshan/) — Imagine a vibrant online community where artists and art enthusiasts come together to share their creativity. Aakarshan Artboard is a dynamic social media platform that bridges the gap between artists and their audience. Designed with sleek Google Material Design, this platform allows you to create an account, upload your artwork, and connect with friends through likes, comments, and shares. Whether you’re on the go or at home, Aakarshan Artboard’s mobile responsiveness and lightning-fast performance ensure a seamless experience. Plus, with push notifications and the option to install it as a Progressive Web App (PWA), you can stay connected to the art community anytime, anywhere.
+  - Markdown: https://keshav.codes/aakarshan.md
+- [Collaborative Student Hub: The Ultimate Zonal Dashboard](https://keshav.codes/seeinghome/) — Imagine a dynamic platform where students collaborate effortlessly, stay updated, and manage their academic lives in one place. This project brings that vision to life with a vibrant Angular-based dashboard integrated with Google Firebase and Bootstrap. Whether you're posting updates, managing events, tackling quizzes, or sharing status updates, this platform is designed for seamless interaction and collaboration. Awarded 2nd place in the Scholar Jet Wayfair competition, this dashboard revolutionizes student engagement with intuitive features and a user-friendly interface.
+  - Markdown: https://keshav.codes/seeinghome.md
+- [Havmor Movies: Your Free Torrent Movie Hub](https://keshav.codes/havmor-movies/) — Imagine a dynamic movie app that keeps you updated with the latest YIFY torrents. Havmor Movies, inspired by Popcorn Time 🍿, offers a seamless experience to browse and download free movies using the open-source Popcorn Times API. With automatic updates from the YIFY database and detailed movie information from OMDB API 🧠, this Angular-based web app provides a hassle-free way to enjoy the latest films. Note: This app is no longer operational.
+  - Markdown: https://keshav.codes/havmor-movies.md
+
+---
+
+# Project write-ups
+
+# Okepage: Print Many Photos on One Page, In Your Browser
+
+> Printing a stack of photos usually means one sheet per photo, a photo-shop trip, or fighting a word processor into a grid. Okepage (ఒకేపేజీ — “just one page”) is a single-page browser tool that takes a pile of photos and lays them out on A4 sheets ready to print and cut: pick 1, 2, 4, 6, 9 per page or let Auto find the tightest grid the paper allows, flip between portrait and landscape, crop to fill or keep the whole photo, and set gap, paper-edge margin and a cutting line in real millimetres. It is deliberately dependency-free — no framework, no bundler, no npm packages, no server — four plain scripts that also run straight from a file:// URL, so the photos are read from disk in the browser and never leave the machine. The interface is bilingual (Telugu by default, English one click away), and the whole thing ships to Cloudflare Workers static assets from a GitHub Action.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** August 2026
+- **Project page:** https://keshav.codes/okepage/ (screenshots and diagrams are on that page)
+- **Tech:** HTML, CSS, Javascript, Github Actions
+- **Live demo:** https://okepage.keshav.codes
+- **Source:** https://github.com/keshavlingala/okepage
+- **Topics:** Okepage, ఒకేపేజీ, Photo printing, A4 photo grid, Print photos on one page, Passport photo sheet, Vanilla JavaScript, No build step, Offline first, Telugu app, Bilingual UI, Cloudflare Workers, Static site, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+> Live: [okepage.keshav.codes](https://okepage.keshav.codes) — drop a few photos in; nothing is uploaded anywhere.
+
+## ABSTRACT
+
+**Okepage** (ఒకేపేజీ — *"just one page"*) solves a small, stubborn, very domestic problem: you have twenty photos and you want them on paper, several to a sheet, cut apart afterwards. Every existing route is annoying — a photo studio, a subscription design tool, or half an hour of dragging images into a word processor that thinks in inches and margins you cannot see. Okepage is a single HTML page that does exactly this one job: drop photos in, choose how many fit on an A4 sheet, print. It has no backend, no build step, no dependencies and no accounts, and the photos never leave the browser.
+
+*Figure: Okepage in Telugu — six photos auto-packed onto one A4 sheet*
+
+## The Idea
+
+The tool is built for the way this actually happens at home: a folder of WhatsApp downloads, a pen drive from a function, a phone plugged into a laptop — and a printer that will happily waste a full sheet on each photo. The entire interaction is therefore four decisions, numbered down the sidebar in the order you make them: **paper orientation → photos per page → cutting and spacing → the one photo you are fiddling with**. Nothing else is on screen.
+
+Telugu is the default language, not a translation afterthought. The people I built this for read Telugu first, so the app opens in Telugu and English is one click away in the top bar; exactly one language is visible at a time, and every string — including the dynamic ones like "6 photos on 1 sheet" — exists in both.
+
+*Figure: The drop zone — the whole window accepts a drop*
+
+## How It Works
+
+### Everything is millimetres until the last moment
+
+A printer thinks in millimetres, so `layout.js` does too. A4 is 210 × 297 mm; landscape swaps them. The module is pure geometry with no DOM access — given the settings and a photo count it returns the grid, the printable area, the cell size, the gaps and the page count, in mm plus the pixel values the drag maths needs (`PX_PER_MM` is 96/25.4). The renderer writes those numbers into CSS custom properties on the sheet container, so the stylesheet never hardcodes a size and the same code path drives the screen preview and the printed sheet.
+
+**Auto** is the preset I use most: instead of asking the user to know that six portrait photos want a 2 × 3 grid, it derives the grid from the photo count and the printable area's aspect ratio, then drops any row or column that would come out completely empty — so five photos do not print with a blank sixth cell reserved.
+
+*Figure: Nine per page, portrait, with a 1 px cutting line and a 3 mm gap*
+
+### Getting the print right
+
+Printing is where tools like this usually fall apart, because the screen preview is a scaled-down transform and the printer does not care about your transform. The preview shrinks a sheet to fit the stage with a `--scale` factor, and the `@media print` block exists to undo exactly that: it strips the transform and every layout wrapper so each sheet prints at its true millimetre size, and hides anything marked as UI chrome. A `<style id="page-rule">` element is rewritten on every render with `@page { size: A4 portrait|landscape; margin: 0 }`, so the browser's print dialog already has the right paper and orientation before the user touches it. The footer permanently states the four settings that matter — A4, margins **None**, scale **100%**, headers **off** — because those are what people get wrong.
+
+Because a broken print is invisible on screen, the print path gets verified headlessly: Chrome's `--print-to-pdf` on a seeded page, then a check that the PDF's MediaBox is 595 × 842 pt for portrait and 842 × 595 pt for landscape.
+
+### Cropping without re-rendering
+
+Each photo is a small record — id, blob URL, `cover` or `contain`, an object-position pair, and a zoom. Selecting one lets you drag it inside its cell to choose what survives the crop, zoom it, duplicate it, fill an entire sheet with copies of it, or remove it.
+
+The app has no framework: state lives in a `Store`, every mutation goes through it, and the single subscriber rebuilds the visible UI. Two deliberate exceptions keep that honest approach fast — `<img>` nodes are cached per photo id and re-parented on each render so a photo never reloads or flashes, and a crop drag writes `objectPosition` straight onto the cached image while recording it silently, instead of re-rendering on every pointer move.
+
+*Figure: Landscape A4, four per page, one photo selected for cropping — the English UI*
+
+## Constraints I Kept
+
+- **No ES modules.** Scripts load as ordered `<script>` tags, each exposing one global (`I18N`, `Store`, `Layout`). Modules would break `file://` usage — and opening `index.html` straight from a downloaded folder is a legitimate way to run this.
+- **No npm packages, bundlers or CSS frameworks.** Five files, ~zero install, readable in an afternoon.
+- **No server, ever.** Photos are read as blob URLs in the browser and are gone when the tab closes. Only the layout settings persist, in `localStorage`.
+- **One network request**, for the Google Fonts stylesheet — and the page still works offline without it.
+
+## Deployment
+
+The repo *is* the deployable artifact. A GitHub Action on `main` hands it to `wrangler`, which uploads the directory to **Cloudflare Workers static assets** — no build command, because there is nothing to build. An `.assetsignore` keeps the things that are not the app (README, `CLAUDE.md`, workflow files) out of the upload, and `wrangler.jsonc` binds the custom domain `okepage.keshav.codes` while leaving the apex records that point `keshav.codes` at GitHub Pages untouched.
+
+## What I Took From It
+
+The interesting constraint was not technical, it was editorial: every feature that would have made this a "photo editor" was left out. No filters, no templates, no login, no cloud library. What remains is a tool that loads instantly, works on a laptop with no internet, and can be explained to a parent in one sentence — in their own language.
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# SheetBoard: A Backend-less Kanban Board Built on Google Sheets
+
+> Imagine a Kanban board where there is no backend, no database, and no vendor lock-in — because every board is simply a Google Sheet that you own. SheetBoard is the serverless evolution of my earlier Kanban Task Manager (Angular 17): the same drag-and-drop board, re-engineered in React 19 so your tasks live in your own Google Drive instead of browser local storage. It is a static single-page app that talks directly to the Google Sheets API from your browser — your access token never leaves the tab and your data never leaves your Drive. Cards drag instantly with optimistic updates and reconcile against the sheet on a five-second poll, columns are stored as per-board data rather than a hardcoded enum, and card ordering uses a sparse-integer scheme that rebalances itself. Built with Vite, React 19, and TypeScript and deployed as nothing but static files, SheetBoard turns a spreadsheet into a real-time, collaborative project board you can open, share, or delete in Google Sheets at any time.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** May 2026
+- **Project page:** https://keshav.codes/sheetboard/ (screenshots and diagrams are on that page)
+- **Tech:** Typescript, React, Firebase, Google Cloud, Github Actions, Kanban
+- **Live demo:** https://sheetbo.web.app
+- **Source:** https://github.com/keshavlingala/sheetboard
+- **Topics:** Kanban, Google Sheets, React 19, Vite, Serverless, Static SPA, OAuth, Google Picker, Optimistic UI, Firebase Hosting, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+> Live demo: https://sheetbo.web.app — sign in with any Google account; a board is created in *your* Drive.
+
+## ABSTRACT
+
+SheetBoard is a Kanban board with a deliberately radical constraint: **there is no backend and no database.** Every board is an ordinary Google Sheet in the user's own Google Drive, and the application is a static single-page app that speaks directly to the Google Sheets API from the browser. The OAuth access token stays in the tab, the spreadsheet stays in the user's Drive, and there is no server in the middle that could store, leak, or hold that data hostage. This project explores how far a "frontend-only, your-data-is-yours" architecture can be pushed while still delivering the instant, drag-and-drop, real-time feel of a modern SaaS task board.
+
+## The Idea
+
+SheetBoard started as a re-engineering of my earlier [Kanban Task Manager (Angular 17)](/mylocaltask). That project nailed the drag-and-drop board experience but kept everything in browser local storage, so a board lived and died on a single device. SheetBoard keeps the same interaction model and swaps local storage for a Google Sheet — making the very same board portable, shareable, and durable without introducing a server.
+
+Most task boards ask you to trust a company with your data forever. SheetBoard inverts that: the spreadsheet *is* the product's database, and it already lives somewhere the user controls. A board can be opened, edited, shared, or deleted directly in Google Sheets at any time — SheetBoard never brokers who can see it. The app requests only the minimal `drive.file` OAuth scope, which grants per-file access exclusively to spreadsheets the app created or that the user explicitly picked through the Google Picker, never the rest of the user's Drive.
+
+*Figure: The SheetBoard Kanban board — cards across columns with drag-and-drop*
+
+## How It Works
+
+### No backend, browser-native auth
+
+Authentication uses the Google Identity Services (GSI) token model — no redirect URIs, no auth server, no session cookie. The browser obtains a short-lived access token and every Google Sheets request is made client-side. There is no API layer to deploy or scale because there is no API layer at all; the "backend" is Google's own Sheets and Drive APIs.
+
+*Figure: Google sign-in and the drive.file consent screen*
+
+### The spreadsheet *is* the database
+
+A SheetBoard board is a spreadsheet with two tabs. The **`tasks`** tab has one task per row with columns for `id`, `title`, `column`, `order`, `starred`, `description`, and audit timestamps. A second **`_meta`** tab holds key/value configuration — the schema version, board title, creation time, template, and a JSON blob describing the board's columns.
+
+Crucially, **columns are per-board data, not a hardcoded enum.** The set of columns lives in a single `_meta` cell, so every board can define its own workflow; legacy boards without that cell fall back to a default Kanban layout for backward compatibility, and an in-app schema warning can repair an older spreadsheet in place.
+
+*Figure: The board next to its underlying Google Sheet — the spreadsheet is the database*
+
+### Optimistic updates with polling reconciliation
+
+Every edit applies to the UI instantly and the sheet write happens in the background. The board query re-fetches on a five-second poll, which reconciles steady state and surfaces edits made by collaborators directly in Google Sheets. A subtle but important design decision: mutations deliberately do **not** force an immediate refetch on success — Google Sheets has read-after-write consistency lag, and an eager refetch would race that lag and visibly revert a card the user just moved. Trusting the optimistic state and letting the poll reconcile produces a UI that feels instant *and* stays correct.
+
+### Self-rebalancing card order
+
+Card position is stored as a sparse integer with large gaps between values, so reordering a card normally means writing a single new `order` value rather than rewriting an entire column. When two cards get squeezed too close for a clean midpoint, the drag path rebalances the whole column in one batched write instead of writing a colliding value — keeping ordering stable without a fragile floating-point scheme.
+
+*Figure: Boards home and the Google Picker entry screen*
+
+## Tech Stack
+
+SheetBoard is built with **Vite, React 19, and TypeScript**, styled with **Tailwind CSS** and **shadcn/ui** primitives. Data fetching and caching use **TanStack Query**, client state uses **Zustand** (persisted per user), drag-and-drop uses **dnd-kit**, runtime validation uses **zod**, and toasts use **sonner**. The entire app ships as static files with an initial bundle of roughly 136 KB gzipped, with dialogs and heavy routes lazy-loaded to keep it there.
+
+## Privacy & Security
+
+The security story is the architecture: **tokens stay in the browser, spreadsheets stay in the user's Drive, and there is no server.** The browser-side Google credentials are public by design (as is correct for a browser OAuth client) and the API key is restricted by HTTP referrer and locked to the Google Picker API. Because the app only ever holds the `drive.file` scope, it is structurally incapable of touching files the user did not create or explicitly choose — the principle of least privilege enforced by Google itself rather than by a backend the user has to trust.
+
+## Deployment
+
+Being nothing but static files, SheetBoard can be hosted anywhere. It deploys to **Firebase Hosting** (free `*.web.app` domain, global CDN, SPA rewrite) with an SPA fallback so client-side routing works, and continuous deployment is wired through **GitHub Actions** — merges to the main branch build and ship automatically, and pull requests get preview deploys. Any static host (Cloudflare Pages, Netlify, GitHub Pages) works identically: build, add a SPA rewrite, and allowlist the deployed origin in Google Cloud.
+
+## Conclusion
+
+SheetBoard demonstrates that a genuinely useful, real-time, collaborative product can be built with **zero backend infrastructure** by treating a user-owned Google Sheet as the database. The result is a Kanban board with no servers to run, no database bills, no data-ownership questions, and no lock-in — the user can walk away with their data because their data was never anywhere else. It is a study in how thoughtful constraints (frontend-only, least-privilege scope, optimistic-with-poll sync, self-rebalancing order) can add up to an experience that feels like a polished SaaS app while remaining radically simple and private.
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# Kanban Task Manager - Angular 17
+
+> Imagine managing your tasks with a sleek, drag-and-drop Kanban board. This dynamic Angular 17 application lets you organize tasks across Backlog, In Progress, and Completed stages. Built in just 2 days, it showcases Angular’s latest features for a modern, responsive UI and includes local storage for simplicity and privacy.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** April 2024
+- **Project page:** https://keshav.codes/mylocaltask/ (screenshots and diagrams are on that page)
+- **Tech:** HTML, CSS, Angular, Typescript, Firebase, Github Actions
+- **Live demo:** https://mylocaltask.web.app
+- **Source:** https://github.com/keshavlingala/mylocaltask
+- **Topics:** Angular 17, Kanban, Drag and Drop, Angular Material, Typescript, 2 Day Project, keshavlingala, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+> This project later evolved into [SheetBoard](/sheetboard) — the same drag-and-drop board, re-engineered in React with each board backed by a Google Sheet instead of browser local storage.
+
+### Key Features
+
+- Built on Angular 17, using its latest features for a modern, responsive UI
+- Angular CDK Drag and Drop for smooth task management
+- Database-free architecture — tasks are stored locally in the browser, keeping data private
+- Intuitive task creation, updating, and deletion
+
+### Technologies Used
+
+- Angular 17 (standalone components, custom directives)
+- Angular Material (Dialog, Snackbar, Icons, Buttons, Cards, Tooltips, CDK Drag and Drop)
+- HTML5 / SCSS
+- TypeScript
+- Local Storage
+- GitHub Actions for CI/CD
+- Firebase Hosting
+
+> What makes this project unique? It was built purely for fun over just 2 days, showcasing how quickly Angular 17 can deliver an efficient, enjoyable web app.
+
+> I wanted my own task-management tool that was simple, intuitive, and visually appealing. This project let me experiment with Angular 17's latest features and build something genuinely pleasant to use every day.
+
+# Screenshots
+
+### Home Screen
+
+Create, update, and delete tasks in a Kanban-style layout — complete with a trash bin for deleted tasks and the ability to export tasks as a JSON file.
+
+*Figure: Home Screen*
+
+### Trash Screen
+
+Recover deleted tasks or remove them permanently.
+
+*Figure: Trash Screen*
+
+### Drag and Drop
+
+Organize tasks across stages with drag-and-drop.
+
+*Figure: Drag and Drop Screen*
+
+> Use the demo button below to try it now. You can also view the source code on GitHub.
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# Interactive Graph Algorithm Learning Platform
+
+> Imagine a platform where complex graph algorithms come to life. This interactive educational tool, built with Python and Angular, offers real-time visualization of the Floyd-Warshall algorithm and the Travelling Salesman Problem (TSP). It features dynamic graph manipulation, intuitive user interface, and API integration, making learning graph algorithms engaging and accessible. Dive into algorithmic visualization with an easy-to-use interface and explore the full capabilities of this educational platform.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** November 2023
+- **Project page:** https://keshav.codes/floyd-visualizer/ (screenshots and diagrams are on that page)
+- **Tech:** Python, HTML, CSS, Javascript, Typescript, Angular, Jira
+- **Live demo:** https://floydvisualizer.web.app/
+- **Source:** https://github.com/keshavlingala/FloydSimulation/
+- **Topics:** python, angular, graphs, network-visualizer, cytoscape, Angular Material, Educational Tool, Learning Tool
+
+---
+
+## Introduction
+
+An interactive learning tool for complex graph algorithms. The goal went beyond an academic requirement: I wanted to blend theory with practice and build something that teaches graph algorithms more effectively than static diagrams ever could.
+
+## The Inspiration
+
+The project came from wanting to see theoretical concepts come to life. I led a team with diverse skills and backgrounds — not everyone was familiar with all the technologies involved — which made it a strong opportunity to combine technical leadership with hands-on development.
+
+## Challenges and Triumphs
+
+The main challenges were handling large datasets, optimizing application performance, and integrating external services. The most satisfying win was designing a genuinely intuitive interface for an inherently complex application — each obstacle pushed me to apply familiar concepts in new ways.
+
+## Core Features
+
+- Interactive graph visualization and manipulation with Cytoscape.js
+- Floyd-Warshall algorithm for shortest-path finding
+- Solving and visualizing the Travelling Salesman Problem (TSP)
+- Dynamic graph editing (adding and removing nodes and edges)
+- Integration with external APIs for real data
+- Importing and exporting graph data as JSON
+- An intuitive interface for interacting with complex algorithms
+
+## Screenshots
+
+### Floyd-Warshall Screens
+
+*Figure: Floyd-Warshall screen 1*
+
+<br/>
+
+*Figure: Floyd-Warshall screen 2*
+
+<br/>
+
+*Figure: Floyd-Warshall screen 3*
+<br/>
+
+
+### Travelling Salesman Problem Screens
+
+
+*Figure: TSP screen 1*
+
+<br/>
+
+*Figure: TSP screen 2*
+<br/>
+
+
+*Figure: TSP screen 3*
+
+
+## Video Demo
+
+### Floyd-Warshall Application
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xnEv2_aoAqU?si=g3hTxW2J0JSp-Qx_"
+        title="YouTube video player" frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen></iframe>
+
+### Travelling Salesman Problem Application
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TQGZJXiWaKc?si=3cCgVkADCIIp4j-i"
+        title="YouTube video player" frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen></iframe>
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# Interactive Python GUI for Visualizing Sorting Algorithms
+
+> Dive into the world of sorting algorithms with this Interactive Python GUI, crafted using PyQt5 and Qt-Material. This app provides a visually engaging way to explore and compare various sorting algorithms, featuring real-time graphical representations that make the learning process both intuitive and fun. Ideal for students, educators, and anyone curious about algorithmic behavior, this tool offers a sleek, user-friendly interface that simplifies complex concepts. With easy setup instructions, it's an essential resource for understanding how different sorting algorithms operate and perform.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** September 2023
+- **Project page:** https://keshav.codes/algorithm-analyzer/ (screenshots and diagrams are on that page)
+- **Tech:** Python, Bash, Git, Jira
+- **Source:** https://github.com/keshavlingala/AlgoAnalyzerTool
+- **Topics:** python, tkinter, sorting-algorithms, gui, pyqt5, qt-material, matplotlib, numpy
+
+---
+
+A desktop GUI built with Python, PyQt5, and Qt-Material for visualizing and comparing how different sorting algorithms behave. It animates each algorithm step by step and charts its performance, making it a hands-on way to build intuition for algorithmic complexity.
+
+
+## Screenshots
+
+*Figure: Sorting visualization*
+
+<br/>
+
+*Figure: Theme selection*
+
+<br/>
+
+*Figure: Analysis screen*
+
+## Demo Video
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/8yOZqOd-Utw?si=1lYNCXSIagH-FSZv"
+        title="YouTube video player" frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen></iframe>
+
+## Instructions to run the Application ( MacOS )
+
+1. Clone the repository using this URL
+
+```bash
+git clone https://github.com/keshavlingala/AlgoAnalyzerTool
+cd AlgoAnalyzerTool
+chmod +x setup app # This will give execute permission to setup and app files
+./setup # This create a virtual environment and install all the dependencies
+./app # This will run the application
+```
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# BlockVote: Secure Blockchain-Based Voting Application
+
+> Imagine a voting system that’s not only secure but also completely transparent. BlockVote is a revolutionary blockchain-based voting application designed to ensure fair and tamper-proof elections. Built with Angular and Truffle, this app allows users to create and manage voting campaigns, cast votes securely via Metamask, and view results with complete transparency on the blockchain. Every vote is recorded immutably, and results are available for public verification through Etherscan. With features like voiceover support for visually impaired users and multi-language options, BlockVote is designed for accessibility and inclusivity. Whether you're running a small election or a large-scale poll, BlockVote brings trust and efficiency to the voting process.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** May 2023
+- **Project page:** https://keshav.codes/block-vote/ (screenshots and diagrams are on that page)
+- **Tech:** HTML, CSS, Javascript, Typescript, Angular, Firebase
+- **Source:** https://github.com/keshavlingala/BlockVote
+- **Topics:** Angular Application, Angular Multi module, Truffle, Material Design, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+Secure and transparent elections, implemented as a blockchain-based voting system.
+
+[![Block-Vote](https://img.shields.io/badge/github-BlockVote-blue.svg)](https://github.com/keshavlingala/BlockVote)
+
+## Project Description
+
+Any user can create a voting campaign. The user who creates a campaign becomes its owner and is the only one who can modify it or add candidates. To participate, voters install Metamask as their blockchain wallet and connect to the appropriate network; users with voting rights can then cast their vote.
+
+The campaign owner can mark a campaign inactive once voting is complete, after which no further votes can be cast. Every campaign and candidate has a unique blockchain address, so results are fully transparent — anyone can view the votes and the winner, download the results as a PDF, and verify every transaction in the in-app history or on Etherscan. A help screen with rules and FAQs is always available for guidance.
+
+The application is also accessible to visually impaired users through voiceover on hover, and supports multiple languages with a single click.
+
+## Technical Details
+
+- Truffle to compile and deploy smart contracts to Ganache and the Sepolia Ethereum network
+- Angular 11 with an Nx workspace for the front end
+- `ng-web3` to connect to Metamask and submit blockchain transactions
+- Google Material Design components
+- Multiple Solidity contracts using inheritance for robust, modular smart contracts
+- Dexie (a minimalist IndexedDB wrapper) to store the eligible-voter list
+- jsPDF to generate the downloadable results
+
+# Instructions to run the project
+
+- Clone the repository
+- Run `npm install` in the root directory
+- Run `npm run truffle:develop` to start the local blockchain
+- Run `npm run truffle:migrate` to deploy the smart contracts to the local blockchain
+- Modify `truffle-config.js` to point to the local blockchain
+- Copy the contract addresses from the terminal into `environment.campaignFactory.address`
+- Run `npm run start` to start the frontend application
+- Open `http://localhost:4200/` to view the application
+
+## Project Features
+
+- Create campaigns and add candidates
+- Cast votes for candidates through Metamask
+- Smart contracts for all campaign and voting operations
+- Mark a campaign inactive once voting is done, locking out further votes
+- Authentication required — no campaign is accessible without logging in
+- ID verification and an eligible-voter list (Voter ID and Social Security)
+- Download voting results as a PDF
+- Polished UI: card designs, colors, buttons, animations, icons, and imagery
+- Multi-language support
+- Improved accessibility for visually impaired users
+- Upcoming-elections header
+- Help screen with instructions and FAQs for voters
+- One-click campaign sharing to any social platform
+- Deployed to the Sepolia testnet and Ganache
+
+## Project Screenshots
+
+### Home Page
+
+*Figure: Home Page*
+
+
+<br/>
+
+
+### Login and Metamask Connection
+
+*Figure: Login*
+
+<br/>
+
+
+### Casting a Vote with Metamask
+
+*Figure: Vote*
+
+<br/>
+
+
+### Campaign Details
+
+*Figure: Campaign Details*
+
+<br/>
+
+
+### Local DB for Eligible Voters
+
+*Figure: Local DB*
+
+<br/>
+
+
+### Help Screen
+
+*Figure: Help Screen*
+
+<br/>
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# Real-Time and Batch Processing of Splitwise Data with Big Data Technologies
+
+> This project leverages cutting-edge Big Data technologies to process financial data from Splitwise, both in real-time and batch modes, providing valuable insights with lightning speed. Utilizing a powerful stack that includes Kafka, Spark, Spring Boot, Cassandra, and Docker, this project showcases the seamless integration and real-time processing capabilities of modern Big Data tools. Whether you're tracking shared expenses with friends or analyzing large datasets for business decisions, this system delivers fast, efficient, and scalable solutions.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** May 2023
+- **Project page:** https://keshav.codes/bigdata/ (screenshots and diagrams are on that page)
+- **Tech:** Apache Kafka, Apache Spark, Spring Boot, Apache Hadoop, Apache Cassandra, Docker, Kotlin, Bash, Git
+- **Source:** https://github.com/keshavlingala/SplitwiseRealtimeDataProcessing
+- **Topics:** Kafka, Big Data, Cassandra, Docker, Docker Compose, Gradle, SBT, Scala, Kotlin, CQL, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+## Introduction
+
+[Splitwise](https://www.splitwise.com/) is a free tool friends and roommates use to track shared bills and expenses. This project pulls that financial data and processes it with a Big Data stack in two modes: a real-time streaming pipeline and a batch analytics job. It is built with Kafka, Spark, Spring Boot, Cassandra, and Docker Compose, and is meant as an end-to-end demonstration of wiring these tools together into a working pipeline.
+
+## Architecture
+
+*Figure: Architecture*
+
+## Technologies Used
+
+- Kafka
+- Spark
+- Spring Boot
+- Cassandra
+- Docker
+- Docker Compose
+- Gradle
+- SBT
+- Scala
+- Kotlin
+- CQL
+
+## How to run the project
+
+### Prerequisites
+
+- Docker
+
+### Steps
+
+Clone the project, change into its directory, and build the images:
+
+```shell
+docker build -t jobscheduler ./scheduler
+docker build -t spark-analysis ./sparkanalysis
+docker build -t kafka-streaming-app ./kafka-streaming-app
+```
+
+Start everything with Docker Compose:
+
+```shell
+docker-compose up -d
+```
+
+Docker Desktop should look like this:
+
+*Figure: Docker Desktop*
+
+Give Cassandra and Kafka about 60 seconds to start. The `cassandra-init` service is expected to stop after ~65 seconds (depending on machine speed) once it has initialized the database — if it stops before the database is ready, run it again and wait another 60 seconds. This is only needed the first time.
+
+Once Cassandra is up and initialized, start the `jobscheduler` service, then register a Splitwise user:
+
+```shell
+curl --location --request POST 'localhost:8080/add_user_key?key=<splitwise-api-key>' \
+--data ''
+```
+
+> A Splitwise API key can be generated [here](https://secure.splitwise.com/apps/new).
+
+Start the `kafka-streaming-app` service and trigger the scheduler:
+
+```shell
+curl --location --request GET 'localhost:8080/job/splitwise'
+```
+
+*Figure: Trigger Scheduler manually*
+
+This triggers the scheduler to fetch data from Splitwise and push it to Kafka. The `kafka-streaming-app` service consumes from Kafka, processes the data, and writes it to Cassandra.
+
+*Figure: Add User Key*
+
+Finally, start the `sparkanalysis` service to generate reports into the [output](./output) folder. It stops automatically once the reports are written. The generated CSVs can be opened directly in Excel or fed into a visualization tool such as Tableau or Power BI.
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# Chain Reaction Game with AI: A Minimax Algorithm Challenge
+
+> Imagine a classic board game with a twist: a strategic challenge powered by advanced AI. Chain Reaction combines Angular 15 and the Minimax algorithm to create a web-based game where players vie for control of the board. With sleek Angular Material design and AI that intelligently counters your moves, this game offers a compelling blend of strategy and technology. Play against friends or test your skills against an AI opponent on a dynamic web platform hosted on Firebase.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** December 2022
+- **Project page:** https://keshav.codes/chainreaction/ (screenshots and diagrams are on that page)
+- **Tech:** HTML, CSS, Javascript, Typescript, Angular, Firebase
+- **Live demo:** https://chainreactionai.web.app/
+- **Source:** https://github.com/keshavlingala/ChainReactionMinMax
+- **Topics:** Angular Application, Angular Multi module, Javascript, Typescript, HTML, SCSS, Front-end Application, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+> Live demo: https://chainreactionai.web.app/
+
+## Abstract
+
+Chain Reaction is a turn-based board game built from scratch as an Angular 15 web application, with an AI opponent driven by the Minimax algorithm written in TypeScript. Players take turns placing orbs on a grid; when a cell reaches critical mass it explodes into its neighbors, converting their orbs and often triggering cascading chain reactions. The objective is to eliminate every opponent orb from the board. The app supports human vs. human, human vs. computer, and computer vs. computer with human interaction, and tracks a live scoreboard throughout the game. It is hosted on Firebase and playable in any browser.
+
+## The Game
+
+Chain Reaction is a deterministic, perfect-information combinatorial game for two to eight players — no dice, no hidden state, yet remarkably unpredictable in practice. The board is an *m × n* grid (typically 9 × 6). Each cell has a critical mass equal to its number of orthogonally adjacent cells: 4 for interior cells, 3 along the edges, and 2 in the corners.
+
+Players take turns placing an orb in an empty cell or one that already holds their own orbs. When a cell's orb count reaches its critical mass, it explodes: it loses orbs equal to its critical mass and sends one orb to each orthogonally adjacent cell. Any opponent orbs in those cells are converted to the exploding player's color, which can set off further explosions — a chain reaction that continues until every cell is stable. A player is out once they lose all of their orbs.
+
+## Heuristic Strategy
+
+A player's score is the total number of orbs they hold on the board. The heuristic for any non-terminal state is `currentPlayerScore − opponentScore`. Terminal states return `+Infinity` if the maximizing player has won and `−Infinity` if they have lost.
+
+```typescript
+  //memorize
+function utility(node: Node): number {
+    let key = JSON.stringify(node);
+    if (memorize.has(key)) {
+        return memorize.get(key);
+    }
+    if (node.isTerminal()) {
+        return node.state.currentPlayer.color == this.maxColor ? Infinity : -Infinity;
+    }
+    const own = node.state.gameData.flat(1).filter(v => v.value > 0 && v.color == this.maxColor).reduce((v, c) => v + c.value, 0)
+    const opponent = node.state.gameData.flat(1).filter(v => v.value > 0 && v.color != this.maxColor).reduce((v, c) => v + c.value, 0)
+    const value = own - opponent;
+    memorize.set(key, value);
+    return value;
+}
+```
+
+## The Minimax AI
+
+The AI uses Minimax: at each turn it builds a game tree of possible moves, assumes the opponent always plays optimally, and chooses the move that maximizes its own outcome against that best response. Because Chain Reaction has perfect information and no randomness, Minimax is a natural fit for finding a strong move.
+
+*Figure: Minimax*
+
+## Project Implementation
+
+The game models the board as a grid of cells, encodes the explosion and chain-reaction rules, and renders an interactive Angular UI for setup (board size, player configuration) and play. The code is written in TypeScript and organized so the rules engine, AI, and UI stay decoupled and easy to extend.
+
+### Class Diagram
+
+*Figure: Class Diagram*
+
+### Classes and Dependencies
+
+*Figure: Classes and Dependencies*
+
+### Gameplay Screenshots
+
+*Figure: Screenshot 1*
+
+
+*Figure: Screenshot 2*
+
+
+*Figure: Screenshot 3*
+
+
+*Figure: Screenshot 4*
+
+
+*Figure: Screenshot 5*
+
+
+*Figure: Screenshot 6*
+
+
+*Figure: Screenshot 7*
+
+
+*Figure: Screenshot 8*
+
+### Optimization
+
+The naive search is extremely expensive. Each move expands into a modified DFS/BFS over the board to compute the resulting state, and that expansion happens for every candidate move at every layer of the Minimax tree. On a 5 × 5 board a player can have ~25 possible moves; at a search depth of 3 that is roughly `n³` move combinations, and if each state evaluation costs about `n⁴`, the worst case approaches `O(n⁶)` — dangerously slow.
+
+The key observation was that the same board states recur constantly across the search. Adding memoization to every state-independent function — `actions`, `result`, `maxValue`, `minValue`, and `utility` — caches these repeated computations and brings the decision time down dramatically.
+
+```typescript
+const memorize = new Map<string, any>();
+
+//memorize node and actions
+function actions(node: Node): IAction[] {
+    let key = JSON.stringify(node);
+    if (memorize.has(key)) {
+        return memorize.get(key);
+    }
+    // Computation
+}
+
+async function result(action: IAction, node: Node): Promise<Node> {
+    let key = JSON.stringify(node) + JSON.stringify(action);
+    if (memorize.has(key)
+    )
+        return memorize.get(key);
+// Computation
+}
+
+// memorize
+function maxValue(node: Node): number {
+    const key = JSON.stringify(node);
+    if (memorize.has(key)) {
+        return memorize.get(key);
+    }
+    // Computation
+}
+
+//memorize
+function minValue(node: Node): number {
+  let key = JSON.stringify(node);
+  if (memorize.has(key)) {
+    return memorize.get(key);
+  }
+  // Computation
+}
+```
+
+## Conclusion
+
+Chain Reaction brings a classic strategy game to the web and pairs it with a Minimax AI that plays a genuinely challenging game. The most interesting engineering problem was performance: a direct search is exponentially expensive, and memoizing recurring game states was what made a depth-3 AI responsive enough to play in real time. The result is a polished, browser-based game and a practical case study in applying game-theory algorithms under real performance constraints.
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# Seamless Payment Experience: A Full-Stack Solution
+
+> Imagine effortlessly managing all your transactions from a single, intuitive interface. This project delivers a cutting-edge payment portal that seamlessly integrates a sleek Angular front-end with a robust Spring Boot REST API and a MySQL backend. From logging in and making transactions to reviewing your transaction history and analyzing data through dynamic dashboards, this application ensures a smooth, efficient payment experience. Explore the advanced features of this full-stack solution and experience the future of digital payments.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** August 2021
+- **Project page:** https://keshav.codes/payment-dbs/ (screenshots and diagrams are on that page)
+- **Tech:** HTML, CSS, Javascript, Typescript, Angular, Spring Boot, MySQL, PWA
+- **Source:** https://github.com/keshavlingala/payment-angular
+- **Source (2):** https://github.com/keshavlingala/payment-project
+- **Topics:** Angular app, DBS, Spring Boot, MySQL, training, Banking, REST API, Java Application, Google Material Design, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+A payment portal front end integrated with a Spring Boot backend — the [Payment Spring Server](https://github.com/keshavlingala/payment-project).
+
+## Employee Login (Optional)
+
+*Figure: Login Screen*
+
+## Home Screen — Transaction Form
+
+*Figure: Home Page*
+
+## Transaction History
+
+*Figure: Transaction history*
+
+## Analytics Dashboard
+
+<img src="/gifs/analytics.gif" alt='Analytics Screen'/>
+
+## Making a Transaction
+
+<img src="/gifs/transaction.gif" alt='Transaction Screen'/>
+
+## Dynamic History Search
+
+<img src="/gifs/dynamicSearch.gif" alt='Search Screen'/>
+
+# Payment Backend
+
+A REST API exposing minimal endpoints with CRUD operations over a MySQL 5 database. The front end for this project lives at [Payment Angular](https://github.com/keshavlingala/payment-angular).
+
+## List of Endpoints
+
+<img src="/gifs/api-endpoints.gif" alt='API Endpoints'/>
+
+> API documentation generated using OpenAPI.
+
+## Database Design
+
+*Figure: Database Design*
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# Bump: Innovative Pothole Management System
+
+> Imagine a system where managing and fixing potholes is streamlined and efficient. Bump is a cutting-edge pothole management application designed to bridge the gap between citizens, contractors, and government authorities. Built with Angular and Spring Boot, and utilizing AWS and Firebase, Bump allows citizens to report potholes with just a few clicks, including GPS location and photos. Contractors can bid on repair jobs, and the government can oversee the entire process, ensuring timely resolutions. With a Progressive Web App (PWA) design, Bump offers offline capabilities, mobile responsiveness, and a user-friendly interface for all stakeholders. Revolutionize pothole management and improve public infrastructure with Bump.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** May 2021
+- **Project page:** https://keshav.codes/bump/ (screenshots and diagrams are on that page)
+- **Tech:** Angular, Spring Boot, AWS, MySQL, Firebase, PWA, Jira, Bootstrap
+- **Source:** https://github.com/keshavlingala/pothole-angular
+- **Source (2):** https://github.com/keshavlingala/pothole-api
+- **Topics:** Angular Application, Angular Multi module, Spring Boot, Amazon S3, Amazon RDS, Firebase, Progressive Web App, Material Design, MySQL, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+*Figure: Logo*
+
+## Introduction
+
+Bump was built around a problem statement from the Smart India Hackathon (SIH):
+
+> **Problem:** Goa faced heavy rains, and potholes became the government's biggest maintenance challenge. The core issue is coordination — there is a fundamental disconnect between civil agencies, the public, and elected representatives. The goal is a mobile-based dynamic reporting system that keeps information flowing between all stakeholders and improves governance through greater public involvement.
+
+- **Organization:** Govt. of Goa
+- **Category:** Software
+- **Domain:** Mobile app development
+
+## Project Design
+
+*Figure: Project Design*
+
+> This is a miniaturized software solution for the otherwise very complex paperwork the government handles manually.
+
+An Angular PWA talks to a Spring Boot web server, which in turn communicates with an Amazon S3 bucket and a MySQL database.
+
+### Functionalities
+
+Citizens upload pothole details, with the location captured automatically via GPS at the time the photo is taken. Citizens can also register with their license number and, once approved by the government, act as contractors. Contractors bid on a given pothole, the government selects the best bid and awards the repair contract, and the repair status is then kept up to date for both the government and the reporting citizens.
+
+- Citizens can register pothole complaints directly
+- Citizens can offer a contract and bid for the chance to repair a pothole
+- Citizens receive updates on the complaints they registered
+- Potholes are prioritized to minimize public inconvenience
+- Government authorities have full access and control over the system
+
+### Technical Implementation
+
+- Platform independent
+- Pothole details are saved even without an internet connection
+- Efficient and reliable
+- Material Design
+- Mobile responsive
+
+## Technology Stack
+
+*Figure: Technology Stack*
+
+## Use Cases
+
+### User Use Case
+
+*Figure: User Use Case*
+
+### Contractor Use Case
+
+*Figure: Contractor Use Case*
+
+## Screenshots
+
+*Figure: User Dashboard*
+
+*Figure: Contractor Dashboard*
+
+*Figure: Admin Dashboard*
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# Smart Conference Room IoT Dashboard
+
+> Imagine managing a high-tech conference room with an intuitive and fast admin dashboard. This Smart Conference Room IoT Dashboard leverages Angular 11 and Angular Material to deliver a sleek, high-performance interface for managing IoT devices and room settings. With real-time updates, dynamic charts, and customizable layouts, this dashboard provides a seamless experience for monitoring and controlling smart conference environments. Hosted on GitHub, it offers a robust solution for modern administrative needs.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** March 2021
+- **Project page:** https://keshav.codes/admin-dashboard/ (screenshots and diagrams are on that page)
+- **Tech:** HTML, CSS, Javascript, Typescript, Angular, Firebase
+- **Source:** https://github.com/keshavlingala/smart-conference-dashboard
+- **Topics:** Angular Application, Angular Multi module, Material Design, Angular Library, High Performance Admin Dashboard, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+## Description
+
+A sample admin dashboard for a smart-conference IoT room, built with Angular 11, Angular Material, and Angular Flex Layout. It is designed to be fast, dynamic, and high performance.
+
+> Loads in under 2 seconds.
+
+## Features
+
+- Built on Angular 11 for a high-performance front end
+- UI updates automatically — no page refresh needed
+- Lazy loading: components load only just before the user needs them
+- Google Material Design throughout
+- Adjustable, resizable layout
+- Charts from multiple providers (Chart.js, Google Charts, Chartist, D3)
+- Draggable and resizable analytics cards
+- Custom designs for every component
+- Dynamic data tables with sorting, filtering, pagination, resizing, and export
+- Add, view, edit, and delete actions for table data
+
+## Screenshots
+
+Multiple charts on the dashboard:
+
+*Figure: Dashboard with multiple charts*
+
+Adjustable and resizable layout:
+
+*Figure: Adjustable and resizable layout*
+
+Add, edit, and delete dashboard widgets:
+
+*Figure: Widget management*
+
+Bar chart with real-time updates:
+
+*Figure: Real-time bar chart*
+
+Selecting a chart type and configuring its data dynamically:
+
+*Figure: Dynamic chart configuration*
+
+Generating keys for IoT devices (single click to copy):
+
+*Figure: IoT device key generation*
+
+Custom UI for OTA updates:
+
+*Figure: OTA updates UI*
+
+Reusing components across modules via lazy loading:
+
+*Figure: Reusable lazy-loaded components*
+
+Defining IoT device rules:
+
+*Figure: IoT device rules UI*
+
+Edit and delete in a data table with multi-row selection:
+
+*Figure: Data table row actions*
+
+Configurable data table with sorting, filtering, pagination, resizing, and row actions:
+
+*Figure: Configurable data table*
+
+Multiple pages with clickable cards and built-in charts:
+
+*Figure: Clickable cards with charts*
+
+Data tables with a detail view:
+
+*Figure: Data table detail view*
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# Synopsis: Effortless Summarization and Highlighting Chrome Extension
+
+> Imagine transforming lengthy articles, documents, or webpages into concise summaries with just a click. The Synopsis Chrome Extension does just that, leveraging advanced NLP and machine learning to automatically highlight key points and generate succinct summaries. Perfect for anyone needing quick insights or detailed overviews, this tool enhances your browsing experience by distilling information and emphasizing essential content.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** February 2021
+- **Project page:** https://keshav.codes/synopsis/ (screenshots and diagrams are on that page)
+- **Tech:** HTML, CSS, Javascript, Python, Keras, TensorFlow, Jira
+- **Live demo:** https://github.com/keshavlingala/synopsis-chrome-extension/releases/tag/v1.0
+- **Source:** https://github.com/keshavlingala/synopsis-chrome-extension
+- **Topics:** Google Chrome Extension, Javascript, Python Server, Natural Language Processing, Machine Learning, Real time Application, Downloadable Extension, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+*Figure: Synopsis*
+
+# Introduction
+
+A Chrome extension that summarizes any article, document, webpage, or essay in a single click, and automatically highlights the most important lines using NLP.
+
+### Reading an Article with Highlights
+
+> Highlighted 30% of the article
+
+*Figure: Highlighted 30%*
+
+> Highlighted 90% of the article
+
+*Figure: Highlighted 90%*
+
+### Complete Summary
+
+*Figure: Summary*
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# Telegram NLP ChatBot with Node.js
+
+> Imagine a Telegram chatbot that not only tells jokes and provides weather updates but also fetches audio from YouTube. This Telegram NLP ChatBot is built with Node.js and integrates DialogFlow for natural language processing. It features functionalities such as fetching movie details, searching YouTube videos, and converting YouTube content to MP3. Easily interact with the bot via commands and enjoy a seamless experience in managing various tasks through Telegram.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** January 2021
+- **Project page:** https://keshav.codes/edithminibot/ (screenshots and diagrams are on that page)
+- **Tech:** NodeJS, Javascript, Typescript
+- **Live demo:** https://t.me/edithminibot
+- **Source:** https://github.com/keshavlingala/telegram-edithminibot
+- **Topics:** Telegram, NLP, Chatbot, DialogFlow, Webhook, NodeJS, Express, keshavlingala, youtube-to-mp3, download mp3 from youtube, youtube downloader, entertainment, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+*Figure: Feature Image*
+
+[![Telegram bot](https://img.shields.io/badge/try-telegram%20bot-blue)](https://t.me/edithminibot)
+
+A Telegram bot built in Node.js that handles weather, movie lookups, and random jokes, and can extract audio from a YouTube link so you can download it as an MP3. It uses DialogFlow for natural language processing, so it also replies conversationally with an appropriate message.
+
+## Features
+
+1. Tells a random joke
+2. Reports the weather for any location you send
+3. Looks up detailed movie information (in any language)
+4. Searches YouTube videos directly from the chat
+5. Extracts audio from a YouTube video by link
+
+## Commands
+
+| Command  | Description  |
+|---|---|
+| `joke`  | Get a random joke  |
+| `movie`   | Search for movie details by name   |
+| `yt`      | Search for YouTube videos  |
+| `yt3`     | Extract audio from a YouTube video (ID or link) |
+| `weather` | Get weather information, or send a location directly to see its weather |
+
+Example commands:
+
+1. `movie Big hero 6`
+2. `joke`
+3. `yt Faded by alan walker`
+4. `yt3 https://www.youtube.com/watch?v=60ItHLz5WEA` or `yt3 60ItHLz5WEA`
+5. `weather`
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# Dynamic Timeline for Angular: angular2-timeline
+
+> Build visually compelling timelines effortlessly with angular2-timeline—a CSS-based Angular library designed to display dynamic data in a sleek, customizable timeline view. Tailor the design and colors of each timeline item to suit your application's style, ensuring that your content stands out. Perfect for creating responsive timelines that look great on any device, this library offers simple installation and intuitive usage to streamline your development process. Elevate your Angular projects with a timeline component that’s both powerful and easy to implement.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** August 2020
+- **Project page:** https://keshav.codes/angular2-timeline/ (screenshots and diagrams are on that page)
+- **Tech:** Angular, CSS, HTML, Typescript
+- **Live demo:** https://www.npmjs.com/package/angular2-timeline
+- **Source:** https://github.com/keshavlingala/angular2-timeline
+- **Topics:** Angular Library, Angular Reusable library, angular2, timeline, npm module, NPM Registry, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+*Figure: Screenshot of the timeline UI*
+
+## Overview
+
+A lightweight, CSS-based Angular library, published to npm, for rendering dynamic data as a clean, responsive timeline. Each item's colors are individually customizable so the component blends into any design.
+
+> This library is no longer maintained.
+
+## Installation
+
+Install from npm:
+
+```bash
+> npm i angular2-timeline
+```
+
+Add the timeline module to your app:
+
+```typescript
+import {TimelineModule} from "angular2-timeline";
+
+@NgModule({
+    ...
+  imports: [
+    TimelineModule,
+    ...
+  ],
+```
+
+## Exposed Components
+
+- `TimelineComponent`
+- `TimelineItemComponent`
+
+## How to use
+
+```html
+<timeline>
+  <timeline-item>
+ <!-- your content here -->
+  </timeline-item>
+</timeline>
+```
+
+A complete example with statically and dynamically added items:
+
+```typescript
+import {Component} from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <button (click)="more.push(0)">Add More</button>
+    <timeline>
+      <timeline-item>
+        <div style="background-color: azure;padding: 10px;box-shadow: 3px 3px 15px 3px #6565656b;">
+          <h1>Title</h1>
+          <h4>Subtitle</h4>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's
+            standard dummy text ever since the 1500s.</p>
+        </div>
+      </timeline-item>
+      <timeline-item>
+        <div style="background-color: azure;padding: 10px;box-shadow: 3px 3px 15px 3px #6565656b;">
+          <h1>Title</h1>
+          <h4>Subtitle</h4>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's
+            standard dummy text ever since the 1500s.</p>
+        </div>
+      </timeline-item>
+      <timeline-item *ngFor="let i of more">
+        <div style="background-color: azure;padding: 10px;box-shadow: 3px 3px 15px 3px #6565656b;">
+          <h1>Title</h1>
+          <h4>Subtitle</h4>
+        </div>
+      </timeline-item>
+    </timeline>
+  `,
+})
+export class AppComponent {
+  more = [];
+}
+```
+
+Set a dot color per item with a HEX code:
+
+```html
+<timeline>
+    <timeline-item color="#42b5b6">
+        <!--Your Content Goes Here-->
+    </timeline-item>
+</timeline>
+```
+
+# Features
+
+- Mobile responsive
+- Customizable dot color for each timeline item
+
+***
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# Aakarshan Artboard: A Social Media Hub for Artists
+
+> Imagine a vibrant online community where artists and art enthusiasts come together to share their creativity. Aakarshan Artboard is a dynamic social media platform that bridges the gap between artists and their audience. Designed with sleek Google Material Design, this platform allows you to create an account, upload your artwork, and connect with friends through likes, comments, and shares. Whether you’re on the go or at home, Aakarshan Artboard’s mobile responsiveness and lightning-fast performance ensure a seamless experience. Plus, with push notifications and the option to install it as a Progressive Web App (PWA), you can stay connected to the art community anytime, anywhere.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** June 2019
+- **Project page:** https://keshav.codes/aakarshan/ (screenshots and diagrams are on that page)
+- **Tech:** HTML, CSS, Bootstrap, Angular, Typescript, Firebase, PWA
+- **Live demo:** https://aakarshan.web.app/
+- **Source:** https://github.com/keshavlingala/AakarshanClub
+- **Topics:** Artclub, Aakarshan, Aakarshan Artclub, KMIT, Aakarshan KMIT, KMIT Aakarshan, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+*Figure: Aakarshan Logo*
+
+
+## Introduction
+
+Aakarshan Artboard is a social media platform for connecting with friends online. It was originally built for the Aakarshan art club so members could showcase and share their artwork with each other over the internet.
+
+## Purpose
+
+Anyone with an email address can create an account and share images with the rest of the community.
+
+## Features
+
+### 1. Login / Register
+
+*Figure: Login Screen*
+
+### 2. Upload images
+
+*Figure: Upload Images*
+
+### 3. Pick a profile card while registering
+
+*Figure: Profile Card / Registration*
+
+### 4. Like, comment, and share
+
+*Figure: Like, Comment, and Share*
+
+### 5. Get notified whenever there is a new post
+
+*Figure: Post Notifications*
+
+### 6. Browse and contact other users
+
+*Figure: Users*
+
+### 7. Install it as an app on your device (PWA)
+
+*Figure: Progressive Web App*
+
+## Other Highlights
+
+### Google Material Design
+
+*Figure: Design Home*
+
+### Mobile responsive
+
+*Figure: Mobile Responsive*
+
+### Fast page loads
+
+Dynamic post loading (infinite scrolling), caching, and offline support through the PWA keep things quick — the app loads in under 3 seconds on an average mobile connection.
+
+*Figure: Speed and Performance*
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# Collaborative Student Hub: The Ultimate Zonal Dashboard
+
+> Imagine a dynamic platform where students collaborate effortlessly, stay updated, and manage their academic lives in one place. This project brings that vision to life with a vibrant Angular-based dashboard integrated with Google Firebase and Bootstrap. Whether you're posting updates, managing events, tackling quizzes, or sharing status updates, this platform is designed for seamless interaction and collaboration. Awarded 2nd place in the Scholar Jet Wayfair competition, this dashboard revolutionizes student engagement with intuitive features and a user-friendly interface.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** May 2019
+- **Project page:** https://keshav.codes/seeinghome/ (screenshots and diagrams are on that page)
+- **Tech:** HTML, CSS, Javascript, Typescript, Angular, Firebase, Bootstrap
+- **Live demo:** https://seeinghome.web.app
+- **Source:** https://github.com/keshavlingala/seeinghome
+- **Topics:** Angular app, WayFair, Seeing home, scholar jet, competition, 2nd place, $3000 cash prize, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+A fully functional web application built for the Wayfair competition.
+
+It won 2nd prize 🏆 in the Scholar Jet "Seeing Home" Wayfair competition.
+
+*Figure: Leaderboard*
+
+## App Overview
+
+### Home Page
+
+After logging in, you land on a page where you can choose between four zones, shown below.
+
+*Figure: Home Page*
+
+### Post Zone
+
+View and like posts, and upload your own images with descriptions.
+
+*Figure: Post Zone*
+
+### Events Zone
+
+View and create events with a date and time.
+
+*Figure: Event Zone*
+
+## Quiz Zone
+
+Attempt questions and see the solution with a detailed explanation of the answer.
+
+*Figure: Quiz Zone*
+
+Add your own questions:
+
+*Figure: Add Quiz Question*
+
+### Status Zone
+
+Post a status with an emotion, and like, comment on, or share any status.
+
+*Figure: Status Zone*
+
+### Profile
+
+Every user has their own profile showing the posts they've uploaded.
+
+*Figure: Profile*
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# Havmor Movies: Your Free Torrent Movie Hub
+
+> Imagine a dynamic movie app that keeps you updated with the latest YIFY torrents. Havmor Movies, inspired by Popcorn Time 🍿, offers a seamless experience to browse and download free movies using the open-source Popcorn Times API. With automatic updates from the YIFY database and detailed movie information from OMDB API 🧠, this Angular-based web app provides a hassle-free way to enjoy the latest films. Note: This app is no longer operational.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** April 2019
+- **Project page:** https://keshav.codes/havmor-movies/ (screenshots and diagrams are on that page)
+- **Tech:** HTML, CSS, Javascript, Typescript, Angular, Bootstrap, Firebase
+- **Source:** https://github.com/keshavlingala/havmormovies
+- **Topics:** Torrents, Free Movies, Angular App, Web Application, Not Working Anymore, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+*Figure: Havmor Movies*
+
+
+## Overview
+
+> This app is no longer functional — the API it depended on is no longer available.
+
+Havmor Movies is an Angular web app for quickly finding the latest YIFY movie torrents, inspired by Popcorn Time 🍿. New releases appeared in the app as soon as the YIFY database updated, and detailed movie information was pulled from a third-party movie API 🧠.
+
+## Movie Details
+
+Get the full details of a movie before downloading it — all in a single click.
+
+*Figure: Movie Description*
+
+Movies could be downloaded directly, with no advertisements.
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
