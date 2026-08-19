@@ -14,27 +14,15 @@ import { CATEGORIES, SKILLS } from "../data/skills";
 const { siteUrl, name, jobTitle, tagline, description, github, linkedin, email, location } =
   siteMetadata;
 
-/* Built URLs for every image colocated with a post, keyed by source path —
-   used to turn a post's relative image links into absolute, fetchable ones. */
-const postImages = import.meta.glob<string>("../content/posts/**/*.{png,jpg,jpeg,gif,webp,svg}", {
-  query: "?url",
-  import: "default",
-  eager: true,
-});
-
-/** Resolve `images/feature.png` inside post `slug` to an absolute URL. */
-function imageUrl(slug: string, relative: string): string | null {
-  const suffix = `/posts/${slug}/${relative.replace(/^\.\//, "")}`;
-  const key = Object.keys(postImages).find((path) => path.endsWith(suffix));
-  return key ? `${siteUrl}${postImages[key]}` : null;
-}
-
-/** Rewrite relative markdown image links so the file stands alone. */
-function absolutizeImages(body: string, slug: string): string {
-  return body.replace(/!\[([^\]]*)\]\(([^)\s]+)([^)]*)\)/g, (match, alt, src: string, rest) => {
-    if (/^(https?:)?\/\//.test(src) || src.startsWith("/")) return match;
-    const url = imageUrl(slug, src);
-    return url ? `![${alt}](${url}${rest})` : `![${alt}]()`;
+/* Screenshots and diagrams stay on the HTML page. Linking them from here
+   would mean emitting a second, unoptimised copy of every post image into the
+   build (53 MB of originals that astro:assets otherwise never ships), so a
+   text reader gets the alt text as a figure caption instead. Images hosted
+   elsewhere are left as-is — they cost the build nothing. */
+function captionImages(body: string): string {
+  return body.replace(/!\[([^\]]*)\]\(([^)\s]+)([^)]*)\)/g, (match, alt: string, src: string) => {
+    if (/^(https?:)?\/\//.test(src)) return match;
+    return alt ? `*Figure: ${alt}*` : "";
   });
 }
 
@@ -49,12 +37,12 @@ export const postMarkdownUrl = (post: Post) => `${siteUrl}/${post.data.slug}.md`
 
 /** One project write-up as a standalone markdown document. */
 export function postMarkdown(post: Post): string {
-  const { title, description: desc, date, techs, code, code2, demo, slug, tags } = post.data;
+  const { title, description: desc, date, techs, code, code2, demo, tags } = post.data;
 
   const facts = [
     `- **Author:** ${name} (${jobTitle}) — ${siteUrl}`,
     `- **Published:** ${monthYear(date)}`,
-    `- **Project page:** ${postUrl(post)}`,
+    `- **Project page:** ${postUrl(post)} (screenshots and diagrams are on that page)`,
     techs.length ? `- **Tech:** ${techs.join(", ")}` : null,
     demo ? `- **Live demo:** ${demo}` : null,
     code ? `- **Source:** ${code}` : null,
@@ -71,7 +59,7 @@ export function postMarkdown(post: Post): string {
     "",
     "---",
     "",
-    absolutizeImages(post.body ?? "", slug).trim(),
+    captionImages(post.body ?? "").trim(),
     "",
     "---",
     "",
