@@ -1,14 +1,14 @@
 # Okepage: Print Many Photos on One Page, In Your Browser
 
-> Printing a stack of photos usually means one sheet per photo, a photo-shop trip, or fighting a word processor into a grid. Okepage (ఒకేపేజీ — “just one page”) is a single-page browser tool that takes a pile of photos and lays them out on A4 sheets ready to print and cut: pick 1, 2, 4, 6, 9 per page or let Auto find the tightest grid the paper allows, flip between portrait and landscape, crop to fill or keep the whole photo, and set gap, paper-edge margin and a cutting line in real millimetres. It is deliberately dependency-free — no framework, no bundler, no npm packages, no server — four plain scripts that also run straight from a file:// URL, so the photos are read from disk in the browser and never leave the machine. The interface is bilingual (Telugu by default, English one click away), and the whole thing ships to Cloudflare Workers static assets from a GitHub Action.
+> Printing a stack of photos usually means one sheet per photo, a photo-shop trip, or fighting a word processor into a grid. Okepage (ఒకేపేజీ — “just one page”) is a single-page browser tool that takes a pile of photos and lays them out on A4 sheets ready to print and cut: pick 1, 2, 4, 6, 9 per page or let Auto find the tightest grid the paper allows, flip between portrait and landscape, crop to fill or keep the whole photo, and set gap, paper-edge margin and a cutting line in real millimetres. It is deliberately dependency-free — no framework, no bundler, no npm packages, no server — five plain scripts that also run straight from a file:// URL, so the photos are read from disk in the browser and never leave the machine. It is an installable PWA backed by a hand-written service worker, so after one visit it opens and prints with no network at all, and it never reloads itself out from under a print job. The interface is bilingual (Telugu by default, English one click away), and the whole thing ships to Cloudflare Workers static assets from a GitHub Action.
 
 - **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
 - **Published:** August 2026
 - **Project page:** https://keshav.codes/okepage/ (screenshots and diagrams are on that page)
-- **Tech:** HTML, CSS, Javascript, Github Actions
+- **Tech:** HTML, CSS, Javascript, PWA, Github Actions
 - **Live demo:** https://okepage.keshav.codes
 - **Source:** https://github.com/keshavlingala/okepage
-- **Topics:** Okepage, ఒకేపేజీ, Photo printing, A4 photo grid, Print photos on one page, Passport photo sheet, Vanilla JavaScript, No build step, Offline first, Telugu app, Bilingual UI, Cloudflare Workers, Static site, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+- **Topics:** Okepage, ఒకేపేజీ, Photo printing, A4 photo grid, Print photos on one page, Passport photo sheet, Vanilla JavaScript, No build step, Offline first, PWA, Progressive Web App, Service worker, Installable web app, Works offline, Telugu app, Bilingual UI, Cloudflare Workers, Static site, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
 
 ---
 
@@ -52,16 +52,26 @@ The app has no framework: state lives in a `Store`, every mutation goes through 
 
 *Figure: Landscape A4, four per page, one photo selected for cropping — the English UI*
 
+### Working with no network at all
+
+A tool for printing things at home should not need the internet, so Okepage is a PWA: a service worker precaches every file on install and serves everything cache-first afterwards, and a manifest plus a set of icons make it installable, so it gets a Home Screen icon and its own window instead of living in a tab. Google Fonts — the one thing loaded from another origin — goes into a second cache lazily rather than up front, so even a first visit that is already offline works; it just falls back to system fonts.
+
+Having no build step shows up here in an interesting way. Nothing hashes the filenames, so there is no generated precache manifest to lean on: the worker carries a hand-written list of files and a `VERSION` constant that must be bumped whenever one of them changes. That is the honest price of not having a bundler, and it is still cheaper than the bundler.
+
+Updates are deliberately *not* automatic. A worker that calls `skipWaiting()` can swap the app out from under a live page, and for a tool whose whole job ends in a print dialog, that is precisely the moment you must not interrupt. So a new version installs, then waits. The footer offers **"new version — click to reload"**, and nothing moves until that click. The same footer only claims **"works without internet"** once the worker has genuinely finished caching — before that it stays silent, because the promise would not yet be true.
+
+None of it disturbs the `file://` route: service workers do not exist there at all, so the registration checks the protocol and no-ops, and a downloaded folder behaves exactly as it did before.
+
 ## Constraints I Kept
 
-- **No ES modules.** Scripts load as ordered `<script>` tags, each exposing one global (`I18N`, `Store`, `Layout`). Modules would break `file://` usage — and opening `index.html` straight from a downloaded folder is a legitimate way to run this.
+- **No ES modules.** Scripts load as ordered `<script>` tags, each exposing one global (`I18N`, `Store`, `Layout`, `Offline`). Modules would break `file://` usage — and opening `index.html` straight from a downloaded folder is a legitimate way to run this.
 - **No npm packages, bundlers or CSS frameworks.** Five files, ~zero install, readable in an afternoon.
 - **No server, ever.** Photos are read as blob URLs in the browser and are gone when the tab closes. Only the layout settings persist, in `localStorage`.
-- **One network request**, for the Google Fonts stylesheet — and the page still works offline without it.
+- **One network request**, for the Google Fonts stylesheet — cached by the service worker after the first visit, and the page still works without it.
 
 ## Deployment
 
-The repo *is* the deployable artifact. A GitHub Action on `main` hands it to `wrangler`, which uploads the directory to **Cloudflare Workers static assets** — no build command, because there is nothing to build. An `.assetsignore` keeps the things that are not the app (README, `CLAUDE.md`, workflow files) out of the upload, and `wrangler.jsonc` binds the custom domain `okepage.keshav.codes` while leaving the apex records that point `keshav.codes` at GitHub Pages untouched.
+The repo *is* the deployable artifact. A GitHub Action on `main` hands it to `wrangler`, which uploads the directory to **Cloudflare Workers static assets** — no build command, because there is nothing to build. An `.assetsignore` keeps the things that are not the app (README, `CLAUDE.md`, workflow files) out of the upload, and `wrangler.jsonc` binds the custom domain `okepage.keshav.codes` while leaving the apex records that point `keshav.codes` at GitHub Pages untouched. The service worker ships as just another file in that directory — which is why bumping its `VERSION` is part of changing the app, not part of a build.
 
 ## What I Took From It
 
