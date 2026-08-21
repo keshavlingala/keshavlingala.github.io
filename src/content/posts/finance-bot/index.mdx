@@ -1,0 +1,89 @@
+---
+title: "finance-bot: Unattended Finance Automation That Proves Its Own Backups"
+slug: finance-bot
+featuredImage: images/feature.png
+tags: ['Finance automation','Personal finance','Firefly III','SimpleFIN','Telegram bot','Python','Stdlib only','No dependencies','SQLite','WAL','Job scheduler','Cron replacement','Rate limiting','Quota budgeting','Postgres backup','Restore drill','LLM categorisation','Undo log','Self-hosted','Keshav Lingala','Keshav Reddy','Keshav Reddy Lingala','Lingala Keshav Reddy','Keshav']
+description: "2,836 lines of dependency-free Python that import bank transactions, categorise them with rules plus an LLM pass over the long tail, and back the ledger up nightly — with a monthly drill that actually restores the dump and compares row counts."
+date: '2026-08-21'
+techs: [Python, Postgresql, Docker, Anthropic, Bash, 'SQLite', 'Telegram', 'Firefly III']
+featured: true
+---
+
+import Diagram from "../../../components/Diagram.astro";
+
+This is the largest original build running on [my home server](/homelab/): a pipeline that imports bank transactions into a Firefly III ledger, categorises them, backs everything up nightly, and asks me about anything it isn't sure of over Telegram. 2,836 lines of Python across nine modules, **stdlib only — no third-party dependencies at all**, source bind-mounted so a code change is a restart rather than a rebuild.
+
+It publishes no ports. It long-polls an outbound API, so the Docker-bypasses-the-firewall problem simply cannot apply to it. It has no Docker socket either — the backup dumps over the network rather than running `docker exec`, specifically so a container that also invokes an LLM is never handed root on the host daemon.
+
+Most of what's interesting about it came from auditing the version before it, which had no backups, a scheduler that double-fired on restart, and a work queue that silently dropped items.
+
+<Diagram title="The nightly chain">
+
+- **04:30 · Import** — SimpleFIN into the ledger. Cost is derived from the config, and spend is booked before the call.
+- **05:00 · Reconcile** — match transfers the aggregator can't see. Dry-run by default; `--commit` to write.
+- **05:15 · Categorise** — rules cover ~97%; one batched LLM call handles the tail above 0.85 confidence.
+- **05:30 · Back up** — Postgres, the bot's own state and the importer config, onto the file share.
+- **1st monthly · Restore drill** — restore the newest dump into a scratch database, compare row counts against live.
+
+</Diagram>
+
+## Backups That Are Proven, Not Assumed
+
+The nightly dumps had been completing successfully for weeks. They were unrestorable.
+
+The Postgres client major version must **match** the server, not merely exceed it. The base image shipped a v17 client against a v16 server, and a v17 `pg_dump` writes `SET transaction_timeout = 0;` into the dump header — a setting that doesn't exist before v17. The v16 server rejects the restore outright. Nothing surfaces at dump time, so the dumps look perfect right up until the moment you need one.
+
+The fix was three parts: pin the client to v16, **assert the version at image build time** so a silent mismatch becomes a failed build, and add a monthly drill that restores the newest dump into a scratch database and compares row counts against live. It restores onto the existing server rather than a throwaway container, because that's the stricter test — it's the exact engine version a real restore would run on.
+
+An untested backup is a guess. The assertion and the drill are both cheap; finding this out during an actual restore is not.
+
+## One Scheduler, With Memory
+
+It's the only scheduler on the machine — no cron container, no host crontab, no systemd timer. Ten jobs, and three properties the version it replaced didn't have.
+
+**Occurrences are persisted, not held in memory.** The predecessor kept a `fired` set in process memory and matched on `now.hour == 21`. Restarting the bot twice inside the 21:00 hour sent the daily digest three times. Now each job computes its most recent *scheduled occurrence* and runs only if that exact occurrence is unrecorded, so no number of restarts can re-fire anything.
+
+**Missed work is caught up, not skipped.** Each job declares a grace window encoding whether running late is useful. A backup missed because the machine was down is worth running sixteen hours late; an evening digest arriving at lunchtime is noise, so it's dropped. Encoding catch-up semantics per job rather than globally is the part worth stealing.
+
+**Jobs run one at a time**, so the nightly chain can't interleave with itself.
+
+<Diagram variant="grid" title="What makes it safe to leave running">
+
+- **Persisted occurrences** — no number of restarts can re-fire a job.
+- **Per-job grace windows** — a missed backup catches up sixteen hours late; a missed digest is dropped.
+- **One quota ledger** — a hard cap of 24 requests/day, counted once, in the unit the provider bills.
+- **Undo log** — every automated write records its previous value, so any of it reverses.
+
+</Diagram>
+
+## Counting What The Provider Actually Bills
+
+The bank aggregator enforces a hard cap of 24 requests per day, and one import costs 8 — a discovery call plus one per mapped account, so the cost is *derived from the config* rather than hardcoded. Add an eighth account and every run silently costs 9.
+
+The previous design had two throttles that couldn't see each other: a CLI wrapper with an hourly stamp in `~/.cache`, and the bot with its own daily counter. Both counted *runs* rather than *requests*. Together they permitted well over 200 requests a day against a cap of 24. Two correct throttles that can't see each other are one broken throttle.
+
+Now there's a single ledger, the CLI defers to it, and spend is booked **before** the call — so a failed run still burns its quota, which is what the provider actually charges.
+
+## Rules First, LLM For The Tail
+
+Declarative rules categorise about 97% of withdrawals. The remainder is merchants seen once or twice, which is exactly what a static rule list is bad at. The nightly pass sends that tail to an LLM under three constraints:
+
+- **One batched call per run**, never one per transaction.
+- **Every returned category is validated against the live ledger category list.** The model doesn't get to invent a category.
+- **Applied only above 0.85 confidence.** Anything below becomes a question in a Telegram queue instead of a silent write.
+
+Then it learns: once a merchant resolves to the same category twice, it's folded into the *existing* rule for that category. Extending a small set of payee rules rather than creating one per merchant is what keeps the rule set legible — the system gets more deterministic the longer it runs, not less.
+
+Every write records its previous value, so `/autolog` reviews recent automated changes and `/undo` reverses any of them. Automation that can write to a ledger needs an undo log; that isn't optional. And the model is referenced by alias rather than pinned version, precisely because it runs unattended at 05:15 — a rename would otherwise break it silently at a time nobody is watching.
+
+## Alerting On The Absence Of Success
+
+The nightly import logs a dozen `There is already a transaction` errors and exits non-zero. Those errors *are* duplicate detection working correctly — the import uses a rolling 7-day window, so it re-reads transactions already in the ledger every night.
+
+Treating the exit code as truth would have alerted every night, and an alert that fires every night is an alert nobody reads. So errors are classified by content rather than exit code, and a heartbeat job treats *no successful import in 36 hours* as the alert instead.
+
+## What I Took From It
+
+Every real bug in this system had the same shape: **something reported success while being wrong.** A dump that couldn't restore, a scheduler that forgot what it had done, two rate limiters that were each individually correct, a queue whose items entered a state with no path out. None of them threw an error.
+
+Building the checks that catch that — a build-time assertion, a restore drill, a heartbeat, an undo log — is most of what separates automation you can leave running from automation you have to watch.

@@ -77,7 +77,15 @@ const blurb = (t: string, n = 155) => {
                   </span>
                 </a>
                 <a class="log-thumb" href={`/${p.data.slug}/`} tabindex="-1" aria-hidden="true">
-                  <Image src={p.data.featuredImage} alt={`${p.data.title} preview`} width={300} />
+                  {/* The thumb box is 146x92, so a flat 300px source ships
+                      roughly 2x the bytes a 1x display needs; densities emits
+                      both and lets the browser pick. */}
+                  <Image
+                    src={p.data.featuredImage}
+                    alt={`${p.data.title} preview`}
+                    width={146}
+                    densities={[1, 2]}
+                  />
                 </a>
               </div>
             ))}

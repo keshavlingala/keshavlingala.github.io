@@ -12,7 +12,7 @@ const startMon = (e: (typeof EXPERIENCE)[number]) => e.span.match(/^\s*([A-Za-z]
 
 <div class="exp-wrap">
   <div class="now-strip">
-    <div class="now-label"><i class="now-pulse" aria-hidden="true"></i> Currently</div>
+    <div class="now-label"><i class="now-pulse live-dot" aria-hidden="true"></i> Currently</div>
     <div class="now-cards">
       {
         current.map((e) => {
@@ -51,7 +51,7 @@ const startMon = (e: (typeof EXPERIENCE)[number]) => e.span.match(/^\s*([A-Za-z]
                       </a>
                     )}
                   </span>{" "}
-                  · <span>{e.location.split(" · ")[0]}</span>
+                  · <span class="now-loc">{e.location.split(" · ")[0]}</span>
                 </div>
               </div>
             </div>
@@ -200,9 +200,7 @@ const startMon = (e: (typeof EXPERIENCE)[number]) => e.span.match(/^\s*([A-Za-z]
   .now-pulse {
     width: 9px;
     height: 9px;
-    border-radius: 50%;
     background: var(--amber);
-    animation: livePulse 2.2s infinite;
   }
   .now-cards {
     display: flex;
@@ -245,8 +243,8 @@ const startMon = (e: (typeof EXPERIENCE)[number]) => e.span.match(/^\s*([A-Za-z]
   .co-link {
     display: inline-grid;
     place-items: center;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 6px;
     color: var(--text-4);
     border: 1px solid var(--line);
@@ -291,7 +289,7 @@ const startMon = (e: (typeof EXPERIENCE)[number]) => e.span.match(/^\s*([A-Za-z]
     font-size: 11.5px;
     color: var(--text-3);
   }
-  .now-co span {
+  .now-loc {
     color: var(--text-4);
   }
 
@@ -651,11 +649,6 @@ const startMon = (e: (typeof EXPERIENCE)[number]) => e.span.match(/^\s*([A-Za-z]
     }
     .exp-rtype {
       display: none;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .now-pulse {
-      animation: none;
     }
   }
 </style>

@@ -17,7 +17,9 @@ const links = [
     </a>
     <nav class="nav-links" aria-label="Primary">
       {links.map(([label, href]) => <a href={href}>{label}</a>)}
-      <a class="nav-cta" href={`mailto:${email}`}>Let's talk</a>
+      <a class="nav-cta" href={`mailto:${email}`}>
+        <i class="nav-dot live-dot" aria-hidden="true"></i>Let's talk
+      </a>
     </nav>
   </div>
 </header>
@@ -96,13 +98,10 @@ const links = [
     gap: 8px;
     white-space: nowrap;
   }
-  .nav-cta::before {
-    content: "";
+  .nav-dot {
     width: 7px;
     height: 7px;
-    border-radius: 50%;
     background: #5fd08a;
-    animation: livePulse 2.2s infinite;
   }
   .nav-cta:hover {
     color: var(--amber) !important;
@@ -111,11 +110,6 @@ const links = [
   @media (max-width: 760px) {
     .nav-links a:not(.nav-cta) {
       display: none;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .nav-cta::before {
-      animation: none;
     }
   }
 </style>

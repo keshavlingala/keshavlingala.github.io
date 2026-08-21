@@ -1,0 +1,102 @@
+---
+title: "beast: A Headless GPU Server With No Open Ports"
+slug: homelab
+featuredImage: images/feature.png
+tags: ['Home lab','Home server','Headless server','Ubuntu server','Self-hosted','Docker Compose','Tailscale','WireGuard','Zero trust','ufw','Docker firewall bypass','LVM','Samba','NVIDIA','RTX 5070 Ti','Local LLM','Ollama','ComfyUI','Cockpit','Infrastructure as code','Keshav Lingala','Keshav Reddy','Keshav Reddy Lingala','Lingala Keshav Reddy','Keshav']
+description: "A self-built Ubuntu server running local GPU inference, finance automation and network storage — with nothing port-forwarded and nothing exposed to the LAN. Every service reaches only over a WireGuard mesh, and it has never had a monitor attached."
+date: '2026-07-10'
+techs: [Docker, Bash, Python, Ollama, ComfyUI, Git, 'Ubuntu', 'Tailscale', 'NVIDIA', 'Samba', 'LVM']
+featured: true
+---
+
+import Diagram from "../../../components/Diagram.astro";
+
+**beast** is a machine I built and have never plugged a monitor into. It runs local GPU inference, a personal-finance pipeline, network file storage and seven Docker Compose stacks — and I administer all of it from a Mac mini and an iPhone, from anywhere.
+
+It runs `multi-user.target` and has no display manager, because a headless box should never start one.
+
+<Diagram variant="grid" title="The box">
+
+- **CPU** — Ryzen 9 9900X, 12 cores / 24 threads, boost to 5.66 GHz, full AVX-512.
+- **GPU** — RTX 5070 Ti, GB203 Blackwell, 16 GB VRAM.
+- **Memory** — 59 GB usable, 8 GB swap.
+- **Storage** — 2 TB Gen5 NVMe on LVM: 140 GB root, 1.7 TB data.
+- **Network** — WiFi 7 uplink; the 5 GbE port sits unplugged.
+- **OS** — Ubuntu 26.04 LTS, headless since the day it was built.
+
+</Diagram>
+
+## Nothing Is Exposed
+
+Nothing is port-forwarded. There's no dynamic DNS and no exposed SSH. Every dashboard, the shell and the file share are reachable only over a WireGuard mesh (Tailscale) where each device is individually authenticated. `beast.local` resolves on the home LAN, and the firewall denies the dashboards on that path anyway.
+
+<Diagram title="The only way in">
+
+- **Phone or laptop** — any enrolled device, on cellular or a café network.
+- **WireGuard mesh** — device authenticated individually; no port forwarding, no dynamic DNS, no exposed SSH.
+- **The host** — every service bound to loopback plus one mesh address, never `0.0.0.0`.
+- **The service** — shell, dashboards, file share. Unreachable by anything that isn't on the mesh.
+
+</Diagram>
+
+The non-obvious part — and the thing most home-lab writeups get wrong — is that **Docker publishes ports below the host firewall.** Docker writes published ports into the iptables `DOCKER` chain, which is evaluated *before* `ufw`'s `INPUT` rules. A container published as `"8080:8080"` is reachable from every host on the LAN, and `ufw deny 8080` does nothing about it. The firewall reports the rule. The port is open.
+
+So every container on the machine binds explicitly, never the wildcard:
+
+```yaml
+ports:
+  # Docker bypasses ufw — loopback + the mesh address, never 0.0.0.0
+  - "127.0.0.1:8080:8080"
+  - "100.xx.yy.zz:8080:8080"
+```
+
+![The same rule in the stack manager — every published port bound to loopback and the mesh address, never the wildcard](images/dockge.png)
+
+Every port on the box appears twice or not at all. That comment is copied into every compose file, the setup scripts and the operating guide — deliberately over-documented, because it's invisible when you get it wrong.
+
+![ss -lnt on the host: every container port bound once to loopback and once to the mesh address, with only SSH, Samba and Cockpit on the wildcard](images/ss-lnt.png)
+
+`ss -lnt` is the command that settles arguments about this, and it's the first thing the operating guide tells you to run.
+
+Host processes are a different category: `sshd`, `smbd` and Cockpit really are governed by `ufw`. Knowing which of the two you're dealing with is the difference between a firewall rule that works and one that only looks like it does.
+
+## Storage That Can't Wedge The OS
+
+The Ubuntu installer leaves most of the volume group unallocated. A setup script carves the free extents into a separate 1.7 TB data volume rather than growing root, so a runaway download or a 14 GB model file can never fill the 140 GB OS disk. Docker's data root moves there too — container images alone total over 80 GB.
+
+![lsblk and df showing one NVMe split into a 140 GB root at 77% full and a 1.7 TB data volume at 5%](images/storage.png)
+
+Root sits at 77% full. That would be worth worrying about if it could grow — but nothing writes there by design, so it stays where it is.
+
+The whole volume is one Samba share tuned for Finder, so several workflows never need a shell: drop a model file in and the running service sees it immediately, and nightly backups land somewhere I can drag off the machine — because a backup that only exists on the machine it's backing up isn't a backup.
+
+## What Runs On It
+
+Seven Compose stacks, tracked in git and managed through a web UI.
+
+<Diagram variant="grid" title="Seven stacks">
+
+- **Ollama + Open WebUI** — local LLM serving. `OLLAMA_KEEP_ALIVE=5m` evicts the model from VRAM when idle, so the GPU stays free.
+- **ComfyUI** — image and video generation, entire install persisted to a bind mount so the container stays disposable.
+- **Firefly III + Postgres** — the finance ledger. The database publishes no ports at all.
+- **finance-bot** — the automation pipeline around it. Long-polls outbound, so it publishes nothing either.
+- **Cockpit + Dockge** — system admin and compose stack management, both mesh-only.
+- **homepage** — a static landing page, so the bare mesh hostname is a dashboard.
+
+</Diagram>
+
+The largest original build on it is [the finance automation pipeline](/finance-bot/) wrapped around that ledger — a write-up of its own.
+
+The provisioning is ten idempotent shell scripts that each verify their own prerequisites. The Docker script refuses to run if the data volume isn't mounted or the driver isn't working, so a half-finished install fails loudly at the right step instead of producing something subtly broken three steps later.
+
+## Things I Only Learned By Breaking Them
+
+- **The GPU driver must be the `-open` variant.** This card is Blackwell; the legacy proprietary modules install fine and then fail to bind. The obvious "fix" for a driver problem is dropping the suffix, which is exactly wrong here.
+- **Mount the directory, never the file.** A nightly job died with `exited 1` and completely empty stderr. A single-file bind mount pins to an inode, and the tool owning that credentials file refreshed its token by writing a temp file and renaming over it — an atomic replace that swaps the inode. The container read a file that no longer existed at that path. This applies to any single-file bind mount whose owner rewrites it atomically, which is most well-behaved software.
+- **Validate downloads at the point of download.** A CDN handed out presigned URLs locked to a single byte range; parallel range requests raced into intermittent 403s, and the downloader wrote the 403 HTML page into the output file. The result was a 14 GB `.safetensors` that was really a web page, surfacing hours later as an inference crash with no obvious connection to its cause. The fix was one connection for that host plus a magic-byte check on the first 15 bytes.
+
+## Running It From A Phone
+
+Anything longer than a minute runs inside `tmux`, so a dropped cellular connection doesn't kill it — `tmux new-session -A` attaches if the session exists and creates it if not, making reconnect and fresh start the same command. Long-running agent sessions run as a user systemd unit on their own tmux socket, specifically so restarting the unit can never take down my interactive SSH sessions.
+
+The box ships with a written operating guide aimed at whoever runs it rather than whoever built it, plus an instruction file at its root encoding the rules — headless only, `sudo` needs a password, never publish a container on `0.0.0.0` — so humans and agents working on it inherit the constraints instead of rediscovering them.

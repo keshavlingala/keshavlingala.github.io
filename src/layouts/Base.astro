@@ -4,6 +4,14 @@ import SEO from "../components/SEO.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import type { SEOProps } from "../types";
+/* The @font-face rules live inside global.css, so the browser only discovers
+   these after the stylesheet lands — a 639 ms critical chain in Lighthouse.
+   Preloading the four faces used above the fold starts them in parallel with
+   the CSS instead, which is what LCP was waiting on. */
+import spaceGrotesk400 from "@fontsource/space-grotesk/files/space-grotesk-latin-400-normal.woff2?url";
+import spaceGrotesk600 from "@fontsource/space-grotesk/files/space-grotesk-latin-600-normal.woff2?url";
+import spaceGrotesk700 from "@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2?url";
+import jetbrainsMono400 from "@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2?url";
 
 const props = Astro.props as SEOProps;
 const GTAG_ID = "G-VNY508N935";
@@ -21,6 +29,11 @@ const GTAG_ID = "G-VNY508N935";
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content="#1a1817" />
     <meta name="generator" content={Astro.generator} />
+    {
+      [spaceGrotesk700, spaceGrotesk600, spaceGrotesk400, jetbrainsMono400].map((href) => (
+        <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />
+      ))
+    }
     <SEO {...props} />
     <slot name="head" />
 
