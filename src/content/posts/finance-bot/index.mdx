@@ -1,9 +1,9 @@
 ---
-title: "finance-bot: Unattended Finance Automation That Proves Its Own Backups"
+title: "finance-bot: Personal Finance That Files Itself"
 slug: finance-bot
 featuredImage: images/feature.png
-tags: ['Finance automation','Personal finance','Firefly III','SimpleFIN','Telegram bot','Python','Stdlib only','No dependencies','SQLite','WAL','Job scheduler','Cron replacement','Rate limiting','Quota budgeting','Postgres backup','Restore drill','LLM categorisation','Human in the loop','Undo log','Unit tests','Self-hosted','Keshav Lingala','Keshav Reddy','Keshav Reddy Lingala','Lingala Keshav Reddy','Keshav']
-description: "3,600 lines of dependency-free Python that import bank transactions, categorise them with rules plus a model pass over the long tail, and back the ledger up nightly, with a monthly drill that actually restores the dump and compares row counts."
+tags: ['Finance automation','Personal finance','Firefly III','Budgeting','Net worth tracking','Bill tracking','SimpleFIN','Open banking','Telegram bot','Chat interface','Python','Stdlib only','No dependencies','SQLite','Job scheduler','Automated categorisation','Self-hosted','Home lab','Privacy','Keshav Lingala','Keshav Reddy','Keshav Reddy Lingala','Lingala Keshav Reddy','Keshav']
+description: "An automation layer over my own Firefly III ledger, running on hardware in my apartment. Transactions import and categorise themselves overnight, budgets and bills track themselves, and I ask it questions in plain English from a chat window on my phone."
 date: '2026-08-21'
 techs: [Python, Postgresql, Docker, 'Neural Networks', Bash, 'SQLite', 'Telegram', 'Firefly III']
 featured: true
@@ -11,111 +11,124 @@ featured: true
 
 import Diagram from "../../../components/Diagram.astro";
 
-This is the largest original build running on [my home server](/homelab/): a pipeline that imports bank transactions into a Firefly III ledger, categorises them, backs everything up nightly, and asks me about anything it isn't sure of over Telegram. 3,612 lines of Python across nine modules with roughly 970 more in tests, **stdlib only, no third-party dependencies at all**, source bind-mounted so a code change is a restart rather than a rebuild.
+I wanted to know where my money goes without doing any bookkeeping. Not a budgeting app that sells my transaction history, and not a spreadsheet I'd abandon in March. Something that runs itself.
 
-It publishes no ports. It long-polls an outbound API, so the Docker-bypasses-the-firewall problem simply cannot apply to it. It has no Docker socket either: the backup dumps over the network rather than running `docker exec`, specifically so a container that also invokes a language model is never handed root on the host daemon.
+So the ledger is [Firefly III](https://www.firefly-iii.org/), self-hosted on [my home server](/homelab/), and **finance-bot** is the automation layer wrapped around it: 3,612 lines of Python across nine modules, stdlib only, no third-party dependencies at all. It pulls my banks every morning, files what it can, asks me about what it can't, and answers questions from a chat window on my phone.
 
-Most of what's interesting about it came from auditing the version before it, which had no backups, a scheduler that double-fired on restart, and a work queue that silently dropped items.
+The whole thing runs on hardware in my apartment. My transaction history never touches a vendor's servers.
+
+<Diagram variant="grid" title="What it does for me">
+
+- **Imports itself.** Every account I own syncs overnight. I never export a CSV or log into a bank.
+- **Categorises itself.** Rules file about 97% of spending on their own. The rules grow as I use it.
+- **Budgets that warn early.** Burn-down per category, spend against pace, and a projection of where the month ends up if nothing changes.
+- **Bills before they're late.** Upcoming and overdue, so a missed payment surfaces before the money fails to move.
+- **Answers in a chat window.** Net worth, savings rate, spend by payee or category, from my phone in a couple of seconds.
+- **Asks when it isn't sure.** Anything ambiguous becomes a numbered question I can answer in plain English.
+
+</Diagram>
+
+## Every Morning, Before I'm Awake
+
+The point of the whole system is that the interesting part has already happened by the time I look at my phone.
 
 <Diagram title="The nightly chain">
 
-- **04:30, Import.** SimpleFIN into the ledger. Cost is derived from the config, and spend is booked before the call.
-- **05:00, Reconcile.** Match transfers the aggregator can't see. Dry-run by default; `--commit` to write.
-- **05:15, Categorise.** Rules cover about 97%; one batched model call handles the tail above 0.85 confidence.
-- **05:30, Back up.** Postgres, the bot's own state and the importer config, onto the file share.
-- **1st monthly, Restore drill.** Restore the newest dump into a scratch database, compare row counts against live.
+- **04:30, Import.** Every linked account pulled through SimpleFIN into the ledger.
+- **05:00, Reconcile.** Transfers between my own accounts matched up, so moving money doesn't look like spending.
+- **05:15, Categorise.** Rules first, then a model pass over whatever the rules didn't recognise.
+- **05:30, Back up.** The whole ledger, dumped to the file share.
+- **05:45, Summary.** What's new since I last looked, waiting for me.
+- **21:00, Digest.** Yesterday's spending, month-to-date pace, and where the month is heading.
 
 </Diagram>
 
-## Backups That Are Proven, Not Assumed
-
-The nightly dumps had been completing successfully for weeks. They were unrestorable.
-
-The Postgres client major version must **match** the server, not merely exceed it. The base image shipped a v17 client against a v16 server, and a v17 `pg_dump` writes `SET transaction_timeout = 0;` into the dump header, a setting that doesn't exist before v17. The v16 server rejects the restore outright. Nothing surfaces at dump time, so the dumps look perfect right up until the moment you need one.
-
-The fix was three parts: pin the client to v16, **assert the version at image build time** so a silent mismatch becomes a failed build, and add a monthly drill that restores the newest dump into a scratch database and compares row counts against live. It restores onto the existing server rather than a throwaway container, because that's the stricter test: it's the exact engine version a real restore would run on.
-
-Retention is 30 dailies then 12 monthlies, written to the file share so the backups are one drag away from leaving the machine. An untested backup is a guess. The assertion and the drill are both cheap; finding this out during an actual restore is not.
-
-## One Scheduler, With Memory
-
-It's the only scheduler on the machine. No cron container, no host crontab, no systemd timer. Ten jobs, and three properties the version it replaced didn't have.
-
-**Occurrences are persisted, not held in memory.** The predecessor kept a `fired` set in process memory and matched on `now.hour == 21`. Restarting the bot twice inside the 21:00 hour sent the daily digest three times. Now each job computes its most recent *scheduled occurrence* and runs only if that exact occurrence is unrecorded, so no number of restarts can re-fire anything.
-
-**Missed work is caught up, not skipped.** Each job declares a grace window encoding whether running late is useful. A backup missed because the machine was down is worth running sixteen hours late; an evening digest arriving at lunchtime is noise, so its window is two hours and it's dropped. Encoding catch-up semantics per job rather than globally is the part worth stealing.
-
-**A death mid-run is not the same as a failure.** A job whose process died partway through is recorded `interrupted` and becomes due again inside its window, because nothing completed. A job that ran and *failed* stays claimed and does not retry on the next tick, because the import spends real quota and a failing import that retries every minute would burn the entire day's budget before breakfast. Those two outcomes look identical in a naive scheduler, and they need opposite handling.
-
-**Jobs run one at a time**, so the nightly chain can't interleave with itself.
+By breakfast, yesterday's transactions are in, categorised, reconciled against transfers, and summarised. There's no "import day." There's no moment where I sit down and do finances.
 
 ![Job status: ten jobs with their schedules and last recorded occurrence, nine run today and the monthly restore drill not yet due, plus the SimpleFIN budget showing 8 of 24 requests used](images/jobs.png)
 
-The last line of that output is the quota ledger, which is the next problem.
+## Budgets That Tell Me Before, Not After
 
-<Diagram variant="grid" title="What makes it safe to leave running">
+Firefly III holds the budgets. finance-bot is what makes me actually look at them.
 
-- **Persisted occurrences.** No number of restarts can re-fire a job.
-- **Per-job grace windows.** A missed backup catches up sixteen hours late; a missed digest is dropped.
-- **Interrupted vs failed.** One is due again, the other stays claimed. Never the same thing.
-- **One quota ledger.** A hard cap of 24 requests/day, counted once, in the unit the provider bills.
-- **Undo log.** Every automated write records its previous value, so any of it reverses.
-- **Tests.** Stdlib `unittest`, no fixtures, over the parts where being wrong is expensive.
+`/budget` draws a burn-down bar per category with a colour on each one, green while there's room, amber past 90%, red once it's blown, plus the month's total against the month's limits. That's the "am I fine" question answered in one message.
+
+The daily digest is the more useful one, because it's about *pace* rather than totals. It shows yesterday's spending itemised, month-to-date against my consumption target, what percentage of the month has actually elapsed, and then the part that changes decisions:
+
+> At this rate: **$X** by month end
+
+A straight-line projection from the current run rate. Being 60% through my budget is fine on the 22nd and a problem on the 9th, and a raw number can't tell me which one I'm looking at. The projection can.
+
+`/bills` covers the other half, the money that moves whether I think about it or not: what's due in the next 30 days, what's already overdue and unpaid, and what Firefly can't predict a date for yet. A weekly review lands Sunday mornings with the week's spend by category, any budget over 90%, and anything overdue.
+
+## Ask It Anything, In Plain English
+
+Everything is a Telegram message, which means the interface is already on my phone, my laptop and my watch, with no app to build and nothing exposed to the internet.
+
+<Diagram variant="grid" title="From a chat window">
+
+- **`/status`** Income booked, consumption against target, invested, savings rate, and net worth broken out by account.
+- **`/budget`** This month's burn-down, one bar per category.
+- **`/bills`** Due soon, overdue, and unpredicted.
+- **`/spend <text>`** Recent transactions matching a category or a payee.
+- **`/net`** Net worth, account by account.
+- **`/uncat`** Whatever is still waiting on me, as a numbered list.
+- **`/import`** Pull from the banks right now instead of waiting for 04:30.
+- **`/digest`, `/review`** The daily and weekly reports on demand.
 
 </Diagram>
 
-## Counting What The Provider Actually Bills
+The queue is where it gets conversational. When something can't be filed confidently it becomes a numbered question, and I answer the way I'd answer a person:
 
-The bank aggregator enforces a hard cap of 24 requests per day, and one import costs 8: a discovery call plus one per mapped account, so the cost is *derived from the config* rather than hardcoded. Add an eighth account and every run silently costs 9.
+> *"2 is my car insurance, 3 and 4 are food"*
 
-The previous design had two throttles that couldn't see each other: a CLI wrapper with an hourly stamp in `~/.cache`, and the bot with its own daily counter. Both counted *runs* rather than *requests*. Together they permitted well over 200 requests a day against a cap of 24. Two correct throttles that can't see each other are one broken throttle.
+That resolves against the open questions, the live category list and the last dozen turns of conversation, so follow-ups and pronouns work. Whatever it works out comes back as a **proposal with Apply and Cancel buttons**, and nothing is written to my ledger until I tap. If I name a category that doesn't exist yet, it offers to create it, and creating it also writes a matching rule so the next one files itself without ever asking.
 
-Now there's a single ledger, the CLI defers to it, and spend is booked **before** the call, so a failed run still burns its quota, which is what the provider actually charges. Three runs a day fit inside the cap: the nightly one plus exactly two manual pulls, and there's a flag that reports what's left without spending any of it.
+That last part is the compounding bit. Every question I answer is one I don't get asked again.
 
-Adjacent to that, the importer will happily execute *every* config file it finds in the import directory. A second config left behind after an experiment would silently double the quota spend every night, so the import job refuses to run unless there is exactly one.
+## It Learns How I Spend
 
-## Rules First, A Model For The Tail
+Declarative rules in Firefly handle about 97% of withdrawals. The remaining few are merchants I've seen once or twice, which is exactly what a fixed rule list is bad at, so those go to a language model in one batched call per night.
 
-Declarative rules categorise about 97% of withdrawals. The remainder is merchants seen once or twice, which is exactly what a static rule list is bad at. The nightly pass sends that tail to a language model under three constraints:
+The model doesn't get free rein. Every category it returns is checked against the categories that actually exist in my ledger, and anything below high confidence becomes a question for me instead of a silent write. Above that bar it files it and logs it, and `/autolog` shows me what it did with `/undo` to reverse any of it.
 
-- **One batched call per run**, never one per transaction.
-- **Every returned category is validated against the live ledger category list.** The model does not get to invent a category.
-- **Applied only above 0.85 confidence.** Anything below becomes a question in a Telegram queue instead of a silent write.
+Then it consolidates. Once a merchant resolves the same way twice, it gets folded into the *existing* rule for that category rather than spawning a rule of its own. The rule set stays small and readable, and the system needs the model less the longer it runs, not more. That's the direction I wanted: the automation should be converging on deterministic, not accumulating magic.
 
-Then it learns: once a merchant resolves to the same category twice, it's folded into the *existing* rule for that category. Extending a small set of payee rules rather than creating one per merchant is what keeps the rule set legible. The system gets more deterministic the longer it runs, not less.
+The fiddly part is that rules match the raw payee string off the bank feed, so one gas station shows up as half a dozen different names. Evidence is counted under a single canonical merchant, with every raw variant recorded against it, and a rule only gets a loose "contains" match when the short name genuinely appears in every variant it stands for.
 
-Every write records its previous value, so `/autolog` reviews recent automated changes and `/undo` reverses any of them. Automation that can write to a ledger needs an undo log; that isn't optional. And the model is referenced by alias rather than pinned version, precisely because it runs unattended at 05:15, where a rename would otherwise break it silently at a time nobody is watching.
+## On My Phone, From Anywhere
 
-## Learning A Rule That Actually Matches
+Two front ends, both reachable over the private mesh my [home server](/homelab/) runs on, neither exposed to the internet.
 
-The subtle part of folding a merchant into a rule is that the rule matches the ledger's *destination account name*, which is the raw payee string off the bank feed: `QT 992 OUTSIDE`, not `QuikTrip`. The same gas station appears under half a dozen of those.
+**Telegram** is the conversational one: reports, questions, approvals.
 
-So evidence is counted under one canonical merchant key, with every raw payee recorded against it as an alias. When a rule is written, the trigger is chosen from those aliases rather than assumed: an exact `is` match when the key is the payee, and a `contains` match only when the shortened key really is a substring of *every* payee it stands for. A `contains` trigger that was inferred from one alias and never checked against the rest is how a rule quietly starts eating transactions it was never meant to match.
+**Abacus**, an open-source native iOS client for Firefly III, is the visual one. Balances, charts, net worth history and recent transactions, as a real app on my home screen rather than an admin panel squeezed onto a phone screen. It talks straight to the ledger in my apartment, over cellular, with no VPN toggle to remember and no port forwarded anywhere.
 
-## Talking To It In Plain English
+That only works because the server terminates HTTPS on a genuine certificate. Mobile apps refuse self-signed certificates outright, so the TLS work on the host is what turned the ledger from a browser tab into something that lives on my phone.
 
-The Telegram side started read-only and no longer is. When the queue posts a "needs your attention" list, the numbered items can be answered the way you'd answer a person: *"2 is my car insurance, 3 and 4 are food."*
+## Built To Be Left Alone
 
-The message goes to the model along with the open questions, the live category list and the last dozen turns of conversation, so pronouns and follow-ups resolve against what was just said. Whatever it infers comes back as a **proposal with Apply and Cancel buttons**. Nothing is written to the ledger until I tap. Proposals live in their own table and expire after 24 hours, so an ignored one can never be applied against a stale ledger a week later.
+Automation that touches money has to be trustworthy in a way a side project usually doesn't, so a decent share of the work went into the parts that never show up in a screenshot.
 
-A category that doesn't exist yet is *offered* rather than rejected. Confirming it creates the category and a matching rule in the categorisation group, so the next transaction like it files itself without ever reaching a model. The nightly unattended pass still cannot invent a category. That guardrail is unchanged; only a human tap creates one.
+<Diagram variant="grid" title="The unglamorous half">
 
-The bug worth remembering here is a numbering one. Reply numbers wrap at 99 and only the last few batches stay resolvable, so the map from number to transaction has to agree with itself exactly. Renumbering only the unreachable items looks like the minimal fix and is the wrong one: it pushes an older batch past the retention limit and strands whatever was in it. Any renumbering has to re-batch the entire open set.
+- **One scheduler, with memory.** Every run is recorded, so restarts can't double-fire a job and a run missed while the box was down is caught up rather than skipped.
+- **A real quota ledger.** The bank aggregator allows 24 requests a day and one import costs 8, counted in the unit the provider actually bills.
+- **Undo on everything.** Every automated write stores the previous value, so any of it reverses from chat.
+- **Backups that are proven.** Nightly dumps, 30 dailies and 12 monthlies, plus a monthly drill that actually restores one and compares row counts.
+- **Alerts on silence.** A healthy import logs errors by design, so the alert is "no successful import in 36 hours" rather than a non-zero exit code.
+- **109 tests.** Stdlib `unittest`, no fixtures, over the logic that only breaks in states I'd never reproduce by hand.
 
-## Alerting On The Absence Of Success
-
-The nightly import logs a dozen `There is already a transaction` errors and exits non-zero. Those errors *are* duplicate detection working correctly, because the import uses a rolling 7-day window and re-reads transactions already in the ledger every night.
-
-Treating the exit code as truth would have alerted every night, and an alert that fires every night is an alert nobody reads. So errors are classified by content rather than exit code, and a heartbeat job treats *no successful import in 36 hours* as the alert instead.
-
-## Testing The Parts Where Being Wrong Is Expensive
-
-The test suite is 109 tests on stdlib `unittest`, with no fixtures and no test framework, matching the rest of the project. It runs in half a second, so there's no excuse not to. It doesn't chase coverage; it covers the four places where a subtle error is silent and costly: the scheduler's occurrence and grace-window arithmetic, the reply numbering and batch retention, backup pruning, and the guardrails on model output. Every one of those is a rule that only breaks in a state you won't reproduce by hand at 5am.
+</Diagram>
 
 ![The suite running in the container: 109 tests, all passing, in well under a second](images/tests.png)
 
-## What I Took From It
+It publishes no network ports at all, holds no key to the host's Docker daemon, and keeps its own state in a small SQLite database next to the code.
 
-Every real bug in this system had the same shape: **something reported success while being wrong.** A dump that couldn't restore, a scheduler that forgot what it had done, two rate limiters that were each individually correct, a queue whose items entered a state with no path out, a learned rule matching more than it was taught. None of them threw an error.
+The thing I took from building it: every real bug in this system reported success while being wrong. A backup that completed and couldn't be restored, a scheduler that forgot what it had already done, two rate limiters that were each individually correct. None of them threw an error. Most of the reliability work above is just making that class of failure visible.
 
-Building the checks that catch that (a build-time assertion, a restore drill, a heartbeat, an undo log, a confirmation tap before any inferred write) is most of what separates automation you can leave running from automation you have to watch.
+## What It Actually Changed
+
+I know my net worth, this month's burn rate and what's due next week, at any moment, from my phone, without maintaining any of it. Categorisation happens whether or not I participate. Budgets warn me on the 9th instead of informing me on the 30th.
+
+And all of it runs on a machine I own, against a ledger I control, with no third party sitting between me and my own spending history.
