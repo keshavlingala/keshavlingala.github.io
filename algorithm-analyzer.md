@@ -13,7 +13,6 @@
 
 A desktop GUI built with Python, PyQt5, and Qt-Material for visualizing and comparing how different sorting algorithms behave. It animates each algorithm step by step and charts its performance, making it a hands-on way to build intuition for algorithmic complexity.
 
-
 ## Screenshots
 
 *Figure: Sorting visualization*

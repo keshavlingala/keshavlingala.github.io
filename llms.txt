@@ -1,8 +1,8 @@
 # Keshav Lingala — Senior Software Engineer
 
-> Full-stack engineer building systems that scale — from Angular and React interfaces to Spring Boot and Node services on AWS and Kubernetes. Based in Dayton, OH. This site is a personal portfolio: a profile, work history, skills and 17 project write-ups.
+> Full-stack engineer building systems that scale — from Angular and React interfaces to Spring Boot and Node services on AWS and Kubernetes. Based in Dayton, OH. This site is a personal portfolio: a profile, work history, skills and 19 project write-ups.
 
-Every page has a plain-markdown twin at the same path with a `.md` suffix (for example https://keshav.codes/okepage.md). https://keshav.codes/llms-full.txt contains the whole site as one document.
+Every page has a plain-markdown twin at the same path with a `.md` suffix (for example https://keshav.codes/finance-bot.md). https://keshav.codes/llms-full.txt contains the whole site as one document.
 
 ## Profile
 
@@ -13,7 +13,9 @@ Every page has a plain-markdown twin at the same path with a `.md` suffix (for e
 
 ## Projects
 
-- [Okepage: Print Many Photos on One Page, In Your Browser](https://keshav.codes/okepage.md): Printing a stack of photos usually means one sheet per photo, a photo-shop trip, or fighting a word processor into a grid.
+- [finance-bot: Personal Finance That Files Itself](https://keshav.codes/finance-bot.md): An automation layer over my own Firefly III ledger, running on hardware in my apartment.
+- [Okepage: Print Many Photos on One Page, In Your Browser](https://keshav.codes/okepage.md): A single browser page that lays a pile of photos onto A4 sheets ready to print and cut — for people who just want prints, without the hassle of design tools, word processors or a trip to the photo shop.
+- [beast: A Private AI Cloud I Deploy To From My Phone](https://keshav.codes/homelab.md): A machine in my apartment that runs local AI models, image and video generation, my personal finance system and my file storage.
 - [SheetBoard: A Backend-less Kanban Board Built on Google Sheets](https://keshav.codes/sheetboard.md): Imagine a Kanban board where there is no backend, no database, and no vendor lock-in — because every board is simply a Google Sheet that you own.
 - [Kanban Task Manager - Angular 17](https://keshav.codes/mylocaltask.md): Imagine managing your tasks with a sleek, drag-and-drop Kanban board.
 - [Interactive Graph Algorithm Learning Platform](https://keshav.codes/floyd-visualizer.md): Imagine a platform where complex graph algorithms come to life.

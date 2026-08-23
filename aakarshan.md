@@ -14,7 +14,6 @@
 
 *Figure: Aakarshan Logo*
 
-
 ## Introduction
 
 Aakarshan Artboard is a social media platform for connecting with friends online. It was originally built for the Aakarshan art club so members could showcase and share their artwork with each other over the internet.

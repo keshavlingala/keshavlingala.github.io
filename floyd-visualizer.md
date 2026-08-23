@@ -49,9 +49,7 @@ The main challenges were handling large datasets, optimizing application perform
 *Figure: Floyd-Warshall screen 3*
 <br/>
 
-
 ### Travelling Salesman Problem Screens
-
 
 *Figure: TSP screen 1*
 
@@ -60,9 +58,7 @@ The main challenges were handling large datasets, optimizing application perform
 *Figure: TSP screen 2*
 <br/>
 
-
 *Figure: TSP screen 3*
-
 
 ## Video Demo
 

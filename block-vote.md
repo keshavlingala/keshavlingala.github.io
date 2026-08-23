@@ -67,9 +67,7 @@ The application is also accessible to visually impaired users through voiceover 
 
 *Figure: Home Page*
 
-
 <br/>
-
 
 ### Login and Metamask Connection
 
@@ -77,13 +75,11 @@ The application is also accessible to visually impaired users through voiceover 
 
 <br/>
 
-
 ### Casting a Vote with Metamask
 
 *Figure: Vote*
 
 <br/>
-
 
 ### Campaign Details
 
@@ -91,13 +87,11 @@ The application is also accessible to visually impaired users through voiceover 
 
 <br/>
 
-
 ### Local DB for Eligible Voters
 
 *Figure: Local DB*
 
 <br/>
-
 
 ### Help Screen
 

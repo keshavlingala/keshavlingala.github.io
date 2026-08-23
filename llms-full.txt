@@ -108,8 +108,12 @@ Keshav Lingala — Senior Software Engineer based in Dayton, OH. Full-stack engi
 
 ## Projects
 
-- [Okepage: Print Many Photos on One Page, In Your Browser](https://keshav.codes/okepage/) — Printing a stack of photos usually means one sheet per photo, a photo-shop trip, or fighting a word processor into a grid. Okepage (ఒకేపేజీ — “just one page”) is a single-page browser tool that takes a pile of photos and lays them out on A4 sheets ready to print and cut: pick 1, 2, 4, 6, 9 per page or let Auto find the tightest grid the paper allows, flip between portrait and landscape, crop to fill or keep the whole photo, and set gap, paper-edge margin and a cutting line in real millimetres. It is deliberately dependency-free — no framework, no bundler, no npm packages, no server — five plain scripts that also run straight from a file:// URL, so the photos are read from disk in the browser and never leave the machine. It is an installable PWA backed by a hand-written service worker, so after one visit it opens and prints with no network at all, and it never reloads itself out from under a print job. The interface is bilingual (Telugu by default, English one click away), and the whole thing ships to Cloudflare Workers static assets from a GitHub Action.
+- [finance-bot: Personal Finance That Files Itself](https://keshav.codes/finance-bot/) — An automation layer over my own Firefly III ledger, running on hardware in my apartment. Transactions import and categorise themselves overnight, budgets and bills track themselves, and I ask it questions in plain English from a chat window on my phone.
+  - Markdown: https://keshav.codes/finance-bot.md
+- [Okepage: Print Many Photos on One Page, In Your Browser](https://keshav.codes/okepage/) — A single browser page that lays a pile of photos onto A4 sheets ready to print and cut — for people who just want prints, without the hassle of design tools, word processors or a trip to the photo shop. No accounts, no upload, and it works offline.
   - Markdown: https://keshav.codes/okepage.md
+- [beast: A Private AI Cloud I Deploy To From My Phone](https://keshav.codes/homelab/) — A machine in my apartment that runs local AI models, image and video generation, my personal finance system and my file storage. I deploy to it from my phone over breakfast, drive coding agents on it from anywhere, and it costs nothing per month because I own it.
+  - Markdown: https://keshav.codes/homelab.md
 - [SheetBoard: A Backend-less Kanban Board Built on Google Sheets](https://keshav.codes/sheetboard/) — Imagine a Kanban board where there is no backend, no database, and no vendor lock-in — because every board is simply a Google Sheet that you own. SheetBoard is the serverless evolution of my earlier Kanban Task Manager (Angular 17): the same drag-and-drop board, re-engineered in React 19 so your tasks live in your own Google Drive instead of browser local storage. It is a static single-page app that talks directly to the Google Sheets API from your browser — your access token never leaves the tab and your data never leaves your Drive. Cards drag instantly with optimistic updates and reconcile against the sheet on a five-second poll, columns are stored as per-board data rather than a hardcoded enum, and card ordering uses a sparse-integer scheme that rebalances itself. Built with Vite, React 19, and TypeScript and deployed as nothing but static files, SheetBoard turns a spreadsheet into a real-time, collaborative project board you can open, share, or delete in Google Sheets at any time.
   - Markdown: https://keshav.codes/sheetboard.md
 - [Kanban Task Manager - Angular 17](https://keshav.codes/mylocaltask/) — Imagine managing your tasks with a sleek, drag-and-drop Kanban board. This dynamic Angular 17 application lets you organize tasks across Backlog, In Progress, and Completed stages. Built in just 2 days, it showcases Angular’s latest features for a modern, responsive UI and includes local storage for simplicity and privacy.
@@ -147,9 +151,133 @@ Keshav Lingala — Senior Software Engineer based in Dayton, OH. Full-stack engi
 
 # Project write-ups
 
+# finance-bot: Personal Finance That Files Itself
+
+> An automation layer over my own Firefly III ledger, running on hardware in my apartment. Transactions import and categorise themselves overnight, budgets and bills track themselves, and I ask it questions in plain English from a chat window on my phone.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** August 2026
+- **Project page:** https://keshav.codes/finance-bot/ (screenshots and diagrams are on that page)
+- **Tech:** Python, Postgresql, Docker, Neural Networks, Bash, SQLite, Telegram, Firefly III
+- **Topics:** Finance automation, Personal finance, Firefly III, Budgeting, Net worth tracking, Bill tracking, SimpleFIN, Open banking, Telegram bot, Chat interface, Python, Stdlib only, No dependencies, SQLite, Job scheduler, Automated categorisation, Self-hosted, Home lab, Privacy, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+I wanted to know where my money goes without doing any bookkeeping. Not a budgeting app that sells my transaction history, and not a spreadsheet I'd abandon in March. Something that runs itself.
+
+So the ledger is [Firefly III](https://www.firefly-iii.org/), self-hosted on [my home server](/homelab/), and **finance-bot** is the automation layer wrapped around it: 3,612 lines of Python across nine modules, stdlib only, no third-party dependencies at all. It pulls my banks every morning, files what it can, asks me about what it can't, and answers questions from a chat window on my phone.
+
+The whole thing runs on hardware in my apartment. My transaction history never touches a vendor's servers.
+
+- **Imports itself.** Every account I own syncs overnight. I never export a CSV or log into a bank.
+- **Categorises itself.** Rules file about 97% of spending on their own. The rules grow as I use it.
+- **Budgets that warn early.** Burn-down per category, spend against pace, and a projection of where the month ends up if nothing changes.
+- **Bills before they're late.** Upcoming and overdue, so a missed payment surfaces before the money fails to move.
+- **Answers in a chat window.** Net worth, savings rate, spend by payee or category, from my phone in a couple of seconds.
+- **Asks when it isn't sure.** Anything ambiguous becomes a numbered question I can answer in plain English.
+
+## Every Morning, Before I'm Awake
+
+The point of the whole system is that the interesting part has already happened by the time I look at my phone.
+
+- **04:30, Import.** Every linked account pulled through SimpleFIN into the ledger.
+- **05:00, Reconcile.** Transfers between my own accounts matched up, so moving money doesn't look like spending.
+- **05:15, Categorise.** Rules first, then a model pass over whatever the rules didn't recognise.
+- **05:30, Back up.** The whole ledger, dumped to the file share.
+- **05:45, Summary.** What's new since I last looked, waiting for me.
+- **21:00, Digest.** Yesterday's spending, month-to-date pace, and where the month is heading.
+
+By breakfast, yesterday's transactions are in, categorised, reconciled against transfers, and summarised. There's no "import day." There's no moment where I sit down and do finances.
+
+*Figure: Job status: ten jobs with their schedules and last recorded occurrence, nine run today and the monthly restore drill not yet due, plus the SimpleFIN budget showing 8 of 24 requests used*
+
+## Budgets That Tell Me Before, Not After
+
+Firefly III holds the budgets. finance-bot is what makes me actually look at them.
+
+`/budget` draws a burn-down bar per category with a colour on each one, green while there's room, amber past 90%, red once it's blown, plus the month's total against the month's limits. That's the "am I fine" question answered in one message.
+
+The daily digest is the more useful one, because it's about *pace* rather than totals. It shows yesterday's spending itemised, month-to-date against my consumption target, what percentage of the month has actually elapsed, and then the part that changes decisions:
+
+> At this rate: **$X** by month end
+
+A straight-line projection from the current run rate. Being 60% through my budget is fine on the 22nd and a problem on the 9th, and a raw number can't tell me which one I'm looking at. The projection can.
+
+`/bills` covers the other half, the money that moves whether I think about it or not: what's due in the next 30 days, what's already overdue and unpaid, and what Firefly can't predict a date for yet. A weekly review lands Sunday mornings with the week's spend by category, any budget over 90%, and anything overdue.
+
+## Ask It Anything, In Plain English
+
+Everything is a Telegram message, which means the interface is already on my phone, my laptop and my watch, with no app to build and nothing exposed to the internet.
+
+- **`/status`** Income booked, consumption against target, invested, savings rate, and net worth broken out by account.
+- **`/budget`** This month's burn-down, one bar per category.
+- **`/bills`** Due soon, overdue, and unpredicted.
+- **`/spend <text>`** Recent transactions matching a category or a payee.
+- **`/net`** Net worth, account by account.
+- **`/uncat`** Whatever is still waiting on me, as a numbered list.
+- **`/import`** Pull from the banks right now instead of waiting for 04:30.
+- **`/digest`, `/review`** The daily and weekly reports on demand.
+
+The queue is where it gets conversational. When something can't be filed confidently it becomes a numbered question, and I answer the way I'd answer a person:
+
+> *"2 is my car insurance, 3 and 4 are food"*
+
+That resolves against the open questions, the live category list and the last dozen turns of conversation, so follow-ups and pronouns work. Whatever it works out comes back as a **proposal with Apply and Cancel buttons**, and nothing is written to my ledger until I tap. If I name a category that doesn't exist yet, it offers to create it, and creating it also writes a matching rule so the next one files itself without ever asking.
+
+That last part is the compounding bit. Every question I answer is one I don't get asked again.
+
+## It Learns How I Spend
+
+Declarative rules in Firefly handle about 97% of withdrawals. The remaining few are merchants I've seen once or twice, which is exactly what a fixed rule list is bad at, so those go to a language model in one batched call per night.
+
+The model doesn't get free rein. Every category it returns is checked against the categories that actually exist in my ledger, and anything below high confidence becomes a question for me instead of a silent write. Above that bar it files it and logs it, and `/autolog` shows me what it did with `/undo` to reverse any of it.
+
+Then it consolidates. Once a merchant resolves the same way twice, it gets folded into the *existing* rule for that category rather than spawning a rule of its own. The rule set stays small and readable, and the system needs the model less the longer it runs, not more. That's the direction I wanted: the automation should be converging on deterministic, not accumulating magic.
+
+The fiddly part is that rules match the raw payee string off the bank feed, so one gas station shows up as half a dozen different names. Evidence is counted under a single canonical merchant, with every raw variant recorded against it, and a rule only gets a loose "contains" match when the short name genuinely appears in every variant it stands for.
+
+## On My Phone, From Anywhere
+
+Two front ends, both reachable over the private mesh my [home server](/homelab/) runs on, neither exposed to the internet.
+
+**Telegram** is the conversational one: reports, questions, approvals.
+
+**Abacus**, an open-source native iOS client for Firefly III, is the visual one. Balances, charts, net worth history and recent transactions, as a real app on my home screen rather than an admin panel squeezed onto a phone screen. It talks straight to the ledger in my apartment, over cellular, with no VPN toggle to remember and no port forwarded anywhere.
+
+That only works because the server terminates HTTPS on a genuine certificate. Mobile apps refuse self-signed certificates outright, so the TLS work on the host is what turned the ledger from a browser tab into something that lives on my phone.
+
+## Built To Be Left Alone
+
+Automation that touches money has to be trustworthy in a way a side project usually doesn't, so a decent share of the work went into the parts that never show up in a screenshot.
+
+- **One scheduler, with memory.** Every run is recorded, so restarts can't double-fire a job and a run missed while the box was down is caught up rather than skipped.
+- **A real quota ledger.** The bank aggregator allows 24 requests a day and one import costs 8, counted in the unit the provider actually bills.
+- **Undo on everything.** Every automated write stores the previous value, so any of it reverses from chat.
+- **Backups that are proven.** Nightly dumps, 30 dailies and 12 monthlies, plus a monthly drill that actually restores one and compares row counts.
+- **Alerts on silence.** A healthy import logs errors by design, so the alert is "no successful import in 36 hours" rather than a non-zero exit code.
+- **109 tests.** Stdlib `unittest`, no fixtures, over the logic that only breaks in states I'd never reproduce by hand.
+
+*Figure: The suite running in the container: 109 tests, all passing, in well under a second*
+
+It publishes no network ports at all, holds no key to the host's Docker daemon, and keeps its own state in a small SQLite database next to the code.
+
+The thing I took from building it: every real bug in this system reported success while being wrong. A backup that completed and couldn't be restored, a scheduler that forgot what it had already done, two rate limiters that were each individually correct. None of them threw an error. Most of the reliability work above is just making that class of failure visible.
+
+## What It Actually Changed
+
+I know my net worth, this month's burn rate and what's due next week, at any moment, from my phone, without maintaining any of it. Categorisation happens whether or not I participate. Budgets warn me on the 9th instead of informing me on the 30th.
+
+And all of it runs on a machine I own, against a ledger I control, with no third party sitting between me and my own spending history.
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
 # Okepage: Print Many Photos on One Page, In Your Browser
 
-> Printing a stack of photos usually means one sheet per photo, a photo-shop trip, or fighting a word processor into a grid. Okepage (ఒకేపేజీ — “just one page”) is a single-page browser tool that takes a pile of photos and lays them out on A4 sheets ready to print and cut: pick 1, 2, 4, 6, 9 per page or let Auto find the tightest grid the paper allows, flip between portrait and landscape, crop to fill or keep the whole photo, and set gap, paper-edge margin and a cutting line in real millimetres. It is deliberately dependency-free — no framework, no bundler, no npm packages, no server — five plain scripts that also run straight from a file:// URL, so the photos are read from disk in the browser and never leave the machine. It is an installable PWA backed by a hand-written service worker, so after one visit it opens and prints with no network at all, and it never reloads itself out from under a print job. The interface is bilingual (Telugu by default, English one click away), and the whole thing ships to Cloudflare Workers static assets from a GitHub Action.
+> A single browser page that lays a pile of photos onto A4 sheets ready to print and cut — for people who just want prints, without the hassle of design tools, word processors or a trip to the photo shop. No accounts, no upload, and it works offline.
 
 - **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
 - **Published:** August 2026
@@ -163,68 +291,198 @@ Keshav Lingala — Senior Software Engineer based in Dayton, OH. Full-stack engi
 
 > Live: [okepage.keshav.codes](https://okepage.keshav.codes) — drop a few photos in; nothing is uploaded anywhere.
 
-## ABSTRACT
+## The Problem
 
-**Okepage** (ఒకేపేజీ — *"just one page"*) solves a small, stubborn, very domestic problem: you have twenty photos and you want them on paper, several to a sheet, cut apart afterwards. Every existing route is annoying — a photo studio, a subscription design tool, or half an hour of dragging images into a word processor that thinks in inches and margins you cannot see. Okepage is a single HTML page that does exactly this one job: drop photos in, choose how many fit on an A4 sheet, print. It has no backend, no build step, no dependencies and no accounts, and the photos never leave the browser.
+You have twenty photos and you want them on paper, several to a sheet, cut apart afterwards. Every route to that is annoying: a trip to the photo shop, a subscription design tool, or half an hour dragging images into a word processor that thinks in inches and margins you cannot see.
 
-*Figure: Okepage in Telugu — six photos auto-packed onto one A4 sheet*
-
-## The Idea
-
-The tool is built for the way this actually happens at home: a folder of WhatsApp downloads, a pen drive from a function, a phone plugged into a laptop — and a printer that will happily waste a full sheet on each photo. The entire interaction is therefore four decisions, numbered down the sidebar in the order you make them: **paper orientation → photos per page → cutting and spacing → the one photo you are fiddling with**. Nothing else is on screen.
-
-Telugu is the default language, not a translation afterthought. The people I built this for read Telugu first, so the app opens in Telugu and English is one click away in the top bar; exactly one language is visible at a time, and every string — including the dynamic ones like "6 photos on 1 sheet" — exists in both.
+**Okepage** (ఒకేపేజీ — *"just one page"*) is for people who don't want any of that. It isn't a photo editor or a layout tool — it does the one job of getting photos onto printable sheets. Drop them in, choose how many fit on an A4 page, print. No accounts, no formatting, no upload.
 
 *Figure: The drop zone — the whole window accepts a drop*
 
 ## How It Works
 
-### Everything is millimetres until the last moment
+The whole interaction is four decisions, numbered down the sidebar in the order you make them: **orientation → photos per page → cutting and spacing → the one photo you're adjusting**. Nothing else is on screen.
 
-A printer thinks in millimetres, so `layout.js` does too. A4 is 210 × 297 mm; landscape swaps them. The module is pure geometry with no DOM access — given the settings and a photo count it returns the grid, the printable area, the cell size, the gaps and the page count, in mm plus the pixel values the drag maths needs (`PX_PER_MM` is 96/25.4). The renderer writes those numbers into CSS custom properties on the sheet container, so the stylesheet never hardcodes a size and the same code path drives the screen preview and the printed sheet.
+**Auto** is the preset I use most — it derives the grid from the photo count and the page's aspect ratio, then drops any row or column that would come out empty, so five photos don't print with a blank sixth cell.
 
-**Auto** is the preset I use most: instead of asking the user to know that six portrait photos want a 2 × 3 grid, it derives the grid from the photo count and the printable area's aspect ratio, then drops any row or column that would come out completely empty — so five photos do not print with a blank sixth cell reserved.
+Telugu is the default language, not a translation afterthought. The people I built this for read Telugu first, so it opens in Telugu with English one click away.
 
 *Figure: Nine per page, portrait, with a 1 px cutting line and a 3 mm gap*
 
-### Getting the print right
+### Millimetres, not pixels
 
-Printing is where tools like this usually fall apart, because the screen preview is a scaled-down transform and the printer does not care about your transform. The preview shrinks a sheet to fit the stage with a `--scale` factor, and the `@media print` block exists to undo exactly that: it strips the transform and every layout wrapper so each sheet prints at its true millimetre size, and hides anything marked as UI chrome. A `<style id="page-rule">` element is rewritten on every render with `@page { size: A4 portrait|landscape; margin: 0 }`, so the browser's print dialog already has the right paper and orientation before the user touches it. The footer permanently states the four settings that matter — A4, margins **None**, scale **100%**, headers **off** — because those are what people get wrong.
+A printer thinks in millimetres, so the layout module does too — given the settings and a photo count it returns the grid, printable area, cell size, gaps and page count in mm. Those numbers go into CSS custom properties, so the same code drives the screen preview and the printed sheet.
 
-Because a broken print is invisible on screen, the print path gets verified headlessly: Chrome's `--print-to-pdf` on a seeded page, then a check that the PDF's MediaBox is 595 × 842 pt for portrait and 842 × 595 pt for landscape.
-
-### Cropping without re-rendering
-
-Each photo is a small record — id, blob URL, `cover` or `contain`, an object-position pair, and a zoom. Selecting one lets you drag it inside its cell to choose what survives the crop, zoom it, duplicate it, fill an entire sheet with copies of it, or remove it.
-
-The app has no framework: state lives in a `Store`, every mutation goes through it, and the single subscriber rebuilds the visible UI. Two deliberate exceptions keep that honest approach fast — `<img>` nodes are cached per photo id and re-parented on each render so a photo never reloads or flashes, and a crop drag writes `objectPosition` straight onto the cached image while recording it silently, instead of re-rendering on every pointer move.
+Printing is where tools like this usually fall apart, because the preview is a scaled-down transform and the printer doesn't care about your transform. A `@media print` block strips the transform and every layout wrapper so each sheet prints at its true size, and an `@page` rule is rewritten on each render so the print dialog already has the right paper and orientation.
 
 *Figure: Landscape A4, four per page, one photo selected for cropping — the English UI*
 
-### Working with no network at all
-
-A tool for printing things at home should not need the internet, so Okepage is a PWA: a service worker precaches every file on install and serves everything cache-first afterwards, and a manifest plus a set of icons make it installable, so it gets a Home Screen icon and its own window instead of living in a tab. Google Fonts — the one thing loaded from another origin — goes into a second cache lazily rather than up front, so even a first visit that is already offline works; it just falls back to system fonts.
-
-Having no build step shows up here in an interesting way. Nothing hashes the filenames, so there is no generated precache manifest to lean on: the worker carries a hand-written list of files and a `VERSION` constant that must be bumped whenever one of them changes. That is the honest price of not having a bundler, and it is still cheaper than the bundler.
-
-Updates are deliberately *not* automatic. A worker that calls `skipWaiting()` can swap the app out from under a live page, and for a tool whose whole job ends in a print dialog, that is precisely the moment you must not interrupt. So a new version installs, then waits. The footer offers **"new version — click to reload"**, and nothing moves until that click. The same footer only claims **"works without internet"** once the worker has genuinely finished caching — before that it stays silent, because the promise would not yet be true.
-
-None of it disturbs the `file://` route: service workers do not exist there at all, so the registration checks the protocol and no-ops, and a downloaded folder behaves exactly as it did before.
-
 ## Constraints I Kept
 
-- **No ES modules.** Scripts load as ordered `<script>` tags, each exposing one global (`I18N`, `Store`, `Layout`, `Offline`). Modules would break `file://` usage — and opening `index.html` straight from a downloaded folder is a legitimate way to run this.
-- **No npm packages, bundlers or CSS frameworks.** Five files, ~zero install, readable in an afternoon.
-- **No server, ever.** Photos are read as blob URLs in the browser and are gone when the tab closes. Only the layout settings persist, in `localStorage`.
-- **One network request**, for the Google Fonts stylesheet — cached by the service worker after the first visit, and the page still works without it.
+- **No backend, ever.** Photos are read as blob URLs in the browser and are gone when the tab closes. Only the layout settings persist, in `localStorage`.
+- **No framework, bundler or npm packages.** Five plain scripts loaded as ordered `<script>` tags — which also means it runs straight from a `file://` URL, so a downloaded folder works with no server at all.
+- **Works with no internet.** A hand-written service worker precaches every file, making it an installable PWA. Updates deliberately wait for a click instead of calling `skipWaiting()` — for a tool whose job ends in a print dialog, swapping the app out mid-print is exactly what you must not do.
 
-## Deployment
-
-The repo *is* the deployable artifact. A GitHub Action on `main` hands it to `wrangler`, which uploads the directory to **Cloudflare Workers static assets** — no build command, because there is nothing to build. An `.assetsignore` keeps the things that are not the app (README, `CLAUDE.md`, workflow files) out of the upload, and `wrangler.jsonc` binds the custom domain `okepage.keshav.codes` while leaving the apex records that point `keshav.codes` at GitHub Pages untouched. The service worker ships as just another file in that directory — which is why bumping its `VERSION` is part of changing the app, not part of a build.
+Deployment is a GitHub Action that hands the repo to `wrangler`, which uploads it to Cloudflare Workers static assets. There's no build command, because there's nothing to build.
 
 ## What I Took From It
 
-The interesting constraint was not technical, it was editorial: every feature that would have made this a "photo editor" was left out. No filters, no templates, no login, no cloud library. What remains is a tool that loads instantly, works on a laptop with no internet, and can be explained to a parent in one sentence — in their own language.
+The interesting constraint wasn't technical, it was editorial: every feature that would have made this a "photo editor" was left out. No filters, no templates, no login, no cloud library. What's left loads instantly, works on a laptop with no internet, and can be explained to a parent in one sentence — in their own language.
+
+---
+
+From the project archive of Keshav Lingala — https://keshav.codes. Machine-readable index: https://keshav.codes/llms.txt
+
+---
+
+# beast: A Private AI Cloud I Deploy To From My Phone
+
+> A machine in my apartment that runs local AI models, image and video generation, my personal finance system and my file storage. I deploy to it from my phone over breakfast, drive coding agents on it from anywhere, and it costs nothing per month because I own it.
+
+- **Author:** Keshav Lingala (Senior Software Engineer) — https://keshav.codes
+- **Published:** July 2026
+- **Project page:** https://keshav.codes/homelab/ (screenshots and diagrams are on that page)
+- **Tech:** Docker, Bash, Python, Ollama, ComfyUI, Git, Ubuntu, Tailscale, NVIDIA, Samba, LVM
+- **Topics:** Home lab, Home server, Self-hosted, Private cloud, AI infrastructure, Local LLM, Ollama, Open WebUI, ComfyUI, Agentic AI, AI agents, Claude Code, Docker Compose, Dockge, Tailscale, WireGuard, Zero trust, HTTPS, TLS, NVIDIA, RTX 5070 Ti, Firefly III, Samba, LVM, Privacy, No cloud, Keshav Lingala, Keshav Reddy, Keshav Reddy Lingala, Lingala Keshav Reddy, Keshav
+
+---
+
+I have an idea over breakfast. I open a web UI on my phone, paste a Compose file into it, and hit deploy. Ninety seconds later the thing is running on a real HTTPS URL with a valid certificate, reachable from anywhere in the world, and I finish my coffee.
+
+No AWS account. No instance to size. No VPC, no security group, no load balancer, no certificate to provision, no meter running. **beast** is a machine I built and put in the corner of my apartment, and it has quietly replaced every reason I used to have for renting someone else's computer.
+
+*Figure: The stack manager: every stack, its live containers and its compose file, all editable from a browser on any of my devices. This capture predates the TLS rewrite, so the port badges still show the older two-address binding*
+
+- **Runs AI locally.** Open-source models served on my own GPU, with an OpenAI-shaped API and a chat UI in front of them.
+- **Generates images and video.** A full ComfyUI install with a working image-to-video pipeline on 16 GB of VRAM.
+- **Hosts coding agents.** Agent sessions live on the box, so I can start one on my laptop and pick it up on my phone.
+- **Runs my money.** A self-hosted Firefly III ledger and [the automation around it](/finance-bot/).
+- **Stores everything.** 1.7 TB mounted in Finder like any other drive.
+- **Deploys in minutes.** Paste a config, hit a button, get a URL.
+
+## The Loop
+
+The reason this changed how I build things is that the distance between "I want to try this" and "it is running on a URL" collapsed to almost nothing.
+
+- **Write a Compose file.** Or paste one from a project's README.
+- **Drop it into the stack manager.** From a browser, on whatever device is in my hand.
+- **Deploy.** Images pull, the container starts, and it's live on loopback.
+- **One line to publish it.** The reverse proxy gives it an HTTPS port on my private mesh.
+- **Use it.** From my laptop, my phone, or a script, anywhere, on a real certificate.
+
+The same thing on a cloud provider is an account, an IAM policy, a VPC, a subnet, a security group, a load balancer, a certificate request, a DNS record, and a bill that starts the moment you click create and never stops. Here it is a file and a button, and the marginal cost of trying something is zero, so I try more things.
+
+That last part matters more than it sounds. When spinning something up is free and instant, a bad idea costs an afternoon instead of a monthly line item, so I stop pre-judging which ideas are worth the setup. Most of what runs on this machine now started as something I was only half serious about.
+
+## It Runs AI, And AI Runs It
+
+This is the part that justified the GPU.
+
+**Any open-source model, on demand.** I pull a model and it's serving on an API within minutes of deciding I want it. No approval, no quota, no per-token billing, no waiting for a provider to offer it. If a promising model drops, I can be testing it against my own workload from my phone before I've read the whole paper. It exposes an OpenAI-compatible API, so anything I write against it works unchanged, and there's a chat UI in front for when I just want to talk to it.
+
+Nothing I type into it leaves the building.
+
+**Image and video generation.** ComfyUI with the custom nodes and model weights that make a real image-to-video pipeline work inside 16 GB of VRAM. Generation runs for hours if it wants to; there's no clock running.
+
+**Chaining models together, for free.** Because both an LLM and an image model live on the same box, connecting them costs nothing. I wrote a small CLI called `imagine` that takes a one-line idea, has the local LLM expand it into a full prompt, runs the result through a validator, and queues the batch on ComfyUI. Two models cooperating in a pipeline I own end to end, with no API key and no per-call cost, so I could iterate on it until it worked instead of watching a bill grow while I debugged.
+
+That is the shape of most things I build here now: a local model does the fuzzy part, ordinary code does the strict part, and the whole loop runs on hardware I already paid for.
+
+**And it does the boring work too.** The finance system on this box uses a model to categorise the handful of transactions its rules don't recognise each night, validated against the real category list so it can't invent anything, and everything it writes is reversible. It runs at 05:15 whether or not I'm awake.
+
+## Agents I Drive From My Phone
+
+The machine hosts my coding agents, which is why the phone workflow stopped being a novelty and became how I actually work.
+
+**Claude Code runs as a service on the box.** A user systemd unit keeps a `claude remote-control` server alive, with lingering enabled so it survives reboots and doesn't need me logged in. The Claude iOS app connects to it, so I can start a session on my laptop, close the lid, and continue the same session from my phone. The relay goes through Anthropic rather than my mesh, so it works from anywhere with signal, including places my VPN wouldn't help.
+
+That means "update my portfolio" is a sentence I say to my phone. The agent has the repo checked out on the box, makes the change, and pushes it. I never open a laptop.
+
+**SSH from anywhere, with no key to manage.** Mesh SSH means any iOS client, Termius or whatever else, reaches the box as me. Everything long-running lives in `tmux`, so a cellular dropout costs nothing and `tmux new-session -A` makes "reconnect" and "start fresh" the same command. Admin from a train is the same experience as admin from my desk.
+
+- **The stack manager.** Deploy and edit containers from a browser on any device.
+- **Agent sessions.** Hosted on the box, resumable from the phone app, working against real repos.
+- **A plain SSH client.** Persistent `tmux` sessions, so nothing dies when the connection does.
+
+## What Runs On It
+
+Seven Compose stacks, tracked in git and managed from a web UI.
+
+- **Ollama.** Local model serving on the GPU. It evicts the model from VRAM after five idle minutes so the card is free for everything else.
+- **Open WebUI.** The chat front end for it.
+- **ComfyUI.** Image and video generation, with the whole install on a bind mount so the container stays disposable.
+- **Firefly III + Postgres.** The finance ledger. The database publishes no ports at all.
+- **finance-bot.** The automation around the ledger, with [a write-up of its own](/finance-bot/).
+- **Cockpit + Dockge.** System admin and stack management.
+- **homepage.** A static landing page, so the bare hostname is a dashboard of everything above.
+
+Provisioning is a set of idempotent shell scripts that each verify their own prerequisites, so re-running any of them is safe. The Docker script refuses to start if the data volume isn't mounted or the driver isn't working, which means a half-finished install fails loudly at the right step rather than producing something subtly broken three steps later.
+
+## Every Service Is An HTTPS URL
+
+A single reverse proxy holds the machine's address on my private mesh and terminates TLS on a genuine, publicly trusted certificate that renews itself. Every container behind it publishes to loopback and nothing else.
+
+*Figure: tailscale serve status: eight public HTTPS ports on the mesh hostname, each proxying to a different loopback backend. The tailnet name is redacted*
+
+| Service | URL | What it is |
+|---|---|---|
+| homepage | `:443` | A landing page of every link below |
+| Open WebUI | `:3443` | Chat UI for the local models |
+| Dockge | `:5443` | Compose stack management |
+| Firefly III | `:8443` | The finance ledger |
+| Importer | `:8444` | Bank transaction importer |
+| ComfyUI | `:8843` | Image and video generation |
+| Cockpit | `:9443` | Full system admin |
+| Ollama | `:11443` | The model API itself |
+
+Because the certificate is real, **native apps work**, not just browser tabs. I run Abacus, an open-source iOS client for Firefly III, pointed at my own ledger, with balances and charts as a proper app on my home screen. Mobile apps are far stricter about this than browsers: a browser lets you click past a self-signed certificate, an iOS app's networking stack simply refuses.
+
+*Figure: openssl s_client against the ledger port: verification OK, issuer Let's Encrypt, TLS 1.3, with the hostname redacted*
+
+## Storage That Can't Wedge The OS
+
+The Ubuntu installer leaves most of the volume group unallocated. A setup script carves that free space into a separate 1.7 TB data volume rather than growing root, so a runaway download or a 14 GB model file can never fill the OS disk. Docker's images live there too, and those alone total over 80 GB.
+
+*Figure: lsblk and df showing one NVMe split into a root volume at 76% full and a 1.7 TB data volume at 5%*
+
+The whole volume is one Samba share tuned for Finder, which quietly removes a shell from several workflows: drop a model file in from my Mac and the running service picks it up immediately, and the finance system's nightly backups land somewhere I can drag off the machine.
+
+## Private By Construction
+
+Nothing is port-forwarded. There's no dynamic DNS and no exposed SSH. Every dashboard, the shell and the file share are reachable only over a WireGuard mesh where each device is individually authenticated. Even on my own home network, the firewall denies the dashboards.
+
+The non-obvious part, and the thing most home-lab writeups get wrong, is that **Docker publishes ports below the host firewall.** Docker writes published ports into an iptables chain evaluated *before* `ufw`'s rules, so a container published as `"8080:8080"` is reachable from every machine on the LAN and `ufw deny 8080` does nothing about it. The firewall reports the rule. The port is open.
+
+The first version of this machine handled that by binding every container explicitly, never the wildcard:
+
+```yaml
+ports:
+  # v1: Docker bypasses ufw, so bind explicitly, never 0.0.0.0
+  - "127.0.0.1:8080:8080"
+  - "100.xx.yy.zz:8080:8080"
+```
+
+*Figure: ss -lnt during the first iteration: every container port bound once to loopback and once to the mesh address*
+
+The TLS rewrite made it simpler still. Now the proxy is the only process holding the mesh address and every container is loopback-only, so the number of things listening on a reachable address dropped from "every container" to one:
+
+```yaml
+ports:
+  # v2: loopback only. The mesh address belongs to the TLS proxy, not Docker.
+  - "127.0.0.1:8080:8080"
+```
+
+Host processes like `sshd` and Samba are a different category and really are governed by `ufw`. Knowing which of the two you're dealing with is the difference between a firewall rule that works and one that only looks like it does.
+
+## It Stays Mine
+
+There's no monthly bill, no account that can be suspended, no model deprecated out from under me, no rate limit, and no terms of service governing what I'm allowed to run on my own hardware. The prompts, the transactions and the files never leave the building.
+
+When it needs to be faster, I buy a part and put it in. That's the whole upgrade process. No instance type to migrate to, no reserved-capacity commitment, no quota request.
+
+I'm honest that it isn't zero-dependency: the mesh has a coordination service, the certificates come from a public CA, and a few integrations talk to APIs I don't run. But every one of those is commodity and replaceable, none of them holds my data, and none of them can raise a price on me. The tradeoff is that I'm my own operations team, and I'd make that trade again.
+
+The box ships with a written operating guide aimed at whoever runs it rather than whoever built it, plus an instruction file at its root encoding the rules, so both humans and agents working on it inherit the constraints instead of rediscovering them.
 
 ---
 
@@ -424,9 +682,7 @@ The main challenges were handling large datasets, optimizing application perform
 *Figure: Floyd-Warshall screen 3*
 <br/>
 
-
 ### Travelling Salesman Problem Screens
-
 
 *Figure: TSP screen 1*
 
@@ -435,9 +691,7 @@ The main challenges were handling large datasets, optimizing application perform
 *Figure: TSP screen 2*
 <br/>
 
-
 *Figure: TSP screen 3*
-
 
 ## Video Demo
 
@@ -475,7 +729,6 @@ From the project archive of Keshav Lingala — https://keshav.codes. Machine-rea
 ---
 
 A desktop GUI built with Python, PyQt5, and Qt-Material for visualizing and comparing how different sorting algorithms behave. It animates each algorithm step by step and charts its performance, making it a hands-on way to build intuition for algorithmic complexity.
-
 
 ## Screenshots
 
@@ -583,9 +836,7 @@ The application is also accessible to visually impaired users through voiceover 
 
 *Figure: Home Page*
 
-
 <br/>
-
 
 ### Login and Metamask Connection
 
@@ -593,13 +844,11 @@ The application is also accessible to visually impaired users through voiceover 
 
 <br/>
 
-
 ### Casting a Vote with Metamask
 
 *Figure: Vote*
 
 <br/>
-
 
 ### Campaign Details
 
@@ -607,13 +856,11 @@ The application is also accessible to visually impaired users through voiceover 
 
 <br/>
 
-
 ### Local DB for Eligible Voters
 
 *Figure: Local DB*
 
 <br/>
-
 
 ### Help Screen
 
@@ -789,24 +1036,17 @@ The game models the board as a grid of cells, encodes the explosion and chain-re
 
 *Figure: Screenshot 1*
 
-
 *Figure: Screenshot 2*
-
 
 *Figure: Screenshot 3*
 
-
 *Figure: Screenshot 4*
-
 
 *Figure: Screenshot 5*
 
-
 *Figure: Screenshot 6*
 
-
 *Figure: Screenshot 7*
-
 
 *Figure: Screenshot 8*
 
@@ -1328,7 +1568,6 @@ From the project archive of Keshav Lingala — https://keshav.codes. Machine-rea
 
 *Figure: Aakarshan Logo*
 
-
 ## Introduction
 
 Aakarshan Artboard is a social media platform for connecting with friends online. It was originally built for the Aakarshan art club so members could showcase and share their artwork with each other over the internet.
@@ -1471,7 +1710,6 @@ From the project archive of Keshav Lingala — https://keshav.codes. Machine-rea
 ---
 
 *Figure: Havmor Movies*
-
 
 ## Overview
 

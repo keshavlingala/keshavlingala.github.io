@@ -13,7 +13,6 @@
 
 *Figure: Havmor Movies*
 
-
 ## Overview
 
 > This app is no longer functional — the API it depended on is no longer available.

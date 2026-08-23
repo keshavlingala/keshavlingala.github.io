@@ -68,24 +68,17 @@ The game models the board as a grid of cells, encodes the explosion and chain-re
 
 *Figure: Screenshot 1*
 
-
 *Figure: Screenshot 2*
-
 
 *Figure: Screenshot 3*
 
-
 *Figure: Screenshot 4*
-
 
 *Figure: Screenshot 5*
 
-
 *Figure: Screenshot 6*
 
-
 *Figure: Screenshot 7*
-
 
 *Figure: Screenshot 8*
 
