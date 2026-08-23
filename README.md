@@ -6,6 +6,14 @@ Personal portfolio — a single-page site plus 17 project write-ups, built with
 
 [![Portfolio](https://img.shields.io/badge/open-keshav.codes-gold)](https://keshav.codes)
 [![Deploy](https://github.com/keshavlingala/keshavlingala.github.io/actions/workflows/build_astro.yml/badge.svg)](https://github.com/keshavlingala/keshavlingala.github.io/actions/workflows/build_astro.yml)
+[![Lighthouse](https://img.shields.io/badge/lighthouse-100%20%2F%20100%20%2F%20100%20%2F%20100-brightgreen)](#lighthouse)
+
+## Lighthouse
+
+100 across Performance, Accessibility, Best Practices and SEO — plus 3/3 on
+Agentic Browsing — on [keshav.codes](https://keshav.codes).
+
+![Lighthouse audit of keshav.codes scoring 100 for Performance, Accessibility, Best Practices and SEO, and 3/3 for Agentic Browsing](./lighthouse.png)
 
 ## Getting started
 
