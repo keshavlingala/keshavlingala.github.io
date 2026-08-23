@@ -36,8 +36,11 @@
   /* text */
   --text: #efe9e1;
   --text-2: #c5bcb0;
-  --text-3: #a49a8f;
-  --text-4: #8a8177;
+  /* text-3/-4 are tuned to clear WCAG AA (4.5:1) on the lightest surface
+     they land on (--bg-3) — the old values failed Lighthouse contrast on
+     small mono labels sitting on cards. Keep any new dim tone >= #9a9187. */
+  --text-3: #b0a69a;
+  --text-4: #9a9187;
 
   /* lines */
   --line: rgba(255, 255, 255, 0.08);
