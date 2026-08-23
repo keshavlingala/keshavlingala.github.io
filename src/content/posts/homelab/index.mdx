@@ -160,21 +160,6 @@ There's no monthly bill, no account that can be suspended, no model deprecated o
 
 When it needs to be faster, I buy a part and put it in. That's the whole upgrade process. No instance type to migrate to, no reserved-capacity commitment, no quota request.
 
-I'm honest that it isn't zero-dependency: the mesh has a coordination service, the certificates come from a public CA, and a few integrations talk to APIs I don't run. But every one of those is commodity and replaceable, none of them holds my data, and none of them can raise a price on me. The tradeoff is that I'm my own operations team, which is exactly why the next section exists.
-
-## The Unglamorous Half
-
-Things that only showed up by breaking. Each cost me an evening.
-
-<Diagram variant="grid" title="Learned the hard way">
-
-- **The GPU driver must be the `-open` variant.** This card is Blackwell. The legacy proprietary modules install cleanly and then fail to bind, and the instinctive fix for a driver problem is dropping the suffix, which is exactly backwards here.
-- **Mount the directory, never the file.** A single-file bind mount pins to an inode. Anything that rewrites a file by renaming a temp file over it swaps that inode, and the container then reads a file that no longer exists at that path.
-- **Validate downloads where they're downloaded.** A CDN handed out URLs locked to one byte range, parallel requests raced into intermittent 403s, and the downloader wrote the error page into the output. The result was a 14 GB model file that was really HTML, surfacing hours later as a crash with no obvious cause.
-- **A public port must never equal the port its container publishes.** The proxy grabs it first and Docker then fails with `port is already allocated`, which reads like a Docker problem and isn't.
-- **Apps behind a proxy must be told they're behind one.** Otherwise cookies lose their `Secure` flag, logins bounce with no error, and generated links point at the wrong port.
-- **One proxy is a single point of failure.** Every web UI sits behind the same process. Mesh SSH is independent of it, which is the difference between an outage and a drive home.
-
-</Diagram>
+I'm honest that it isn't zero-dependency: the mesh has a coordination service, the certificates come from a public CA, and a few integrations talk to APIs I don't run. But every one of those is commodity and replaceable, none of them holds my data, and none of them can raise a price on me. The tradeoff is that I'm my own operations team, and I'd make that trade again.
 
 The box ships with a written operating guide aimed at whoever runs it rather than whoever built it, plus an instruction file at its root encoding the rules, so both humans and agents working on it inherit the constraints instead of rediscovering them.
