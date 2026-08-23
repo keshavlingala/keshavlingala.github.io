@@ -113,7 +113,7 @@ const files = [
 
 <section id="top" class="hero wrap">
   <div class="hero-left">
-    <p class="hero-status"><i class="live" aria-hidden="true"></i> Senior Software Engineer</p>
+    <p class="hero-status"><i class="live live-dot" aria-hidden="true"></i> Senior Software Engineer</p>
     <h1 class="hero-name">Keshav<br /><span class="accent">Lingala</span></h1>
     <p class="hero-role">MS in Computer Science · Based in Dayton, OH</p>
     <p class="hero-tag">
@@ -224,9 +224,7 @@ const files = [
   .hero-status .live {
     width: 8px;
     height: 8px;
-    border-radius: 50%;
     background: #5fd08a;
-    animation: livePulse 2.2s infinite;
   }
   .hero-name {
     font-family: var(--font-display);
@@ -585,7 +583,6 @@ const files = [
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .hero-status .live,
     .cw-run.running .cw-spin {
       animation: none;
     }

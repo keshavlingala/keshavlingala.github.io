@@ -26,6 +26,36 @@ function captionImages(body: string): string {
   });
 }
 
+/* Posts may import Astro components (diagrams) and wrap markdown in them.
+   The twins are rendered from the raw MDX body, so the ESM imports and the
+   component tags would otherwise show up as literal JSX. Strip the wrappers
+   and keep what they wrap — the diagrams are authored as plain markdown
+   lists precisely so a text reader still gets the content.
+
+   Fenced code is skipped: a post quoting an `import` statement or a lone
+   JSX tag in a sample is showing it deliberately, and dropping that line
+   would silently corrupt the sample. */
+const MDX_IMPORT = /^import\s+[^\n]*\sfrom\s+["'][^"']+["'];?[ \t]*$/;
+const MDX_TAG = /^[ \t]*<\/?[A-Z][\w.]*(?:\s[^>]*?)?\/?>[ \t]*$/;
+
+function stripMdxWrappers(body: string): string {
+  let fence: string | null = null;
+
+  const kept = body.split("\n").filter((line) => {
+    const delim = line.match(/^[ \t]*(`{3,}|~{3,})/)?.[1];
+    if (delim) {
+      // A fence closes on the same character, repeated at least as many times.
+      if (fence === null) fence = delim;
+      else if (delim[0] === fence[0] && delim.length >= fence.length) fence = null;
+      return true;
+    }
+    if (fence !== null) return true;
+    return !MDX_IMPORT.test(line) && !MDX_TAG.test(line);
+  });
+
+  return kept.join("\n").replace(/\n{3,}/g, "\n\n");
+}
+
 const monthYear = (date: Date) =>
   date.toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" });
 
@@ -59,7 +89,7 @@ export function postMarkdown(post: Post): string {
     "",
     "---",
     "",
-    captionImages(post.body ?? "").trim(),
+    captionImages(stripMdxWrappers(post.body ?? "")).trim(),
     "",
     "---",
     "",

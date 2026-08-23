@@ -36,8 +36,11 @@
   /* text */
   --text: #efe9e1;
   --text-2: #c5bcb0;
-  --text-3: #8d837a;
-  --text-4: #635c54;
+  /* text-3/-4 are tuned to clear WCAG AA (4.5:1) on the lightest surface
+     they land on (--bg-3) — the old values failed Lighthouse contrast on
+     small mono labels sitting on cards. Keep any new dim tone >= #9a9187. */
+  --text-3: #b0a69a;
+  --text-4: #9a9187;
 
   /* lines */
   --line: rgba(255, 255, 255, 0.08);
@@ -284,6 +287,29 @@ a {
   padding: 3px 7px;
 }
 
+/* ---------- live indicator ---------- */
+.live-dot {
+  position: relative;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+/* The ring inherits the dot's colour, so each caller only sets `background`. */
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: livePulse 2.2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
 /* ---------- small atoms ---------- */
 .hint {
   font-family: var(--font-mono);
@@ -313,13 +339,16 @@ a {
 
 @keyframes livePulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(95, 208, 138, 0.5);
+    transform: scale(1);
+    opacity: 0.55;
   }
   70% {
-    box-shadow: 0 0 0 8px rgba(95, 208, 138, 0);
+    transform: scale(3);
+    opacity: 0;
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(95, 208, 138, 0);
+    transform: scale(3);
+    opacity: 0;
   }
 }
 

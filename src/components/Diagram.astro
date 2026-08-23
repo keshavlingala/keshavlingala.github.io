@@ -1,0 +1,113 @@
+---
+/*
+  A flow chain or card grid, built from a plain markdown list.
+
+  Usage inside a post (note the blank lines — MDX needs them to parse the
+  list as markdown rather than as raw JSX children):
+
+      <Diagram title="The nightly chain">
+
+      - **04:30 · Import** — bank data into the ledger
+      - **05:00 · Reconcile** — match transfers the aggregator can't see
+
+      </Diagram>
+
+  The children stay real markdown on purpose: `postMarkdown()` in
+  src/lib/markdown.ts renders the .md twins from the raw MDX body, so a
+  prop-driven component would leak as literal JSX to text readers. Here the
+  wrapper tags are stripped and the list survives intact.
+
+  Each item's leading **bold** run becomes the card heading; the rest is body.
+*/
+interface Props {
+  /** Optional caption rendered above the diagram. */
+  title?: string;
+  /** "flow" draws arrows between items; "grid" lays them out without. */
+  variant?: "flow" | "grid";
+}
+
+const { title, variant = "flow" } = Astro.props;
+---
+
+<figure class:list={["dg", `dg--${variant}`]}>
+  {title && <figcaption>{title}</figcaption>}
+  <div class="dg-track"><slot /></div>
+</figure>
+
+<style>
+  .dg {
+    margin: 1.8em 0;
+  }
+  .dg figcaption {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 12px;
+  }
+
+  /* The markdown list is the diagram. */
+  .dg-track :global(ul) {
+    display: grid;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .dg-track :global(li) {
+    position: relative;
+    background: var(--glass);
+    border: 1px solid var(--glass-brd);
+    border-radius: var(--r);
+    padding: 14px 16px;
+    margin: 0;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--text-3);
+  }
+  /* Leading bold run = the card heading. */
+  .dg-track :global(li > strong:first-child) {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin-bottom: 5px;
+  }
+  .dg-track :global(li code) {
+    font-size: 0.88em;
+  }
+
+  /* Grid wraps into as many columns as fit. Flow stays one column at every
+     width: a wrapped chain puts an arrow in the left gutter of whichever
+     card starts a row — pointing in from nothing — and leaves the real step
+     between rows unmarked. There is no "first in row" selector to guard
+     with, so the chain simply never wraps. */
+  .dg--grid .dg-track :global(ul) {
+    grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+  }
+  .dg--flow .dg-track :global(ul) {
+    grid-template-columns: 1fr;
+  }
+
+  /* The arrow is centred in the gap above its card, so it never overlaps
+     content — hence the offset of half the 12px gap. */
+  .dg--flow .dg-track :global(li:not(:first-child))::before {
+    content: "↓";
+    position: absolute;
+    left: 22px;
+    top: -6px;
+    transform: translate(-50%, -50%);
+    color: var(--amber-deep);
+    font-size: 15px;
+    line-height: 1;
+  }
+
+  @media (max-width: 640px) {
+    .dg--grid .dg-track :global(ul) {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

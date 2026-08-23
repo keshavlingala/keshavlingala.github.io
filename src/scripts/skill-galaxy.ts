@@ -83,6 +83,16 @@ class SkillGalaxyEl extends HTMLElement {
   private boundMove = (e: PointerEvent) => this.onMove(e);
   private boundUp = (e: PointerEvent) => this.onUp(e);
 
+  /* Chips are toggle buttons, not tabs: keep `.on` and aria-pressed in step
+     wherever the selection changes (chip click, hub click, click-away). */
+  private syncChips(sel: string | null) {
+    this.querySelectorAll<HTMLButtonElement>(".chip").forEach((b) => {
+      const on = (b.dataset.cat || "") === (sel ?? "");
+      b.classList.toggle("on", on);
+      b.setAttribute("aria-pressed", String(on));
+    });
+  }
+
   connectedCallback() {
     this.stage = this.querySelector(".galaxy-stage") as HTMLElement;
     this.edges = [];
@@ -98,9 +108,7 @@ class SkillGalaxyEl extends HTMLElement {
       btn.addEventListener("click", () => {
         const key = btn.dataset.cat || null;
         this.sel = key;
-        this.querySelectorAll(".chip").forEach((b) =>
-          b.classList.toggle("on", (b as HTMLElement).dataset.cat === (key ?? "")),
-        );
+        this.syncChips(key);
         this.applyFocus();
       });
     });
@@ -152,9 +160,7 @@ class SkillGalaxyEl extends HTMLElement {
       if ((ev.target as Element).closest(".hub, .gnode")) return;
       if (!this.sel) return;
       this.sel = null;
-      this.querySelectorAll(".chip").forEach((b) =>
-        b.classList.toggle("on", !(b as HTMLElement).dataset.cat),
-      );
+      this.syncChips(null);
       this.applyFocus();
     });
   }
@@ -257,9 +263,7 @@ class SkillGalaxyEl extends HTMLElement {
       });
       g.addEventListener("click", () => {
         this.sel = this.sel === h.c.key ? null : h.c.key;
-        this.querySelectorAll(".chip").forEach((b) =>
-          b.classList.toggle("on", (b as HTMLElement).dataset.cat === (this.sel ?? "")),
-        );
+        this.syncChips(this.sel);
         this.applyFocus();
       });
       svg.appendChild(g);

@@ -13,13 +13,14 @@ const byCat = CATEGORIES.map((c) => ({
 
 <skill-galaxy class="galaxy-view">
   <div class="galaxy-bar">
-    <div class="chip-row" role="tablist" aria-label="Filter skills by category">
+    <div class="chip-row" role="group" aria-label="Filter skills by category">
       {
         chips.map((c, i) => (
           <button
             class={"chip" + (i === 0 ? " on" : "") + (c.featured ? " featured" : "")}
             data-cat={c.key}
             type="button"
+            aria-pressed={i === 0 ? "true" : "false"}
           >
             {c.label}
           </button>
