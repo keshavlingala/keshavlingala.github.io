@@ -50,11 +50,11 @@ So Supabase holds 38 tables across 23 migrations, auth, storage, five Edge Funct
 
 ## Pages A Search Engine Can Read
 
-A single-page app ships an empty `div` and fills it with JavaScript. Search engines handle that badly,.
+A single-page app ships an empty `div` and fills it with JavaScript. Search engines handle that badly.
 
 So the build runs a prerender step after Vite. It writes static HTML for **125 pages**: 36 crafts, 86 activities, the home page and two index pages. It also writes a sitemap, adds Open Graph tags, and seeds the query cache into each page so the client does not flash a loading state. This is static markup that the client render replaces, not server rendering with hydration. The build fails if Supabase is configured but unreachable, so a deploy cannot quietly publish empty pages.
 
-![A craft deep dive for Bidriware, with origins, what artisans make, a suggested learning order and a short glossary](images/craft-deep-dive.png)
+![A craft deep dive for Bidriware, with origins, what artisans make, a suggested learning order and a short glossary, captured before the generated covers were attached](images/craft-deep-dive.png)
 
 Prerendering only helps if the page is also light, so I set a budget of **170 kB of gzipped JavaScript**. React, Supabase, the router, the query client and i18n alone come to about 182 kB, so holding it takes work. The realtime client is aliased to a stub, because the app polls and never opens a channel. The storage client loads only when someone uploads. A version guard falls back to the full clients, with a warning, if the installed Supabase packages differ from the version the stubs were written for. The Markdown parser, about 36 kB, loads only for content that uses Markdown, and the community and workshop sections mount when they scroll near the viewport.
 
@@ -86,7 +86,7 @@ Most of Hastkala is reading and filtering. A few parts are not allowed to be app
 
 Email sending is switched off until the project has its own domain. Push is built and scheduled, but I have not yet seen it arrive on a real device.
 
-**A quiz that never makes you wait.** The Hobby Finder asks seven questions from a pool of 24. Each answer maps to tags from a fixed vocabulary, and scoring is plain deterministic code that matches your tags against each activity's and returns the top three. A model only phrases questions. It never scores anything. Generating a new set takes five to eight seconds, so the Edge Function returns a stored set at once and generates the next one in the background, saved as a candidate for an admin to promote.
+**A quiz that never makes you wait.** The Hobby Finder asks seven questions from a seed pool of 24. Each answer maps to tags from a fixed vocabulary, and scoring is plain deterministic code that matches your tags against each activity's and returns the top three. A model only phrases questions. It never scores anything. Generating a new set takes five to eight seconds, so the Edge Function returns a stored set at once and generates the next one in the background, saved as a candidate for an admin to promote.
 
 ![The quiz result page, showing three ranked activities with skill level, time and effort, captured before the generated covers were attached](images/quiz-result.png)
 
