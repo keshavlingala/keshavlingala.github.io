@@ -1,6 +1,6 @@
 # Keshav Reddy Lingala 👨‍💻
 
-Personal portfolio — a single-page site plus 17 project write-ups, built with
+Personal portfolio — a single-page site plus 20 project write-ups, built with
 **Astro 5** (static output) and deployed to **GitHub Pages** at
 [keshav.codes](https://keshav.codes).
 
