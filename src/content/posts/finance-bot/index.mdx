@@ -2,8 +2,8 @@
 title: "finance-bot: Personal Finance That Files Itself"
 slug: finance-bot
 featuredImage: images/feature.png
-tags: ['Finance automation','Personal finance','Firefly III','Budgeting','Net worth tracking','Bill tracking','SimpleFIN','Open banking','Telegram bot','Chat interface','Python','Stdlib only','No dependencies','SQLite','Job scheduler','Automated categorisation','Self-hosted','Home lab','Privacy','Keshav Lingala','Keshav Reddy','Keshav Reddy Lingala','Lingala Keshav Reddy','Keshav']
-description: "An automation layer over my own Firefly III ledger, running on hardware in my apartment. Transactions import and categorise themselves overnight, budgets and bills track themselves, and I ask it questions in plain English from a chat window on my phone."
+tags: ['Finance automation','Personal finance','Household finance','Shared expenses','Expense splitting','Firefly III','Budgeting','Net worth tracking','Bill tracking','Dashboard','SimpleFIN','Open banking','Telegram bot','Chat interface','Python','Stdlib only','No dependencies','SQLite','Job scheduler','Automated categorisation','Self-hosted','Home lab','Privacy','Keshav Lingala','Keshav Reddy','Keshav Reddy Lingala','Lingala Keshav Reddy','Keshav']
+description: "An automation layer over the Firefly III ledger my partner and I share, running on hardware in my apartment. Transactions import, reconcile and categorise themselves overnight, the shared card bill splits itself, a dashboard rebuilds itself before breakfast, and we both ask it questions in plain English from a chat window."
 date: '2026-08-21'
 techs: [Python, Postgresql, Docker, 'Neural Networks', Bash, 'SQLite', 'Telegram', 'Firefly III']
 featured: true
@@ -13,18 +13,22 @@ import Diagram from "../../../components/Diagram.astro";
 
 I wanted to know where my money goes without doing any bookkeeping. Not a budgeting app that sells my transaction history, and not a spreadsheet I'd abandon in March. Something that runs itself.
 
-So the ledger is [Firefly III](https://www.firefly-iii.org/), self-hosted on [my home server](/homelab/), and **finance-bot** is the automation layer wrapped around it: 3,612 lines of Python across nine modules, stdlib only, no third-party dependencies at all. It pulls my banks every morning, files what it can, asks me about what it can't, and answers questions from a chat window on my phone.
+So the ledger is [Firefly III](https://www.firefly-iii.org/), self-hosted on [my home server](/homelab/), and **finance-bot** is the automation layer wrapped around it: 6,023 lines of Python across fifteen modules, stdlib only, no third-party dependencies at all. It pulls the banks every morning, files what it can, asks about what it can't, and answers questions from a chat window on my phone.
 
-The whole thing runs on hardware in my apartment. My transaction history never touches a vendor's servers.
+It started as mine alone. Since then my partner's accounts joined the same ledger, so it now runs a two-person household: whose spending is whose, how the shared card bill splits, and a dashboard we both read.
 
-<Diagram variant="grid" title="What it does for me">
+The whole thing runs on hardware in my apartment. Our transaction history never touches a vendor's servers.
 
-- **Imports itself.** Every account I own syncs overnight. I never export a CSV or log into a bank.
-- **Categorises itself.** Rules file about 97% of spending on their own. The rules grow as I use it.
+<Diagram variant="grid" title="What it does for us">
+
+- **Imports itself.** Every account syncs overnight. Nobody exports a CSV or logs into a bank.
+- **Categorises itself.** Rules file about 97% of spending on their own. The rules grow as we use it.
+- **Knows whose it is.** Every transaction is tagged mine, my partner's or shared, without anyone being asked.
+- **Splits the card bill.** One message says who owes what on the card we share, net of what each of us already paid.
 - **Budgets that warn early.** Burn-down per category, spend against pace, and a projection of where the month ends up if nothing changes.
 - **Bills before they're late.** Upcoming and overdue, so a missed payment surfaces before the money fails to move.
-- **Answers in a chat window.** Net worth, savings rate, spend by payee or category, from my phone in a couple of seconds.
-- **Asks when it isn't sure.** Anything ambiguous becomes a numbered question I can answer in plain English.
+- **Draws a dashboard.** A household page rebuilt every morning, sliceable by month, person, category or day.
+- **Answers in a chat window.** Net worth, savings rate, spend by payee or category, in a couple of seconds.
 
 </Diagram>
 
@@ -35,21 +39,46 @@ The point of the whole system is that the interesting part has already happened 
 <Diagram title="The nightly chain">
 
 - **04:30, Import.** Every linked account pulled through SimpleFIN into the ledger.
-- **05:00, Reconcile.** Transfers between my own accounts matched up, so moving money doesn't look like spending.
+- **05:00, Reconcile.** Card payments matched up, so paying a card doesn't look like spending.
+- **05:02, Settle holds.** Pending charges checked against the bank's live feed: cleared, re-amounted, or flagged.
+- **05:05, Transfers.** Money moved between the two of us collapsed into one transfer and banked as a settlement.
+- **05:10, Ownership.** Every new transaction tagged with whose it is.
 - **05:15, Categorise.** Rules first, then a model pass over whatever the rules didn't recognise.
+- **05:20, Card balance.** The bank's own figure for the shared card, recorded.
 - **05:30, Back up.** The whole ledger, dumped to the file share.
 - **05:45, Summary.** What's new since I last looked, waiting for me.
+- **06:00, Dashboard.** The household page rebuilt from the finished data.
 - **21:00, Digest.** Yesterday's spending, month-to-date pace, and where the month is heading.
 
 </Diagram>
 
-By breakfast, yesterday's transactions are in, categorised, reconciled against transfers, and summarised. There's no "import day." There's no moment where I sit down and do finances.
+By breakfast, yesterday's transactions are in, settled, attributed, categorised and summarised, and the dashboard already shows them. There's no "import day." There's no moment where anyone sits down and does finances.
 
-![Job status: ten jobs with their schedules and last recorded occurrence, nine run today and the monthly restore drill not yet due, plus the SimpleFIN budget showing 8 of 24 requests used](images/jobs.png)
+![Job status: fifteen jobs with their schedules and last recorded run, all current, plus the SimpleFIN budget showing 11 of 24 requests used today](images/jobs.png)
+
+## One Ledger, Two People
+
+The ledger used to be mine. Now it's ours: my accounts, my partner's, and one credit card we both use, all in a single Firefly instance.
+
+Firefly has no notion of a transaction having an owner, and I didn't want to teach it by rewriting imported transactions into splits, because that would break the importer's de-duplication. So ownership is a single tag, and it's derived rather than asked. My accounts are mine, my partner's are theirs, the shared card splits, household bills like rent are shared whichever account they leave from, and anything from before we started sharing costs stays mine alone, so months of my old solo spending on that card don't turn into debt nobody owed. The derivation is right for almost every row. The exceptions are pinned from chat, `who 4 r` or `who 4 shared 30`, and a pin always beats the derived answer until it's handed back with `who 4 auto`.
+
+The split itself happens when a report is built. The card is the household's biggest monthly bill, so that's where everything evens out: `/card` divides it by each person's share of what was actually spent, less whatever they already paid straight from their own account. Rent one of us pays directly comes off that person's side of the card bill instead of being owed back.
+
+Money moving between us needed a fix of its own. One Zelle between the two of us arrives twice, a withdrawal in the sender's feed and a deposit in the receiver's, and left alone the pair is wrong three ways at once: it double-counts the receiver's balance, reads as income for them and reads as spending for the sender. A Firefly rule can't fix that, because a rule sees one transaction at a time and can't ask whether the other half exists. So a nightly job finds the pairs, turns the withdrawal into a real transfer between the two accounts, deletes the mirror, and banks it as a settlement. "Who owes whom" never depends on anyone remembering to mark a payment.
+
+We both talk to the same bot. `/status` and the digests answer for whoever is asking, and the handful of commands that spend import quota, run jobs or read the audit log stay mine.
+
+## A Dashboard That Can't Disagree With Chat
+
+Firefly's own dashboard answers "what happened," per account. The questions we actually ask are household ones: how much is left this month, whose spending is it, is the pace sustainable, what went out on the 14th. None of them survive being split across two people and eleven accounts.
+
+So at 06:00 the bot writes one self-contained page. Every figure is computed once, from the same helpers the chat reports use, and the whole windowed ledger is embedded in the page as JSON, so the browser re-slices it by month, person, category or day with no server to call. It costs nothing to serve, it stays readable when Firefly is down, and because it's generated rather than queried, it can't disagree with what the bot says in chat. `/dashboard` rebuilds it on demand when a midday import would otherwise leave it a day stale.
+
+The one thing a static page can't do is write, so a small API in the same process files a category from the browser through the exact code path the chat buttons use. It listens on loopback only, behind the server's front door and its password, and the ledger's API token never leaves the bot. (There's no screenshot here, because every number on it is real.)
 
 ## Budgets That Tell Me Before, Not After
 
-Firefly III holds the budgets. finance-bot is what makes me actually look at them.
+Firefly III holds the budgets. finance-bot is what makes us actually look at them.
 
 `/budget` draws a burn-down bar per category with a colour on each one, green while there's room, amber past 90%, red once it's blown, plus the month's total against the month's limits. That's the "am I fine" question answered in one message.
 
@@ -63,18 +92,20 @@ A straight-line projection from the current run rate. Being 60% through my budge
 
 ## Ask It Anything, In Plain English
 
-Everything is a Telegram message, which means the interface is already on my phone, my laptop and my watch, with no app to build and nothing exposed to the internet.
+Everything is a Telegram message, which means the interface is already on our phones, laptops and watches, with no app to build and nothing exposed to the internet.
 
 <Diagram variant="grid" title="From a chat window">
 
-- **`/status`** Income booked, consumption against target, invested, savings rate, and net worth broken out by account.
+- **`/status`** Income booked, consumption against target, invested, savings rate, and net worth, for whoever is asking.
+- **`/card`** How to split the shared card bill this month.
 - **`/budget`** This month's burn-down, one bar per category.
 - **`/bills`** Due soon, overdue, and unpredicted.
 - **`/spend <text>`** Recent transactions matching a category or a payee.
 - **`/net`** Net worth, account by account.
-- **`/uncat`** Whatever is still waiting on me, as a numbered list.
-- **`/import`** Pull from the banks right now instead of waiting for 04:30.
+- **`/uncat`** Whatever is still waiting on a human, as a numbered list.
+- **`/dashboard`** Rebuild the web dashboard now and get the link.
 - **`/digest`, `/review`** The daily and weekly reports on demand.
+- **`/import`, `/jobs`, `/autolog`, `/undo`** Mine only: pull from the banks now, job status and quota, and what the model filed, with undo.
 
 </Diagram>
 
@@ -82,7 +113,7 @@ The queue is where it gets conversational. When something can't be filed confide
 
 > *"2 is my car insurance, 3 and 4 are food"*
 
-That resolves against the open questions, the live category list and the last dozen turns of conversation, so follow-ups and pronouns work. Whatever it works out comes back as a **proposal with Apply and Cancel buttons**, and nothing is written to my ledger until I tap. If I name a category that doesn't exist yet, it offers to create it, and creating it also writes a matching rule so the next one files itself without ever asking.
+That resolves against the open questions, the live category list and the last dozen turns of conversation, so follow-ups and pronouns work. Whatever it works out comes back as a **proposal with Apply and Cancel buttons**, and nothing is written to the ledger until someone taps. If I name a category that doesn't exist yet, it offers to create it, and creating it also writes a matching rule so the next one files itself without ever asking. For quick answers there are shorthands too: `cat 3` brings up category buttons, `note 3 <text>` attaches a reason, and `who 3 shared` fixes the owner.
 
 That last part is the compounding bit. Every question I answer is one I don't get asked again.
 
@@ -90,7 +121,7 @@ That last part is the compounding bit. Every question I answer is one I don't ge
 
 Declarative rules in Firefly handle about 97% of withdrawals. The remaining few are merchants I've seen once or twice, which is exactly what a fixed rule list is bad at, so those go to a language model in one batched call per night.
 
-The model doesn't get free rein. Every category it returns is checked against the categories that actually exist in my ledger, and anything below high confidence becomes a question for me instead of a silent write. Above that bar it files it and logs it, and `/autolog` shows me what it did with `/undo` to reverse any of it.
+The model doesn't get free rein. Every category it returns is checked against the categories that actually exist in the ledger, and anything below high confidence becomes a question instead of a silent write. Above that bar it files it and logs it, and `/autolog` shows me what it did with `/undo` to reverse any of it.
 
 Then it consolidates. Once a merchant resolves the same way twice, it gets folded into the *existing* rule for that category rather than spawning a rule of its own. The rule set stays small and readable, and the system needs the model less the longer it runs, not more. That's the direction I wanted: the automation should be converging on deterministic, not accumulating magic.
 
@@ -98,13 +129,15 @@ The fiddly part is that rules match the raw payee string off the bank feed, so o
 
 ## On My Phone, From Anywhere
 
-Two front ends, both reachable over the private mesh my [home server](/homelab/) runs on, neither exposed to the internet.
+Three front ends, all reachable over the private mesh my [home server](/homelab/) runs on, none exposed to the internet.
 
 **Telegram** is the conversational one: reports, questions, approvals.
 
-**Abacus**, an open-source native iOS client for Firefly III, is the visual one. Balances, charts, net worth history and recent transactions, as a real app on my home screen rather than an admin panel squeezed onto a phone screen. It talks straight to the ledger in my apartment, over cellular, with no VPN toggle to remember and no port forwarded anywhere.
+**The dashboard** is the household one: a browser tab for the questions that are easier to see than to ask.
 
-That only works because the server terminates HTTPS on a genuine certificate. Mobile apps refuse self-signed certificates outright, so the TLS work on the host is what turned the ledger from a browser tab into something that lives on my phone.
+**Abacus**, an open-source native iOS client for Firefly III, is the account-level one. Balances, charts, net worth history and recent transactions, as a real app on my home screen rather than an admin panel squeezed onto a phone screen. It talks straight to the ledger in my apartment, over cellular, with no VPN toggle to remember and no port forwarded anywhere.
+
+That only works because the server terminates HTTPS on a genuine certificate, a wildcard that gives the ledger a hostname of its own. Mobile apps refuse self-signed certificates outright, so the TLS work on the host is what turned the ledger from a browser tab into something that lives on my phone.
 
 ## Built To Be Left Alone
 
@@ -113,22 +146,25 @@ Automation that touches money has to be trustworthy in a way a side project usua
 <Diagram variant="grid" title="The unglamorous half">
 
 - **One scheduler, with memory.** Every run is recorded, so restarts can't double-fire a job and a run missed while the box was down is caught up rather than skipped.
-- **A real quota ledger.** The bank aggregator allows 24 requests a day and one import costs 8, counted in the unit the provider actually bills.
+- **A real quota ledger.** The bank aggregator allows 24 requests a day. One import costs a discovery call plus one per account, derived from the config, so adding an account can't silently overdraw the budget.
 - **Undo on everything.** Every automated write stores the previous value, so any of it reverses from chat.
 - **Backups that are proven.** Nightly dumps, 30 dailies and 12 monthlies, plus a monthly drill that actually restores one and compares row counts.
+- **Statement balances, recorded.** The ledger dates a charge when it's made and the bank bills on posted dates, so a balance derived for a past day drifted $599.45 from the real statement. The bot records the bank's own figure daily instead, and on the closing day that simply is the statement.
 - **Alerts on silence.** A healthy import logs errors by design, so the alert is "no successful import in 36 hours" rather than a non-zero exit code.
-- **109 tests.** Stdlib `unittest`, no fixtures, over the logic that only breaks in states I'd never reproduce by hand.
+- **205 tests.** Stdlib `unittest`, no fixtures, over the logic that only breaks in states I'd never reproduce by hand.
 
 </Diagram>
 
-![The suite running in the container: 109 tests, all passing, in well under a second](images/tests.png)
+![The suite running in the container: 205 tests, all passing, in about a second](images/tests.png)
 
-It publishes no network ports at all, holds no key to the host's Docker daemon, and keeps its own state in a small SQLite database next to the code.
+It publishes one port, on loopback only, for the dashboard's API. It holds no key to the host's Docker daemon, and keeps its own state in a small SQLite database next to the code.
 
-The thing I took from building it: every real bug in this system reported success while being wrong. A backup that completed and couldn't be restored, a scheduler that forgot what it had already done, two rate limiters that were each individually correct. None of them threw an error. Most of the reliability work above is just making that class of failure visible.
+The thing I took from building it: every real bug in this system reported success while being wrong. A backup that completed and couldn't be restored, a scheduler that forgot what it had already done, two rate limiters that were each individually correct. None of them threw an error.
+
+The newest one is the clearest example. The importer tags a held charge `pending` and never looks at it again, so I added a job to reconcile holds against the bank's live feed. Its first version read "this id has vanished from the feed" as "this hold was released," and deleted the transaction. In September it deleted seven real charges, because holds on car rentals, insurance and delivery tips routinely settle under a *different* id. It reported success. Now a hold that cleared or changed amount is fixed automatically, because that's a same-id match, and one that vanished is flagged for a human and never removed. Most of the reliability work above is just making that class of failure visible.
 
 ## What It Actually Changed
 
-I know my net worth, this month's burn rate and what's due next week, at any moment, from my phone, without maintaining any of it. Categorisation happens whether or not I participate. Budgets warn me on the 9th instead of informing me on the 30th.
+We know our net worth, this month's burn rate, what's due next week and who owes whom on the card, at any moment, from our phones, without maintaining any of it. Categorisation happens whether or not anyone participates. Budgets warn on the 9th instead of informing on the 30th.
 
-And all of it runs on a machine I own, against a ledger I control, with no third party sitting between me and my own spending history.
+And all of it runs on a machine I own, against a ledger we control, with no third party sitting between us and our own spending history.
