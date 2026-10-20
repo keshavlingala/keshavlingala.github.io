@@ -10,7 +10,7 @@
 
 ## About
 
-Keshav Lingala — Senior Software Engineer based in Dayton, OH. Full-stack engineer building systems that scale, from Angular and React interfaces to Spring Boot, Node and Go services on AWS and Kubernetes. Seven years across banking, big-data and distribution, plus generative-AI and autonomous-agent experiments. Explore 17 shipped projects, skills and experience.
+Keshav Lingala — Senior Software Engineer based in Dayton, OH. Full-stack engineer building systems that scale, from Angular and React interfaces to Spring Boot, Node and Go services on AWS and Kubernetes. Seven years across banking, big-data and distribution, plus generative-AI and autonomous-agent experiments. Explore 20 shipped projects, skills and experience.
 
 ## Experience
 
@@ -108,6 +108,8 @@ Keshav Lingala — Senior Software Engineer based in Dayton, OH. Full-stack engi
 
 ## Projects
 
+- [Hastkala: A Living Archive Of Indian Handicrafts](https://keshav.codes/hastkala/) — A site for discovering Indian handicrafts and trying them at home, in English and Hindi: 36 crafts, 86 step-by-step activities and a quiz that suggests where to start.
+  - Markdown: https://keshav.codes/hastkala.md
 - [finance-bot: Personal Finance That Files Itself](https://keshav.codes/finance-bot/) — Automation for the Firefly III ledger my partner and I share. It imports and categorises our transactions every morning, splits shared spending, builds a dashboard, and answers questions in Telegram.
   - Markdown: https://keshav.codes/finance-bot.md
 - [Okepage: Print Many Photos on One Page, In Your Browser](https://keshav.codes/okepage/) — A single browser page that lays a pile of photos onto A4 sheets ready to print and cut — for people who just want prints, without the hassle of design tools, word processors or a trip to the photo shop. No accounts, no upload, and it works offline.

@@ -1,8 +1,8 @@
 # Keshav Lingala — Senior Software Engineer
 
-> Full-stack engineer building systems that scale — from Angular and React interfaces to Spring Boot and Node services on AWS and Kubernetes. Based in Dayton, OH. This site is a personal portfolio: a profile, work history, skills and 19 project write-ups.
+> Full-stack engineer building systems that scale — from Angular and React interfaces to Spring Boot and Node services on AWS and Kubernetes. Based in Dayton, OH. This site is a personal portfolio: a profile, work history, skills and 20 project write-ups.
 
-Every page has a plain-markdown twin at the same path with a `.md` suffix (for example https://keshav.codes/finance-bot.md). https://keshav.codes/llms-full.txt contains the whole site as one document.
+Every page has a plain-markdown twin at the same path with a `.md` suffix (for example https://keshav.codes/hastkala.md). https://keshav.codes/llms-full.txt contains the whole site as one document.
 
 ## Profile
 
@@ -13,6 +13,7 @@ Every page has a plain-markdown twin at the same path with a `.md` suffix (for e
 
 ## Projects
 
+- [Hastkala: A Living Archive Of Indian Handicrafts](https://keshav.codes/hastkala.md): A site for discovering Indian handicrafts and trying them at home, in English and Hindi: 36 crafts, 86 step-by-step activities and a quiz that suggests where to start.
 - [finance-bot: Personal Finance That Files Itself](https://keshav.codes/finance-bot.md): Automation for the Firefly III ledger my partner and I share.
 - [Okepage: Print Many Photos on One Page, In Your Browser](https://keshav.codes/okepage.md): A single browser page that lays a pile of photos onto A4 sheets ready to print and cut — for people who just want prints, without the hassle of design tools, word processors or a trip to the photo shop.
 - [beast: A Private AI Cloud I Deploy To From My Phone](https://keshav.codes/homelab.md): A home server in my apartment that runs local AI models, image and video generation, my finance system and my file storage.
