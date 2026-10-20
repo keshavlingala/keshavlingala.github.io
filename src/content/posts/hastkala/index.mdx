@@ -2,8 +2,8 @@
 title: "Hastkala: A Living Archive Of Indian Handicrafts"
 slug: hastkala
 featuredImage: images/feature.png
-tags: ['Indian handicrafts','Indian crafts','Craft archive','Living archive','Learning companion','Hobby finder quiz','DIY activities','Bilingual app','English and Hindi','React','TypeScript','Vite','Supabase','Postgres','Row level security','Firebase Hosting','Pre-rendering','SEO','Accessibility','PWA','Serverless','Free tier','GitHub Actions','Keshav Lingala','Keshav Reddy','Keshav Reddy Lingala','Lingala Keshav Reddy','Keshav']
-description: "A site for discovering Indian handicrafts and trying them at home, in English and Hindi. The idea, design direction and craft knowledge come from three subject matter experts; I built the app and its infrastructure."
+tags: ['Indian handicrafts','Indian crafts','Craft archive','Living archive','Learning companion','Hobby finder quiz','DIY activities','Bilingual app','English and Hindi','React','TypeScript','Vite','Supabase','Postgres','Firebase Hosting','Pre-rendering','SEO','Accessibility','PWA','Serverless','Free tier','GitHub Actions','Keshav Lingala','Keshav Reddy','Keshav Reddy Lingala','Lingala Keshav Reddy','Keshav']
+description: "A site for discovering Indian handicrafts and trying them at home, in English and Hindi: 36 crafts, 86 step-by-step activities and a quiz that suggests where to start."
 date: '2026-10-04'
 demo: https://hastkala-dev.web.app
 techs: [React, Typescript, Postgresql, Firebase, 'Github Actions', PWA, ComfyUI, 'Supabase', 'Vite', 'i18next', 'Gemini']
@@ -14,54 +14,45 @@ import Diagram from "../../../components/Diagram.astro";
 
 Hastkala (हस्तकला, "handicraft") helps people discover Indian handicrafts and try them at home. You read about a craft, take a short quiz to find one that suits you, and follow a step-by-step activity to make something yourself.
 
-It has 36 crafts and 86 activities, in English and Hindi.
-
 <Diagram variant="grid" title="What it does">
 
-- **Crafts.** 36 crafts with their history and how they're made, browsable on a map of India.
-- **Activities.** 86 projects with steps, a materials list with prices and buy links for India or the US, videos and inspiration photos.
-- **Hobby Finder.** A short quiz that suggests three activities to start with.
-- **Search.** Forgiving search across crafts and activities, in both languages.
-- **English and Hindi.** The interface and the content.
+- **Crafts.** 36 crafts with their history and how they're made, filterable by state, material and popularity.
+- **Activities.** 86 projects you can do at home, filterable by skill, time, effort and budget.
+- **Steps with pictures.** Each activity has steps, tips, a materials list with prices and buy links for India or the US, and videos.
+- **Hobby Finder.** Seven quick questions, then three activities to start with.
+- **English and Hindi.** Switch languages at any time.
 - **Three themes.** Museum, folk and craft, each in light and dark.
 
 </Diagram>
 
+## Team
+
+- **Asritha Nagubandi, Poornima Chaturvedula and Jayneel**: subject matter experts. Idea, requirements, design direction and craft knowledge.
+- **Keshav Lingala**: development. Architecture, features and infrastructure.
+
+## Activities
+
+![The activities page, with filters for skill, time, effort, complexity and budget](images/activities.png)
+
 ![An activity page: the craft behind it, the materials with prices, and an India or US price toggle](images/activity-page.png)
 
-## Who Made It
+![A step with its tip and picture](images/activity-steps.png)
 
-The idea is not mine. **Asritha Nagubandi, Poornima Chaturvedula and Jayneel** are the subject matter experts: the idea, the requirements, the design direction and the craft knowledge are theirs. I built the app, covering the architecture, the features and the infrastructure.
-
-## How It's Built
-
-It's a React app that talks directly to Supabase (Postgres, auth, storage and edge functions), with no server of my own in between. Row-level security in Postgres decides what each person can read and write. Firebase Hosting serves the site, and everything runs on free tiers.
-
-Every craft and activity page is prerendered to static HTML at build time, so search engines can read it and the first load is fast.
+## Crafts
 
 ![A craft page for Bidriware](images/craft-page.png)
 
-## Content And Images
-
-The craft and activity text was drafted with AI in English and Hindi, and is waiting on the experts' review. They can edit it in an admin console built into the app.
-
-Cover images and step pictures were generated with ComfyUI on [my home server](/homelab/), and the site labels them as AI-generated. Inspiration pictures are mostly photos from Wikimedia Commons, credited on the page.
-
-![Inspiration photos on an activity, each one credited](images/activity-inspiration.png)
-
 ## Languages And Themes
 
-Every string in the interface is translated, and craft content has its own translations with English as the fallback. The Hindi is machine-written for now and waiting for a native speaker's read.
+![The same activity in Hindi](images/activity-hindi.png)
 
-![The home page in Hindi](images/home-hindi.png)
+![An activity on a phone, in the folk theme's dark mode](images/activity-mobile.png)
 
-![The folk theme in dark mode](images/home-folk-dark.png)
+## How It's Built
 
-![The home page on a phone](images/home-mobile.png)
+It's a React and TypeScript app, with Supabase for the database, sign-in and storage, hosted on Firebase. Pages are prerendered, so they load fast and show up in search, and it runs on free tiers.
 
-## Built With Agents
-
-I built it with coding agents: a coordinator agent splits the work, worker agents each take a piece, and I review the changes and decide what merges.
+The craft and activity text was drafted with AI and is being reviewed by the experts, who edit it in the app's own admin console. Cover images and step pictures were generated with ComfyUI on [my home server](/homelab/) and are labelled as AI-generated on the site. Inspiration photos are credited where they appear.
 
 ## What's Next
 
